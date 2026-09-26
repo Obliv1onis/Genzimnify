@@ -4,6 +4,8 @@ const DOCS = [
   { title: "Your first vibe", url: "getting-started.html", section: "Get started", text: "create run check project hello fizzbuzz command line" },
   { title: "Language guide", url: "language-guide.html", section: "Language", text: "variables values operators control flow functions classes exceptions imports async types" },
   { title: "Native standard library", url: "stdlib.html", section: "Reference", text: "builtins collections math system luck clock timing files" },
+  { title: "Packages and projects", url: "packages.html", section: "Tools", text: "gzim.toml dependencies Git local path add install remove package manager" },
+  { title: "Python interoperability", url: "python-interop.html", section: "Interop", text: "optional Python libraries py numpy json keyword arguments native core" },
   { title: "Command-line tools", url: "cli.html", section: "Tools", text: "gzim run check repl init doctor emit-python arguments exit code" },
   { title: "Editor and language server", url: "tooling.html", section: "Tools", text: "LSP Zed diagnostics hover completion definition editor" },
   { title: "Native runtime architecture", url: "native-runtime.html", section: "Concepts", text: "Nim lexer parser semantic interpreter no Python portability modules" }
@@ -13,7 +15,8 @@ const groups = [
   ["Overview", [["Home", "index.html"]]],
   ["Get started", [["Installation", "installation.html"], ["Your first vibe", "getting-started.html"]]],
   ["Language", [["Language guide", "language-guide.html"], ["Standard library", "stdlib.html"]]],
-  ["Tools", [["Command-line interface", "cli.html"], ["Editor & LSP", "tooling.html"]]],
+  ["Tools", [["Command-line interface", "cli.html"], ["Packages & projects", "packages.html"], ["Editor & LSP", "tooling.html"]]],
+  ["Interop", [["Python libraries", "python-interop.html"]]],
   ["Concepts", [["Native runtime", "native-runtime.html"]]]
 ];
 
@@ -25,7 +28,7 @@ function renderChrome() {
   document.getElementById("siteHeader").innerHTML = `
     <header class="topbar">
       <button class="mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button>
-      <a class="brand" href="index.html"><span class="brand-mark">G</span><span>GENZIMNIFY</span><span class="version">2.0</span></a>
+      <a class="brand" href="index.html"><span class="brand-mark">G</span><span>GENZIMNIFY</span><span class="version">2.1</span></a>
       <nav class="toplinks"><a class="active" href="index.html">Docs</a><a href="https://github.com/Obliv1onis/Genzimnify">Source</a></nav>
       <div class="top-actions">
         <button class="search-button" id="searchBtn"><span>⌕</span><span>Search documentation</span><kbd>⌘K</kbd></button>

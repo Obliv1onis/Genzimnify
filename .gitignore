@@ -2,6 +2,7 @@
 build/
 target/
 dist/
+.gzim/
 
 # Zed dev-extension build artifacts (grammar clones + compiled wasm)
 zed-genzimnify/grammars/

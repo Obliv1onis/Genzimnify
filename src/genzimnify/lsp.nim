@@ -179,6 +179,8 @@ const KEYWORD_DOCS: Table[string, string] = {
   "luck": "Native random utilities.", "clock": "Native clock utilities.",
   "system": "Native process and environment utilities.",
   "timing": "Native cooperative timing module.", "math": "Native math module.",
+  "json": "Native JSON parser and encoder.", "path": "Native filesystem path utilities.",
+  "encoding": "Native Base64 encoding utilities.",
   "L": "Base native exception.", "BadVibe": "Invalid value exception.",
   "WrongType": "Type exception.", "OutOfPocket": "Index exception.",
   "Ghosted": "Missing key/name exception.", "SplitByZero": "Division-by-zero exception.",
@@ -388,8 +390,10 @@ proc completionList(decls: seq[Decl]): JsonNode =
                        "vibe check", "num", "drip", "text", "truth", "stack",
                        "map", "squad", "crew", "yap", "yap back"]
     item(k, if isCall: 3 else: 14, v)  # Function / Keyword
-  for modname in ["math", "luck", "clock", "system", "timing"]:
+  for modname in ["math", "luck", "clock", "system", "timing", "json", "path", "encoding"]:
     item(modname, 9, "native Genzimnify module")
+  for modname in ["py.math", "py.json", "py.numpy"]:
+    item(modname, 9, "optional Python library bridge")
   for d in decls:
     if d.kind != dkParam:
       item(d.name, (case d.kind
@@ -451,7 +455,7 @@ proc main*() =
           "completionProvider": {"resolveProvider": false, "triggerCharacters": []},
           "documentSymbolProvider": true,
         },
-        "serverInfo": {"name": "gzim-lsp", "version": "2.0.0"},
+        "serverInfo": {"name": "gzim-lsp", "version": "2.1.0"},
       })
     elif m == "initialized":
       discard

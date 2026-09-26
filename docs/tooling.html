@@ -7,10 +7,10 @@
   <h2 id="generic-lsp">Other LSP editors</h2><p>Configure <code>gzim-lsp</code> as a stdio language server for files matching <code>*.gzim</code>. The server follows the standard JSON-RPC Language Server Protocol.</p><pre><code>{
   "command": "gzim-lsp",
   "filetypes": ["gzim"],
-  "rootPatterns": ["genzimnify.nimble", ".git"]
+  "rootPatterns": ["gzim.toml", "genzimnify.nimble", ".git"]
 }</code></pre>
   <h2 id="online-studio">Browser Studio</h2><p>The repository’s <code>studio/</code> directory contains a local-first browser IDE with syntax highlighting, completion, diagnostics, examples, and a console. It is a separate web surface; the installable desktop toolchain is the authoritative native runtime.</p>
   <h2 id="tree-sitter">Tree-sitter grammar</h2><p>The grammar under <code>grammars/genzimnify/</code> can be embedded by editors that support Tree-sitter. Regenerate parser sources after changing <code>grammar.js</code>:</p><pre><code>cd grammars/genzimnify
 tree-sitter generate</code></pre>
-  <div class="page-nav"><a href="cli.html"><small>Previous</small>← Command-line interface</a><a href="native-runtime.html"><small>Next</small>Native runtime →</a></div>
+  <div class="page-nav"><a href="python-interop.html"><small>Previous</small>← Python interoperability</a><a href="native-runtime.html"><small>Next</small>Native runtime →</a></div>
 </article></main><aside class="toc" id="pageToc"></aside></div><script src="app.js"></script></body></html>

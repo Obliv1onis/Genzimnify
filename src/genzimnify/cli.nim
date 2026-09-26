@@ -1,10 +1,10 @@
 ## gzim, the native Genzimnify CLI.
 ## run / check / repl / init / emit-python.
 
-import std/[os, strutils, syncio]
-import lexer, parser, semantic, emit, runtime, errors
+import std/[os, strutils, syncio, tables]
+import lexer, parser, semantic, emit, runtime, errors, packages
 
-const Version* = "2.0.0"
+const Version* = "2.1.0"
 
 # ------------------------------------------------------------------ compile
 
@@ -70,9 +70,38 @@ yap(call up greet("world") yo)
 proc cmdInit() =
   if fileExists("main.gzim"):
     echo "main.gzim already exists, it's already vibing"
-    return
-  writeFile("main.gzim", InitSample)
-  echo "dropped main.gzim, let's get this bread"
+  else:
+    writeFile("main.gzim", InitSample)
+    echo "dropped main.gzim, let's get this bread"
+  initManifest(getCurrentDir())
+  echo "project manifest: gzim.toml"
+
+proc packageFail(action: proc()) =
+  try: action()
+  except PackageError as error: failHard(error.msg)
+
+proc cmdInstall() =
+  packageFail(proc() =
+    let count = installDependencies(getCurrentDir())
+    echo $count & " packages ready fr")
+
+proc cmdAdd(rest: seq[string]) =
+  if rest.len != 2: failHard("add needs a name and source: gzim add <name> <git-url-or-path>")
+  packageFail(proc() =
+    addDependency(getCurrentDir(), rest[0], rest[1])
+    echo "added " & rest[0] & " fr")
+
+proc cmdRemove(rest: seq[string]) =
+  if rest.len != 1: failHard("remove needs a package name: gzim remove <name>")
+  packageFail(proc() =
+    removeDependency(getCurrentDir(), rest[0])
+    echo "removed " & rest[0] & " fr")
+
+proc cmdPackages() =
+  packageFail(proc() =
+    let manifest = loadManifest(getCurrentDir())
+    if manifest.dependencies.len == 0: echo "no packages yet"
+    for name, source in manifest.dependencies: echo name & "  " & source)
 
 proc cmdRepl() =
   echo "gzim repl " & Version & " native runtime, blank line to run, ctrl-d to dip"
@@ -107,6 +136,10 @@ usage:
   gzim check <file.gzim>        parse + semantic vibecheck only
   gzim repl                     start the native vibe loop
   gzim init                     drop a starter main.gzim
+  gzim add <name> <source>      add a Git or local-path dependency
+  gzim install                  install dependencies from gzim.toml
+  gzim remove <name>            remove a dependency
+  gzim packages                 list project dependencies
   gzim doctor                   show runtime and platform information
   gzim emit-python <file.gzim>  optional Python interoperability export
   gzim help                     this menu
@@ -129,7 +162,7 @@ proc main*() =
 
   var cmd: string
   var rest: seq[string]
-  if params[0] in ["run", "build", "emit-python", "check", "repl", "init", "doctor", "help", "--help", "-h",
+  if params[0] in ["run", "build", "emit-python", "check", "repl", "init", "add", "install", "remove", "packages", "doctor", "help", "--help", "-h",
                    "--version", "-v"]:
     cmd = params[0]
     rest = params[1 .. ^1]
@@ -157,6 +190,14 @@ proc main*() =
     cmdRepl()
   of "init":
     cmdInit()
+  of "add":
+    cmdAdd(rest)
+  of "install":
+    cmdInstall()
+  of "remove":
+    cmdRemove(rest)
+  of "packages":
+    cmdPackages()
   of "doctor":
     cmdDoctor()
   of "--version", "-v":

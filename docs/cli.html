@@ -5,13 +5,17 @@
 gzim run app.gzim [arguments...]</code></pre><p>Both forms parse, semantically check, and execute the program in the current native process. Arguments are exposed through the global <code>args</code> stack.</p>
   <h2 id="check">Check a program</h2><pre><code>gzim check app.gzim</code></pre><p>Runs the lexer, parser, and semantic analyzer without executing the program. A successful check exits with status 0. Caps exit nonzero and include file, line, and column information.</p>
   <h2 id="repl">Start the REPL</h2><pre><code>gzim repl</code></pre><p>Enter code at <code>vibe&gt;</code>. A blank line executes the accumulated session. Ctrl+D exits.</p>
-  <h2 id="init">Initialize a project</h2><pre><code>mkdir my-vibe && cd my-vibe
-gzim init</code></pre><p>Creates a starter <code>main.gzim</code> without replacing an existing file.</p>
+  <h2 id="init">Initialize a project</h2><pre><code>mkdir my-vibe &amp;&amp; cd my-vibe
+gzim init</code></pre><p>Creates a starter <code>main.gzim</code> and <code>gzim.toml</code> without replacing existing files.</p>
+  <h2 id="packages">Manage packages</h2><pre><code>gzim add cool https://github.com/example/cool.git#v1.0.0
+gzim install
+gzim packages
+gzim remove cool</code></pre><p>Dependencies are project-local and may come from Git or a local directory. See <a href="packages.html">Packages and projects</a>.</p>
   <h2 id="doctor">Inspect the runtime</h2><pre><code>gzim doctor</code></pre><p>Prints the installed version, confirms that the runtime is native and Python-free, and shows the compiled target OS and CPU.</p>
   <h2 id="version">Print the version</h2><pre><code>gzim --version</code></pre>
   <h2 id="python-export">Optional Python export</h2><pre><code>gzim emit-python app.gzim</code></pre><p>Writes <code>app.py</code> and a source map for interoperability with existing Python ecosystems. This command is optional: normal execution never invokes this backend. The legacy spelling <code>gzim build</code> remains as a compatibility alias in 2.0.</p>
   <div class="callout warning"><div class="callout-title">Export is not native execution</div><p>The generated file requires Python if you choose to run it. Use <code>gzim app.gzim</code> for the standalone Genzimnify runtime.</p></div>
   <h2 id="exit-codes">Exit codes</h2><table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0</code></td><td>Program or command completed successfully.</td></tr><tr><td><code>1</code></td><td>Syntax, semantic, runtime, file, or CLI error.</td></tr><tr><td>Custom</td><td><code>system.exit(code)</code> exits with the requested status.</td></tr></tbody></table>
   <h2 id="compatibility">Compatibility executable</h2><p>Release packages use <code>gzim</code>. Source builds also keep <code>gzimc</code> for existing integrations; it routes to the same native CLI.</p>
-  <div class="page-nav"><a href="stdlib.html"><small>Previous</small>← Standard library</a><a href="tooling.html"><small>Next</small>Editor and LSP →</a></div>
+  <div class="page-nav"><a href="stdlib.html"><small>Previous</small>← Standard library</a><a href="packages.html"><small>Next</small>Packages and projects →</a></div>
 </article></main><aside class="toc" id="pageToc"></aside></div><script src="app.js"></script></body></html>

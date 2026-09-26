@@ -14,11 +14,16 @@ yap(call up math.sqrt(9) yo)</code></pre><p>Exports <code>floor</code>, <code>ce
   <h2 id="system">system</h2><pre><code class="language-gzim">pull up system
 yap(system.args)
 yap(call up system.cwd() yo)</code></pre><p>Exports <code>args</code>, <code>cwd</code>, <code>getenv</code>, and <code>exit</code>. A top-level <code>args</code> stack is also available.</p>
+  <h2 id="json">json</h2><pre><code class="language-gzim">pull up json
+let data be call up json.parse("{\"ready\":true}") yo
+yap(call up json.stringify(data) yo)</code></pre><p><code>parse</code> converts JSON into native values. <code>stringify(value, pretty)</code> encodes native values.</p>
+  <h2 id="path">path</h2><p>Native filesystem path helpers: <code>join</code>, <code>exists</code>, <code>is_file</code>, <code>is_dir</code>, <code>basename</code>, <code>dirname</code>, <code>extension</code>, and <code>absolute</code>.</p>
+  <h2 id="encoding">encoding</h2><p><code>base64_encode(text)</code> and <code>base64_decode(text)</code> provide native Base64 conversion.</p>
   <h2 id="luck">luck</h2><p>Native random utilities: <code>random()</code>, <code>randint(low, high)</code>, and <code>choice(values)</code>.</p>
   <h2 id="clock">clock and timing</h2><p><code>clock.time()</code> returns Unix time. <code>clock.sleep()</code>, <code>timing.sleep()</code>, and <code>timing.run()</code> expose the initial cooperative timing API.</p>
   <h2 id="files">Files</h2><pre><code class="language-gzim">roll with unlock("notes.txt", "w") as file:
     call up file.write("the vibes are saved") yo</code></pre><p>File handles provide <code>read</code>, <code>readline</code>, <code>write</code>, and <code>close</code>. <code>roll with</code> always closes the handle.</p>
   <h2 id="local-modules">Local modules</h2><p>If no native module matches an import, the runtime looks for a corresponding <code>.gzim</code> file. For example, <code>pull up helpers</code> resolves <code>helpers.gzim</code> beside the importing file. Dotted names map to subdirectories.</p>
-  <div class="callout"><div class="callout-title">Deliberately not Python’s standard library</div><p>Earlier versions mapped slang module names to Python packages. Native 2.0 only documents modules that are implemented by Genzimnify itself. Unsupported imports fail clearly with <code>NoPullUp</code>.</p></div>
+  <div class="callout"><div class="callout-title">Native by default</div><p>These modules are implemented by Genzimnify itself. Python libraries are available only through the explicit <code>py.</code> namespace described in <a href="python-interop.html">Python interoperability</a>.</p></div>
   <div class="page-nav"><a href="language-guide.html"><small>Previous</small>← Language guide</a><a href="cli.html"><small>Next</small>Command-line interface →</a></div>
 </article></main><aside class="toc" id="pageToc"></aside></div><script src="app.js"></script></body></html>

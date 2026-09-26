@@ -44,7 +44,11 @@ gzim <file.gzim> [args]       # run directly in the native runtime
 gzim run <file.gzim> [args]   # explicit spelling of the same command
 gzim check <file.gzim>        # parse + semantic vibecheck only
 gzim repl                     # native interactive vibe loop
-gzim init                     # drop a starter main.gzim
+gzim init                     # create main.gzim + gzim.toml
+gzim add <name> <source>      # add a Git or local-path package
+gzim install                  # restore packages from gzim.toml
+gzim packages                 # list project packages
+gzim remove <name>            # remove a project package
 gzim doctor                   # show runtime/platform information
 gzim emit-python <file.gzim>  # optional interoperability export
 ```
@@ -105,10 +109,44 @@ let n be call up how many(stack) yo
 
 ### Native modules & exceptions
 
-The 2.0 runtime implements `math`, `system`, `luck`, `clock`, and `timing`
+The native runtime implements `math`, `system`, `luck`, `clock`, `timing`,
+`json`, `path`, and `encoding`
 natively, plus relative imports of local `.gzim` modules. Native exception
 types include `L`, `BadVibe`, `WrongType`, `OutOfPocket`, `Ghosted`,
 `SplitByZero`, `NoPullUp`, `CapDetected`, and `StopTheCap`.
+
+## Optional Python library bridge
+
+The native core still has no Python dependency. When Python interoperability is
+useful, import through the explicit `py.` namespace:
+
+```gzim
+pull up py.math as pymath
+outta py.json pull up dumps
+
+yap(call up pymath.sqrt(81) yo)
+yap(call up dumps({"ready": nocap}, sort_keys be nocap) yo)
+```
+
+Third-party packages work the same way when installed in the selected Python
+environment, including JSON-compatible NumPy scalar and array results. Each
+bridge call is isolated; normal programs that never import `py.*` never start or
+require Python.
+
+## Projects and packages
+
+`gzim init` creates a `gzim.toml` manifest. Dependencies can point at a Git URL,
+an optional `#tag`/`#branch`/`#commit`, or a local directory:
+
+```sh
+gzim add cool https://github.com/example/cool.git#v1.0.0
+gzim add local ../my-local-package
+gzim install
+```
+
+Packages are restored to `.gzim/packages/` and imported with the normal
+`pull up cool` syntax. Resolved Git commits are stored in `gzim.lock`; commit
+the manifest and lockfile, but leave the package cache untracked.
 
 ## Architecture (in Nim, under `src/genzimnify/`)
 
@@ -221,12 +259,21 @@ tests/lsp_test.sh
 - Added shell, PowerShell, and Homebrew installation paths.
 - Rebuilt `docs/` as a searchable language documentation site.
 
+## v2.1
+
+- Added explicit optional Python imports through `py.*`, including
+  positional and keyword arguments plus native value conversion.
+- Added `gzim.toml` projects and Git/local-path package commands.
+- Added native `json`, `path`, and `encoding`
+  standard-library modules.
+
 ## Notes & limits
 
 - Same-quote nesting inside `glow` strings is unsupported; use mixed quotes.
 - Comparison chains are evaluated left-associatively; write explicit `both` chains.
-- The 2.0 timing API is cooperative; a full native event loop is planned.
+- The 2.1 timing API is cooperative; a full native event loop is planned.
 - Python is only required if you explicitly run output from `gzim emit-python`.
+- Python is also required when a program explicitly imports a `py.*` module.
 
 ---
 

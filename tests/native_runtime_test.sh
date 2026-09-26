@@ -7,6 +7,7 @@ if [ ! -x "$runtime" ]; then
   echo "$runtime is missing; build src/gzim.nim first" >&2
   exit 1
 fi
+original_path="$PATH"
 
 tmp="$(mktemp -d "${TMPDIR:-/tmp}/genzimnify-native.XXXXXX")"
 trap 'rm -rf "$tmp"' EXIT
@@ -39,4 +40,20 @@ if [[ "$error_output" != *"runtime_error.gzim:4:"* ]] ||
   exit 1
 fi
 
-echo "native runtime integration and diagnostics passed without Python"
+if command -v python3 >/dev/null 2>&1; then
+  bridge_actual="$(PATH="$original_path" "$runtime" tests/native/python_bridge.gzim)"
+  if [ "$bridge_actual" != "$(cat tests/native/python_bridge.expected)" ]; then
+    echo "optional Python bridge output mismatch" >&2
+    diff -u tests/native/python_bridge.expected <(printf '%s\n' "$bridge_actual")
+    exit 1
+  fi
+fi
+
+stdlib_actual="$("$runtime" tests/native/stdlib_next.gzim)"
+if [ "$stdlib_actual" != "$(cat tests/native/stdlib_next.expected)" ]; then
+  echo "native standard-library output mismatch" >&2
+  diff -u tests/native/stdlib_next.expected <(printf '%s\n' "$stdlib_actual")
+  exit 1
+fi
+
+echo "native runtime, diagnostics, and optional Python bridge passed"

@@ -4,9 +4,10 @@
 ## deliberately no Python process, Python C API, or generated Python involved
 ## in this module.
 
-import std/[algorithm, math, os, random, sequtils, sets, strutils, syncio,
-            tables, times]
+import std/[algorithm, base64, json, math, os, osproc, random, sequtils, sets, streams,
+            strutils, syncio, tables, times]
 import ast, lexer, parser, semantic, errors
+import packages
 
 type
   ValueKind* = enum
@@ -318,6 +319,8 @@ proc getAttr(value: Value, name: string): Value =
     raise runtimeCap("Ghosted", value.klass.name & " has no attribute '" & name & "'")
   of vkModule:
     if value.moduleEnv.values.hasKey(name): return value.moduleEnv.values[name]
+    if value.strVal.startsWith("py."):
+      return builtinValue("python:" & value.strVal[3 .. ^1] & ":" & name)
     raise runtimeCap("Ghosted", "module '" & value.strVal & "' has no '" & name & "'")
   of vkString:
     if name in ["upper", "lower", "strip", "split", "replace", "startswith", "endswith", "join"]:
@@ -650,8 +653,20 @@ proc nativeModule(rt: Runtime, name: string): Value =
   of "system":
     env.declare("args", listVal(rt.args.mapIt(stringVal(it))))
     env.declare("cwd", builtinValue("system.cwd")); env.declare("getenv", builtinValue("system.getenv")); env.declare("exit", builtinValue("system.exit"))
+  of "json":
+    env.declare("parse", builtinValue("json.parse")); env.declare("stringify", builtinValue("json.stringify"))
+  of "path":
+    for fn in ["join", "exists", "is_file", "is_dir", "basename", "dirname", "extension", "absolute"]:
+      env.declare(fn, builtinValue("path." & fn))
+  of "encoding":
+    env.declare("base64_encode", builtinValue("encoding.base64_encode"))
+    env.declare("base64_decode", builtinValue("encoding.base64_decode"))
   else: return nil
   Value(kind: vkModule, strVal: name, moduleEnv: env)
+
+proc pythonProxyModule(name: string): Value =
+  if not name.startsWith("py.") or name.len <= 3: return nil
+  Value(kind: vkModule, strVal: name, moduleEnv: newEnv())
 
 proc loadModule(rt: Runtime, name: string): Value =
   if rt.moduleCache.hasKey(name): return rt.moduleCache[name]
@@ -659,11 +674,27 @@ proc loadModule(rt: Runtime, name: string): Value =
   if native != nil:
     rt.moduleCache[name] = native
     return native
+  let pythonProxy = pythonProxyModule(name)
+  if pythonProxy != nil:
+    rt.moduleCache[name] = pythonProxy
+    return pythonProxy
   let relative = name.replace(".", $DirSep) & ".gzim"
   var path = relative
   let base = if rt.moduleStack.len > 0: parentDir(rt.moduleStack[^1]) else: parentDir(rt.filename)
   if fileExists(base / relative): path = base / relative
-  elif not fileExists(path): raise runtimeCap("NoPullUp", "no native module called '" & name & "'")
+  elif not fileExists(path):
+    let project = findProjectRoot(base)
+    var found = ""
+    if project != "":
+      let parts = name.split('.')
+      let dependency = packageRoot(project) / parts[0]
+      let rest = if parts.len > 1: parts[1 .. ^1].join($DirSep) & ".gzim" else: parts[0] & ".gzim"
+      for candidate in [dependency / relative, dependency / rest,
+                        dependency / "src" / relative, dependency / "src" / rest,
+                        dependency / "main.gzim"]:
+        if fileExists(candidate): found = candidate; break
+    if found == "": raise runtimeCap("NoPullUp", "no native module called '" & name & "'")
+    path = found
   let source = readFile(path)
   let parsed = parseProgram(lex(source))
   let issues = checkProgram(parsed.program)
@@ -786,7 +817,10 @@ proc execStmt(rt: Runtime, env: Env, stmt: Stmt, yields: var seq[Value]): Signal
           close(resource.fileHandle); resource.fileOpen = false
     return result
   of skImport:
-    env.declare(if stmt.ialias != "": stmt.ialias else: stmt.imod.split('.')[0], rt.loadModule(stmt.imod))
+    let importName = if stmt.ialias != "": stmt.ialias
+      elif stmt.imod.startsWith("py."): stmt.imod.split('.')[^1]
+      else: stmt.imod.split('.')[0]
+    env.declare(importName, rt.loadModule(stmt.imod))
   of skFromImport:
     let module = rt.loadModule(stmt.fmod)
     for imported in stmt.fnames:
@@ -835,9 +869,122 @@ proc requireArgs(name: string, args: seq[Value], low: int, high = -1) =
   if args.len < low or args.len > maxArgs:
     raise runtimeCap("WrongType", name & " expected " & $low & (if maxArgs != low: ".." & $maxArgs else: "") & " arguments, got " & $args.len)
 
-proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value]): Value =
+proc valueToJson(value: Value): JsonNode =
+  case value.kind
+  of vkNone: result = newJNull()
+  of vkBool: result = %value.boolVal
+  of vkInt: result = %value.intVal
+  of vkFloat: result = %value.floatVal
+  of vkString: result = %value.strVal
+  of vkList, vkTuple, vkSet:
+    result = newJArray()
+    for item in value.items: result.add valueToJson(item)
+  of vkDict:
+    result = newJObject()
+    for pair in value.pairs:
+      if pair.key.kind != vkString:
+        raise runtimeCap("WrongType", "Python bridge maps need text keys")
+      result[pair.key.strVal] = valueToJson(pair.val)
+  else:
+    raise runtimeCap("WrongType", "Python bridge cannot send " & $value.kind)
+
+proc jsonToValue(node: JsonNode): Value =
+  case node.kind
+  of JNull: result = noneVal()
+  of JBool: result = boolVal(node.getBool())
+  of JInt: result = intVal(node.getBiggestInt().int64)
+  of JFloat: result = floatVal(node.getFloat())
+  of JString: result = stringVal(node.getStr())
+  of JArray:
+    var items: seq[Value]
+    for item in node: items.add jsonToValue(item)
+    result = listVal(items)
+  of JObject:
+    let value = dictVal()
+    for key, item in node: value.pairs.add (stringVal(key), jsonToValue(item))
+    result = value
+
+const PythonBridgeScript = """
+import contextlib, importlib, io, json, sys
+
+def normalize(value):
+    if value is None or isinstance(value, (bool, int, float, str)):
+        return value
+    if isinstance(value, (list, tuple, set)):
+        return [normalize(item) for item in value]
+    if isinstance(value, dict):
+        return {str(key): normalize(item) for key, item in value.items()}
+    if hasattr(value, "tolist"):
+        return normalize(value.tolist())
+    if hasattr(value, "item"):
+        try:
+            return normalize(value.item())
+        except Exception:
+            pass
+    return {"__python_type__": type(value).__name__, "__python_repr__": repr(value)}
+
+try:
+    request = json.loads(sys.stdin.read())
+    target = importlib.import_module(request["module"])
+    for part in request["path"].split("."):
+        target = getattr(target, part)
+    captured = io.StringIO()
+    with contextlib.redirect_stdout(captured):
+        value = target(*request.get("args", []), **request.get("kwargs", {}))
+    print(json.dumps({"ok": True, "value": normalize(value), "stdout": captured.getvalue()}))
+except Exception as error:
+    print(json.dumps({"ok": False, "type": type(error).__name__, "error": str(error)}))
+"""
+
+proc findPython(): tuple[exe: string, prefix: seq[string]] =
+  for candidate in ["python3", "python"]:
+    let found = findExe(candidate)
+    if found != "": return (found, @[])
+  when defined(windows):
+    let launcher = findExe("py")
+    if launcher != "": return (launcher, @["-3"])
+
+proc invokePython(moduleName, path: string, args: seq[Value],
+                  kwargs: seq[tuple[nm: string, val: Value]]): Value =
+  let python = findPython()
+  if python.exe == "":
+    raise runtimeCap("NoPullUp", "Python bridge needs Python 3 on PATH; native Genzimnify itself does not")
+  var request = newJObject()
+  request["module"] = %moduleName
+  request["path"] = %path
+  request["args"] = newJArray()
+  for arg in args: request["args"].add valueToJson(arg)
+  request["kwargs"] = newJObject()
+  for kw in kwargs: request["kwargs"][kw.nm] = valueToJson(kw.val)
+
+  var processArgs = python.prefix
+  processArgs.add @["-c", PythonBridgeScript]
+  let process = startProcess(python.exe, args = processArgs,
+    options = {poUsePath, poStdErrToStdOut})
+  process.inputStream.write($request)
+  process.inputStream.close()
+  let output = process.outputStream.readAll().strip()
+  let exitCode = process.waitForExit()
+  process.close()
+  if exitCode != 0 or output == "":
+    raise runtimeCap("NoPullUp", "Python bridge process failed: " & output)
+  var response: JsonNode
+  try: response = parseJson(output)
+  except JsonParsingError:
+    raise runtimeCap("BadVibe", "Python library wrote invalid bridge output: " & output)
+  if not response{"ok"}.getBool(false):
+    raise runtimeCap("BadVibe", "Python " & response{"type"}.getStr("error") & ": " & response{"error"}.getStr("unknown error"))
+  let captured = response{"stdout"}.getStr("")
+  if captured != "": stdout.write(captured)
+  jsonToValue(response["value"])
+
+proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
+                   kwargs: seq[tuple[nm: string, val: Value]] = @[]): Value =
   let name = callee.builtin
   let self = callee.boundSelf
+  if name.startsWith("python:"):
+    let parts = name.split(':', maxsplit = 2)
+    return invokePython(parts[1], parts[2], args, kwargs)
   if name.startsWith("ancestor."):
     let instance = env.lookup("fam")
     if instance.kind != vkInstance or instance.klass.base == nil:
@@ -1019,6 +1166,32 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value]): Valu
   of "system.cwd": return stringVal(getCurrentDir())
   of "system.getenv": requireArgs(name, args, 1); return stringVal(getEnv(args[0].strVal))
   of "system.exit": quit(if args.len > 0: args[0].asInt.int else: 0)
+  of "json.parse":
+    requireArgs(name, args, 1)
+    if args[0].kind != vkString: raise runtimeCap("WrongType", "json.parse needs text")
+    try: return jsonToValue(parseJson(args[0].strVal))
+    except JsonParsingError as error: raise runtimeCap("BadVibe", "invalid JSON: " & error.msg)
+  of "json.stringify":
+    if args.len < 1 or args.len > 2: raise runtimeCap("WrongType", "json.stringify expects 1..2 arguments")
+    let encoded = valueToJson(args[0])
+    return stringVal(if args.len == 2 and args[1].truthy: encoded.pretty() else: $encoded)
+  of "path.join":
+    if args.len == 0: return stringVal("")
+    var joined = args[0].strVal
+    for arg in args[1 .. ^1]: joined = joined / arg.strVal
+    return stringVal(joined)
+  of "path.exists": requireArgs(name, args, 1); return boolVal(fileExists(args[0].strVal) or dirExists(args[0].strVal))
+  of "path.is_file": requireArgs(name, args, 1); return boolVal(fileExists(args[0].strVal))
+  of "path.is_dir": requireArgs(name, args, 1); return boolVal(dirExists(args[0].strVal))
+  of "path.basename": requireArgs(name, args, 1); return stringVal(lastPathPart(args[0].strVal))
+  of "path.dirname": requireArgs(name, args, 1); return stringVal(parentDir(args[0].strVal))
+  of "path.extension": requireArgs(name, args, 1); return stringVal(splitFile(args[0].strVal).ext)
+  of "path.absolute": requireArgs(name, args, 1); return stringVal(absolutePath(args[0].strVal))
+  of "encoding.base64_encode": requireArgs(name, args, 1); return stringVal(encode(args[0].strVal))
+  of "encoding.base64_decode":
+    requireArgs(name, args, 1)
+    try: return stringVal(decode(args[0].strVal))
+    except ValueError as error: raise runtimeCap("BadVibe", "invalid base64: " & error.msg)
   else: raise runtimeCap("NoPullUp", "native cook '" & name & "' is not implemented")
 
 proc callFunction(rt: Runtime, caller: Env, callee: Value, args: seq[Value],
@@ -1066,7 +1239,7 @@ proc callFunction(rt: Runtime, caller: Env, callee: Value, args: seq[Value],
 proc callValue(rt: Runtime, env: Env, callee: Value, args: seq[Value], kwargs: seq[tuple[nm: string, val: Value]]): Value =
   if callee == nil: raise runtimeCap("WrongType", "ghost is not callable")
   case callee.kind
-  of vkBuiltin: rt.invokeBuiltin(env, callee, args)
+  of vkBuiltin: rt.invokeBuiltin(env, callee, args, kwargs)
   of vkFunction: rt.callFunction(env, callee, args, kwargs)
   of vkClass:
     let instance = Value(kind: vkInstance, klass: callee.klass, fields: initTable[string, Value]())

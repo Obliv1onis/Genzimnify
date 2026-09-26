@@ -39,6 +39,10 @@ let pyodide = null;
 let pyodideLoading = null;
 let findMatches = [];
 let findIndex = -1;
+let completionItems = [];
+let completionIndex = 0;
+let completionContext = null;
+let suppressCompletionOnce = false;
 
 function escapeHtml(value) {
   return value.replace(/[&<>]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[ch]);
@@ -46,7 +50,60 @@ function escapeHtml(value) {
 const KEYWORDS = new Set(["let", "lock", "be", "vibecheck", "or", "otherwise", "vibe", "for real", "up in", "dip", "next", "deadass", "cook", "send it", "drop", "call up", "yo", "clique", "new", "fam", "ancestor", "pull up", "outta", "as", "gives", "sus", "f_around", "find_out", "no_matter_what", "throw shade", "roll with", "on timing", "wait up", "mini vibe", "worldwide", "localish", "cancel", "on god", "fit check", "fit", "both", "either", "aint", "same as", "nah", "literally", "fr"]);
 const BUILTINS = new Set(["yap", "yap back", "how many", "add up", "round up", "index up", "vibes", "ranked", "unlock", "link"]);
 const BOOLEANS = new Set(["nocap", "cap", "ghost"]);
+const COMPLETION_ITEMS = [
+  { label: "yap", insert: "yap()", cursor: 4, kind: "builtin", detail: "Print a value" },
+  { label: "yap back", insert: "yap back()", cursor: 9, kind: "builtin", detail: "Read user input" },
+  { label: "how many", insert: "how many()", cursor: 9, kind: "builtin", detail: "Get a value's length" },
+  { label: "add up", insert: "add up()", cursor: 7, kind: "builtin", detail: "Sum an iterable" },
+  { label: "round up", insert: "round up()", cursor: 9, kind: "builtin", detail: "Round a number" },
+  { label: "index up", insert: "index up()", cursor: 9, kind: "builtin", detail: "Enumerate values" },
+  { label: "vibes", insert: "vibes()", cursor: 6, kind: "builtin", detail: "Create a range" },
+  { label: "ranked", insert: "ranked()", cursor: 7, kind: "builtin", detail: "Sort an iterable" },
+  { label: "unlock", insert: "unlock()", cursor: 7, kind: "builtin", detail: "Open a file" },
+  { label: "link", insert: "link()", cursor: 5, kind: "builtin", detail: "Zip iterables" },
+  { label: "let", insert: "let ", kind: "keyword", detail: "Declare a variable" },
+  { label: "lock", insert: "lock ", kind: "keyword", detail: "Declare a constant" },
+  { label: "vibecheck", insert: "vibecheck :", cursor: 10, kind: "keyword", detail: "Conditional branch" },
+  { label: "otherwise", insert: "otherwise:", kind: "keyword", detail: "Fallback branch" },
+  { label: "for real", insert: "for real  up in :", cursor: 9, kind: "keyword", detail: "Loop over values" },
+  { label: "vibe", insert: "vibe :", cursor: 5, kind: "keyword", detail: "While loop" },
+  { label: "cook", insert: "cook ():", cursor: 5, kind: "keyword", detail: "Define a function" },
+  { label: "send it", insert: "send it ", kind: "keyword", detail: "Return a value" },
+  { label: "call up", insert: "call up  yo", cursor: 8, kind: "keyword", detail: "Call a function" },
+  { label: "clique", insert: "clique :", cursor: 7, kind: "keyword", detail: "Define a class" },
+  { label: "pull up", insert: "pull up ", kind: "keyword", detail: "Import a module" },
+  { label: "f_around", insert: "f_around:", kind: "keyword", detail: "Try a block" },
+  { label: "find_out", insert: "find_out :", cursor: 9, kind: "keyword", detail: "Catch an exception" },
+  { label: "no_matter_what", insert: "no_matter_what:", kind: "keyword", detail: "Always run a block" },
+  { label: "throw shade", insert: "throw shade ", kind: "keyword", detail: "Raise an exception" },
+  { label: "on timing", insert: "on timing ", kind: "keyword", detail: "Define async code" },
+  { label: "wait up", insert: "wait up ", kind: "keyword", detail: "Await a result" },
+  { label: "fit check", insert: "fit check :", cursor: 10, kind: "keyword", detail: "Pattern matching" },
+  { label: "fit", insert: "fit :", cursor: 4, kind: "keyword", detail: "Match a case" },
+  { label: "nocap", kind: "value", detail: "True" },
+  { label: "cap", kind: "value", detail: "False" },
+  { label: "ghost", kind: "value", detail: "None" },
+  { label: "both", insert: "both ", kind: "operator", detail: "Logical and" },
+  { label: "either", insert: "either ", kind: "operator", detail: "Logical or" },
+  { label: "aint", insert: "aint ", kind: "operator", detail: "Logical not" },
+  { label: "same as", insert: "same as ", kind: "operator", detail: "Equality comparison" },
+  { label: "nah", insert: "nah ", kind: "operator", detail: "Inequality comparison" }
+];
 const tokenPattern = /(#\[\[[\s\S]*?\]\]#|#[^\n]*|"""[\s\S]*?"""|'''[\s\S]*?'''|glow"(?:\\.|[^"\\])*"|glow'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b(?:for real|up in|send it|call up|throw shade|roll with|on timing|wait up|mini vibe|fit check|yap back|how many|add up|round up|index up|same as|no_matter_what)\b|\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b)/gi;
+
+const completionPopup = document.createElement("div");
+completionPopup.id = "completionPopup";
+completionPopup.className = "completion-popup";
+completionPopup.hidden = true;
+completionPopup.setAttribute("role", "listbox");
+completionPopup.setAttribute("aria-label", "Code suggestions");
+completionPopup.innerHTML = '<div class="completion-list"></div><div class="completion-help"><span><kbd>Tab</kbd>/<kbd>Shift Tab</kbd> navigate</span><span><kbd>Enter</kbd> insert · <kbd>Esc</kbd> close</span></div>';
+$("codeScroll").appendChild(completionPopup);
+editor.setAttribute("aria-controls", "completionPopup");
+editor.setAttribute("aria-autocomplete", "list");
+const completionList = completionPopup.querySelector(".completion-list");
+const completionCanvas = document.createElement("canvas");
+const completionMeasure = completionCanvas.getContext("2d");
 
 function syntaxHighlight(source) {
   let result = "";
@@ -88,6 +145,7 @@ function safeCompile() {
   }
 }
 function setFile(nextName, source, markSaved = true) {
+  closeCompletions();
   fileName = nextName.endsWith(".gzim") ? nextName : nextName + ".gzim";
   editor.value = source;
   if (markSaved) savedValue = source;
@@ -222,8 +280,146 @@ function insertText(text, selectionOffset = text.length) {
   editor.selectionStart = editor.selectionEnd = start + selectionOffset;
   handleChange();
 }
+function closeCompletions() {
+  completionPopup.hidden = true;
+  completionItems = [];
+  completionContext = null;
+  editor.removeAttribute("aria-activedescendant");
+}
+function declaredCompletions() {
+  const found = new Map();
+  const patterns = [
+    [/\b(?:let|lock)\s+([A-Za-z_][A-Za-z0-9_]*)/g, "variable"],
+    [/\bcook\s+([A-Za-z_][A-Za-z0-9_]*)/g, "function"],
+    [/\bclique\s+([A-Za-z_][A-Za-z0-9_]*)/g, "class"],
+    [/\bfor real\s+([A-Za-z_][A-Za-z0-9_]*)/g, "variable"]
+  ];
+  patterns.forEach(([pattern, kind]) => {
+    for (const match of editor.value.matchAll(pattern)) {
+      if (!found.has(match[1])) found.set(match[1], { label: match[1], kind, detail: "From this file" });
+    }
+  });
+  return [...found.values()];
+}
+function getCompletionContext(force = false) {
+  if (editor.selectionStart !== editor.selectionEnd) return null;
+  const cursor = editor.selectionStart;
+  const lineStart = editor.value.lastIndexOf("\n", cursor - 1) + 1;
+  const before = editor.value.slice(lineStart, cursor);
+  let quote = "";
+  let escaped = false;
+  for (const character of before) {
+    if (escaped) { escaped = false; continue; }
+    if (character === "\\" && quote) { escaped = true; continue; }
+    if (quote) { if (character === quote) quote = ""; continue; }
+    if (character === '"' || character === "'") { quote = character; continue; }
+    if (character === "#") return null;
+  }
+  if (quote) return null;
+  const match = before.match(/[A-Za-z_][A-Za-z0-9_]*$/);
+  if (!match && !force) return null;
+  const prefix = match ? match[0] : "";
+  return { start: cursor - prefix.length, cursor, prefix, lineStart, before };
+}
+function completionIcon(kind) {
+  return ({ builtin: "ƒ", keyword: "K", value: "V", operator: "◇", function: "ƒ", class: "C", variable: "x" })[kind] || "·";
+}
+function positionCompletions() {
+  if (completionPopup.hidden || !completionContext) return;
+  const style = getComputedStyle(editor);
+  const beforeCursor = editor.value.slice(completionContext.lineStart, completionContext.cursor);
+  const line = editor.value.slice(0, completionContext.cursor).split("\n").length - 1;
+  const lineHeight = parseFloat(style.lineHeight);
+  const paddingLeft = parseFloat(style.paddingLeft);
+  const paddingTop = parseFloat(style.paddingTop);
+  completionMeasure.font = style.font;
+  const caretLeft = paddingLeft + completionMeasure.measureText(beforeCursor).width - editor.scrollLeft;
+  const caretBottom = paddingTop + (line + 1) * lineHeight - editor.scrollTop + 4;
+  const maxLeft = Math.max(8, $("codeScroll").clientWidth - completionPopup.offsetWidth - 8);
+  let top = caretBottom;
+  if (top + completionPopup.offsetHeight > $("codeScroll").clientHeight - 8) {
+    top = paddingTop + line * lineHeight - editor.scrollTop - completionPopup.offsetHeight - 4;
+  }
+  completionPopup.style.left = Math.max(8, Math.min(caretLeft, maxLeft)) + "px";
+  completionPopup.style.top = Math.max(8, top) + "px";
+}
+function selectCompletion(index) {
+  if (!completionItems.length) return;
+  completionIndex = (index + completionItems.length) % completionItems.length;
+  completionList.querySelectorAll(".completion-item").forEach((item, itemIndex) => {
+    const selected = itemIndex === completionIndex;
+    item.classList.toggle("selected", selected);
+    item.setAttribute("aria-selected", selected ? "true" : "false");
+    if (selected) {
+      editor.setAttribute("aria-activedescendant", item.id);
+      item.scrollIntoView({ block: "nearest" });
+    }
+  });
+}
+function renderCompletions() {
+  completionList.textContent = "";
+  completionItems.forEach((suggestion, index) => {
+    const row = document.createElement("button");
+    row.type = "button";
+    row.id = "completion-" + index;
+    row.className = "completion-item";
+    row.setAttribute("role", "option");
+    const icon = document.createElement("span"); icon.className = "completion-icon " + suggestion.kind; icon.textContent = completionIcon(suggestion.kind);
+    const label = document.createElement("span"); label.className = "completion-label"; label.textContent = suggestion.label;
+    const detail = document.createElement("span"); detail.className = "completion-detail"; detail.textContent = suggestion.detail || suggestion.kind;
+    row.append(icon, label, detail);
+    row.addEventListener("mouseenter", () => selectCompletion(index));
+    row.addEventListener("mousedown", (event) => { event.preventDefault(); selectCompletion(index); acceptCompletion(); });
+    completionList.appendChild(row);
+  });
+  completionPopup.hidden = false;
+  selectCompletion(Math.min(completionIndex, completionItems.length - 1));
+  requestAnimationFrame(positionCompletions);
+}
+function updateCompletions(force = false) {
+  const context = getCompletionContext(force);
+  if (!context) { closeCompletions(); return; }
+  const all = [...declaredCompletions(), ...COMPLETION_ITEMS];
+  const phrase = context.before.match(/[A-Za-z_][A-Za-z0-9_]*(?:\s+[A-Za-z_][A-Za-z0-9_]*)+$/)?.[0] || "";
+  if (phrase && all.some((item) => item.label.toLowerCase().startsWith(phrase.toLowerCase()))) {
+    context.prefix = phrase;
+    context.start = context.cursor - phrase.length;
+  }
+  const prefix = context.prefix.toLowerCase();
+  const seen = new Set();
+  completionItems = all.filter((item) => {
+    const label = item.label.toLowerCase();
+    if ((!force && !label.startsWith(prefix)) || seen.has(label)) return false;
+    seen.add(label);
+    return true;
+  }).slice(0, 9);
+  if (!completionItems.length) { closeCompletions(); return; }
+  completionContext = context;
+  completionIndex = 0;
+  renderCompletions();
+}
+function acceptCompletion() {
+  const item = completionItems[completionIndex];
+  if (!item || !completionContext) return;
+  const insert = item.insert || item.label;
+  editor.setRangeText(insert, completionContext.start, completionContext.cursor, "end");
+  const cursor = completionContext.start + (item.cursor ?? insert.length);
+  editor.setSelectionRange(cursor, cursor);
+  suppressCompletionOnce = true;
+  handleChange();
+  closeCompletions();
+}
 function handleEditorKeydown(event) {
   const mod = event.ctrlKey || event.metaKey;
+  if (!completionPopup.hidden) {
+    if (event.key === "Escape") { event.preventDefault(); closeCompletions(); return; }
+    if (event.key === "Tab") { event.preventDefault(); selectCompletion(completionIndex + (event.shiftKey ? -1 : 1)); return; }
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault(); selectCompletion(completionIndex + (event.key === "ArrowDown" ? 1 : -1)); return;
+    }
+    if (event.key === "Enter" && !mod) { event.preventDefault(); acceptCompletion(); return; }
+  }
+  if (mod && event.key === " ") { event.preventDefault(); updateCompletions(true); return; }
   if (mod && event.key === "Enter") { event.preventDefault(); run(); return; }
   if (mod && event.key.toLowerCase() === "s") { event.preventDefault(); saveLocal(); savedValue = editor.value; renderEditor(); showToast("Saved in this browser"); return; }
   if (mod && event.key.toLowerCase() === "f") { event.preventDefault(); openFind(); return; }
@@ -255,17 +451,30 @@ function handleEditorKeydown(event) {
     insertText("\n" + indent + (line.trimEnd().endsWith(":") ? "    " : ""));
     return;
   }
+  const closingPairs = new Set([")", "]", "}", "\"", "'"]);
+  if (closingPairs.has(event.key) && editor.selectionStart === editor.selectionEnd && editor.value[editor.selectionStart] === event.key) {
+    event.preventDefault();
+    editor.setSelectionRange(editor.selectionStart + 1, editor.selectionStart + 1);
+    closeCompletions();
+    updateCursor();
+    return;
+  }
   const pairs = { "(": ")", "[": "]", "{": "}", "\"": "\"", "'": "'" };
   if (pairs[event.key] && editor.selectionStart === editor.selectionEnd) {
     event.preventDefault();
     insertText(event.key + pairs[event.key], 1);
   }
 }
-function handleChange() { renderEditor(); saveLocal(); refreshDiagnostics(); }
+function handleChange() {
+  renderEditor(); saveLocal(); refreshDiagnostics();
+  if (suppressCompletionOnce) { suppressCompletionOnce = false; closeCompletions(); }
+  else updateCompletions();
+}
 function syncScroll() {
   highlight.scrollTop = editor.scrollTop;
   highlight.scrollLeft = editor.scrollLeft;
   lineNumbers.scrollTop = editor.scrollTop;
+  positionCompletions();
 }
 function updateCursor() {
   const before = editor.value.slice(0, editor.selectionStart);
@@ -382,8 +591,9 @@ REFERENCE.forEach(([gzim, python]) => {
 editor.addEventListener("input", handleChange);
 editor.addEventListener("keydown", handleEditorKeydown);
 editor.addEventListener("scroll", syncScroll);
-editor.addEventListener("click", updateCursor);
+editor.addEventListener("click", () => { updateCursor(); closeCompletions(); });
 editor.addEventListener("keyup", updateCursor);
+editor.addEventListener("blur", () => setTimeout(() => { if (document.activeElement !== editor) closeCompletions(); }, 100));
 runBtn.addEventListener("click", run);
 $("newBtn").addEventListener("click", newFile);
 $("formatBtn").addEventListener("click", formatDocument);

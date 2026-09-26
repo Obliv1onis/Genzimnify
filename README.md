@@ -117,20 +117,21 @@ Semantic rules enforced at compile time: reassignment requires a prior `let`,
 inside loops, `fam` only inside clique methods, `wait up` only inside
 `on timing cook`, `drop` marks generators.
 
-## Browser IDE (`docs/`)
+## Browser IDE (`studio/`)
 
-Genzimnify Studio is a static, local-first IDE that can be deployed directly
-with GitHub Pages from the repository's `docs/` folder. It includes live
-diagnostics, syntax highlighting, line numbers, a generated-Python view,
-examples, import/export, share links, themes, find, formatting, keyboard
-shortcuts, autosave, and a resizable console/problems panel.
+Genzimnify Studio is a static, local-first IDE in the repository's `studio/`
+folder. It can be hosted by any static web provider and includes live
+diagnostics, syntax highlighting, line numbers, code completion, a
+generated-Python view, examples, import/export, share links, themes, find,
+formatting, keyboard shortcuts, autosave, and a resizable console/problems
+panel. The `docs/` folder is now reserved for the GitHub Pages farewell page.
 
 ```sh
 # rebuild the in-browser transpiler (Nim -> JS) after touching the core:
-nim js -d:release --out:docs/transpiler.js src/genzimnify/web.nim
+nim js -d:release --out:studio/transpiler.js src/genzimnify/web.nim
 
 # then just open it:
-open docs/index.html     # or: python3 -m http.server -d docs
+open studio/index.html     # or: python3 -m http.server -d studio
 ```
 
 The transpiler core compiles to JavaScript (`nim js`), so code is transpiled
@@ -203,7 +204,7 @@ tests/lsp_test.sh
 - Invalid assignment targets, malformed try/match blocks, invalid parameter
   lists, and misordered or duplicate call arguments now fail at compile time.
 - LSP tests are portable and no longer depend on the original author's path.
-- The browser playground moved to `docs/` and became Genzimnify Studio.
+- The browser playground became Genzimnify Studio and now lives in `studio/`.
 
 ## Notes & limits
 

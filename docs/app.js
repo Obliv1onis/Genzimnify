@@ -21,18 +21,20 @@ const groups = [
 ];
 
 const page = location.pathname.split("/").pop() || "index.html";
-const theme = localStorage.getItem("genzimnify.theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-document.documentElement.dataset.theme = theme;
 
 function renderChrome() {
   document.getElementById("siteHeader").innerHTML = `
     <header class="topbar">
       <button class="mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button>
-      <a class="brand" href="index.html"><span class="brand-mark">G</span><span>GENZIMNIFY</span><span class="version">2.1</span></a>
+      <a class="brand" href="index.html"><span class="brand-mark">G</span><span>GENZIMNIFY</span><span class="version">2.0</span></a>
       <nav class="toplinks"><a class="active" href="index.html">Docs</a><a href="https://github.com/Obliv1onis/Genzimnify">Source</a></nav>
       <div class="top-actions">
-        <button class="search-button" id="searchBtn"><span>⌕</span><span>Search documentation</span><kbd>⌘K</kbd></button>
-        <button class="icon-button" id="themeBtn" aria-label="Toggle theme">${theme === "dark" ? "☼" : "◐"}</button>
+        <div class="search-shell" id="searchShell">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search documentation" autocomplete="off" aria-label="Search documentation" aria-controls="searchResults" aria-expanded="false">
+          <kbd>/</kbd>
+          <div class="search-dropdown" id="searchResults" role="listbox" hidden></div>
+        </div>
         <a class="github-link" href="https://github.com/Obliv1onis/Genzimnify">GitHub ↗</a>
       </div>
     </header>`;
@@ -86,37 +88,40 @@ function setupToc() {
 }
 
 function setupSearch() {
-  const wrapper = document.createElement("div");
-  wrapper.className = "search-backdrop"; wrapper.hidden = true;
-  wrapper.innerHTML = '<div class="search-dialog" role="dialog" aria-label="Search documentation"><input id="searchInput" placeholder="Search Genzimnify docs…" autocomplete="off"><div class="search-results" id="searchResults"></div></div>';
-  document.body.appendChild(wrapper);
-  const input = wrapper.querySelector("input"), results = wrapper.querySelector(".search-results");
-  const render = () => {
+  const shell = document.getElementById("searchShell");
+  const input = document.getElementById("searchInput");
+  const results = document.getElementById("searchResults");
+  let selected = 0;
+  const matches = () => {
     const query = input.value.trim().toLowerCase();
-    const matches = DOCS.filter((item) => !query || `${item.title} ${item.section} ${item.text}`.toLowerCase().includes(query));
-    results.innerHTML = matches.length ? matches.map((item, index) => `<a class="search-result ${index === 0 ? "selected" : ""}" href="${item.url}"><b>${item.title}</b><span>${item.section} · ${item.text}</span></a>`).join("") : '<div class="search-empty">No docs found. That search is cap.</div>';
+    return DOCS.filter((item) => !query || `${item.title} ${item.section} ${item.text}`.toLowerCase().includes(query));
   };
-  const open = () => { wrapper.hidden = false; input.value = ""; render(); setTimeout(() => input.focus(), 0); };
-  const close = () => { wrapper.hidden = true; };
-  document.getElementById("searchBtn").addEventListener("click", open);
-  wrapper.addEventListener("click", (event) => { if (event.target === wrapper) close(); });
-  input.addEventListener("input", render);
+  const render = () => {
+    const items = matches();
+    selected = Math.min(selected, Math.max(items.length - 1, 0));
+    results.innerHTML = items.length ? items.map((item, index) => `<a class="search-result ${index === selected ? "selected" : ""}" role="option" aria-selected="${index === selected}" href="${item.url}"><b>${item.title}</b><span>${item.section} · ${item.text}</span></a>`).join("") : '<div class="search-empty">No documentation found.</div>';
+  };
+  const open = () => { render(); results.hidden = false; input.setAttribute("aria-expanded", "true"); };
+  const close = () => { results.hidden = true; input.setAttribute("aria-expanded", "false"); };
+  const focus = () => { input.focus(); input.select(); open(); };
+  input.addEventListener("focus", open);
+  input.addEventListener("input", () => { selected = 0; open(); });
   input.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") close();
-    if (event.key === "Enter") results.querySelector("a")?.click();
+    const links = [...results.querySelectorAll("a")];
+    if (event.key === "Escape") { close(); input.blur(); }
+    if (event.key === "ArrowDown" && links.length) { event.preventDefault(); selected = (selected + 1) % links.length; render(); }
+    if (event.key === "ArrowUp" && links.length) { event.preventDefault(); selected = (selected - 1 + links.length) % links.length; render(); }
+    if (event.key === "Enter" && links.length) { event.preventDefault(); links[selected]?.click(); }
   });
+  document.addEventListener("pointerdown", (event) => { if (!shell.contains(event.target)) close(); });
   addEventListener("keydown", (event) => {
-    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); wrapper.hidden ? open() : close(); }
-    if (event.key === "Escape" && !wrapper.hidden) close();
+    const typing = event.target.matches?.("input, textarea, select, [contenteditable='true']");
+    if (event.key === "/" && !typing && !event.metaKey && !event.ctrlKey && !event.altKey) { event.preventDefault(); focus(); }
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); focus(); }
   });
 }
 
 renderChrome();
-document.getElementById("themeBtn").addEventListener("click", () => {
-  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = next; localStorage.setItem("genzimnify.theme", next);
-  document.getElementById("themeBtn").textContent = next === "dark" ? "☼" : "◐";
-});
 document.getElementById("menuBtn").addEventListener("click", () => document.body.classList.toggle("nav-open"));
 document.addEventListener("click", (event) => { if (document.body.classList.contains("nav-open") && !event.target.closest(".sidebar, #menuBtn")) document.body.classList.remove("nav-open"); });
 highlightCode(); addCopyButtons(); setupToc(); setupSearch();

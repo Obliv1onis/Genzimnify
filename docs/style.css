@@ -4,6 +4,8 @@
   --line: #262c3a; --line-soft: #1d222d; --text: #e9ecf4; --muted: #858da0; --faint: #596174;
   --accent: #a8ff60; --accent-2: #68d7ff; --purple: #c792ea; --orange: #ffb86c;
   --red: #ff6b7a; --yellow: #f7dc6f; --sidebar: 250px; --panel: 225px;
+  --status-bg: #080a0f; --status-text: #e9ecf4; --status-border: #222734;
+  --status-mark-bg: #e9ecf4; --status-mark-text: #080a0f;
   --font-ui: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-code: "SFMono-Regular", "Cascadia Code", "JetBrains Mono", Consolas, monospace;
 }
@@ -13,10 +15,15 @@ html[data-theme="light"] {
   --line: #d3d8e3; --line-soft: #e4e7ed; --text: #202532; --muted: #667085; --faint: #9299a8;
   --accent: #4b8f18; --accent-2: #087ea4; --purple: #8b3bb4; --orange: #a45700;
   --red: #cb3345; --yellow: #8a6a00;
+  --status-bg: #fff; --status-text: #202532; --status-border: #d3d8e3;
+  --status-mark-bg: #202532; --status-mark-text: #fff;
 }
 * { box-sizing: border-box; }
 html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-ui); font-size: 13px; }
+body, button, a, input, textarea, pre, code, span, div, aside, section, header, footer {
+  transition: background-color .28s ease, color .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
 button, input { font: inherit; } button, a { color: inherit; } button { border: 0; }
 .app-shell { height: 100%; display: grid; grid-template-rows: 46px minmax(0, 1fr) 24px; }
 .titlebar { display: flex; align-items: center; gap: 22px; padding: 0 12px 0 14px; background: var(--surface); border-bottom: 1px solid var(--line); }
@@ -90,9 +97,9 @@ button, input { font: inherit; } button, a { color: inherit; } button { border: 
 #diags { padding: 7px 10px 25px; } .diag { display: grid; grid-template-columns: 18px 1fr auto; gap: 8px; align-items: start; padding: 7px 9px; border-radius: 5px; cursor: pointer; font: 11px/1.4 var(--font-code); }
 .diag:hover { background: var(--surface-3); } .diag-icon { color: var(--red); } .diag .msg { color: var(--text); } .diag .where { color: var(--muted); }
 .ok { padding: 10px; color: var(--muted); font: 11px var(--font-code); }
-.statusbar { display: flex; align-items: center; justify-content: space-between; padding: 0 8px; background: var(--accent); color: #14200d; font-size: 10px; font-weight: 700; }
+.statusbar { display: flex; align-items: center; justify-content: space-between; padding: 0 8px; border-top: 1px solid var(--status-border); background: var(--status-bg); color: var(--status-text); font-size: 10px; font-weight: 700; }
 .statusbar > div, .status-right { display: flex; align-items: center; gap: 12px; }
-.status-brand { width: 15px; height: 15px; margin-right: -6px; background: #182312; color: var(--accent); border-radius: 3px; font-size: 9px; }
+.status-brand { width: 15px; height: 15px; margin-right: -6px; background: var(--status-mark-bg); color: var(--status-mark-text); border-radius: 3px; font-size: 9px; }
 .statusbar button { padding: 2px 4px; background: transparent; color: inherit; cursor: pointer; }
 .toast { position: fixed; z-index: 20; right: 18px; bottom: 38px; max-width: 340px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface-3); color: var(--text); box-shadow: 0 10px 32px #0008; opacity: 0; transform: translateY(8px); pointer-events: none; transition: .18s; }
 .toast.show { opacity: 1; transform: none; }
@@ -101,6 +108,9 @@ button, input { font: inherit; } button, a { color: inherit; } button { border: 
 .command-palette input { width: 100%; padding: 13px 15px; border: 0; border-bottom: 1px solid var(--line); outline: 0; background: var(--surface); color: var(--text); font-size: 14px; }
 .command-item { width: 100%; display: flex; justify-content: space-between; padding: 9px 14px; background: transparent; color: var(--muted); text-align: left; cursor: pointer; }
 .command-item:hover, .command-item.selected { color: var(--text); background: var(--surface-3); } .command-item kbd { color: var(--faint); font: 10px var(--font-code); }
+@media (prefers-reduced-motion: reduce) {
+  body, button, a, input, textarea, pre, code, span, div, aside, section, header, footer { transition: none; }
+}
 @media (max-width: 820px) { :root { --sidebar: 210px; } .menu, .secondary-button, .run-button kbd { display: none; } }
 @media (max-width: 620px) {
   .app-shell { grid-template-rows: 43px minmax(0, 1fr) 24px; } .ide { grid-template-columns: 40px minmax(0, 1fr); }

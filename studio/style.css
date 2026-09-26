@@ -28,8 +28,8 @@ button, input { font: inherit; } button, a { color: inherit; } button { border: 
 .app-shell { height: 100%; display: grid; grid-template-rows: 46px minmax(0, 1fr) 24px; }
 .titlebar { display: flex; align-items: center; gap: 22px; padding: 0 12px 0 14px; background: var(--surface); border-bottom: 1px solid var(--line); }
 .brand { display: flex; align-items: center; gap: 9px; min-width: max-content; color: var(--text); text-decoration: none; font-size: 12px; font-weight: 800; letter-spacing: .11em; }
-.brand-mark, .status-brand { display: inline-grid; place-items: center; background: var(--accent); color: #10140d; font-weight: 900; }
-.brand-mark { width: 25px; height: 25px; border-radius: 7px 3px 7px 3px; box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 24%, transparent); }
+.status-brand { display: inline-grid; place-items: center; background: var(--accent); color: #10140d; font-weight: 900; }
+.brand-mark { width: 26px; height: 26px; display: block; filter: drop-shadow(0 5px 9px #0005); }
 .version { padding: 2px 5px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); font-size: 9px; letter-spacing: .03em; }
 .menu { display: flex; align-items: center; gap: 3px; }
 .menu button, .menu a { padding: 6px 8px; background: transparent; color: var(--muted); text-decoration: none; cursor: pointer; border-radius: 5px; }

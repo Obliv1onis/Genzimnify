@@ -26,7 +26,7 @@ function renderChrome() {
   document.getElementById("siteHeader").innerHTML = `
     <header class="topbar">
       <button class="mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button>
-      <a class="brand" href="index.html"><span class="brand-mark">G</span><span>GENZIMNIFY</span><span class="version">2.0</span></a>
+      <a class="brand" href="index.html"><img class="brand-mark" src="favicon.svg" alt=""><span>GENZIMNIFY</span><span class="version">2.0</span></a>
       <nav class="toplinks"><a class="active" href="index.html">Docs</a><a href="https://github.com/Obliv1onis/Genzimnify">Source</a></nav>
       <div class="top-actions">
         <div class="search-shell" id="searchShell">

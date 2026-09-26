@@ -1,3 +1,5 @@
+<img src="assets/genzimnify-mark.svg" width="88" alt="Genzimnify logo">
+
 # Genzimnify
 
 **A native programming language with Gen Z syntax. If it vibes, it runs.**

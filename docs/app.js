@@ -1,7 +1,7 @@
 const DOCS = [
-  { title: "Welcome to Genzimnify", url: "index.html", section: "Overview", text: "Native Python-free runtime, quick start, features" },
+  { title: "Genzimnify documentation", url: "index.html", section: "Overview", text: "runtime installation language reference" },
   { title: "Install Genzimnify", url: "installation.html", section: "Get started", text: "Homebrew macOS Windows PowerShell Ubuntu Kali Linux manual releases PATH" },
-  { title: "Your first vibe", url: "getting-started.html", section: "Get started", text: "create run check project hello fizzbuzz command line" },
+  { title: "First program", url: "getting-started.html", section: "Get started", text: "create run check project hello command line" },
   { title: "Language guide", url: "language-guide.html", section: "Language", text: "variables values operators control flow functions classes exceptions imports async types" },
   { title: "Native standard library", url: "stdlib.html", section: "Reference", text: "builtins collections math system luck clock timing files" },
   { title: "Packages and projects", url: "packages.html", section: "Tools", text: "gzim.toml dependencies Git local path add install remove package manager" },
@@ -13,10 +13,10 @@ const DOCS = [
 
 const groups = [
   ["Overview", [["Home", "index.html"]]],
-  ["Get started", [["Installation", "installation.html"], ["Your first vibe", "getting-started.html"]]],
+  ["Get started", [["Installation", "installation.html"], ["First program", "getting-started.html"]]],
   ["Language", [["Language guide", "language-guide.html"], ["Standard library", "stdlib.html"]]],
   ["Tools", [["Command-line interface", "cli.html"], ["Packages & projects", "packages.html"], ["Editor & LSP", "tooling.html"]]],
-  ["Interop", [["Python libraries", "python-interop.html"]]],
+  ["Interop", [["Python interoperability", "python-interop.html"]]],
   ["Concepts", [["Native runtime", "native-runtime.html"]]]
 ];
 

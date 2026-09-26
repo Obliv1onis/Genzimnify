@@ -466,6 +466,7 @@ var objectID_1191182514 = [0];
 function setTheme(theme_p0) {
     document.documentElement.setAttribute("data-theme", theme_p0);
     window.localStorage.setItem("theme", theme_p0);
+    window.localStorage.setItem("genzimnify.theme", theme_p0);
 
   
 }
@@ -681,7 +682,10 @@ function HEX3Aanonymous__dochack_u65(event_p0) {
   
 }
 
-    document.getElementById("theme-select").value = window.localStorage.getItem("theme");
+    var themeSelect = document.getElementById("theme-select");
+    if (themeSelect) {
+    themeSelect.value = window.localStorage.getItem("theme") || "auto";
+    }
     Label1: {
       var pragmaDots_587202624 = null;
       var colontmp__587203742 = [];
@@ -1704,9 +1708,9 @@ function HEX3Aanonymous__dochack_u1162(e_p0) {
   
 }
 var Temporary4;
-var t_587202599 = window.localStorage.getItem("theme");
+var t_587202599 = window.localStorage.getItem("genzimnify.theme") || window.localStorage.getItem("theme");
 if ((t_587202599 == null)) {
-Temporary1 = "auto";
+Temporary1 = "dark";
 }
 else {
 Temporary1 = t_587202599;
@@ -1726,3 +1730,103 @@ window.addEventListener("hashchange", Temporary3, false);
 copyToClipboard();
 Temporary4 = onDOMLoaded.bind(null); Temporary4.ClP_0 = onDOMLoaded; Temporary4.ClE_0 = null;
 window.addEventListener("DOMContentLoaded", Temporary4, false);
+
+/* Genzimnify Studio documentation chrome. Kept here so every generated API
+   page receives the same navigation and theme experience. */
+window.addEventListener("DOMContentLoaded", function () {
+  var body = document.body;
+  var path = window.location.pathname;
+  var marker = "/api/html";
+  var markerAt = path.indexOf(marker);
+  var studioPath = markerAt >= 0 ? path.slice(0, markerAt + 1) : "../../../";
+  var studioUrl = new URL(studioPath, window.location.origin).href;
+  var apiUrl = new URL("api/html/theindex.html", studioUrl).href;
+
+  body.classList.toggle("doc-index", !document.querySelector(".container .row"));
+
+  var bar = document.createElement("header");
+  bar.className = "studio-docbar";
+
+  var brand = document.createElement("a");
+  brand.className = "studio-doc-brand";
+  brand.href = studioUrl;
+  brand.setAttribute("aria-label", "Back to Genzimnify Studio");
+  brand.innerHTML = '<span class="studio-doc-mark">G</span><span>GENZIMNIFY</span>';
+
+  var divider = document.createElement("span");
+  divider.className = "studio-doc-divider";
+  var section = document.createElement("span");
+  section.className = "studio-doc-section";
+  section.textContent = "API REFERENCE · v1.1";
+
+  var actions = document.createElement("nav");
+  actions.className = "studio-doc-actions";
+  actions.setAttribute("aria-label", "Documentation navigation");
+
+  var indexLink = document.createElement("a");
+  indexLink.href = apiUrl;
+  indexLink.textContent = "API Index";
+
+  var github = document.createElement("a");
+  github.className = "studio-github";
+  github.href = "https://github.com/Obliv1onis/Genzimnify";
+  github.textContent = "GitHub";
+
+  var themeButton = document.createElement("button");
+  themeButton.type = "button";
+  themeButton.className = "studio-theme-button";
+  themeButton.setAttribute("aria-label", "Toggle color theme");
+
+  var back = document.createElement("a");
+  back.className = "studio-back";
+  back.href = studioUrl;
+  back.textContent = "← Studio";
+
+  function themeIsDark() {
+    var selected = document.documentElement.getAttribute("data-theme");
+    return selected === "dark" || (selected === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  }
+  function refreshThemeButton() {
+    themeButton.textContent = themeIsDark() ? "☼" : "◐";
+    themeButton.title = themeIsDark() ? "Use light theme" : "Use dark theme";
+  }
+  themeButton.addEventListener("click", function () {
+    var next = themeIsDark() ? "light" : "dark";
+    setTheme(next);
+    var select = document.getElementById("theme-select");
+    if (select) select.value = next;
+    refreshThemeButton();
+  });
+  refreshThemeButton();
+
+  actions.appendChild(indexLink);
+  actions.appendChild(github);
+  actions.appendChild(themeButton);
+  actions.appendChild(back);
+  bar.appendChild(brand);
+  bar.appendChild(divider);
+  bar.appendChild(section);
+  bar.appendChild(actions);
+  body.insertBefore(bar, body.firstChild);
+
+  var searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.placeholder = "Search symbols...";
+    searchInput.setAttribute("aria-label", "Search API symbols");
+  }
+
+  if (body.classList.contains("doc-index")) {
+    var title = document.querySelector(".container > h1.title");
+    if (title) {
+      title.textContent = "API Reference";
+      var hero = document.createElement("div");
+      hero.className = "studio-index-hero";
+      hero.innerHTML = "<strong>Compiler internals, mapped out.</strong>Browse every public type, token, parser entry point, semantic check, and emitter API in Genzimnify v1.1.";
+      title.insertAdjacentElement("afterend", hero);
+    }
+  }
+
+  document.title = document.title === "Index" ? "Genzimnify API Reference" : document.title.replace("src/", "") + " — Genzimnify API";
+  var icons = document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
+  for (var i = 0; i < icons.length; i++) icons[i].href = new URL("favicon.svg", studioUrl).href;
+});

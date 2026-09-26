@@ -261,7 +261,7 @@ tests/lsp_test.sh
 - Added shell, PowerShell, and Homebrew installation paths.
 - Rebuilt `docs/` as a searchable language documentation site.
 
-## v2.1
+## v2.0.1
 
 - Added explicit optional Python imports through `py.*`, including
   positional and keyword arguments plus native value conversion.
@@ -273,7 +273,7 @@ tests/lsp_test.sh
 
 - Same-quote nesting inside `glow` strings is unsupported; use mixed quotes.
 - Comparison chains are evaluated left-associatively; write explicit `both` chains.
-- The 2.1 timing API is cooperative; a full native event loop is planned.
+- The 2.0.1 timing API is cooperative; a full native event loop is planned.
 - Python is only required if you explicitly run output from `gzim emit-python`.
 - Python is also required when a program explicitly imports a `py.*` module.
 

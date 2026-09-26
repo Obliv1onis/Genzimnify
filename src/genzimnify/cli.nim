@@ -1,10 +1,10 @@
-## gzimc, the Genzimnify compiler CLI.
-## run / build / check / repl / init.
+## gzim, the native Genzimnify CLI.
+## run / check / repl / init / emit-python.
 
-import std/[os, strutils, syncio, sequtils]
-import lexer, parser, semantic, emit, errors
+import std/[os, strutils, syncio]
+import lexer, parser, semantic, emit, runtime, errors
 
-const Version* = "1.1"
+const Version* = "1.2.0"
 
 # ------------------------------------------------------------------ compile
 
@@ -36,24 +36,27 @@ proc compileFile(path: string): tuple[code: string, maps: string] =
 # ------------------------------------------------------------------ commands
 
 proc cmdRun(path: string, extraArgs: seq[string]) =
-  let (code, _) = compileFile(path)
-  let base = splitFile(path).name
-  let pyPath = getTempDir() / (base & ".gzimrun.py")
-  writeFile(pyPath, code)
-  let args = extraArgs.mapIt(quoteShell(it)).join(" ")
-  let rc = execShellCmd("python3 " & quoteShell(pyPath) &
-                        (if args.len > 0: " " & args else: ""))
-  quit(rc)
+  if not fileExists(path):
+    failHard("no file called " & path & ", that's ghost")
+  try:
+    quit(runSource(readFile(path), path, extraArgs))
+  except GzimError as e:
+    failHard(e.msg)
 
-proc cmdBuild(path: string) =
+proc cmdEmitPython(path: string) =
   let (code, maps) = compileFile(path)
   let outPath = splitFile(path).dir / (splitFile(path).name & ".py")
   writeFile(outPath, code)
   writeFile(outPath & ".gzmap", maps)
-  echo "cooked " & outPath & ", go vibe"
+  echo "exported " & outPath & " for Python interoperability"
 
 proc cmdCheck(path: string) =
-  discard compileFile(path)
+  if not fileExists(path):
+    failHard("no file called " & path & ", that's ghost")
+  try:
+    discard parseChecked(readFile(path), path)
+  except GzimError as e:
+    failHard(e.msg)
   echo "no cap, " & path & " passes the vibecheck fr"
 
 const InitSample = """
@@ -72,7 +75,7 @@ proc cmdInit() =
   echo "dropped main.gzim, let's get this bread"
 
 proc cmdRepl() =
-  echo "gzimc repl " & Version & ", type your vibes, blank line to run, ctrl-d to dip"
+  echo "gzim repl " & Version & " native runtime, blank line to run, ctrl-d to dip"
   var session: seq[string] = @[]
   var line: string
   while true:
@@ -85,35 +88,38 @@ proc cmdRepl() =
         continue
       let snapshot = session.len - 1
       let src = session.join("\n")
-      var code: string
       try:
-        let res = compileSource(src, "<repl>")
-        code = res.code
+        discard runSource(src, "<repl>")
       except GzimError as e:
         echo "cap! " & e.msg
         session.setLen(snapshot)
         continue
-      let tmp = getTempDir() / "gzim_repl_run.py"
-      writeFile(tmp, code)
-      discard execShellCmd("python3 " & quoteShell(tmp))
     else:
       session.add line
 
 proc showHelp() =
   echo """
-gzimc, the Genzimnify compiler. Python in the streets, Gen Z in the sheets.
+gzim, the native Genzimnify runtime. Gen Z syntax, zero Python required.
 
 usage:
-  gzimc run <file.gzim>      transpile + run it (no cap)
-  gzimc build <file.gzim>    transpile to <file>.py (+ <file>.py.gzmap)
-  gzimc check <file.gzim>    parse + vibecheck (semantic analysis) only
-  gzimc repl                 start the vibe loop
-  gzimc init                 drop a starter main.gzim
-  gzimc help                 this menu
+  gzim <file.gzim> [args]       run a vibe directly
+  gzim run <file.gzim> [args]   same thing, spelled out
+  gzim check <file.gzim>        parse + semantic vibecheck only
+  gzim repl                     start the native vibe loop
+  gzim init                     drop a starter main.gzim
+  gzim doctor                   show runtime and platform information
+  gzim emit-python <file.gzim>  optional Python interoperability export
+  gzim help                     this menu
 
 a Genzimnify program is called a vibe. running it is vibing.
 errors are cap. debugging is checking the vibe.
 """
+
+proc cmdDoctor() =
+  echo "gzim " & Version
+  echo "runtime: native Nim (Python-free)"
+  echo "platform: " & hostOS & "/" & hostCPU
+  echo "status: ready to vibe"
 
 proc main*() =
   let params = commandLineParams()
@@ -123,7 +129,7 @@ proc main*() =
 
   var cmd: string
   var rest: seq[string]
-  if params[0] in ["run", "build", "check", "repl", "init", "help", "--help", "-h",
+  if params[0] in ["run", "build", "emit-python", "check", "repl", "init", "doctor", "help", "--help", "-h",
                    "--version", "-v"]:
     cmd = params[0]
     rest = params[1 .. ^1]
@@ -137,22 +143,24 @@ proc main*() =
   case cmd
   of "run":
     if rest.len == 0:
-      failHard("run needs a file, gzimc run <file.gzim>")
+      failHard("run needs a file, gzim run <file.gzim>")
     cmdRun(rest[0], rest[1 .. ^1])
-  of "build":
+  of "build", "emit-python":
     if rest.len == 0:
-      failHard("build needs a file, gzimc build <file.gzim>")
-    cmdBuild(rest[0])
+      failHard("emit-python needs a file, gzim emit-python <file.gzim>")
+    cmdEmitPython(rest[0])
   of "check":
     if rest.len == 0:
-      failHard("check needs a file, gzimc check <file.gzim>")
+      failHard("check needs a file, gzim check <file.gzim>")
     cmdCheck(rest[0])
   of "repl":
     cmdRepl()
   of "init":
     cmdInit()
+  of "doctor":
+    cmdDoctor()
   of "--version", "-v":
-    echo "gzimc " & Version
+    echo "gzim " & Version
   else:
     showHelp()
     quit(0)

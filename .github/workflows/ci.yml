@@ -1,0 +1,34 @@
+name: Native runtime CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-2022, macos-15, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nim-lang/setup-nimble-action@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build native CLI
+        shell: bash
+        run: mkdir -p build && nim c -d:release --out:build/gzim src/gzim.nim
+      - name: Run language suite
+        if: runner.os != 'Windows'
+        shell: bash
+        run: tests/run_tests.sh
+      - name: Native smoke test (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $actual = & build/gzim.exe tests/cases/fizzbuzz.gzim
+          $expected = (Get-Content tests/cases/fizzbuzz.expected) -join "`n"
+          if (($actual -join "`n") -ne $expected) { throw "Native output mismatch" }
+          & build/gzim.exe doctor

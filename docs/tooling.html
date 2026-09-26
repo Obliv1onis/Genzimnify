@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Set up editors and the Genzimnify language server."><title>Editor and LSP | Genzimnify Docs</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"></head>
+<body><div id="siteHeader"></div><div class="layout"><aside class="sidebar" id="siteSidebar"></aside><main class="content"><article>
+  <div class="page-kicker">Tools</div><h1>Editor and language server</h1><p class="lead"><code>gzim-lsp</code> gives desktop editors language-aware diagnostics and navigation. It ships beside <code>gzim</code> in every release package.</p>
+  <h2 id="features">Language server features</h2><div class="cards"><div class="card"><div class="card-icon">!</div><h3>Live diagnostics</h3><p>Syntax and semantic caps update as you type.</p></div><div class="card"><div class="card-icon">⌁</div><h3>Completion</h3><p>Slang keywords, builtins, native modules, and file-local declarations.</p></div><div class="card"><div class="card-icon">?</div><h3>Hover</h3><p>Keyword explanations, signatures, and declaration details.</p></div><div class="card"><div class="card-icon">→</div><h3>Navigation</h3><p>Go to definitions and browse document symbols.</p></div></div>
+  <h2 id="verify">Verify the server</h2><pre><code>gzim-lsp --help</code></pre><p>Most editors start the server over standard input/output. Ensure the installation directory is on <code>PATH</code>.</p>
+  <h2 id="zed">Zed</h2><p>The repository contains a Zed extension with a Tree-sitter grammar and language-server adapter.</p><div class="steps"><div class="step"><h3>Install the runtime</h3><p>Confirm both <code>gzim</code> and <code>gzim-lsp</code> are on PATH.</p></div><div class="step"><h3>Open Zed extensions</h3><p>Run <strong>zed: install dev extension</strong> from the command palette.</p></div><div class="step"><h3>Select the extension folder</h3><p>Choose <code>zed-genzimnify/</code> from a cloned repository.</p></div></div>
+  <h2 id="generic-lsp">Other LSP editors</h2><p>Configure <code>gzim-lsp</code> as a stdio language server for files matching <code>*.gzim</code>. The server follows the standard JSON-RPC Language Server Protocol.</p><pre><code>{
+  "command": "gzim-lsp",
+  "filetypes": ["gzim"],
+  "rootPatterns": ["genzimnify.nimble", ".git"]
+}</code></pre>
+  <h2 id="online-studio">Browser Studio</h2><p>The repository’s <code>studio/</code> directory contains a local-first browser IDE with syntax highlighting, completion, diagnostics, examples, and a console. It is a separate web surface; the installable desktop toolchain is the authoritative native runtime.</p>
+  <h2 id="tree-sitter">Tree-sitter grammar</h2><p>The grammar under <code>grammars/genzimnify/</code> can be embedded by editors that support Tree-sitter. Regenerate parser sources after changing <code>grammar.js</code>:</p><pre><code>cd grammars/genzimnify
+tree-sitter generate</code></pre>
+  <div class="page-nav"><a href="cli.html"><small>Previous</small>← Command-line interface</a><a href="native-runtime.html"><small>Next</small>Native runtime →</a></div>
+</article></main><aside class="toc" id="pageToc"></aside></div><script src="app.js"></script></body></html>

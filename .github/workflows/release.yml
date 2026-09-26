@@ -1,0 +1,69 @@
+name: Release native binaries
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            artifact: linux-x86_64
+            executable: gzim
+          - os: windows-2022
+            artifact: windows-x86_64
+            executable: gzim.exe
+          - os: macos-15
+            artifact: macos-arm64
+            executable: gzim
+          - os: macos-15-intel
+            artifact: macos-x86_64
+            executable: gzim
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nim-lang/setup-nimble-action@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build runtime and language server
+        shell: bash
+        run: |
+          mkdir -p dist
+          if [ "$RUNNER_OS" = "macOS" ]; then export MACOSX_DEPLOYMENT_TARGET=12.0; fi
+          nim c -d:release --out:dist/${{ matrix.executable }} src/gzim.nim
+          nim c -d:release --out:dist/gzim-lsp${{ runner.os == 'Windows' && '.exe' || '' }} src/gzimlsp.nim
+          cp LICENSE README.md dist/
+      - name: Package Unix archive
+        if: runner.os != 'Windows'
+        shell: bash
+        run: tar -C dist -czf genzimnify-${{ matrix.artifact }}.tar.gz .
+      - name: Package Windows archive
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path dist/* -DestinationPath genzimnify-${{ matrix.artifact }}.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: genzimnify-${{ matrix.artifact }}
+          path: genzimnify-${{ matrix.artifact }}.*
+
+  publish:
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release
+          merge-multiple: true
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd release
+          sha256sum genzimnify-* > SHA256SUMS
+          gh release create "${{ github.ref_name }}" ./* --generate-notes --title "Genzimnify ${{ github.ref_name }}"

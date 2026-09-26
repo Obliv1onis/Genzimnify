@@ -1,5 +1,5 @@
-# Build artifacts
-# (build/ is committed on purpose: prebuilt binaries ship with the repo)
+# Build artifacts (release binaries are published by GitHub Actions)
+build/
 target/
 dist/
 

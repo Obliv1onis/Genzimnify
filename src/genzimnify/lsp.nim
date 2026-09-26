@@ -176,17 +176,14 @@ const KEYWORD_DOCS: Table[string, string] = {
   "unlock": "`open`, unlock the file.",
   "round up": "`round`.",
   "vibe check": "`type`, vibe check the type.",
-  "luck": "`random` module.", "clock": "`time` module.",
-  "system": "`os`/`sys` modules.", "timing": "`asyncio` module.",
-  "stash": "`collections`.", "loops": "`itertools`.", "tools": "`functools`.",
-  "json": "`json`.", "regex": "`re`.", "paths": "`pathlib`.",
-  "spawn": "`subprocess`.", "net": "`socket`.", "web": "`http`.",
-  "db": "`sqlite3`.", "vibecheck": "`unittest` (module).",
-  "L": "`Exception`.", "BadVibe": "`ValueError`.",
-  "WrongType": "`TypeError`.", "OutOfPocket": "`IndexError`.",
-  "Ghosted": "`KeyError`.", "SplitByZero": "`ZeroDivisionError`.",
-  "NoPullUp": "`ImportError`.", "CapDetected": "`AssertionError`.",
-  "StopTheCap": "`StopIteration`.",
+  "luck": "Native random utilities.", "clock": "Native clock utilities.",
+  "system": "Native process and environment utilities.",
+  "timing": "Native cooperative timing module.", "math": "Native math module.",
+  "L": "Base native exception.", "BadVibe": "Invalid value exception.",
+  "WrongType": "Type exception.", "OutOfPocket": "Index exception.",
+  "Ghosted": "Missing key/name exception.", "SplitByZero": "Division-by-zero exception.",
+  "NoPullUp": "Module/file exception.", "CapDetected": "Assertion exception.",
+  "StopTheCap": "Iteration stop exception.",
 }.toTable
 
 type
@@ -391,9 +388,8 @@ proc completionList(decls: seq[Decl]): JsonNode =
                        "vibe check", "num", "drip", "text", "truth", "stack",
                        "map", "squad", "crew", "yap", "yap back"]
     item(k, if isCall: 3 else: 14, v)  # Function / Keyword
-  for modname in ["luck", "clock", "system", "json", "regex", "stash", "loops",
-                  "tools", "timing", "types", "paths", "spawn", "net", "web", "db"]:
-    item(modname, 9, "slang module")
+  for modname in ["math", "luck", "clock", "system", "timing"]:
+    item(modname, 9, "native Genzimnify module")
   for d in decls:
     if d.kind != dkParam:
       item(d.name, (case d.kind
@@ -455,7 +451,7 @@ proc main*() =
           "completionProvider": {"resolveProvider": false, "triggerCharacters": []},
           "documentSymbolProvider": true,
         },
-        "serverInfo": {"name": "gzim-lsp", "version": "1.1.0"},
+        "serverInfo": {"name": "gzim-lsp", "version": "1.2.0"},
       })
     elif m == "initialized":
       discard

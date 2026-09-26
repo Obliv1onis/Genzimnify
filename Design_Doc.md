@@ -1,8 +1,8 @@
 # Genzimnify: Language Design Document
 
-**Version:** 1.1
-**Target:** Python 3.10+  
-**Implementation:** Nim  
+**Version:** 1.2
+**Target:** Native Windows 10+, macOS 12+, Ubuntu/Kali Linux
+**Implementation:** Nim compiler toolchain and standalone native runtime
 **File Extension:** `.gzim`  
 **Tagline:** Python semantics, Gen Z surface syntax. If it vibes, it compiles.
 
@@ -10,7 +10,7 @@
 
 ## 1. Overview
 
-Genzimnify is a Turing-complete programming language that source-to-source transpiles to Python. It is written in Nim and uses Gen Z slang for all keywords, built-ins, and control flow. The language is designed to be expressive, memeable, and fully compatible with Python’s runtime and ecosystem.
+Genzimnify is a Turing-complete programming language with a native runtime written in Nim. It uses Gen Z slang for keywords, built-ins, and control flow while keeping familiar Python-like semantics. Since 1.2, the normal `gzim` execution path evaluates checked Genzimnify directly and does not require Python. A separate Python emitter remains available as an optional interoperability target.
 
 A Genzimnify program is called a **vibe**. Running it is **vibing**. Errors are **cap**. Debugging is **checking the vibe**.
 

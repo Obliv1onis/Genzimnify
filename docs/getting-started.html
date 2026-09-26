@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Write and run your first native Genzimnify program."><title>Your first vibe | Genzimnify Docs</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"></head>
+<body><div id="siteHeader"></div><div class="layout"><aside class="sidebar" id="siteSidebar"></aside><main class="content"><article>
+  <div class="page-kicker">Get started</div><h1>Your first vibe</h1><p class="lead">A Genzimnify source file ends in <code>.gzim</code>. The native runtime parses, checks, and executes it in one command.</p>
+  <h2 id="create">Create a project</h2><p>Make an empty directory, enter it, and ask the CLI for a starter file:</p><pre><code>mkdir hello-gzim
+cd hello-gzim
+gzim init</code></pre><p>This creates <code>main.gzim</code>. Replace its contents with:</p>
+  <pre><code class="language-gzim">let name be "world"
+
+cook greet(who):
+    send it glow"yo {who}, welcome to Genzimnify"
+
+yap(call up greet(name) yo)</code></pre>
+  <h2 id="run">Run it</h2><pre><code>gzim main.gzim</code></pre><p>Output:</p><pre><code>yo world, welcome to Genzimnify</code></pre>
+  <p><code>gzim run main.gzim</code> is equivalent. The short form is intended to feel like running a Python or Ruby script, while using Genzimnify’s own native runtime.</p>
+  <h2 id="understand">Understand the code</h2>
+  <table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>let name be "world"</code></td><td>Declare a mutable variable.</td></tr><tr><td><code>cook greet(who):</code></td><td>Define a function named <code>greet</code>.</td></tr><tr><td><code>send it</code></td><td>Return a value from a cook.</td></tr><tr><td><code>glow"..."</code></td><td>Interpolate expressions into text.</td></tr><tr><td><code>call up … yo</code></td><td>Delimit a function call expression.</td></tr><tr><td><code>yap(...)</code></td><td>Print values to standard output.</td></tr></tbody></table>
+  <h2 id="check">Check without running</h2><pre><code>gzim check main.gzim</code></pre><p>The semantic checker catches invalid assignments, locked-variable changes, misplaced returns, invalid loop control, and other caps before execution.</p>
+  <h2 id="arguments">Pass command-line arguments</h2><p>Arguments after the file name are available as the global <code>args</code> stack:</p><pre><code class="language-gzim">vibecheck call up how many(args) yo > 0:
+    yap(glow"yo {args[0]}")
+otherwise:
+    yap("yo stranger")</code></pre><pre><code>gzim main.gzim chat
+# yo chat</code></pre>
+  <h2 id="repl">Try the REPL</h2><pre><code>gzim repl</code></pre><p>Type one or more lines, then submit a blank line to run the current vibe. Press Ctrl+D to leave.</p>
+  <h2 id="next">Where to go next</h2><div class="cards"><a class="card" href="language-guide.html"><div class="card-icon">GZ</div><h3>Language guide</h3><p>Learn every core syntax form, from values and loops to cliques and exceptions.</p></a><a class="card" href="tooling.html"><div class="card-icon">⌁</div><h3>Editor setup</h3><p>Enable completion, hover, go-to-definition, and live checking through gzim-lsp.</p></a></div>
+  <div class="page-nav"><a href="installation.html"><small>Previous</small>← Installation</a><a href="language-guide.html"><small>Next</small>Language guide →</a></div>
+</article></main><aside class="toc" id="pageToc"></aside></div><script src="app.js"></script></body></html>

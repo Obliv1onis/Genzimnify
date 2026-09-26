@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.0.0"
+version       = "1.1.0"
 author        = "Genzimnify"
 description   = "Genzimnify: Python semantics, Gen Z surface syntax, transpiles .gzim to Python. If it vibes, it compiles."
 license       = "MIT"

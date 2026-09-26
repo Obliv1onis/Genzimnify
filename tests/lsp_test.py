@@ -1,6 +1,11 @@
-import json, subprocess, sys
+import json, os, subprocess
+from pathlib import Path
 
-p = subprocess.Popen(['/home/mattin/Documents/Projects/Genzimnify/build/gzim-lsp'],
+server = os.environ.get(
+    'GZIM_LSP_BIN',
+    str(Path(__file__).resolve().parents[1] / 'build' / 'gzim-lsp'),
+)
+p = subprocess.Popen([str(server)],
                      stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
 def send(msg):

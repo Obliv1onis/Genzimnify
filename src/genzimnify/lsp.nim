@@ -455,7 +455,7 @@ proc main*() =
           "completionProvider": {"resolveProvider": false, "triggerCharacters": []},
           "documentSymbolProvider": true,
         },
-        "serverInfo": {"name": "gzim-lsp", "version": "1.0.0"},
+        "serverInfo": {"name": "gzim-lsp", "version": "1.1.0"},
       })
     elif m == "initialized":
       discard

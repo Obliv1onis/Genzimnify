@@ -1,6 +1,6 @@
 # Genzimnify: Language Design Document
 
-**Version:** 1.0  
+**Version:** 1.1
 **Target:** Python 3.10+  
 **Implementation:** Nim  
 **File Extension:** `.gzim`  

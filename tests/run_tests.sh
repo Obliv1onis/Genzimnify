@@ -5,14 +5,18 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 mkdir -p build
+test_bin="$(mktemp "${TMPDIR:-/tmp}/genzimc-test.XXXXXX")"
+trap 'rm -f "$test_bin"' EXIT
 echo "cooking the compiler..."
-nim c -d:release --verbosity:0 --hints:off -o:build/genzimc src/genzimc.nim || exit 1
+nim c -d:release --verbosity:0 --hints:off \
+  --nimcache:"${XDG_CACHE_HOME:-/tmp}/nim/genzimc_r" \
+  -o:"$test_bin" src/genzimc.nim || exit 1
 
 pass=0
 fail=0
 for f in tests/cases/*.gzim; do
   exp="${f%.gzim}.expected"
-  actual="$(build/genzimc run "$f" 2>&1)"
+  actual="$("$test_bin" run "$f" 2>&1)"
   if [ "$actual" == "$(cat "$exp")" ]; then
     pass=$((pass+1))
   else
@@ -28,3 +32,5 @@ if [ "$fail" -ne 0 ]; then
   exit 1
 fi
 echo "all vibes check out fr"
+
+GZIMC_BIN="$test_bin" bash tests/regression_test.sh

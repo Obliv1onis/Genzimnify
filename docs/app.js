@@ -1,0 +1,461 @@
+/* Genzimnify Studio v1.1 - static, local-first browser IDE. */
+const lines = (...items) => items.join("\n") + "\n";
+const EXAMPLES = {
+  "hello-vibes.gzim": lines("# welcome to Genzimnify", "let name be \"chat\"", "let energy be 100", "", "vibecheck energy > 90:", "    yap(glow\"yo {name}, the vibes are immaculate\")", "otherwise:", "    yap(\"we can work with this\")"),
+  "fizzbuzz.gzim": lines("# ngl the classic", "for real i up in vibes(1, 16):", "    vibecheck i % 15 == 0:", "        yap(\"FizzBuzz\")", "    or i % 3 == 0:", "        yap(\"Fizz\")", "    or i % 5 == 0:", "        yap(\"Buzz\")", "    otherwise:", "        yap(i)"),
+  "functions.gzim": lines("cook greet(name, greeting be \"yo\"):", "    send it glow\"{greeting} {name}!\"", "", "cook fib(n):", "    vibecheck n < 2:", "        send it n", "    send it call up fib(n - 1) yo + call up fib(n - 2) yo", "", "let double be mini vibe(x): x * 2", "yap(call up greet(\"chat\") yo)", "yap(call up double(21) yo)", "yap(call up fib(10) yo)"),
+  "classes.gzim": lines("clique Dog:", "    cook new(fam, name):", "        fam.name be name", "", "    cook speak(fam):", "        yap(glow\"{fam.name} says woof\")", "", "clique Puppy(Dog):", "    cook speak(fam):", "        yap(\"tiny woof\")", "", "let pup be call up Puppy(\"Bit\") yo", "call up pup.speak() yo"),
+  "collections.gzim": lines("let evens be [x for real x up in vibes(10) sus x % 2 == 0]", "let scores be {\"amy\": 9, \"bob\": 7}", "let tags be {\"code\", \"vibes\", \"code\"}", "", "yap(evens)", "yap(scores[\"amy\"])", "yap(call up ranked(tags) yo)", "yap(call up add up([1, 2, 3]) yo)"),
+  "exceptions.gzim": lines("f_around:", "    let answer be 1 / 0", "find_out SplitByZero as err:", "    yap(\"can't divide by zero, bestie\")", "no_matter_what:", "    yap(\"we move\")"),
+  "async.gzim": lines("pull up timing", "", "on timing cook main():", "    yap(\"loading the vibes...\")", "    wait up timing.sleep(0.2)", "    yap(\"async vibes delivered\")", "", "call up timing.run(main()) yo"),
+  "fit-check.gzim": lines("for real value up in [1, 2, 99]:", "    fit check value:", "        fit 1:", "            yap(\"one\")", "        fit 2:", "            yap(\"two\")", "        otherwise:", "            yap(\"mystery vibe\")")
+};
+const REFERENCE = [
+  ["let x be 1", "declare"], ["lock PI be 3.14", "constant"], ["nocap / cap", "True / False"],
+  ["ghost", "None"], ["yap(...)", "print"], ["yap back(...)", "input"], ["call up fn() yo", "call"],
+  ["how many(x)", "len"], ["vibecheck / or", "if / elif"], ["otherwise", "else"],
+  ["vibe condition", "while"], ["for real x up in y", "for x in y"], ["cook fn():", "def"],
+  ["send it", "return"], ["clique Name:", "class"], ["fam / ancestor", "self / super"],
+  ["both / either / aint", "and / or / not"], ["same as / nah", "== / !="],
+  ["f_around / find_out", "try / except"], ["throw shade", "raise"],
+  ["on timing / wait up", "async / await"], ["fit check / fit", "match / case"]
+];
+
+const $ = (id) => document.getElementById(id);
+const editor = $("editor");
+const highlight = $("highlight");
+const lineNumbers = $("lineNumbers");
+const output = $("output");
+const pythonOutput = $("pythonOutput");
+const status = $("status");
+const runBtn = $("runBtn");
+const workbench = document.querySelector(".workbench");
+let fileName = "main.gzim";
+let savedValue = "";
+let diagnostics = [];
+let diagTimer = 0;
+let toastTimer = 0;
+let pyodide = null;
+let pyodideLoading = null;
+let findMatches = [];
+let findIndex = -1;
+
+function escapeHtml(value) {
+  return value.replace(/[&<>]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[ch]);
+}
+const KEYWORDS = new Set(["let", "lock", "be", "vibecheck", "or", "otherwise", "vibe", "for real", "up in", "dip", "next", "deadass", "cook", "send it", "drop", "call up", "yo", "clique", "new", "fam", "ancestor", "pull up", "outta", "as", "gives", "sus", "f_around", "find_out", "no_matter_what", "throw shade", "roll with", "on timing", "wait up", "mini vibe", "worldwide", "localish", "cancel", "on god", "fit check", "fit", "both", "either", "aint", "same as", "nah", "literally", "fr"]);
+const BUILTINS = new Set(["yap", "yap back", "how many", "add up", "round up", "index up", "vibes", "ranked", "unlock", "link"]);
+const BOOLEANS = new Set(["nocap", "cap", "ghost"]);
+const tokenPattern = /(#\[\[[\s\S]*?\]\]#|#[^\n]*|"""[\s\S]*?"""|'''[\s\S]*?'''|glow"(?:\\.|[^"\\])*"|glow'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b(?:for real|up in|send it|call up|throw shade|roll with|on timing|wait up|mini vibe|fit check|yap back|how many|add up|round up|index up|same as|no_matter_what)\b|\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b)/gi;
+
+function syntaxHighlight(source) {
+  let result = "";
+  let last = 0;
+  for (const match of source.matchAll(tokenPattern)) {
+    result += escapeHtml(source.slice(last, match.index));
+    const raw = match[0];
+    const lower = raw.toLowerCase();
+    let cls = "";
+    if (raw.startsWith("#")) cls = "tok-comment";
+    else if (/^(?:glow)?["']/.test(raw)) cls = "tok-string";
+    else if (/^\d/.test(raw)) cls = "tok-number";
+    else if (BOOLEANS.has(lower)) cls = "tok-bool";
+    else if (BUILTINS.has(lower)) cls = "tok-builtin";
+    else if (KEYWORDS.has(lower)) cls = "tok-keyword";
+    result += cls ? "<span class=\"" + cls + "\">" + escapeHtml(raw) + "</span>" : escapeHtml(raw);
+    last = match.index + raw.length;
+  }
+  result += escapeHtml(source.slice(last));
+  return result + (source.endsWith("\n") ? " " : "");
+}
+function renderEditor() {
+  const count = Math.max(1, editor.value.split("\n").length);
+  lineNumbers.textContent = Array.from({ length: count }, (_, i) => i + 1).join("\n");
+  highlight.innerHTML = syntaxHighlight(editor.value);
+  syncScroll();
+  updateCursor();
+  const dirty = editor.value !== savedValue;
+  $("dirtyDot").classList.toggle("visible", dirty);
+  $("tabDirty").classList.toggle("visible", dirty);
+  document.title = (dirty ? "● " : "") + fileName + " — Genzimnify Studio";
+}
+function safeCompile() {
+  try {
+    if (typeof compileGzim !== "function") throw new Error("browser transpiler did not load");
+    return JSON.parse(compileGzim(editor.value));
+  } catch (error) {
+    return { ok: false, error: error.message, diags: [{ line: 0, col: 0, message: error.message }] };
+  }
+}
+function setFile(nextName, source, markSaved = true) {
+  fileName = nextName.endsWith(".gzim") ? nextName : nextName + ".gzim";
+  editor.value = source;
+  if (markSaved) savedValue = source;
+  ["fileName", "tabName", "crumbName"].forEach((id) => $(id).textContent = fileName);
+  renderEditor();
+  refreshDiagnostics(true);
+  editor.focus();
+  localStorage.setItem("genzimnify.filename", fileName);
+  if (window.innerWidth <= 620) $("sidebar").classList.remove("mobile-open");
+}
+function saveLocal() {
+  localStorage.setItem("genzimnify.source", editor.value);
+  localStorage.setItem("genzimnify.filename", fileName);
+}
+function showToast(message) {
+  $("toast").textContent = message;
+  $("toast").classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $("toast").classList.remove("show"), 2200);
+}
+function switchPanel(name) {
+  document.querySelectorAll(".panel-tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.panel === name));
+  document.querySelectorAll(".panel-content").forEach((panel) => panel.classList.toggle("active", panel.id === name + "Panel"));
+  if ($("panel").classList.contains("collapsed")) {
+    $("panel").classList.remove("collapsed");
+    workbench.style.gridTemplateRows = "minmax(140px, 1fr) 4px var(--panel)";
+  }
+}
+function showDiagnostics(result) {
+  diagnostics = result && result.diags || [];
+  const box = $("diags");
+  box.textContent = "";
+  $("problemCount").textContent = diagnostics.length;
+  $("problemCount").classList.toggle("has-errors", diagnostics.length > 0);
+  $("diagStatus").textContent = diagnostics.length ? "⚠ " + diagnostics.length + " cap" + (diagnostics.length > 1 ? "s" : "") : "✓ No cap";
+  if (!diagnostics.length) {
+    const ok = document.createElement("div");
+    ok.className = "ok";
+    ok.textContent = "✓ No cap detected. The vibes check out.";
+    box.appendChild(ok);
+    return;
+  }
+  diagnostics.forEach((item) => {
+    const row = document.createElement("button");
+    row.className = "diag";
+    const icon = document.createElement("span"); icon.className = "diag-icon"; icon.textContent = "●";
+    const msg = document.createElement("span"); msg.className = "msg"; msg.textContent = item.message;
+    const where = document.createElement("span"); where.className = "where"; where.textContent = "Ln " + (item.line || "?") + ", Col " + (item.col || "?");
+    row.append(icon, msg, where);
+    row.addEventListener("click", () => goToLine(item.line || 1, item.col || 1));
+    box.appendChild(row);
+  });
+}
+function refreshDiagnostics(immediate = false) {
+  clearTimeout(diagTimer);
+  const update = () => {
+    const result = safeCompile();
+    showDiagnostics(result);
+    pythonOutput.textContent = result.ok ? result.code : "# cap\n" + (result.error || "Could not transpile.");
+    status.textContent = result.ok ? "Ready" : "Cap detected";
+  };
+  if (immediate) update(); else diagTimer = setTimeout(update, 220);
+}
+function goToLine(line, col = 1) {
+  const sourceLines = editor.value.split("\n");
+  const target = Math.max(0, Math.min(sourceLines.length - 1, line - 1));
+  let offset = 0;
+  for (let i = 0; i < target; i++) offset += sourceLines[i].length + 1;
+  offset += Math.max(0, Math.min(sourceLines[target].length, col - 1));
+  editor.focus();
+  editor.setSelectionRange(offset, offset);
+  const lineHeight = parseFloat(getComputedStyle(editor).lineHeight);
+  editor.scrollTop = Math.max(0, target * lineHeight - editor.clientHeight / 2);
+  syncScroll();
+  updateCursor();
+}
+function clearOutput() { output.textContent = ""; }
+function write(text, className = "") {
+  const span = document.createElement("span");
+  if (className) span.className = className;
+  span.textContent = text;
+  output.appendChild(span);
+  output.scrollTop = output.scrollHeight;
+}
+async function ensurePyodide() {
+  if (pyodide) return pyodide;
+  if (!pyodideLoading) {
+    status.textContent = "Loading Python runtime...";
+    write("Pulling up Python/WASM — first run may take a moment...\n", "welcome");
+    pyodideLoading = loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/" }).then((runtime) => {
+      pyodide = runtime;
+      runtime.setStdout({ batched: (text) => write(text + "\n") });
+      runtime.setStderr({ batched: (text) => write(text + "\n", "cap") });
+      runtime.setStdin({ stdin: () => window.prompt("yap back (input):") || "" });
+      return runtime;
+    }).catch((error) => { pyodideLoading = null; throw error; });
+  }
+  return pyodideLoading;
+}
+async function run() {
+  runBtn.disabled = true;
+  switchPanel("console");
+  clearOutput();
+  const started = performance.now();
+  try {
+    const result = safeCompile();
+    showDiagnostics(result);
+    pythonOutput.textContent = result.ok ? result.code : "";
+    if (!result.ok) {
+      status.textContent = "Build failed";
+      write("cap! " + (result.error || "the vibes ain't it") + "\n", "cap");
+      switchPanel("problems");
+      return;
+    }
+    write("▶ Running " + fileName + "\n", "run-label");
+    const runtime = await ensurePyodide();
+    status.textContent = "Vibing...";
+    const scope = runtime.runPython("dict(__builtins__=__builtins__)");
+    try { await runtime.runPythonAsync(result.code, { globals: scope }); }
+    finally { scope.destroy(); }
+    const elapsed = Math.round(performance.now() - started);
+    write("\n✓ Process finished in " + elapsed + " ms\n", "welcome");
+    status.textContent = "Done in " + elapsed + " ms";
+  } catch (error) {
+    status.textContent = "Runtime cap";
+    write((error.message || error) + "\n", "cap");
+  } finally { runBtn.disabled = false; }
+}
+function insertText(text, selectionOffset = text.length) {
+  const start = editor.selectionStart;
+  editor.setRangeText(text, start, editor.selectionEnd, "end");
+  editor.selectionStart = editor.selectionEnd = start + selectionOffset;
+  handleChange();
+}
+function handleEditorKeydown(event) {
+  const mod = event.ctrlKey || event.metaKey;
+  if (mod && event.key === "Enter") { event.preventDefault(); run(); return; }
+  if (mod && event.key.toLowerCase() === "s") { event.preventDefault(); saveLocal(); savedValue = editor.value; renderEditor(); showToast("Saved in this browser"); return; }
+  if (mod && event.key.toLowerCase() === "f") { event.preventDefault(); openFind(); return; }
+  if ((mod && event.key.toLowerCase() === "k") || event.key === "F1") { event.preventDefault(); openCommands(); return; }
+  if (event.shiftKey && event.altKey && event.key.toLowerCase() === "f") { event.preventDefault(); formatDocument(); return; }
+  if (event.key === "Tab") {
+    event.preventDefault();
+    const start = editor.selectionStart;
+    const end = editor.selectionEnd;
+    if (start !== end && editor.value.slice(start, end).includes("\n")) {
+      const lineStart = editor.value.lastIndexOf("\n", start - 1) + 1;
+      const selected = editor.value.slice(lineStart, end);
+      const changed = event.shiftKey ? selected.replace(/^ {1,4}/gm, "") : selected.replace(/^/gm, "    ");
+      editor.setRangeText(changed, lineStart, end, "select");
+      handleChange();
+    } else if (event.shiftKey) {
+      const lineStart = editor.value.lastIndexOf("\n", start - 1) + 1;
+      const spaces = (editor.value.slice(lineStart, start).match(/^ {1,4}/) || [""])[0];
+      editor.setRangeText("", lineStart, lineStart + spaces.length, "end");
+      handleChange();
+    } else insertText("    ");
+    return;
+  }
+  if (event.key === "Enter") {
+    event.preventDefault();
+    const before = editor.value.slice(0, editor.selectionStart);
+    const line = before.slice(before.lastIndexOf("\n") + 1);
+    const indent = (line.match(/^[ \t]*/) || [""])[0];
+    insertText("\n" + indent + (line.trimEnd().endsWith(":") ? "    " : ""));
+    return;
+  }
+  const pairs = { "(": ")", "[": "]", "{": "}", "\"": "\"", "'": "'" };
+  if (pairs[event.key] && editor.selectionStart === editor.selectionEnd) {
+    event.preventDefault();
+    insertText(event.key + pairs[event.key], 1);
+  }
+}
+function handleChange() { renderEditor(); saveLocal(); refreshDiagnostics(); }
+function syncScroll() {
+  highlight.scrollTop = editor.scrollTop;
+  highlight.scrollLeft = editor.scrollLeft;
+  lineNumbers.scrollTop = editor.scrollTop;
+}
+function updateCursor() {
+  const before = editor.value.slice(0, editor.selectionStart);
+  const line = before.split("\n").length;
+  const col = before.length - before.lastIndexOf("\n");
+  const selected = Math.abs(editor.selectionEnd - editor.selectionStart);
+  $("cursorStatus").textContent = "Ln " + line + ", Col " + col + (selected ? " (" + selected + " selected)" : "");
+}
+function formatDocument() {
+  const cursor = editor.selectionStart;
+  editor.value = editor.value.split("\n").map((line) => line.replace(/\t/g, "    ").replace(/[ \t]+$/g, "")).join("\n").replace(/\n*$/, "\n");
+  editor.selectionStart = editor.selectionEnd = Math.min(cursor, editor.value.length);
+  handleChange();
+  showToast("Document formatted");
+}
+function newFile() {
+  if (editor.value !== savedValue && !window.confirm("Start a new vibe? Your current code is autosaved in this browser.")) return;
+  setFile("untitled.gzim", "# start cooking\n", false);
+}
+function downloadFile() {
+  const blob = new Blob([editor.value], { type: "text/plain;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  savedValue = editor.value;
+  renderEditor();
+  showToast("Downloaded " + fileName);
+}
+function importFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => setFile(file.name, String(reader.result));
+  reader.readAsText(file);
+}
+async function shareCode() {
+  const encoded = btoa(unescape(encodeURIComponent(editor.value)));
+  const url = new URL(location.href);
+  url.hash = "code=" + encoded;
+  try { await navigator.clipboard.writeText(url.href); showToast("Share link copied"); }
+  catch { window.prompt("Copy this share link:", url.href); }
+}
+function toggleTheme() {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("genzimnify.theme", next);
+  $("themeBtn").textContent = next === "dark" ? "☼" : "◐";
+}
+function openFind() {
+  $("findWidget").hidden = false;
+  $("findInput").focus();
+  $("findInput").select();
+  updateFind();
+}
+function updateFind(direction = 0) {
+  const query = $("findInput").value;
+  findMatches = [];
+  if (query) {
+    let position = 0;
+    const haystack = editor.value.toLocaleLowerCase();
+    const needle = query.toLocaleLowerCase();
+    while ((position = haystack.indexOf(needle, position)) !== -1) {
+      findMatches.push(position);
+      position += Math.max(1, needle.length);
+    }
+  }
+  if (findMatches.length) {
+    findIndex = direction ? (findIndex + direction + findMatches.length) % findMatches.length : Math.max(0, findMatches.findIndex((x) => x >= editor.selectionStart));
+    if (findIndex < 0) findIndex = 0;
+    const at = findMatches[findIndex];
+    editor.focus();
+    editor.setSelectionRange(at, at + query.length);
+  } else findIndex = -1;
+  $("findCount").textContent = (findIndex + 1) + "/" + findMatches.length;
+}
+const COMMANDS = [
+  ["Run vibe", "⌘ Enter", run], ["New file", "⌘ N", newFile], ["Format document", "⇧⌥ F", formatDocument],
+  ["Find in file", "⌘ F", openFind], ["Download .gzim", "", downloadFile], ["Toggle color theme", "", toggleTheme],
+  ["Show generated Python", "", () => switchPanel("python")], ["Show problems", "", () => switchPanel("problems")]
+];
+function renderCommands() {
+  const query = $("commandInput").value.toLowerCase();
+  $("commandList").textContent = "";
+  COMMANDS.filter((item) => item[0].toLowerCase().includes(query)).forEach((item, index) => {
+    const button = document.createElement("button");
+    button.className = "command-item" + (index === 0 ? " selected" : "");
+    const label = document.createElement("span"); label.textContent = item[0];
+    const shortcut = document.createElement("kbd"); shortcut.textContent = item[1];
+    button.append(label, shortcut);
+    button.addEventListener("click", () => { closeCommands(); item[2](); });
+    $("commandList").appendChild(button);
+  });
+}
+function openCommands() { $("commandBackdrop").hidden = false; $("commandInput").value = ""; renderCommands(); $("commandInput").focus(); }
+function closeCommands() { $("commandBackdrop").hidden = true; editor.focus(); }
+
+Object.entries(EXAMPLES).forEach(([name, source]) => {
+  const button = document.createElement("button");
+  button.className = "example-row";
+  const icon = document.createElement("span"); icon.className = "file-icon"; icon.textContent = "G";
+  const label = document.createElement("span"); label.textContent = name;
+  button.append(icon, label);
+  button.addEventListener("click", () => setFile(name, source));
+  $("exampleList").appendChild(button);
+});
+REFERENCE.forEach(([gzim, python]) => {
+  const row = document.createElement("div"); row.className = "ref-row";
+  const code = document.createElement("code"); code.textContent = gzim;
+  const meaning = document.createElement("span"); meaning.textContent = python;
+  row.append(code, meaning); $("referenceList").appendChild(row);
+});
+
+editor.addEventListener("input", handleChange);
+editor.addEventListener("keydown", handleEditorKeydown);
+editor.addEventListener("scroll", syncScroll);
+editor.addEventListener("click", updateCursor);
+editor.addEventListener("keyup", updateCursor);
+runBtn.addEventListener("click", run);
+$("newBtn").addEventListener("click", newFile);
+$("formatBtn").addEventListener("click", formatDocument);
+$("downloadBtn").addEventListener("click", downloadFile);
+$("importBtn").addEventListener("click", () => $("fileInput").click());
+$("fileInput").addEventListener("change", (event) => importFile(event.target.files[0]));
+$("shareBtn").addEventListener("click", shareCode);
+$("themeBtn").addEventListener("click", toggleTheme);
+$("clearBtn").addEventListener("click", clearOutput);
+$("diagStatus").addEventListener("click", () => switchPanel("problems"));
+$("searchBtn").addEventListener("click", openFind);
+document.querySelectorAll(".panel-tab").forEach((tab) => tab.addEventListener("click", () => switchPanel(tab.dataset.panel)));
+document.querySelectorAll(".menu-button").forEach((button) => button.addEventListener("click", () => {
+  ({ new: newFile, format: formatDocument, run: run })[button.dataset.command]();
+}));
+document.querySelectorAll(".activity[data-view]").forEach((button) => button.addEventListener("click", () => {
+  const view = button.dataset.view;
+  const sidebar = $("sidebar");
+  const already = button.classList.contains("active") && sidebar.classList.contains("mobile-open");
+  document.querySelectorAll(".activity[data-view]").forEach((item) => item.classList.toggle("active", item === button));
+  document.querySelectorAll(".side-view").forEach((item) => item.classList.toggle("active", item.id === view + "View"));
+  if (window.innerWidth <= 620) sidebar.classList.toggle("mobile-open", !already);
+}));
+$("togglePanelBtn").addEventListener("click", () => {
+  const collapsed = !$("panel").classList.contains("collapsed");
+  $("panel").classList.toggle("collapsed", collapsed);
+  $("resizeHandle").style.display = collapsed ? "none" : "";
+  workbench.style.gridTemplateRows = collapsed ? "minmax(0, 1fr) 0 0" : "minmax(140px, 1fr) 4px var(--panel)";
+});
+$("findInput").addEventListener("input", () => updateFind());
+$("findInput").addEventListener("keydown", (event) => {
+  if (event.key === "Enter") { event.preventDefault(); updateFind(event.shiftKey ? -1 : 1); }
+  if (event.key === "Escape") { $("findWidget").hidden = true; editor.focus(); }
+});
+$("findPrev").addEventListener("click", () => updateFind(-1));
+$("findNext").addEventListener("click", () => updateFind(1));
+$("findClose").addEventListener("click", () => { $("findWidget").hidden = true; editor.focus(); });
+$("commandInput").addEventListener("input", renderCommands);
+$("commandInput").addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeCommands();
+  if (event.key === "Enter") document.querySelector(".command-item")?.click();
+});
+$("commandBackdrop").addEventListener("click", (event) => { if (event.target === $("commandBackdrop")) closeCommands(); });
+$("resizeHandle").addEventListener("pointerdown", (event) => {
+  event.preventDefault();
+  $("resizeHandle").classList.add("dragging");
+  const move = (pointer) => {
+    const rect = workbench.getBoundingClientRect();
+    const height = Math.max(100, Math.min(rect.height - 150, rect.bottom - pointer.clientY));
+    document.documentElement.style.setProperty("--panel", height + "px");
+  };
+  const done = () => {
+    $("resizeHandle").classList.remove("dragging");
+    window.removeEventListener("pointermove", move);
+    window.removeEventListener("pointerup", done);
+  };
+  window.addEventListener("pointermove", move);
+  window.addEventListener("pointerup", done);
+});
+window.addEventListener("keydown", (event) => {
+  const mod = event.ctrlKey || event.metaKey;
+  if (mod && event.key.toLowerCase() === "n") { event.preventDefault(); newFile(); }
+  if (event.key === "Escape" && !$("commandBackdrop").hidden) closeCommands();
+});
+
+document.documentElement.dataset.theme = localStorage.getItem("genzimnify.theme") || "dark";
+$("themeBtn").textContent = document.documentElement.dataset.theme === "dark" ? "☼" : "◐";
+let initialSource = "";
+try {
+  const code = new URLSearchParams(location.hash.slice(1)).get("code");
+  if (code) initialSource = decodeURIComponent(escape(atob(code)));
+} catch { showToast("That share link is invalid"); }
+initialSource ||= localStorage.getItem("genzimnify.source") || EXAMPLES["hello-vibes.gzim"];
+fileName = localStorage.getItem("genzimnify.filename") || "main.gzim";
+setFile(fileName, initialSource);

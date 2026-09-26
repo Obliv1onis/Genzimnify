@@ -4,7 +4,7 @@
 
 Genzimnify is a standalone programming language with a native runtime written in
 Nim. A Genzimnify program is called a **vibe**. Running it is **vibing**. Errors
-are **cap**. Debugging is **checking the vibe**. Since 1.2, normal execution does
+are **cap**. Debugging is **checking the vibe**. Since 2.0, normal execution does
 not generate Python or require Python to be installed.
 
 ```gzim
@@ -105,7 +105,7 @@ let n be call up how many(stack) yo
 
 ### Native modules & exceptions
 
-The 1.2 runtime implements `math`, `system`, `luck`, `clock`, and `timing`
+The 2.0 runtime implements `math`, `system`, `luck`, `clock`, and `timing`
 natively, plus relative imports of local `.gzim` modules. Native exception
 types include `L`, `BadVibe`, `WrongType`, `OutOfPocket`, `Ghosted`,
 `SplitByZero`, `NoPullUp`, `CapDetected`, and `StopTheCap`.
@@ -212,7 +212,7 @@ tests/lsp_test.sh
 - LSP tests are portable and no longer depend on the original author's path.
 - The browser playground became Genzimnify Studio and now lives in `studio/`.
 
-## v1.2
+## v2.0
 
 - Added a standalone native runtime; `gzim file.gzim` no longer invokes Python.
 - Added native values, collections, functions, generators, cliques, exceptions,
@@ -225,7 +225,7 @@ tests/lsp_test.sh
 
 - Same-quote nesting inside `glow` strings is unsupported; use mixed quotes.
 - Comparison chains are evaluated left-associatively; write explicit `both` chains.
-- The 1.2 timing API is cooperative; a full native event loop is planned.
+- The 2.0 timing API is cooperative; a full native event loop is planned.
 - Python is only required if you explicitly run output from `gzim emit-python`.
 
 ---

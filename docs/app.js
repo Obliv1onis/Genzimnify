@@ -25,7 +25,7 @@ function renderChrome() {
   document.getElementById("siteHeader").innerHTML = `
     <header class="topbar">
       <button class="mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button>
-      <a class="brand" href="index.html"><span class="brand-mark">G</span><span>GENZIMNIFY</span><span class="version">1.2</span></a>
+      <a class="brand" href="index.html"><span class="brand-mark">G</span><span>GENZIMNIFY</span><span class="version">2.0</span></a>
       <nav class="toplinks"><a class="active" href="index.html">Docs</a><a href="https://github.com/Obliv1onis/Genzimnify">Source</a></nav>
       <div class="top-actions">
         <button class="search-button" id="searchBtn"><span>⌕</span><span>Search documentation</span><kbd>⌘K</kbd></button>
@@ -117,4 +117,3 @@ document.getElementById("themeBtn").addEventListener("click", () => {
 document.getElementById("menuBtn").addEventListener("click", () => document.body.classList.toggle("nav-open"));
 document.addEventListener("click", (event) => { if (document.body.classList.contains("nav-open") && !event.target.closest(".sidebar, #menuBtn")) document.body.classList.remove("nav-open"); });
 highlightCode(); addCopyButtons(); setupToc(); setupSearch();
-

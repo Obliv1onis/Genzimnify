@@ -4,7 +4,7 @@
 import std/[os, strutils, syncio]
 import lexer, parser, semantic, emit, runtime, errors
 
-const Version* = "1.2.0"
+const Version* = "2.0.0"
 
 # ------------------------------------------------------------------ compile
 

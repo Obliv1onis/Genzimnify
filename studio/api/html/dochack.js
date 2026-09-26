@@ -1757,7 +1757,7 @@ window.addEventListener("DOMContentLoaded", function () {
   divider.className = "studio-doc-divider";
   var section = document.createElement("span");
   section.className = "studio-doc-section";
-  section.textContent = "API REFERENCE · v1.2";
+  section.textContent = "API REFERENCE · v2.0";
 
   var actions = document.createElement("nav");
   actions.className = "studio-doc-actions";
@@ -1821,7 +1821,7 @@ window.addEventListener("DOMContentLoaded", function () {
       title.textContent = "API Reference";
       var hero = document.createElement("div");
       hero.className = "studio-index-hero";
-      hero.innerHTML = "<strong>Compiler internals, mapped out.</strong>Browse every public type, token, parser entry point, semantic check, native runtime, and compatibility emitter API in Genzimnify v1.2.";
+      hero.innerHTML = "<strong>Compiler internals, mapped out.</strong>Browse every public type, token, parser entry point, semantic check, native runtime, and compatibility emitter API in Genzimnify v2.0.";
       title.insertAdjacentElement("afterend", hero);
     }
   }

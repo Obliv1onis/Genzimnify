@@ -22,9 +22,6 @@ jobs:
           - os: macos-15
             artifact: macos-arm64
             executable: gzim
-          - os: macos-15-intel
-            artifact: macos-x86_64
-            executable: gzim
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -40,6 +37,10 @@ jobs:
           if [ "$RUNNER_OS" = "macOS" ]; then export MACOSX_DEPLOYMENT_TARGET=12.0; fi
           nim c -d:release --out:dist/${{ matrix.executable }} src/gzim.nim
           nim c -d:release --out:dist/gzim-lsp${{ runner.os == 'Windows' && '.exe' || '' }} src/gzimlsp.nim
+          expected="${GITHUB_REF_NAME#v}"
+          actual="$(dist/${{ matrix.executable }} --version)"
+          test "$actual" = "gzim $expected"
+          printf '' | dist/gzim-lsp${{ runner.os == 'Windows' && '.exe' || '' }}
           cp LICENSE README.md dist/
       - name: Package Unix archive
         if: runner.os != 'Windows'

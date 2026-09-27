@@ -49,4 +49,20 @@ if [ "$restored_revision" != "$locked_revision" ]; then
   exit 1
 fi
 
+# A failed update must preserve the manifest, lockfile, and installed package.
+cp gzim.toml "$tmp/manifest-before"
+cp gzim.lock "$tmp/lock-before"
+if "$runtime" add pinned "file://$tmp/upstream#missing-revision" >/dev/null 2>&1; then
+  echo "invalid package revision unexpectedly installed" >&2
+  exit 1
+fi
+if ! cmp -s gzim.toml "$tmp/manifest-before" || ! cmp -s gzim.lock "$tmp/lock-before"; then
+  echo "failed package update changed project metadata" >&2
+  exit 1
+fi
+if [ "$(git -C .gzim/packages/pinned rev-parse HEAD)" != "$locked_revision" ]; then
+  echo "failed package update replaced the working dependency" >&2
+  exit 1
+fi
+
 echo "package manager integration passed"

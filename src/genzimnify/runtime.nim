@@ -69,6 +69,12 @@ type
     moduleStack: seq[string]
     activeException: Value
 
+  ReplSession* = ref object
+    runtime: Runtime
+    env: Env
+    source: string
+    statementCount: int
+
 proc noneVal(): Value = Value(kind: vkNone)
 proc boolVal(value: bool): Value = Value(kind: vkBool, boolVal: value)
 proc intVal(value: int64): Value = Value(kind: vkInt, intVal: value)
@@ -1285,3 +1291,33 @@ proc parseChecked*(source, filename: string): seq[Stmt] =
 
 proc runSource*(source, filename: string, args: seq[string] = @[]): int =
   runProgram(parseChecked(source, filename), filename, args)
+
+proc newReplSession*(filename = "<repl>"): ReplSession =
+  let rt = Runtime(filename: absolutePath(filename), args: @[],
+    moduleCache: initTable[string, Value](), moduleStack: @[absolutePath(filename)])
+  let env = newEnv()
+  env.installRuntimeNames(rt)
+  ReplSession(runtime: rt, env: env)
+
+proc runReplChunk*(session: ReplSession, source: string): int =
+  ## Check the complete REPL history, but execute only the newly submitted
+  ## statements. This preserves bindings without replaying earlier side effects.
+  let combined = if session.source == "": source else: session.source & "\n" & source
+  let program = parseChecked(combined, session.runtime.filename)
+  let firstNew = session.statementCount
+  var yielded: seq[Value]
+  try:
+    if firstNew < program.len:
+      discard session.runtime.execBlock(session.env, program[firstNew .. ^1], yielded)
+    session.source = combined
+    session.statementCount = program.len
+    0
+  except RuntimeError as error:
+    let where = if error.line > 0:
+      session.runtime.filename & ":" & $error.line & ":" & $error.col & ": "
+    else: ""
+    stderr.writeLine(where & "cap: " & error.category & ": " & error.msg)
+    1
+  except CatchableError as error:
+    stderr.writeLine(session.runtime.filename & ": cap: L: " & error.msg)
+    1

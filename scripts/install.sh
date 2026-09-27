@@ -9,7 +9,12 @@ os="$(uname -s)"
 arch="$(uname -m)"
 case "$os-$arch" in
   Darwin-arm64) package="macos-arm64" ;;
-  Darwin-x86_64) package="macos-x86_64" ;;
+  Darwin-x86_64)
+    case "$VERSION" in
+      v2.0.0|v2.0.1) package="macos-x86_64" ;;
+      *) echo "Genzimnify 2.0.2 and newer require Apple Silicon on macOS." >&2; exit 1 ;;
+    esac
+    ;;
   Linux-x86_64|Linux-amd64) package="linux-x86_64" ;;
   *) echo "Genzimnify does not have a prebuilt binary for $os/$arch yet." >&2; exit 1 ;;
 esac

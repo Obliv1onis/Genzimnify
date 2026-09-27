@@ -4,6 +4,7 @@ class Genzimnify < Formula
   head "https://github.com/Obliv1onis/Genzimnify.git", branch: "master"
   license "MIT"
 
+  depends_on arch: :arm64
   depends_on "nim" => :build
 
   def install
@@ -19,4 +20,3 @@ class Genzimnify < Formula
     assert_equal "no cap\n", shell_output("#{bin}/gzim hello.gzim")
   end
 end
-

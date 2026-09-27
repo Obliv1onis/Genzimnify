@@ -96,25 +96,13 @@ proc saveLock(root: string, entries: Table[string, tuple[source, revision: strin
     packages[name] = %*{"source": entries[name].source, "revision": entries[name].revision}
   writeFile(root / "gzim.lock", pretty(%*{"version": 1, "packages": packages}) & "\n")
 
-proc installOne(root, name, source: string, lockedRevision = ""): string =
-  if not validPackageName(name):
-    raise newException(PackageError, "invalid package name '" & name & "'")
-  let packages = packageRoot(root)
-  createDir(packages)
-  let destination = packages / name
-  if dirExists(destination): removeDir(destination)
-
+proc fetchPackage(root, destination, source: string, lockedRevision = ""): string =
   var localSource = source
   if localSource.startsWith("path:"): localSource = localSource[5 .. ^1]
   if localSource == "": raise newException(PackageError, "package source cannot be empty")
   let resolvedLocal = if localSource.isAbsolute: localSource else: root / localSource
   if dirExists(resolvedLocal):
-    let canonicalSource = normalizedPath(absolutePath(resolvedLocal))
-    let canonicalRoot = normalizedPath(absolutePath(root))
-    let canonicalPackages = normalizedPath(absolutePath(packages))
-    if canonicalSource == canonicalRoot or canonicalSource.startsWith(canonicalPackages & $DirSep):
-      raise newException(PackageError, "package path must be outside the project package cache")
-    copyDir(canonicalSource, destination)
+    copyDir(normalizedPath(absolutePath(resolvedLocal)), destination)
     return "path"
 
   var url = source
@@ -134,6 +122,41 @@ proc installOne(root, name, source: string, lockedRevision = ""): string =
     discard runGit(@["-C", destination, "checkout", "--detach", "FETCH_HEAD"], root)
   runGit(@["-C", destination, "rev-parse", "HEAD"], root)
 
+proc installOne(root, name, source: string, lockedRevision = ""): string =
+  if not validPackageName(name):
+    raise newException(PackageError, "invalid package name '" & name & "'")
+  let packages = packageRoot(root)
+  createDir(packages)
+  let destination = packages / name
+  let staging = packages / ("." & name & ".tmp-" & $getCurrentProcessId())
+  let backup = packages / ("." & name & ".old-" & $getCurrentProcessId())
+  var localSource = source
+  if localSource.startsWith("path:"): localSource = localSource[5 .. ^1]
+  if localSource == "": raise newException(PackageError, "package source cannot be empty")
+  let resolvedLocal = if localSource.isAbsolute: localSource else: root / localSource
+  if dirExists(resolvedLocal):
+    let canonicalSource = normalizedPath(absolutePath(resolvedLocal))
+    let canonicalRoot = normalizedPath(absolutePath(root))
+    let canonicalPackages = normalizedPath(absolutePath(packages))
+    if canonicalSource == canonicalRoot or canonicalSource.startsWith(canonicalPackages & $DirSep):
+      raise newException(PackageError, "package path must be outside the project package cache")
+
+  if dirExists(staging): removeDir(staging)
+  if dirExists(backup): removeDir(backup)
+  try:
+    result = fetchPackage(root, staging, source, lockedRevision)
+    if dirExists(destination): moveDir(destination, backup)
+    try:
+      moveDir(staging, destination)
+    except CatchableError:
+      if dirExists(backup): moveDir(backup, destination)
+      raise
+    if dirExists(backup): removeDir(backup)
+  except CatchableError:
+    if dirExists(staging): removeDir(staging)
+    if dirExists(backup) and not dirExists(destination): moveDir(backup, destination)
+    raise
+
 proc installDependencies*(root: string): int =
   let manifest = loadManifest(root)
   let oldLock = loadLock(root)
@@ -150,9 +173,14 @@ proc addDependency*(root, name, source: string) =
   if not validPackageName(name):
     raise newException(PackageError, "invalid package name '" & name & "'")
   var manifest = loadManifest(root)
+  let oldManifest = manifest
   manifest.dependencies[name] = source
   manifest.saveManifest(root)
-  discard installDependencies(root)
+  try:
+    discard installDependencies(root)
+  except CatchableError:
+    oldManifest.saveManifest(root)
+    raise
 
 proc removeDependency*(root, name: string) =
   if not validPackageName(name):

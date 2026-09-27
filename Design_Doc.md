@@ -1,6 +1,6 @@
 # Genzimnify: Language Design Document
 
-**Version:** 2.0.1
+**Version:** 2.0.2
 **Target:** Native Windows 10+, macOS 12+, Ubuntu/Kali Linux
 **Implementation:** Nim compiler toolchain and standalone native runtime
 **File Extension:** `.gzim`  

@@ -1,9 +1,10 @@
 # Package
 
-version       = "2.0.1"
+version       = "2.0.2"
 author        = "Genzimnify"
 description   = "Genzimnify: a native, Python-free programming language with Gen Z syntax."
 license       = "MIT"
 srcDir        = "src"
-bin           = @["gzim", "genzimc", "gzim-lsp"]
-requires      = "nim >= 2.0.0"
+bin           = @["gzim", "genzimc"]
+namedBin["gzimlsp"] = "gzim-lsp"
+requires "nim >= 2.0.0"

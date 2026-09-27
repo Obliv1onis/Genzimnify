@@ -56,4 +56,22 @@ if [ "$stdlib_actual" != "$(cat tests/native/stdlib_next.expected)" ]; then
   exit 1
 fi
 
+repl_actual="$(printf 'let x be 1\nyap("FIRST")\n\nx be+ 1\nyap(x)\n\n' | "$runtime" repl)"
+if [ "$(printf '%s' "$repl_actual" | grep -o 'FIRST' | wc -l | tr -d ' ')" != "1" ] ||
+   [[ "$repl_actual" != *"2"* ]]; then
+  echo "REPL replayed an earlier chunk or failed to preserve its bindings" >&2
+  echo "$repl_actual" >&2
+  exit 1
+fi
+
+if [ "$("$runtime" --version)" != "gzim 2.0.2" ]; then
+  echo "runtime version is not 2.0.2" >&2
+  exit 1
+fi
+
+if "$runtime" check tests/cases/fizzbuzz.gzim extra >/dev/null 2>&1; then
+  echo "check accepted an unexpected extra argument" >&2
+  exit 1
+fi
+
 echo "native runtime, diagnostics, and optional Python bridge passed"

@@ -2,9 +2,9 @@
 ## run / check / repl / init / emit-python.
 
 import std/[os, strutils, syncio, tables]
-import lexer, parser, semantic, emit, runtime, errors, packages
+import lexer, parser, semantic, emit, runtime, errors, packages, version
 
-const Version* = "2.0.1"
+const Version* = GenzimnifyVersion
 
 # ------------------------------------------------------------------ compile
 
@@ -23,6 +23,10 @@ proc compileSource*(src: string, filename: string): tuple[code: string, maps: st
 proc failHard(msg: string): void =
   stderr.writeLine("cap! " & msg)
   quit(1)
+
+proc requireNoArgs(command: string, args: seq[string]) =
+  if args.len > 0:
+    failHard(command & " doesn't take arguments")
 
 proc compileFile(path: string): tuple[code: string, maps: string] =
   if not fileExists(path):
@@ -105,26 +109,25 @@ proc cmdPackages() =
 
 proc cmdRepl() =
   echo "gzim repl " & Version & " native runtime, blank line to run, ctrl-d to dip"
-  var session: seq[string] = @[]
+  let session = newReplSession("<repl>")
+  var chunk: seq[string] = @[]
   var line: string
   while true:
-    stdout.write(if session.len > 0: "...> " else: "vibe> ")
+    stdout.write(if chunk.len > 0: "...> " else: "vibe> ")
     flushFile(stdout)
     if not stdin.readLine(line):
       break
     if line.strip() == "":
-      if session.len == 0:
+      if chunk.len == 0:
         continue
-      let snapshot = session.len - 1
-      let src = session.join("\n")
+      let src = chunk.join("\n")
       try:
-        discard runSource(src, "<repl>")
+        discard session.runReplChunk(src)
       except GzimError as e:
         echo "cap! " & e.msg
-        session.setLen(snapshot)
-        continue
+      chunk.setLen(0)
     else:
-      session.add line
+      chunk.add line
 
 proc showHelp() =
   echo """
@@ -179,29 +182,36 @@ proc main*() =
       failHard("run needs a file, gzim run <file.gzim>")
     cmdRun(rest[0], rest[1 .. ^1])
   of "build", "emit-python":
-    if rest.len == 0:
+    if rest.len != 1:
       failHard("emit-python needs a file, gzim emit-python <file.gzim>")
     cmdEmitPython(rest[0])
   of "check":
-    if rest.len == 0:
+    if rest.len != 1:
       failHard("check needs a file, gzim check <file.gzim>")
     cmdCheck(rest[0])
   of "repl":
+    requireNoArgs("repl", rest)
     cmdRepl()
   of "init":
+    requireNoArgs("init", rest)
     cmdInit()
   of "add":
     cmdAdd(rest)
   of "install":
+    requireNoArgs("install", rest)
     cmdInstall()
   of "remove":
     cmdRemove(rest)
   of "packages":
+    requireNoArgs("packages", rest)
     cmdPackages()
   of "doctor":
+    requireNoArgs("doctor", rest)
     cmdDoctor()
   of "--version", "-v":
+    requireNoArgs(cmd, rest)
     echo "gzim " & Version
   else:
+    requireNoArgs("help", rest)
     showHelp()
     quit(0)

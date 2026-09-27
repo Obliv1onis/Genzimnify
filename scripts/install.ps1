@@ -3,7 +3,7 @@ $repository = "Obliv1onis/Genzimnify"
 $version = if ($env:GZIM_VERSION) { $env:GZIM_VERSION } else { "latest" }
 $installRoot = if ($env:GZIM_INSTALL_ROOT) { $env:GZIM_INSTALL_ROOT } else { Join-Path $env:LOCALAPPDATA "Genzimnify\bin" }
 $base = if ($version -eq "latest") { "https://github.com/$repository/releases/latest/download" } else { "https://github.com/$repository/releases/download/$version" }
-$archive = Join-Path $env:TEMP "genzimnify-windows-x86_64.zip"
+$archive = Join-Path $env:TEMP ("genzimnify-windows-x86_64-" + [guid]::NewGuid() + ".zip")
 $unpack = Join-Path $env:TEMP ("genzimnify-" + [guid]::NewGuid())
 
 Write-Host "Downloading Genzimnify $version for Windows x86_64..."

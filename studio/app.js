@@ -1,4 +1,4 @@
-/* Genzimnify Studio v2.0.1 - static, local-first browser IDE. */
+/* Genzimnify Studio v2.0.2 - static, local-first browser IDE. */
 const lines = (...items) => items.join("\n") + "\n";
 const EXAMPLES = {
   "hello-vibes.gzim": lines("# welcome to Genzimnify", "let name be \"chat\"", "let energy be 100", "", "vibecheck energy > 90:", "    yap(glow\"yo {name}, the vibes are immaculate\")", "otherwise:", "    yap(\"we can work with this\")"),

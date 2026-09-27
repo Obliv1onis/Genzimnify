@@ -3,7 +3,7 @@
 ## completion and document symbols. Errors are cap; we report them politely.
 
 import std/[json, strutils, tables, options, strformat, sequtils]
-import lexer, token, parser, semantic, ast, errors
+import lexer, token, parser, semantic, ast, errors, version
 
 type
   Doc = object
@@ -455,7 +455,7 @@ proc main*() =
           "completionProvider": {"resolveProvider": false, "triggerCharacters": []},
           "documentSymbolProvider": true,
         },
-        "serverInfo": {"name": "gzim-lsp", "version": "2.0.1"},
+        "serverInfo": {"name": "gzim-lsp", "version": GenzimnifyVersion},
       })
     elif m == "initialized":
       discard

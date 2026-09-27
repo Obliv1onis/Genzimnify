@@ -25,7 +25,9 @@ def recv():
     return json.loads(p.stdout.read(n).decode())
 
 send({"jsonrpc":"2.0","id":1,"method":"initialize","params":{"rootUri":None}})
-print("INIT capabilities:", json.dumps(recv()["result"]["capabilities"])[:120])
+init = recv()["result"]
+assert init["serverInfo"]["version"] == "2.0.2"
+print("INIT capabilities:", json.dumps(init["capabilities"])[:120])
 send({"jsonrpc":"2.0","method":"initialized","params":{}})
 
 text = '''lock PI be 3

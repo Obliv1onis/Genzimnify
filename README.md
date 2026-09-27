@@ -58,7 +58,8 @@ call up fizzbuzz(100) yo
 
 ### macOS and Linux
 
-The shell installer supports macOS, Ubuntu, and Kali Linux:
+The shell installer supports Apple Silicon macOS, Ubuntu, and Kali Linux.
+Genzimnify 2.0.2 and newer no longer publish Intel Mac binaries:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/Obliv1onis/Genzimnify/master/scripts/install.sh | sh

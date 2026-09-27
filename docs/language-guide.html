@@ -99,6 +99,6 @@ on timing cook main():
     wait up timing.sleep(0.1)
     yap("done")
 
-call up timing.run(main()) yo</code></pre><div class="callout warning"><div class="callout-title">Current native runtime behavior</div><p>The syntax and API are stable, but the 2.0.1 native scheduler executes timing tasks cooperatively and <code>timing.sleep</code> is currently non-blocking. A full event loop is planned.</p></div>
+call up timing.run(main()) yo</code></pre><div class="callout warning"><div class="callout-title">Current native runtime behavior</div><p>In version 2.0.1, the native scheduler executes timing tasks cooperatively and <code>timing.sleep</code> is non-blocking. A full event loop is not implemented.</p></div>
   <div class="page-nav"><a href="getting-started.html"><small>Previous</small>← First program</a><a href="stdlib.html"><small>Next</small>Standard library →</a></div>
 </article></main><aside class="toc" id="pageToc"></aside></div><script src="app.js"></script></body></html>

@@ -2,7 +2,7 @@
 <body><div id="siteHeader"></div><div class="layout"><aside class="sidebar" id="siteSidebar"></aside><main class="content"><article>
   <div class="page-kicker">Interop</div><h1>Python interoperability</h1><p class="lead">Imports under the <code>py.</code> namespace use a Python 3 subprocess. Other imports use native or local Genzimnify modules.</p>
   <h2 id="import">Import a Python library</h2><pre><code class="language-gzim">pull up py.math as pymath
-yap(call up pymath.sqrt(81) yo)</code></pre><p>Use an alias for clarity. <code>outta</code> imports work too:</p><pre><code class="language-gzim">outta py.json pull up dumps
+yap(call up pymath.sqrt(81) yo)</code></pre><p>The alias binds the imported module to <code>pymath</code>. <code>outta</code> imports are also supported:</p><pre><code class="language-gzim">outta py.json pull up dumps
 yap(call up dumps({"ready": nocap}, sort_keys be nocap) yo)</code></pre>
   <h2 id="third-party">Third-party packages</h2><pre><code>python3 -m pip install numpy</code></pre><pre><code class="language-gzim">pull up py.numpy as np
 let average be call up np.mean([10, 20, 30]) yo

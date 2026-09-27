@@ -6,17 +6,17 @@
   <h2 id="homebrew">Homebrew on macOS</h2><p>Tap the repository and build the current native release:</p>
   <pre><code>brew tap obliv1onis/genzimnify https://github.com/Obliv1onis/Genzimnify
 brew install --HEAD genzimnify</code></pre>
-  <p>Homebrew installs both <code>gzim</code> and <code>gzim-lsp</code>. The build dependency on Nim is handled by Homebrew and is not needed when running your programs.</p>
+  <p>Homebrew installs both <code>gzim</code> and <code>gzim-lsp</code>. Homebrew handles the Nim build dependency; installed programs do not require Nim.</p>
   <h2 id="unix-installer">macOS, Ubuntu, and Kali installer</h2><pre><code>curl -fsSL https://raw.githubusercontent.com/Obliv1onis/Genzimnify/master/scripts/install.sh | sh</code></pre>
-  <p>The installer detects your OS and CPU, downloads the latest release archive, verifies its SHA-256 checksum, and installs binaries into <code>~/.local/bin</code>. Override the destination with <code>GZIM_INSTALL_ROOT</code>.</p>
+  <p>The installer detects the operating system and CPU, downloads the latest release archive, verifies its SHA-256 checksum, and installs binaries into <code>~/.local/bin</code>. <code>GZIM_INSTALL_ROOT</code> changes the destination.</p>
   <pre><code>GZIM_INSTALL_ROOT=/usr/local/bin sh install.sh</code></pre>
   <h2 id="windows">Windows 10+</h2><p>Open PowerShell and run:</p>
   <pre><code>irm https://raw.githubusercontent.com/Obliv1onis/Genzimnify/master/scripts/install.ps1 | iex</code></pre>
-  <p>The installer places the executables under <code>%LOCALAPPDATA%\Genzimnify\bin</code> and adds that directory to your user <code>PATH</code>. Open a new terminal afterward.</p>
+  <p>The installer places the executables under <code>%LOCALAPPDATA%\Genzimnify\bin</code> and adds that directory to the user <code>PATH</code>. The updated <code>PATH</code> applies to new terminal sessions.</p>
   <h2 id="manual">Manual installation</h2>
-  <div class="steps"><div class="step"><h3>Download a release</h3><p>Open the GitHub Releases page and choose the archive matching your system and CPU.</p></div><div class="step"><h3>Extract the archive</h3><p>Move <code>gzim</code> and <code>gzim-lsp</code> (or the Windows <code>.exe</code> files) into a directory you control.</p></div><div class="step"><h3>Add the directory to PATH</h3><p>This lets shells and editors find the runtime from any project folder.</p></div></div>
+  <div class="steps"><div class="step"><h3>Download a release</h3><p>Open the GitHub Releases page and select the archive matching the operating system and CPU.</p></div><div class="step"><h3>Extract the archive</h3><p>Move <code>gzim</code> and <code>gzim-lsp</code> (or the Windows <code>.exe</code> files) into an installation directory.</p></div><div class="step"><h3>Add the directory to PATH</h3><p>Shells and editors use <code>PATH</code> to locate the runtime.</p></div></div>
   <h2 id="verify">Verify the installation</h2><pre><code>gzim --version
-gzim doctor</code></pre><p>You should see version <code>2.0.1</code>, <code>runtime: native Nim (Python-free)</code>, and your platform.</p>
+gzim doctor</code></pre><p>The output includes version <code>2.0.1</code>, <code>runtime: native Nim (Python-free)</code>, and the detected platform.</p>
   <div class="callout warning"><div class="callout-title">Release archives vs. source builds</div><p>Release archives require no development toolchain. Homebrew <code>--HEAD</code> and source builds compile Genzimnify with Nim first, but the resulting runtime remains independent.</p></div>
   <h2 id="source">Build from source</h2><pre><code>git clone https://github.com/Obliv1onis/Genzimnify.git
 cd Genzimnify

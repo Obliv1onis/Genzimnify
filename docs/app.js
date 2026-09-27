@@ -8,7 +8,7 @@ const DOCS = [
   { title: "Python interoperability", url: "python-interop.html", section: "Interop", text: "optional Python libraries py numpy json keyword arguments native core" },
   { title: "Command-line tools", url: "cli.html", section: "Tools", text: "gzim run check repl init doctor emit-python arguments exit code" },
   { title: "Editor and language server", url: "tooling.html", section: "Tools", text: "LSP Zed diagnostics hover completion definition editor" },
-  { title: "Native runtime architecture", url: "native-runtime.html", section: "Concepts", text: "Nim lexer parser semantic interpreter no Python portability modules" }
+  { title: "Changelog", url: "changelog.html", section: "Project", text: "release history versions changes added fixed removed 1.0 1.1 2.0" }
 ];
 
 const groups = [
@@ -17,7 +17,7 @@ const groups = [
   ["Language", [["Language guide", "language-guide.html"], ["Standard library", "stdlib.html"]]],
   ["Tools", [["Command-line interface", "cli.html"], ["Packages & projects", "packages.html"], ["Editor & LSP", "tooling.html"]]],
   ["Interop", [["Python interoperability", "python-interop.html"]]],
-  ["Concepts", [["Native runtime", "native-runtime.html"]]]
+  ["Project", [["Changelog", "changelog.html"], ["GitHub repository ↗", "https://github.com/Obliv1onis/Genzimnify"]]]
 ];
 
 const page = location.pathname.split("/").pop() || "index.html";
@@ -39,8 +39,7 @@ function renderChrome() {
       </div>
     </header>`;
   document.getElementById("siteSidebar").innerHTML = groups.map(([title, links]) => `
-    <div class="nav-group"><div class="nav-title">${title}</div>${links.map(([label, url]) => `<a class="nav-link ${page === url ? "active" : ""}" href="${url}">${label}</a>`).join("")}</div>`).join("") +
-    `<div class="nav-group"><div class="nav-title">Project</div><a class="nav-link" href="https://github.com/Obliv1onis/Genzimnify">GitHub repository ↗</a></div>`;
+    <div class="nav-group"><div class="nav-title">${title}</div>${links.map(([label, url]) => `<a class="nav-link ${page === url ? "active" : ""}" href="${url}">${label}</a>`).join("")}</div>`).join("");
 }
 
 function highlightCode() {
@@ -76,8 +75,13 @@ function setupToc() {
   const toc = document.getElementById("pageToc");
   if (!toc) return;
   const headings = [...document.querySelectorAll("article h2, article h3")];
+  const usedIds = new Set();
   toc.innerHTML = '<div class="toc-title">On this page</div>' + headings.map((heading) => {
-    if (!heading.id) heading.id = heading.textContent.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    const base = heading.id || heading.textContent.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    let unique = base, suffix = 2;
+    while (usedIds.has(unique)) unique = `${base}-${suffix++}`;
+    heading.id = unique;
+    usedIds.add(unique);
     return `<a href="#${heading.id}" style="padding-left:${heading.tagName === "H3" ? 10 : 0}px">${heading.textContent}</a>`;
   }).join("");
   const links = [...toc.querySelectorAll("a")];

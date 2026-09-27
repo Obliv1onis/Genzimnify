@@ -1,126 +1,187 @@
-<img src="assets/genzimnify-mark.svg" width="88" alt="Genzimnify logo">
+<p align="center">
+  <img src="assets/genzimnify-mark.svg" width="96" alt="Genzimnify logo">
+</p>
 
-# Genzimnify
+<h1 align="center">Genzimnify</h1>
 
-**A native programming language with Gen Z syntax. If it vibes, it runs.**
+<p align="center">
+  A native programming language with Python-like semantics and Gen Z syntax.
+</p>
 
-Genzimnify is a standalone programming language with a native runtime written in
-Nim. A Genzimnify program is called a **vibe**. Running it is **vibing**. Errors
-are **cap**. Debugging is **checking the vibe**. Since 2.0, normal execution does
-not generate Python or require Python to be installed.
+<p align="center">
+  <a href="https://github.com/Obliv1onis/Genzimnify/actions/workflows/ci.yml"><img src="https://github.com/Obliv1onis/Genzimnify/actions/workflows/ci.yml/badge.svg" alt="Native runtime CI"></a>
+  <a href="https://github.com/Obliv1onis/Genzimnify/releases/latest"><img src="https://img.shields.io/github/v/release/Obliv1onis/Genzimnify" alt="Latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/Obliv1onis/Genzimnify" alt="MIT license"></a>
+</p>
+
+<p align="center">
+  <a href="https://obliv1onis.github.io/Genzimnify/">Documentation</a> ·
+  <a href="https://obliv1onis.github.io/Genzimnify/installation.html">Installation</a> ·
+  <a href="https://obliv1onis.github.io/Genzimnify/language-guide.html">Language guide</a> ·
+  <a href="https://github.com/Obliv1onis/Genzimnify/releases">Releases</a>
+</p>
+
+Genzimnify is a standalone, dynamically typed programming language with a
+runtime written in Nim. The `gzim` executable parses, checks, and executes
+`.gzim` files directly—normal execution does not generate Python or require a
+Python installation.
 
 ```gzim
-for real i up in vibes(1, 101):
-    vibecheck i % 15 == 0:
-        yap("FizzBuzz")
-    or i % 3 == 0:
-        yap("Fizz")
-    or i % 5 == 0:
-        yap("Buzz")
-    otherwise:
-        yap(i)
+cook fizzbuzz(limit as num):
+    for real i up in vibes(1, limit + 1):
+        vibecheck i % 15 == 0:
+            yap("FizzBuzz")
+        or i % 3 == 0:
+            yap("Fizz")
+        or i % 5 == 0:
+            yap("Buzz")
+        otherwise:
+            yap(i)
+
+call up fizzbuzz(100) yo
 ```
+
+## Why Genzimnify?
+
+- **Native execution:** lexer, parser, semantic checker, and interpreter ship
+  in one compiled runtime.
+- **Familiar semantics:** indentation-based blocks, functions, collections,
+  comprehensions, classes, exceptions, matching, generators, and type hints.
+- **Distinct syntax:** functions are `cook`, classes are `clique`, output is
+  `yap`, and errors are `cap`.
+- **Project tooling:** manifests, lockfiles, Git and local-path dependencies,
+  a REPL, editor integration, and a language server.
+- **Optional interoperability:** explicitly import Python libraries through
+  `py.*` without making Python a dependency of ordinary programs.
 
 ## Quick start
 
-Install the release runtime on macOS, Ubuntu, or Kali Linux:
+### macOS and Linux
+
+The shell installer supports macOS, Ubuntu, and Kali Linux:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/Obliv1onis/Genzimnify/master/scripts/install.sh | sh
-gzim examples/fizzbuzz.gzim
+gzim doctor
 ```
 
-On Windows 10+, run the PowerShell installer:
+### Windows
+
+Run the PowerShell installer on Windows 10 or newer:
 
 ```powershell
 irm https://raw.githubusercontent.com/Obliv1onis/Genzimnify/master/scripts/install.ps1 | iex
+gzim doctor
 ```
 
-See the [full documentation](https://obliv1onis.github.io/Genzimnify/) for
-Homebrew, manual installation, the language guide, and tooling setup.
+Release packages include both `gzim` and `gzim-lsp`. See the
+[installation guide](https://obliv1onis.github.io/Genzimnify/installation.html)
+for Homebrew, manual downloads, supported architectures, and custom install
+locations.
 
-## CLI
+### Create a project
 
 ```sh
-gzim <file.gzim> [args]       # run directly in the native runtime
-gzim run <file.gzim> [args]   # explicit spelling of the same command
-gzim check <file.gzim>        # parse + semantic vibecheck only
-gzim repl                     # native interactive vibe loop
-gzim init                     # create main.gzim + gzim.toml
-gzim add <name> <source>      # add a Git or local-path package
-gzim install                  # restore packages from gzim.toml
-gzim packages                 # list project packages
-gzim remove <name>            # remove a project package
-gzim doctor                   # show runtime/platform information
-gzim emit-python <file.gzim>  # optional interoperability export
+mkdir hello-gzim
+cd hello-gzim
+gzim init
+gzim main.gzim
 ```
 
-## The language
+`gzim init` creates a starter `main.gzim` file and a `gzim.toml` project
+manifest.
 
-File extension is `.gzim`. Single-line comments start with `#`; multi-line
-comments are `#[[ ... ]]#`. Statements end with a newline; `fr` is an optional
-explicit terminator (and lets several statements share a line). A colon opens a
-block; indentation closes it.
-
-### Keywords
-
-| Genzimnify      | Python      | Genzimnify        | Python        |
-|-----------------|-------------|-------------------|---------------|
-| `let` / `lock`  | decl / const| `vibe`            | `while`       |
-| `be` (`be+`…)   | `=` (`+=`…) | `for real … up in`| `for … in`    |
-| `nocap` / `cap` | `True` / `False` | `dip` / `next` | `break` / `continue` |
-| `ghost`         | `None`      | `deadass`         | `pass`        |
-| `both` / `either` / `aint` | `and` / `or` / `not` | `cook` | `def` |
-| `same as` / `nah` | `==` / `!=` | `send it` / `drop` | `return` / `yield` |
-| `literally` / `aint literally` | `is` / `is not` | `call up … yo` | call |
-| `up in` / `aint up in` | `in` / `not in` | `clique` / `new` / `fam` / `ancestor` | `class` / `__init__` / `self` / `super` |
-| `vibecheck` / `or` / `otherwise` | `if` / `elif` / `else` | `pull up` / `outta` | `import` / `from` |
-| `f_around` / `find_out` / `no_matter_what` | `try` / `except` / `finally` | `throw shade` | `raise` |
-| `roll with` | `with` | `on timing` / `wait up` | `async` / `await` |
-| `mini vibe` | `lambda` | `fit check` / `fit` | `match` / `case` |
-| `worldwide` / `localish` | `global` / `nonlocal` | `cancel` / `on god` | `del` / `assert` |
-
-### Types & collections
-
-`num` (int), `drip` (float), `text` (str), `truth` (bool), `ghost` (None);
-`stack` (list), `map` (dict), `squad` (set), `crew` (tuple).
-
-Type hints: `let x be 5 as num`, `stack[num]` → `list[int]`,
-`map[text, num]` → `dict[str, int]`, `num or text` → `int | str`,
-`num?` → `int | None`, `whatever` → `Any`. Functions: `cook add(a as num, b as num) gives num:`.
-
-### Function calls
-
-Calls are expressions wrapped in `call up … yo`:
+## Language at a glance
 
 ```gzim
-yap(call up add(4, 3) yo)
-let n be call up how many(stack) yo
+# Variables and interpolation
+let name be "world"
+lock language be "Genzimnify"
+yap(glow"Hello, {name} from {language}")
+
+# Collections and comprehensions
+let numbers be [1, 2, 3, 4, 5]
+let evens be [n for real n up in numbers sus n % 2 == 0]
+
+# Functions
+cook add(a as num, b as num) gives num:
+    send it a + b
+
+# Classes
+clique Greeter:
+    cook new(fam, greeting):
+        fam.greeting be greeting
+
+    cook greet(fam, who):
+        send it glow"{fam.greeting}, {who}"
+
+let greeter be call up Greeter("yo") yo
+yap(call up greeter.greet("chat") yo)
 ```
 
-### Highlights
+Common syntax:
 
-- f-strings: `yap(glow"{fam.name} says woof")`
-- comprehensions: `let evens be [x for real x up in vibes(10) sus x % 2 == 0]`
-- generators: `drop n` inside a `cook` (bare `drop` yields `None`)
-- classes, inheritance, `ancestor.new(fam, ...)` → `super().__init__(...)`
-- exceptions: `f_around` / `find_out BadVibe as e` / `no_matter_what`
-- pattern matching: `fit check x:` / `fit 1:` / `otherwise:`
-- context managers: `roll with unlock("file.txt") as f:`
-- async: `on timing cook fetch():`, run with `call up timing.run(fetch()) yo`
+| Genzimnify | Meaning | Python equivalent |
+|---|---|---|
+| `let x be 1` / `lock x be 1` | Mutable / immutable binding | `x = 1` |
+| `nocap`, `cap`, `ghost` | Boolean and empty values | `True`, `False`, `None` |
+| `vibecheck` / `or` / `otherwise` | Conditional branches | `if` / `elif` / `else` |
+| `for real x up in values` | Iteration | `for x in values` |
+| `vibe condition` | Loop while true | `while condition` |
+| `cook` / `send it` | Function / return | `def` / `return` |
+| `clique` / `fam` / `ancestor` | Class / self / super | `class` / `self` / `super` |
+| `pull up` / `outta … pull up` | Import | `import` / `from … import` |
+| `f_around` / `find_out` | Exception handling | `try` / `except` |
+| `call up function() yo` | Call expression | `function()` |
 
-### Native modules & exceptions
+The language also supports `glow` strings, generators, comprehensions,
+pattern matching, context managers, async syntax, global/nonlocal bindings,
+and optional type annotations. The
+[language guide](https://obliv1onis.github.io/Genzimnify/language-guide.html)
+contains the complete reference.
 
-The native runtime implements `math`, `system`, `luck`, `clock`, `timing`,
-`json`, `path`, and `encoding`
-natively, plus relative imports of local `.gzim` modules. Native exception
-types include `L`, `BadVibe`, `WrongType`, `OutOfPocket`, `Ghosted`,
-`SplitByZero`, `NoPullUp`, `CapDetected`, and `StopTheCap`.
+## Command-line interface
 
-## Optional Python library bridge
+| Command | Purpose |
+|---|---|
+| `gzim app.gzim [args]` | Run a program in the native runtime |
+| `gzim run app.gzim [args]` | Explicit form of the run command |
+| `gzim check app.gzim` | Parse and semantically check without running |
+| `gzim repl` | Start an interactive session |
+| `gzim init` | Create `main.gzim` and `gzim.toml` |
+| `gzim add <name> <source>` | Add a Git or local dependency |
+| `gzim install` | Restore dependencies from `gzim.toml` |
+| `gzim packages` | List project dependencies |
+| `gzim remove <name>` | Remove a dependency |
+| `gzim doctor` | Show runtime and platform information |
+| `gzim emit-python app.gzim` | Export Python for interoperability |
 
-The native core still has no Python dependency. When Python interoperability is
-useful, import through the explicit `py.` namespace:
+See the [CLI reference](https://obliv1onis.github.io/Genzimnify/cli.html) for
+exit behavior and command details.
+
+## Ecosystem
+
+### Projects and packages
+
+Dependencies live in `gzim.toml` and can point to Git repositories or local
+directories:
+
+```sh
+gzim add cool https://github.com/example/cool.git#v1.0.0
+gzim add local ../my-local-package
+gzim install
+```
+
+Packages are installed under `.gzim/packages/`. Git revisions are recorded in
+`gzim.lock`, so applications can reproduce the same dependency state. Commit
+`gzim.toml` and `gzim.lock`; keep `.gzim/` out of version control.
+
+Read the [package guide](https://obliv1onis.github.io/Genzimnify/packages.html)
+for the manifest format and import rules.
+
+### Optional Python interoperability
+
+Python libraries are available only through the explicit `py.` namespace:
 
 ```gzim
 pull up py.math as pymath
@@ -130,153 +191,101 @@ yap(call up pymath.sqrt(81) yo)
 yap(call up dumps({"ready": nocap}, sort_keys be nocap) yo)
 ```
 
-Third-party packages work the same way when installed in the selected Python
-environment, including JSON-compatible NumPy scalar and array results. Each
-bridge call is isolated; normal programs that never import `py.*` never start or
-require Python.
+The bridge supports positional and keyword arguments plus JSON-compatible value
+conversion. NumPy scalars and arrays are converted through `item()` and
+`tolist()`. Each bridge call is isolated; a program that never imports `py.*`
+never starts or requires Python.
 
-## Projects and packages
+See [Python interoperability](https://obliv1onis.github.io/Genzimnify/python-interop.html)
+for supported conversions and limitations.
 
-`gzim init` creates a `gzim.toml` manifest. Dependencies can point at a Git URL,
-an optional `#tag`/`#branch`/`#commit`, or a local directory:
+### Native standard library
 
-```sh
-gzim add cool https://github.com/example/cool.git#v1.0.0
-gzim add local ../my-local-package
-gzim install
-```
+The runtime includes `math`, `system`, `luck`, `clock`, `timing`, `json`,
+`path`, and `encoding`, plus relative imports of local `.gzim` modules. The
+[standard-library reference](https://obliv1onis.github.io/Genzimnify/stdlib.html)
+lists the available functions.
 
-Packages are restored to `.gzim/packages/` and imported with the normal
-`pull up cool` syntax. Resolved Git commits are stored in `gzim.lock`; commit
-the manifest and lockfile, but leave the package cache untracked.
+## Tooling
 
-## Architecture (in Nim, under `src/genzimnify/`)
+### Language server and Zed
 
-1. `lexer.nim`, tokens, INDENT/DEDENT stack, `fr`, multi-word keywords
-2. `parser.nim`, recursive descent statements + Pratt expressions
-3. `ast.nim`, variant AST nodes
-4. `semantic.nim`, the vibecheck: scoping, locks, mis-scoped slang
-5. `runtime.nim`, native values, scopes, calls, cliques, modules, and execution
-6. `emit.nim`, optional Python interoperability emitter + source map
-7. `cli.nim`, run / check / repl / init / doctor / export
+`gzim-lsp` communicates over stdio and provides diagnostics, hover information,
+completion, go-to-definition, and document symbols. Release archives include
+the server alongside the runtime.
 
-Semantic rules enforced at compile time: reassignment requires a prior `let`,
-`lock` vars can't be rebound, `send it` only inside `cook`, `dip`/`next` only
-inside loops, `fam` only inside clique methods, `wait up` only inside
-`on timing cook`, `drop` marks generators.
+The repository also contains a Zed development extension under
+[`zed-genzimnify/`](zed-genzimnify). Build `gzim-lsp`, place it on `PATH`, then
+use **Zed: Install Dev Extension** and select that directory.
 
-## Browser IDE (`studio/`)
+### Genzimnify Studio
 
-Genzimnify Studio is a static, local-first IDE in the repository's `studio/`
-folder. It can be hosted by any static web provider and includes live
-diagnostics, syntax highlighting, line numbers, code completion, a
-generated-Python view, examples, import/export, share links, themes, find,
-formatting, keyboard shortcuts, autosave, and a resizable console/problems
-panel. The `docs/` folder contains the full GitHub Pages documentation site.
+[`studio/`](studio) contains a static, local-first browser IDE with diagnostics,
+syntax highlighting, completion, examples, import/export, share links,
+formatting, autosave, and a resizable console. It is a separate browser preview
+powered by a JavaScript transpiler and Pyodide; the installable `gzim` runtime
+remains the authoritative native implementation.
+
+Rebuild the browser transpiler after changing the language core:
 
 ```sh
-# rebuild the in-browser transpiler (Nim -> JS) after touching the core:
 nim js -d:release --out:studio/transpiler.js src/genzimnify/web.nim
-
-# then just open it:
-open studio/index.html     # or: python3 -m http.server -d studio
 ```
 
-The current browser Studio remains a separate web preview that uses the
-JavaScript transpiler and Pyodide. The installable `gzim` tool is the
-authoritative native runtime and has no Python dependency.
+<details>
+<summary><strong>Build from source and explore the architecture</strong></summary>
 
-## Tooling: LSP + Zed extension
+## Build from source
 
-### gzim-lsp (language server)
-
-Build with `nim c -o:build/gzim-lsp src/gzimlsp.nim` (or `nimble build`). Speaks
-JSON-RPC/LSP over stdio and provides:
-
-- **Diagnostics**, parse + semantic cap, published live as you type
-- **Hover**, slang keyword docs (with the Python equivalent), variable/cook/clique
-  signatures, `fam`/`ancestor` explainers
-- **Go-to-definition**, jump to `let` / `cook` / `clique` / param declarations
-- **Completion**, all slang keywords, builtins, modules + file-local decls
-- **Document symbols**, outline of cooks, cliques and variables
+Requirements: Nim 2.0 or newer and Nimble.
 
 ```sh
-tests/lsp_test.sh   # scripted end-to-end protocol test
+git clone https://github.com/Obliv1onis/Genzimnify.git
+cd Genzimnify
+nimble build -d:release
+./gzim doctor
 ```
 
-### Zed extension (`zed-genzimnify/`)
+The main implementation lives in `src/genzimnify/`:
 
-```
-zed-genzimnify/
-├── extension.toml                    # extension + grammar + language + server manifest
-├── Cargo.toml / src/lib.rs           # wasm glue: locates gzim-lsp for Zed
-├── languages/genzimnify/
-│   ├── config.toml                   # .gzim files -> Genzimnify language
-│   └── highlights.scm                # tree-sitter highlight queries
-└── grammars/genzimnify/
-    ├── grammar.js                    # the tree-sitter grammar
-    ├── tree-sitter.json
-    └── src/{parser.c,scanner.c,...}   # generated parser + external scanner
-                                      # (NEWLINE/INDENT/DEDENT + glow f-strings)
-```
+| Component | Responsibility |
+|---|---|
+| `lexer.nim` | Tokens, indentation, comments, and multi-word syntax |
+| `parser.nim` | Recursive-descent statements and Pratt expressions |
+| `ast.nim` | Syntax tree node definitions |
+| `semantic.nim` | Scope, binding, and control-flow validation |
+| `runtime.nim` | Native values, calls, modules, and execution |
+| `packages.nim` | Manifests, lockfiles, and dependency installation |
+| `emit.nim` | Optional Python export backend |
+| `lsp.nim` | Language Server Protocol implementation |
+| `cli.nim` | Command-line interface |
 
-Install as a dev extension: Zed → command palette → `zed: install dev extension`
-→ select the `zed-genzimnify` folder. Zed compiles the tree-sitter grammar to
-wasm and registers the language for `.gzim` files; the extension's Rust glue
-spawns `gzim-lsp` from your PATH for diagnostics/hover/completion/navigation.
+The broader design is documented in [`Design_Doc.md`](Design_Doc.md).
 
-Build `gzim-lsp` first and keep it on PATH (e.g. `~/.local/bin`), otherwise
-Zed will error when it tries to start the server.
-
-To regenerate the parser after editing `grammar.js`:
-
-```sh
-cd grammars/genzimnify && tree-sitter generate
-cp src/parser.c src/scanner.c src/node-types.json src/grammar.json \
-   ../../zed-genzimnify/grammars/genzimnify/src/
-```
+</details>
 
 ## Tests
 
 ```sh
-tests/run_tests.sh
-tests/regression_test.sh
-tests/lsp_test.sh
+tests/run_tests.sh       # language, runtime, bridge, and package tests
+tests/regression_test.sh # negative semantic cases
+tests/lsp_test.sh        # end-to-end LSP protocol test
 ```
 
-## v1.1
+<details>
+<summary><strong>Current limitations</strong></summary>
 
-- Fixed multiline string emission and nested function scope validation.
-- Invalid assignment targets, malformed try/match blocks, invalid parameter
-  lists, and misordered or duplicate call arguments now fail at compile time.
-- LSP tests are portable and no longer depend on the original author's path.
-- The browser playground became Genzimnify Studio and now lives in `studio/`.
-
-## v2.0
-
-- Added a standalone native runtime; `gzim file.gzim` no longer invokes Python.
-- Added native values, collections, functions, generators, cliques, exceptions,
-  local modules, files, and standard modules.
-- Added Windows, macOS (Apple Silicon and Intel), Ubuntu, and Kali release builds.
-- Added shell, PowerShell, and Homebrew installation paths.
-- Rebuilt `docs/` as a searchable language documentation site.
-
-## v2.0.1
-
-- Added explicit optional Python imports through `py.*`, including
-  positional and keyword arguments plus native value conversion.
-- Added `gzim.toml` projects and Git/local-path package commands.
-- Added native `json`, `path`, and `encoding`
-  standard-library modules.
-
-## Notes & limits
+<br>
 
 - Same-quote nesting inside `glow` strings is unsupported; use mixed quotes.
-- Comparison chains are evaluated left-associatively; write explicit `both` chains.
-- The 2.0.1 timing API is cooperative; a full native event loop is planned.
-- Python is only required if you explicitly run output from `gzim emit-python`.
-- Python is also required when a program explicitly imports a `py.*` module.
+- Comparison chains are left-associative; use explicit `both` expressions when
+  combining comparisons.
+- `timing` is currently cooperative and does not provide a full event loop.
+- `emit-python` and `py.*` imports require Python; ordinary native execution
+  does not.
 
----
+</details>
 
-**Genzimnify**, because code can be serious without sounding serious.
+## License
+
+Genzimnify is available under the [MIT License](LICENSE).

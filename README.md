@@ -201,7 +201,7 @@ never starts or requires Python.
 See [Python interoperability](https://obliv1onis.github.io/Genzimnify/python-interop.html)
 for supported conversions and limitations.
 
-### Source conversion (2.0.3 preview)
+### Source conversion
 
 ```sh
 gzim convert main.gzim --to py       # creates main.py beside the source

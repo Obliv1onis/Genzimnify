@@ -26,7 +26,7 @@ def recv():
 
 send({"jsonrpc":"2.0","id":1,"method":"initialize","params":{"rootUri":None}})
 init = recv()["result"]
-assert init["serverInfo"]["version"] == "2.0.2"
+assert init["serverInfo"]["version"] == "2.0.3"
 print("INIT capabilities:", json.dumps(init["capabilities"])[:120])
 send({"jsonrpc":"2.0","method":"initialized","params":{}})
 

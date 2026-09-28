@@ -64,8 +64,8 @@ if [ "$(printf '%s' "$repl_actual" | grep -o 'FIRST' | wc -l | tr -d ' ')" != "1
   exit 1
 fi
 
-if [ "$("$runtime" --version)" != "gzim 2.0.2" ]; then
-  echo "runtime version is not 2.0.2" >&2
+if [ "$("$runtime" --version)" != "gzim 2.0.3" ]; then
+  echo "runtime version is not 2.0.3" >&2
   exit 1
 fi
 

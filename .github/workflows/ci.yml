@@ -22,6 +22,10 @@ jobs:
       - name: Build native CLI
         shell: bash
         run: mkdir -p build && nim c -d:release --out:build/gzim src/gzim.nim
+      - name: Run conversion suite (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: python tests/conversion_test.py build/gzim.exe
       - name: Run language suite
         if: runner.os != 'Windows'
         shell: bash

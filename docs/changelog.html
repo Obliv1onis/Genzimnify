@@ -3,6 +3,22 @@
   <div class="page-kicker">Project</div><h1>Changelog</h1><p class="lead">Notable user-facing changes to Genzimnify are documented here. Entries are organized by release and follow the Added, Changed, Fixed, and Removed categories where applicable.</p>
   <div class="callout"><div class="callout-title">Historical releases</div><p>Versions 1.0 and 1.1 predate the current release series. The original 1.0 source remains available in the <a href="https://github.com/WendellArchive/Genzimnify">archived repository</a>.</p></div>
 
+  <h2 id="v2-0-3">2.0.3 — Unreleased</h2>
+  <h3>Added</h3>
+  <ul>
+    <li><code>gzim convert &lt;file&gt; --to &lt;py|gzim&gt;</code> with sibling output, custom <code>-o</code> paths, explicit <code>--force</code> replacement, and source-file protection.</li>
+    <li>A limited Python-to-Genzimnify preview using Python's AST parser, lexical builtin mapping, escaped conflicting names, and source-located errors for unsupported syntax. Conversion parses input without executing it and validates generated Genzimnify before writing.</li>
+    <li>Conversion integration tests covering native and Python execution, overwrite protection, failure recovery, and CLI validation; Windows CI also runs the conversion suite.</li>
+  </ul>
+  <h3>Changed</h3>
+  <ul><li>The new conversion command reuses Python export and stages output before replacement. Existing <code>emit-python</code> and <code>build</code> commands retain their behavior.</li></ul>
+  <h3>Preview limitations</h3>
+  <ul>
+    <li>Python-to-Genzimnify conversion requires Python 3.8+ and supports a limited syntax subset. Imports, classes, decorators, async, comprehensions, and chained comparisons are not yet supported.</li>
+    <li>Conversion normalizes formatting and does not preserve comments. Generated programs follow native Genzimnify semantics; conversion is not a lossless round trip.</li>
+  </ul>
+  <p>See <a href="cli.html#convert">conversion commands</a> and <a href="python-interop.html#source-conversion">supported syntax and builtin forms</a> for details.</p>
+
   <h2 id="v2-0-2">2.0.2 — 2026-09-27</h2>
   <h3>Changed</h3>
   <ul>

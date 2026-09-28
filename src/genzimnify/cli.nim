@@ -3,6 +3,7 @@
 
 import std/[os, strutils, syncio, tables]
 import lexer, parser, semantic, emit, runtime, errors, packages, version
+import convert
 
 const Version* = GenzimnifyVersion
 
@@ -62,6 +63,47 @@ proc cmdCheck(path: string) =
   except GzimError as e:
     failHard(e.msg)
   echo "no cap, " & path & " passes the vibecheck fr"
+
+proc cmdConvert(args: seq[string]) =
+  const usage = "usage: gzim convert <file> --to <py|gzim> [-o <output>] [--force]"
+  if args.len == 0: failHard(usage)
+  if args == @["--help"] or args == @["-h"]:
+    echo usage
+    return
+  let source = args[0]
+  var target, destination: string
+  var force = false
+  var i = 1
+  while i < args.len:
+    case args[i]
+    of "--to", "-o", "--output":
+      let option = args[i]
+      inc i
+      if i >= args.len or args[i].startsWith("-"): failHard("missing value for " & option & "\n" & usage)
+      if option == "--to":
+        if target != "": failHard("--to may only be supplied once")
+        target = args[i]
+      else:
+        if destination != "": failHard("output may only be supplied once")
+        destination = args[i]
+    of "--force":
+      force = true
+    else:
+      failHard("unknown convert argument: " & args[i] & "\n" & usage)
+    inc i
+  if target notin ["py", "gzim"]: failHard("--to must be py or gzim\n" & usage)
+  let parts = splitFile(source)
+  let expected = if target == "py": ".gzim" else: ".py"
+  if parts.ext != expected: failHard("conversion to " & target & " requires a " & expected & " source")
+  if not fileExists(source): failHard("no file called " & source)
+  if destination == "": destination = parts.dir / (parts.name & "." & target)
+  try:
+    checkDestination(source, destination, force)
+    let code = if target == "py": compileSource(readFile(source), source).code else: fromPython(source)
+    writeConversion(source, destination, code, force)
+    echo "converted " & source & " -> " & destination
+  except CatchableError as error:
+    failHard(error.msg)
 
 const InitSample = """
 # main.gzim, welcome to the vibe
@@ -145,6 +187,8 @@ usage:
   gzim packages                 list project dependencies
   gzim doctor                   show runtime and platform information
   gzim emit-python <file.gzim>  optional Python interoperability export
+  gzim convert <file> --to <py|gzim> [-o <output>] [--force]
+                               convert source files (Python import: preview)
   gzim help                     this menu
 
 a Genzimnify program is called a vibe. running it is vibing.
@@ -165,7 +209,7 @@ proc main*() =
 
   var cmd: string
   var rest: seq[string]
-  if params[0] in ["run", "build", "emit-python", "check", "repl", "init", "add", "install", "remove", "packages", "doctor", "help", "--help", "-h",
+  if params[0] in ["run", "build", "emit-python", "convert", "check", "repl", "init", "add", "install", "remove", "packages", "doctor", "help", "--help", "-h",
                    "--version", "-v"]:
     cmd = params[0]
     rest = params[1 .. ^1]
@@ -177,6 +221,8 @@ proc main*() =
     quit(1)
 
   case cmd
+  of "convert":
+    cmdConvert(rest)
   of "run":
     if rest.len == 0:
       failHard("run needs a file, gzim run <file.gzim>")

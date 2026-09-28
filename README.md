@@ -156,6 +156,7 @@ contains the complete reference.
 | `gzim remove <name>` | Remove a dependency |
 | `gzim doctor` | Show runtime and platform information |
 | `gzim emit-python app.gzim` | Export Python for interoperability |
+| `gzim convert <file> --to <py\|gzim>` | Convert source files; Python import is a limited preview |
 
 See the [CLI reference](https://obliv1onis.github.io/Genzimnify/cli.html) for
 exit behavior and command details.
@@ -199,6 +200,37 @@ never starts or requires Python.
 
 See [Python interoperability](https://obliv1onis.github.io/Genzimnify/python-interop.html)
 for supported conversions and limitations.
+
+### Source conversion (2.0.3 preview)
+
+```sh
+gzim convert main.gzim --to py       # creates main.py beside the source
+gzim convert main.py --to gzim       # creates main.gzim beside the source
+gzim convert main.py --to gzim -o converted.gzim
+gzim convert main.gzim --to py --force
+```
+
+Existing output files require `--force`; the source itself cannot be overwritten.
+Conversion finishes and validates before replacing an output file. The new command
+writes a single source file; `emit-python` still also writes its `.gzmap` sidecar.
+
+Python import requires Python 3.8+ on `PATH` and parses the input without running
+it. The parser is embedded in the native executable; there is no additional
+package to install. Native execution and exporting Python do not require Python.
+
+The reverse converter supports basic assignments, arithmetic, conditions, loops,
+ordinary functions, collection literals, indexing, and selected builtin calls.
+Unsupported syntax reports its source location instead of producing a partial
+file. Imports, classes, decorators, annotations, async, comprehensions, f-strings,
+chained comparisons, and advanced parameters are outside this first preview.
+Comments and original formatting are not preserved. Conflicting variable names
+are escaped with `_py_`; builtin names are mapped according to lexical scope.
+
+This is a source migration aid, not full Python compatibility or a lossless
+round trip. Generated programs use Genzimnify's native value and library semantics
+(including 64-bit integers, byte-oriented text operations, and eager iteration).
+See the [conversion reference](https://obliv1onis.github.io/Genzimnify/python-interop.html#source-conversion)
+for the supported builtin forms and restrictions.
 
 ### Native standard library
 
@@ -282,8 +314,8 @@ tests/lsp_test.sh        # end-to-end LSP protocol test
 - Comparison chains are left-associative; use explicit `both` expressions when
   combining comparisons.
 - `timing` is currently cooperative and does not provide a full event loop.
-- `emit-python` and `py.*` imports require Python; ordinary native execution
-  does not.
+- Running exported Python, Python-to-Genzimnify conversion, and `py.*` imports
+  require Python; native execution and exporting Python do not.
 
 </details>
 

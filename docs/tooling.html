@@ -9,7 +9,7 @@
   "filetypes": ["gzim"],
   "rootPatterns": ["gzim.toml", "genzimnify.nimble", ".git"]
 }</code></pre>
-  <h2 id="online-studio">Browser Studio</h2><p>The repository’s <code>studio/</code> directory contains a local-first browser IDE with syntax highlighting, completion, diagnostics, examples, and a console. It is a separate web surface; the installable desktop toolchain is the authoritative native runtime.</p>
+  <h2 id="online-studio">Browser Studio</h2><p><a href="studio/">Open Studio</a> to edit and run Genzimnify in your browser. It has syntax highlighting, completion, diagnostics, examples, and a console. Its rizzgame workspace splits the lower panel into a terminal on the left and a live Canvas preview on the right; see the <a href="rizzgame-studio.html">step-by-step tutorial</a>. The installable toolchain remains the authoritative native runtime.</p>
   <h2 id="tree-sitter">Tree-sitter grammar</h2><p>The grammar under <code>grammars/genzimnify/</code> can be embedded by editors that support Tree-sitter. Regenerate parser sources after changing <code>grammar.js</code>:</p><pre><code>cd grammars/genzimnify
 tree-sitter generate</code></pre>
   <div class="page-nav"><a href="python-interop.html"><small>Previous</small>← Python interoperability</a><a href="changelog.html"><small>Next</small>Changelog →</a></div>

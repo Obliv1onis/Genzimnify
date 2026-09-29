@@ -48,6 +48,16 @@ jobs:
         if: runner.os != 'Windows'
         shell: bash
         run: tests/run_tests.sh
+      - name: Check browser Studio and Pages copy
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          python3 scripts/sync-studio-pages.py --check
+          python3 tests/studio_rizzgame_test.py
+          node tests/studio_preview_test.js
+          node --check studio/app.js
+          node --check studio/rizzgame-preview.js
+          node --check docs/app.js
       - name: Run graphics suite (Linux)
         if: runner.os == 'Linux'
         shell: bash

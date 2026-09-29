@@ -48,6 +48,12 @@ type
 
 const GameSpecs* = [
   "init::0", "quit::0", "get_init::0", "get_backend::0",
+  "dip_out::0", "display.pull_up:size,flags:1", "display.show_off::0",
+  "event.catch_vibes::0", "key.check_the_vibe::0", "Clock.keep_up:self,fps:1",
+  "Surface.glow_up:self,color:2", "draw.flex_rect:surface,color,rect,width:3",
+  "draw.flex_circle:surface,color,center,radius,width:4",
+  "draw.flex_line:surface,color,start,end,width:4",
+  "draw.yap_text:surface,text,position,size,color:3",
   "display.set_mode:size,flags:1", "display.set_caption:title:1",
   "display.flip::0", "display.get_surface::0", "display.get_size::0",
   "event.get::0", "key.get_pressed::0", "mouse.get_pos::0", "mouse.get_pressed::0",
@@ -331,6 +337,20 @@ proc gameConstants*(): seq[tuple[name: string, value: int]] =
 
 proc call*(ctx: GameContext, name: string, positional: seq[GameValue],
            kwargs: seq[tuple[name: string, val: GameValue]] = @[]): GameValue =
+  let canonical = case name
+    of "dip_out": "quit"
+    of "display.pull_up": "display.set_mode"
+    of "display.show_off": "display.flip"
+    of "event.catch_vibes": "event.get"
+    of "key.check_the_vibe": "key.get_pressed"
+    of "Clock.keep_up": "Clock.tick"
+    of "Surface.glow_up": "Surface.fill"
+    of "draw.flex_rect": "draw.rect"
+    of "draw.flex_circle": "draw.circle"
+    of "draw.flex_line": "draw.line"
+    of "draw.yap_text": "draw.text"
+    else: name
+  if canonical != name: return ctx.call(canonical, positional, kwargs)
   let a = arguments(name, positional, kwargs)
   result = empty()
   if name in ["Surface", "image.load", "font.Font", "mixer.Sound", "mixer.music.load", "Font.render"] and ctx.resources.len >= 4096:

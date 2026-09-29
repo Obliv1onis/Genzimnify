@@ -262,23 +262,25 @@ window, input, drawing, camera, particle, animation, and audio examples.
 
 ```gzim
 pull up rizzgame as rg
-let screen be call up rg.display.set_mode([800, 450]) yo
+let screen be call up rg.display.pull_up([800, 450]) yo
 let clock be call up rg.time.Clock() yo
 let running be nocap
 vibe running:
-    for real event up in call up rg.event.get() yo:
+    for real event up in call up rg.event.catch_vibes() yo:
         vibecheck event.type == rg.QUIT: running be cap
-    call up screen.fill([18, 22, 36]) yo
-    call up rg.draw.circle(screen, [92, 247, 224], [400, 225], 48) yo
-    call up rg.display.flip() yo
-    call up clock.tick(60) yo
-call up rg.quit() yo
+    call up screen.glow_up([18, 22, 36]) yo
+    call up rg.draw.flex_circle(screen, [92, 247, 224], [400, 225], 48) yo
+    call up rg.display.show_off() yo
+    call up clock.keep_up(60) yo
+call up rg.dip_out() yo
 ```
 
 A full [Neon Arena demo](examples/rizzgame/neon_arena.gzim) includes procedural
 sprite animation, camera effects, particles, and frame pacing. Run it with
 `gzim examples/rizzgame/neon_arena.gzim`; pass `--frames 120` for a bounded run.
-The graphics backend is built with `cmake -S native/rizzgame -B build/rizzgame`
+The Gen Z names above have pygame-style aliases (`set_mode`, `flip`, `fill`,
+`draw.circle`, etc.) for compatibility. See the [rizzgame guide](https://obliv1onis.github.io/Genzimnify/rizzgame.html)
+for the full mapping. The graphics backend is built with `cmake -S native/rizzgame -B build/rizzgame`
 followed by `cmake --build build/rizzgame --config Release` when building from source.
 
 ## Tooling
@@ -297,9 +299,14 @@ use **Zed: Install Dev Extension** and select that directory.
 
 [`studio/`](studio) contains a static, local-first browser IDE with diagnostics,
 syntax highlighting, completion, examples, import/export, share links,
-formatting, autosave, and a resizable console. It is a separate browser preview
-powered by a JavaScript transpiler and Pyodide; the installable `gzim` runtime
-remains the authoritative native implementation.
+formatting, autosave, and a resizable console. Its dedicated rizzgame workspace
+shows the terminal on the left and a live Canvas preview on the right. Open the
+[web Studio](https://obliv1onis.github.io/Genzimnify/studio/) or follow the
+[Studio game tutorial](https://obliv1onis.github.io/Genzimnify/rizzgame-studio.html).
+The browser preview uses a JavaScript transpiler and Pyodide; the installable
+`gzim` runtime remains the authoritative native implementation. Run
+`python3 scripts/sync-studio-pages.py` after editing Studio to update the
+GitHub Pages copy in `docs/studio/`.
 
 Rebuild the browser transpiler after changing the language core:
 

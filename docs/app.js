@@ -4,7 +4,8 @@ const DOCS = [
   { title: "First program", url: "getting-started.html", section: "Get started", text: "create run check project hello command line" },
   { title: "Language guide", url: "language-guide.html", section: "Language", text: "variables values operators control flow functions classes exceptions imports async types" },
   { title: "Native standard library", url: "stdlib.html", section: "Reference", text: "builtins collections math system luck clock timing files" },
-  { title: "rizzgame", url: "rizzgame.html", section: "Language", text: "native 2D game library pygame camera particles animation graphics audio font image sprite" },
+  { title: "rizzgame", url: "rizzgame.html", section: "rizzgame", text: "native 2D game library slang pull_up show_off glow_up pygame camera particles animation graphics audio font image sprite" },
+  { title: "rizzgame in Studio", url: "rizzgame-studio.html", section: "rizzgame", text: "browser IDE canvas preview tutorial keyboard mouse draw game loop limitations" },
   { title: "Packages and projects", url: "packages.html", section: "Tools", text: "gzim.toml dependencies Git local path add install remove package manager" },
   { title: "Python interoperability", url: "python-interop.html", section: "Interop", text: "optional Python libraries py numpy json keyword arguments native core" },
   { title: "Command-line tools", url: "cli.html", section: "Tools", text: "gzim run eval check repl init doctor convert source-map offline version update arguments exit code rizzgame" },
@@ -15,7 +16,8 @@ const DOCS = [
 const groups = [
   ["Overview", [["Home", "index.html"]]],
   ["Get started", [["Installation", "installation.html"], ["First program", "getting-started.html"]]],
-  ["Language", [["Language guide", "language-guide.html"], ["Standard library", "stdlib.html"], ["rizzgame", "rizzgame.html"]]],
+  ["Language", [["Language guide", "language-guide.html"], ["Standard library", "stdlib.html"]]],
+  ["rizzgame", [["Overview & native API", "rizzgame.html"], ["Studio tutorial", "rizzgame-studio.html"]]],
   ["Tools", [["Command-line interface", "cli.html"], ["Packages & projects", "packages.html"], ["Editor & LSP", "tooling.html"]]],
   ["Interop", [["Python interoperability", "python-interop.html"]]],
   ["Project", [["Changelog", "changelog.html"], ["GitHub repository ↗", "https://github.com/Obliv1onis/Genzimnify"]]]

@@ -51,7 +51,7 @@ yap(particles.count)
 call up particles.update(1) yo
 yap(particles.count)
 let timer be call up rg.time.Clock() yo
-let ms be call up timer.tick(50) yo
+let ms be call up timer.keep_up(50) yo
 yap(ms >= 19)
 yap(call up timer.get_fps() yo > 0)
 ''')
@@ -85,16 +85,16 @@ yap(call up v.length() yo)
     def test_real_gpu_surfaces_images_fonts_and_resource_invalidation(self):
         result = self.run_game('''pull up rizzgame as rg
 call up rg.init() yo
-let screen be call up rg.display.set_mode([160, 120], rg.HIDDEN) yo
+let screen be call up rg.display.pull_up([160, 120], rg.HIDDEN) yo
 let canvas be call up rg.Surface([80, 60]) yo
-call up canvas.fill([10, 20, 30]) yo
-call up rg.draw.rect(canvas, [240, 60, 90], [10, 10, 20, 20]) yo
+call up canvas.glow_up([10, 20, 30]) yo
+call up rg.draw.flex_rect(canvas, [240, 60, 90], [10, 10, 20, 20]) yo
 yap(call up canvas.get_at([15, 15]) yo)
 yap(call up canvas.get_at([0, 0]) yo)
 call up rg.image.save(canvas, "scene.png") yo
 let image be call up rg.image.load("scene.png") yo
 yap(call up image.get_size() yo)
-call up screen.fill([0, 0, 0]) yo
+call up screen.glow_up([0, 0, 0]) yo
 call up screen.blit(image, [0, 0], scale be 2) yo
 let sheet be call up rg.Surface([20, 10]) yo
 call up sheet.fill([0, 0, 0]) yo
@@ -118,11 +118,14 @@ call up camera.begin() yo
 call up rg.draw.rect(canvas, [0, 255, 0], [50, 0, 10, 10]) yo
 call up camera.end() yo
 yap(call up canvas.get_at([42, 2]) yo)
-call up rg.display.flip() yo
+call up rg.draw.flex_circle(screen, [30, 40, 50], [60, 60], 5) yo
+call up rg.draw.flex_line(screen, [30, 40, 50], [0, 0], [10, 10]) yo
+call up rg.draw.yap_text(screen, "slay", [0, 0]) yo
+call up rg.display.show_off() yo
 call up label.unload() yo
 call up font.unload() yo
 call up image.unload() yo
-call up rg.quit() yo
+call up rg.dip_out() yo
 yap(call up rg.get_init() yo)
 call up rg.display.set_mode([100, 100], rg.HIDDEN) yo
 call up rg.quit() yo

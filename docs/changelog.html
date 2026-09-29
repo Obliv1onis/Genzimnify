@@ -3,7 +3,7 @@
   <div class="page-kicker">Project</div><h1>Changelog</h1><p class="lead">Notable user-facing changes to Genzimnify are documented here. Entries are organized by release and follow the Added, Changed, Fixed, and Removed categories where applicable.</p>
   <div class="callout"><div class="callout-title">Historical releases</div><p>Versions 1.0 and 1.1 predate the current release series. The original 1.0 source remains available in the <a href="https://github.com/WendellArchive/Genzimnify">archived repository</a>.</p></div>
 
-  <h2 id="v2-0-4">2.0.4 — Unreleased</h2>
+  <h2 id="v2-0-4">2.0.4 — 2026-09-29</h2>
   <h3>Added</h3><ul>
     <li>Conversion preflight with <code>--check</code>, optional Python source maps with <code>--source-map</code>, and Python conversion errors with source excerpts and rewrite hints.</li>
     <li><code>gzim eval</code> for inline programs and recursive <code>gzim check &lt;directory&gt;</code> for project validation.</li>
@@ -12,10 +12,13 @@
     <li><code>rizzgame</code>, a Python-free native 2D game library powered by a bundled raylib 5.5 backend. It includes pygame-style display, surfaces, events, input, drawing, images, fonts, sound and streamed music, frame timing, and rectangles.</li>
     <li>2D cameras with follow and shake, particle emitters, sprite-sheet animation, vector helpers, and easing functions.</li>
     <li>Examples, graphics integration tests, a pinned backend build, and installer support for the native library.</li>
+    <li>Gen Z aliases for the native <code>rizzgame</code> API, including <code>pull_up</code>, <code>show_off</code>, <code>catch_vibes</code>, <code>glow_up</code>, and <code>flex_rect</code>; pygame-style names remain compatible.</li>
+    <li>Studio now runs supported <code>rizzgame</code> programs in a live Canvas preview beside its console, with a dedicated workspace, starter game, keyboard and mouse input, and a <a href="rizzgame-studio.html">browser tutorial</a>.</li>
   </ul>
   <p>See the <a href="rizzgame.html">rizzgame guide</a> for the native API, a working example, and current scope.</p>
   <h3>Changed</h3><ul><li>Removed duplicate <code>build</code> and <code>emit-python</code> CLI operations. Use <code>convert &lt;file&gt; --to py --source-map</code> instead; old commands show migration guidance.</li><li>Centralized CLI dispatch and uncaught-error handling, and moved Python export compilation into the conversion module.</li></ul>
   <h3>Fixed</h3><ul><li>The test runner now fails when any sub-suite fails and checks runtime exit status as well as output.</li><li>Release version verification runs offline; CLI regression tests now cover conversion checks, source-map protection, inline execution, directory checks, and release notices.</li></ul>
+  <p><a href="https://github.com/Obliv1onis/Genzimnify/releases/tag/v2.0.4">View the 2.0.4 release and downloads →</a></p>
 
   <h2 id="v2-0-3">2.0.3 — 2026-09-27</h2>
   <h3>Added</h3>

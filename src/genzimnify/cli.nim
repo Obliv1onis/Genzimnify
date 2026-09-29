@@ -157,6 +157,7 @@ proc cmdPackages() =
 proc cmdRepl() =
   echo "gzim repl " & Version & " native runtime, blank line to run, ctrl-d to dip"
   let session = newReplSession("<repl>")
+  defer: session.closeReplSession()
   var chunk: seq[string] = @[]
   var line: string
   while true:

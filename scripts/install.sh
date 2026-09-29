@@ -44,6 +44,14 @@ tar -xzf "$tmp_dir/genzimnify.tar.gz" -C "$tmp_dir"
 mkdir -p "$INSTALL_ROOT"
 install -m 755 "$tmp_dir/gzim" "$INSTALL_ROOT/gzim"
 install -m 755 "$tmp_dir/gzim-lsp" "$INSTALL_ROOT/gzim-lsp"
+case "$package" in
+  macos-arm64) game_library=libraylib.dylib ;;
+  linux-x86_64) game_library=libraylib.so ;;
+  *) game_library= ;;
+esac
+if [ -n "$game_library" ] && [ -f "$tmp_dir/$game_library" ]; then
+  install -m 755 "$tmp_dir/$game_library" "$INSTALL_ROOT/$game_library"
+fi
 
 echo "Installed gzim and gzim-lsp to $INSTALL_ROOT"
 case ":$PATH:" in

@@ -19,6 +19,18 @@ jobs:
         with:
           nim-version: "2.2.x"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Linux graphics build dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev xvfb xauth
+      - name: Build native graphics backend
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            cmake -S native/rizzgame -B build/rizzgame -G "Visual Studio 17 2022" -A x64 -DRIZZGAME_OUTPUT_DIR="$PWD/build"
+          else
+            cmake -S native/rizzgame -B build/rizzgame -DCMAKE_BUILD_TYPE=Release -DRIZZGAME_OUTPUT_DIR="$PWD/build"
+          fi
+          cmake --build build/rizzgame --config Release --parallel 4
       - name: Build native CLI
         shell: bash
         run: mkdir -p build && nim c -d:release --out:build/gzim src/gzim.nim
@@ -30,10 +42,16 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python tests/cli_test.py build/gzim.exe
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tests/rizzgame_test.py build/gzim.exe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Run language suite
         if: runner.os != 'Windows'
         shell: bash
         run: tests/run_tests.sh
+      - name: Run graphics suite (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: GZIM_RIZZGAME_GRAPHICS_TEST=1 xvfb-run -a python3 tests/rizzgame_test.py build/gzim
       - name: Run language server suite
         if: runner.os != 'Windows'
         shell: bash

@@ -37,3 +37,4 @@ GZIM_NATIVE_BIN="$test_bin" bash tests/native_runtime_test.sh
 GZIM_NATIVE_BIN="$test_bin" bash tests/package_manager_test.sh
 python3 tests/conversion_test.py "$test_bin"
 python3 tests/cli_test.py "$test_bin"
+python3 tests/rizzgame_test.py "$test_bin"

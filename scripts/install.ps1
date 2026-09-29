@@ -17,6 +17,8 @@ Expand-Archive $archive -DestinationPath $unpack -Force
 New-Item -ItemType Directory -Path $installRoot -Force | Out-Null
 Copy-Item (Join-Path $unpack "gzim.exe") $installRoot -Force
 Copy-Item (Join-Path $unpack "gzim-lsp.exe") $installRoot -Force
+$raylib = Join-Path $unpack "raylib.dll"
+if (Test-Path $raylib) { Copy-Item $raylib $installRoot -Force }
 
 $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
 if (-not $userPath) { $userPath = "" }

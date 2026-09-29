@@ -30,6 +30,18 @@ jobs:
         with:
           nim-version: "2.2.x"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Linux graphics build dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev
+      - name: Build native graphics backend
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            cmake -S native/rizzgame -B build/rizzgame -G "Visual Studio 17 2022" -A x64 -DRIZZGAME_OUTPUT_DIR="$PWD/dist"
+          else
+            cmake -S native/rizzgame -B build/rizzgame -DCMAKE_BUILD_TYPE=Release -DRIZZGAME_OUTPUT_DIR="$PWD/dist"
+          fi
+          cmake --build build/rizzgame --config Release --parallel 4
       - name: Build runtime and language server
         shell: bash
         run: |
@@ -40,6 +52,7 @@ jobs:
           expected="${GITHUB_REF_NAME#v}"
           actual="$(dist/${{ matrix.executable }} --version --offline)"
           test "$actual" = "gzim $expected"
+          dist/${{ matrix.executable }} eval 'pull up rizzgame as rg; yap(call up rg.get_backend() yo)'
           printf '' | dist/gzim-lsp${{ runner.os == 'Windows' && '.exe' || '' }}
           cp LICENSE README.md dist/
       - name: Package Unix archive

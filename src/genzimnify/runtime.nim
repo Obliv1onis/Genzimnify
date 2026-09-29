@@ -8,11 +8,12 @@ import std/[algorithm, base64, json, math, os, osproc, random, sequtils, sets, s
             strutils, syncio, tables, times]
 import ast, lexer, parser, semantic, errors
 import packages
+import game/engine as game
 
 type
   ValueKind* = enum
     vkNone, vkBool, vkInt, vkFloat, vkString, vkList, vkTuple, vkSet, vkDict,
-    vkFunction, vkBuiltin, vkClass, vkInstance, vkModule, vkException, vkFile
+    vkFunction, vkBuiltin, vkClass, vkInstance, vkModule, vkException, vkFile, vkGame
 
   Env* = ref object
     values: Table[string, Value]
@@ -52,6 +53,7 @@ type
     boundSelf: Value
     fileHandle: File
     fileOpen: bool
+    gameObject: GameObject
 
   RuntimeError* = object of CatchableError
     category*: string
@@ -68,6 +70,7 @@ type
     moduleCache: Table[string, Value]
     moduleStack: seq[string]
     activeException: Value
+    gameContext: GameContext
 
   ReplSession* = ref object
     runtime: Runtime
@@ -163,6 +166,7 @@ proc repr*(value: Value): string =
   of vkModule: "<module " & value.strVal & ">"
   of vkException: value.strVal
   of vkFile: "<file>"
+  of vkGame: "<rizzgame." & kindName(value.gameObject.kind) & ">"
 
 proc display(value: Value): string =
   if value != nil and value.kind == vkString: value.strVal else: repr(value)
@@ -316,8 +320,17 @@ proc findMethod(klass: NativeClass, name: string): NativeFunction =
 proc builtinValue(name: string, self: Value = nil): Value =
   Value(kind: vkBuiltin, builtin: name, boundSelf: self)
 
+proc fromGame(value: GameValue): Value
+proc toGame(value: Value): GameValue
+
 proc getAttr(value: Value, name: string): Value =
   case value.kind
+  of vkGame:
+    try:
+      if hasProperty(value.gameObject, name): return fromGame(getProperty(value.gameObject, name))
+      if hasMethod(value.gameObject, name):
+        return builtinValue("rizzgame." & kindName(value.gameObject.kind) & "." & name, value)
+    except ValueError as error: raise runtimeCap("BadVibe", error.msg)
   of vkInstance:
     if value.fields.hasKey(name): return value.fields[name]
     let fn = value.klass.findMethod(name)
@@ -346,6 +359,10 @@ proc getAttr(value: Value, name: string): Value =
   raise runtimeCap("WrongType", "value has no attribute '" & name & "'")
 
 proc setAttr(value: Value, name: string, newValue: Value) =
+  if value.kind == vkGame:
+    try: setProperty(value.gameObject, name, toGame(newValue))
+    except ValueError as error: raise runtimeCap("BadVibe", error.msg)
+    return
   if value.kind != vkInstance: raise runtimeCap("WrongType", "attributes can only be set on clique instances")
   value.fields[name] = newValue
 
@@ -644,7 +661,29 @@ proc exceptionMatches(rt: Runtime, env: Env, handler: Handler, error: ref Runtim
     return handler.etype.s == error.category or handler.etype.s == "L"
   false
 
+proc gameModule(rt: Runtime): Value =
+  if rt.gameContext == nil: rt.gameContext = newGameContext()
+  result = Value(kind: vkModule, strVal: "rizzgame", moduleEnv: newEnv())
+  for spec in GameSpecs:
+    let name = spec.split(':')[0]
+    if '.' in name and name[0].isUpperAscii(): continue # object methods
+    let parts = name.split('.')
+    var scope = result.moduleEnv
+    for i in 0..<parts.len-1:
+      if not scope.values.hasKey(parts[i]):
+        scope.declare(parts[i], Value(kind: vkModule, strVal: "rizzgame." & parts[i], moduleEnv: newEnv()))
+      scope = scope.values[parts[i]].moduleEnv
+    scope.declare(parts[^1], builtinValue("rizzgame." & name))
+  for constant in gameConstants(): result.moduleEnv.declare(constant.name, intVal(constant.value))
+
 proc nativeModule(rt: Runtime, name: string): Value =
+  if name == "rizzgame": return rt.gameModule()
+  if name.startsWith("rizzgame."):
+    let root = rt.gameModule()
+    let child = name[9 .. ^1]
+    if root.moduleEnv.values.hasKey(child) and root.moduleEnv.values[child].kind == vkModule:
+      return root.moduleEnv.values[child]
+    raise runtimeCap("NoPullUp", "unknown rizzgame module: " & child)
   let env = newEnv()
   case name
   of "math":
@@ -910,6 +949,27 @@ proc jsonToValue(node: JsonNode): Value =
     for key, item in node: value.pairs.add (stringVal(key), jsonToValue(item))
     result = value
 
+proc fromGame(value: GameValue): Value =
+  if value.obj != nil: return Value(kind: vkGame, gameObject: value.obj)
+  let node = value.data
+  if node == nil: return noneVal()
+  if node.kind == JArray:
+    var items: seq[Value]
+    for item in node: items.add fromGame(GameValue(data: item))
+    return listVal(items)
+  if node.kind == JObject and node.hasKey("$event"):
+    let scope = newEnv()
+    for key, item in node:
+      if key != "$event": scope.declare(key, jsonToValue(item))
+    return Value(kind: vkModule, strVal: "rizzgame.Event", moduleEnv: scope)
+  jsonToValue(node)
+
+proc toGame(value: Value): GameValue =
+  if value.kind == vkGame: return GameValue(obj: value.gameObject)
+  if value.kind notin {vkNone, vkBool, vkInt, vkFloat, vkString, vkList, vkTuple, vkDict}:
+    raise runtimeCap("WrongType", "unsupported rizzgame argument: " & $value.kind)
+  GameValue(data: valueToJson(value))
+
 const PythonBridgeScript = """
 import contextlib, importlib, io, json, sys
 
@@ -988,6 +1048,15 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
                    kwargs: seq[tuple[nm: string, val: Value]] = @[]): Value =
   let name = callee.builtin
   let self = callee.boundSelf
+  if name.startsWith("rizzgame."):
+    if rt.gameContext == nil: rt.gameContext = newGameContext()
+    var positional: seq[GameValue]
+    if self != nil: positional.add toGame(self)
+    for arg in args: positional.add toGame(arg)
+    var named: seq[tuple[name: string, val: GameValue]]
+    for kw in kwargs: named.add (kw.nm, toGame(kw.val))
+    try: return fromGame(game.call(rt.gameContext, name[9 .. ^1], positional, named))
+    except ValueError as error: raise runtimeCap("BadVibe", error.msg)
   if name.startsWith("python:"):
     let parts = name.split(':', maxsplit = 2)
     return invokePython(parts[1], parts[2], args, kwargs)
@@ -1267,6 +1336,7 @@ proc runProgram*(program: seq[Stmt], filename: string, args: seq[string] = @[]):
     moduleCache: initTable[string, Value](), moduleStack: @[absolutePath(filename)])
   let env = newEnv()
   env.installRuntimeNames(rt)
+  defer: rt.gameContext.close()
   var yielded: seq[Value]
   try:
     discard rt.execBlock(env, program, yielded)
@@ -1321,3 +1391,6 @@ proc runReplChunk*(session: ReplSession, source: string): int =
   except CatchableError as error:
     stderr.writeLine(session.runtime.filename & ": cap: L: " & error.msg)
     1
+
+proc closeReplSession*(session: ReplSession) =
+  session.runtime.gameContext.close()

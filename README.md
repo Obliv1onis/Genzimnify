@@ -250,9 +250,36 @@ for the supported builtin forms and restrictions.
 ### Native standard library
 
 The runtime includes `math`, `system`, `luck`, `clock`, `timing`, `json`,
-`path`, and `encoding`, plus relative imports of local `.gzim` modules. The
+`path`, `encoding`, and the `rizzgame` 2D game library, plus relative imports
+of local `.gzim` modules. `rizzgame` uses a native raylib 5.5 shared library
+bundled in graphics-enabled releases; it never starts Python. The
 [standard-library reference](https://obliv1onis.github.io/Genzimnify/stdlib.html)
-lists the available functions.
+lists the available functions. See the
+[rizzgame guide](https://obliv1onis.github.io/Genzimnify/rizzgame.html) for
+window, input, drawing, camera, particle, animation, and audio examples.
+
+### Make a game with rizzgame
+
+```gzim
+pull up rizzgame as rg
+let screen be call up rg.display.set_mode([800, 450]) yo
+let clock be call up rg.time.Clock() yo
+let running be nocap
+vibe running:
+    for real event up in call up rg.event.get() yo:
+        vibecheck event.type == rg.QUIT: running be cap
+    call up screen.fill([18, 22, 36]) yo
+    call up rg.draw.circle(screen, [92, 247, 224], [400, 225], 48) yo
+    call up rg.display.flip() yo
+    call up clock.tick(60) yo
+call up rg.quit() yo
+```
+
+A full [Neon Arena demo](examples/rizzgame/neon_arena.gzim) includes procedural
+sprite animation, camera effects, particles, and frame pacing. Run it with
+`gzim examples/rizzgame/neon_arena.gzim`; pass `--frames 120` for a bounded run.
+The graphics backend is built with `cmake -S native/rizzgame -B build/rizzgame`
+followed by `cmake --build build/rizzgame --config Release` when building from source.
 
 ## Tooling
 

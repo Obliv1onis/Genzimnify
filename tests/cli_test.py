@@ -60,8 +60,8 @@ class CliTests(unittest.TestCase):
         curl.chmod(0o755)
         env = dict(os.environ, PATH=str(self.root), GZIM_NO_UPDATE_CHECK="0")
         current = self.run_cli("--version", "--offline").stdout
-        for tag, expected in [("v2.0.4", False), ("v2.0.3", False),
-                              ("v2.0.10", True), ("v2.1.0", True),
+        for tag, expected in [("v2.1.0", False), ("v2.0.4", False),
+                              ("v2.1.1", True), ("v2.2.0", True),
                               ("v10.0.0", True), ("v2.1.0-rc.1", False)]:
             env["FAKE_RELEASE"] = json.dumps({"tag_name": tag})
             result = self.run_cli("--version", env=env)

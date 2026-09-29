@@ -3,21 +3,17 @@
   <div class="page-kicker">Project</div><h1>Changelog</h1><p class="lead">Notable user-facing changes to Genzimnify are documented here. Entries are organized by release and follow the Added, Changed, Fixed, and Removed categories where applicable.</p>
   <div class="callout"><div class="callout-title">Historical releases</div><p>Versions 1.0 and 1.1 predate the current release series. The original 1.0 source remains available in the <a href="https://github.com/WendellArchive/Genzimnify">archived repository</a>.</p></div>
 
-  <h2 id="v2-1-0">2.1.0 — Unreleased</h2>
-  <h3>Added</h3><ul>
-    <li><code>rizzgame</code>, a Python-free native 2D game library powered by a bundled raylib 5.5 backend. It includes pygame-style display, surfaces, events, input, drawing, images, fonts, sound and streamed music, frame timing, and rectangles.</li>
-    <li>2D cameras with follow and shake, particle emitters, sprite-sheet animation, vector helpers, and easing functions.</li>
-    <li>Examples, graphics integration tests, a pinned backend build, and installer support for the native library.</li>
-  </ul>
-  <p>See the <a href="rizzgame.html">rizzgame guide</a> for the native API, a working example, and current scope.</p>
-
-  <h2 id="v2-0-4">2.0.4 — 2026-09-28 (source snapshot; no GitHub Release)</h2>
+  <h2 id="v2-0-4">2.0.4 — Unreleased</h2>
   <h3>Added</h3><ul>
     <li>Conversion preflight with <code>--check</code>, optional Python source maps with <code>--source-map</code>, and Python conversion errors with source excerpts and rewrite hints.</li>
     <li><code>gzim eval</code> for inline programs and recursive <code>gzim check &lt;directory&gt;</code> for project validation.</li>
     <li><code>gzim --version</code> checks for newer stable releases and shows update instructions without installing anything. <code>--offline</code> and <code>GZIM_NO_UPDATE_CHECK=1</code> disable checks.</li>
     <li><code>gzim doctor</code> identifies the running executable and optional Python location.</li>
+    <li><code>rizzgame</code>, a Python-free native 2D game library powered by a bundled raylib 5.5 backend. It includes pygame-style display, surfaces, events, input, drawing, images, fonts, sound and streamed music, frame timing, and rectangles.</li>
+    <li>2D cameras with follow and shake, particle emitters, sprite-sheet animation, vector helpers, and easing functions.</li>
+    <li>Examples, graphics integration tests, a pinned backend build, and installer support for the native library.</li>
   </ul>
+  <p>See the <a href="rizzgame.html">rizzgame guide</a> for the native API, a working example, and current scope.</p>
   <h3>Changed</h3><ul><li>Removed duplicate <code>build</code> and <code>emit-python</code> CLI operations. Use <code>convert &lt;file&gt; --to py --source-map</code> instead; old commands show migration guidance.</li><li>Centralized CLI dispatch and uncaught-error handling, and moved Python export compilation into the conversion module.</li></ul>
   <h3>Fixed</h3><ul><li>The test runner now fails when any sub-suite fails and checks runtime exit status as well as output.</li><li>Release version verification runs offline; CLI regression tests now cover conversion checks, source-map protection, inline execution, directory checks, and release notices.</li></ul>
 

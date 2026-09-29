@@ -1,6 +1,6 @@
 # Package
 
-version       = "2.1.0"
+version       = "2.0.4"
 author        = "Genzimnify"
 description   = "Genzimnify: a native, Python-free programming language with Gen Z syntax."
 license       = "MIT"

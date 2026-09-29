@@ -1,25 +1,11 @@
 ## gzim, the native Genzimnify CLI.
-## run / check / repl / init / emit-python.
+## Native execution, project tools, and source conversion.
 
-import std/[os, strutils, syncio, tables]
-import lexer, parser, semantic, emit, runtime, errors, packages, version
-import convert
+import std/[os, strutils, syncio, tables, algorithm]
+import runtime, errors, packages, version
+import convert, updates
 
 const Version* = GenzimnifyVersion
-
-# ------------------------------------------------------------------ compile
-
-proc compileSource*(src: string, filename: string): tuple[code: string, maps: string] =
-  let toks = lex(src)
-  let parsed = parseProgram(toks)
-  let issues = checkProgram(parsed.program)
-  if issues.len > 0:
-    var msg = ""
-    for iss in issues:
-      msg.add filename & ":" & $iss.line & ":" & $iss.col & ": cap: " & iss.msg & "\n"
-    raise newGzimError(msg.strip(), issues[0].line, issues[0].col)
-  let em = emitProgram(parsed.program, parsed.usedAny)
-  result = (em.render(), em.renderMaps())
 
 proc failHard(msg: string): void =
   stderr.writeLine("cap! " & msg)
@@ -29,50 +15,60 @@ proc requireNoArgs(command: string, args: seq[string]) =
   if args.len > 0:
     failHard(command & " doesn't take arguments")
 
-proc compileFile(path: string): tuple[code: string, maps: string] =
-  if not fileExists(path):
-    failHard("no file called " & path & ", that's ghost")
-  let src = readFile(path)
-  try:
-    result = compileSource(src, path)
-  except GzimError as e:
-    failHard(e.msg)
-
 # ------------------------------------------------------------------ commands
 
 proc cmdRun(path: string, extraArgs: seq[string]) =
   if not fileExists(path):
     failHard("no file called " & path & ", that's ghost")
-  try:
-    quit(runSource(readFile(path), path, extraArgs))
-  except GzimError as e:
-    failHard(e.msg)
+  quit(runSource(readFile(path), path, extraArgs))
 
-proc cmdEmitPython(path: string) =
-  let (code, maps) = compileFile(path)
-  let outPath = splitFile(path).dir / (splitFile(path).name & ".py")
-  writeFile(outPath, code)
-  writeFile(outPath & ".gzmap", maps)
-  echo "exported " & outPath & " for Python interoperability"
-
-proc cmdCheck(path: string) =
-  if not fileExists(path):
-    failHard("no file called " & path & ", that's ghost")
+proc checkFile(path: string): bool =
   try:
     discard parseChecked(readFile(path), path)
-  except GzimError as e:
-    failHard(e.msg)
-  echo "no cap, " & path & " passes the vibecheck fr"
+    echo "ok: " & path
+    result = true
+  except GzimError as error:
+    if error.msg.startsWith(path & ":"):
+      stderr.writeLine(error.msg)
+    else:
+      stderr.writeLine(path & ":" & $error.line & ":" & $error.col & ": " & error.msg)
+  except CatchableError as error:
+    stderr.writeLine(path & ": " & error.msg)
+
+proc collectSources(dir: string, files: var seq[string]) =
+  # Do not follow directory symlinks or inspect generated/dependency trees.
+  for kind, path in walkDir(dir, checkDir = true):
+    case kind
+    of pcFile:
+      if path.endsWith(".gzim"): files.add path
+    of pcDir:
+      if extractFilename(path) notin [".git", ".gzim", "build", "dist", "target", "node_modules", ".venv", "venv"]:
+        collectSources(path, files)
+    else: discard
+
+proc cmdCheck(path: string) =
+  var files: seq[string]
+  if dirExists(path):
+    collectSources(path, files)
+    files.sort()
+    if files.len == 0: failHard("no .gzim files found in " & path)
+  elif fileExists(path): files.add path
+  else: failHard("no file or directory called " & path)
+  var failed = 0
+  for file in files:
+    if not checkFile(file): inc failed
+  echo $files.len & " checked, " & $failed & " failed"
+  if failed > 0: quit(1)
 
 proc cmdConvert(args: seq[string]) =
-  const usage = "usage: gzim convert <file> --to <py|gzim> [-o <output>] [--force]"
+  const usage = "usage: gzim convert <file> --to <py|gzim> [-o <output>] [--force] [--check] [--source-map]"
   if args.len == 0: failHard(usage)
   if args == @["--help"] or args == @["-h"]:
     echo usage
     return
   let source = args[0]
   var target, destination: string
-  var force = false
+  var force, checkOnly, sourceMap = false
   var i = 1
   while i < args.len:
     case args[i]
@@ -88,19 +84,36 @@ proc cmdConvert(args: seq[string]) =
         destination = args[i]
     of "--force":
       force = true
+    of "--check":
+      checkOnly = true
+    of "--source-map":
+      sourceMap = true
     else:
       failHard("unknown convert argument: " & args[i] & "\n" & usage)
     inc i
   if target notin ["py", "gzim"]: failHard("--to must be py or gzim\n" & usage)
+  if checkOnly and (force or destination != "" or sourceMap):
+    failHard("--check cannot be combined with --force, --output, or --source-map")
+  if sourceMap and target != "py": failHard("--source-map requires --to py")
   let parts = splitFile(source)
   let expected = if target == "py": ".gzim" else: ".py"
   if parts.ext != expected: failHard("conversion to " & target & " requires a " & expected & " source")
   if not fileExists(source): failHard("no file called " & source)
   if destination == "": destination = parts.dir / (parts.name & "." & target)
   try:
-    checkDestination(source, destination, force)
-    let code = if target == "py": compileSource(readFile(source), source).code else: fromPython(source)
+    if not checkOnly:
+      checkDestination(source, destination, force)
+      if sourceMap: checkDestination(source, destination & ".gzmap", force)
+    var code, maps: string
+    if target == "py":
+      (code, maps) = compileSource(readFile(source), source)
+    else:
+      code = fromPython(source)
+    if checkOnly:
+      echo "conversion check passed: " & source & " -> " & target
+      return
     writeConversion(source, destination, code, force)
+    if sourceMap: writeConversion(source, destination & ".gzmap", maps, force)
     echo "converted " & source & " -> " & destination
   except CatchableError as error:
     failHard(error.msg)
@@ -122,32 +135,24 @@ proc cmdInit() =
   initManifest(getCurrentDir())
   echo "project manifest: gzim.toml"
 
-proc packageFail(action: proc()) =
-  try: action()
-  except PackageError as error: failHard(error.msg)
-
 proc cmdInstall() =
-  packageFail(proc() =
-    let count = installDependencies(getCurrentDir())
-    echo $count & " packages ready fr")
+  let count = installDependencies(getCurrentDir())
+  echo $count & " packages ready fr"
 
 proc cmdAdd(rest: seq[string]) =
   if rest.len != 2: failHard("add needs a name and source: gzim add <name> <git-url-or-path>")
-  packageFail(proc() =
-    addDependency(getCurrentDir(), rest[0], rest[1])
-    echo "added " & rest[0] & " fr")
+  addDependency(getCurrentDir(), rest[0], rest[1])
+  echo "added " & rest[0] & " fr"
 
 proc cmdRemove(rest: seq[string]) =
   if rest.len != 1: failHard("remove needs a package name: gzim remove <name>")
-  packageFail(proc() =
-    removeDependency(getCurrentDir(), rest[0])
-    echo "removed " & rest[0] & " fr")
+  removeDependency(getCurrentDir(), rest[0])
+  echo "removed " & rest[0] & " fr"
 
 proc cmdPackages() =
-  packageFail(proc() =
-    let manifest = loadManifest(getCurrentDir())
-    if manifest.dependencies.len == 0: echo "no packages yet"
-    for name, source in manifest.dependencies: echo name & "  " & source)
+  let manifest = loadManifest(getCurrentDir())
+  if manifest.dependencies.len == 0: echo "no packages yet"
+  for name, source in manifest.dependencies: echo name & "  " & source
 
 proc cmdRepl() =
   echo "gzim repl " & Version & " native runtime, blank line to run, ctrl-d to dip"
@@ -178,7 +183,8 @@ gzim, the native Genzimnify runtime. Gen Z syntax, zero Python required.
 usage:
   gzim <file.gzim> [args]       run a vibe directly
   gzim run <file.gzim> [args]   same thing, spelled out
-  gzim check <file.gzim>        parse + semantic vibecheck only
+  gzim check <file|directory>   check source files without running
+  gzim eval <code> [args]       run an inline program
   gzim repl                     start the native vibe loop
   gzim init                     drop a starter main.gzim
   gzim add <name> <source>      add a Git or local-path dependency
@@ -186,9 +192,9 @@ usage:
   gzim remove <name>            remove a dependency
   gzim packages                 list project dependencies
   gzim doctor                   show runtime and platform information
-  gzim emit-python <file.gzim>  optional Python interoperability export
-  gzim convert <file> --to <py|gzim> [-o <output>] [--force]
+  gzim convert <file> --to <py|gzim> [-o <output>] [--force] [--check] [--source-map]
                                convert source files (Python import: preview)
+  gzim --version [--offline]   show version and check for updates
   gzim help                     this menu
 
 a Genzimnify program is called a vibe. running it is vibing.
@@ -199,26 +205,22 @@ proc cmdDoctor() =
   echo "gzim " & Version
   echo "runtime: native Nim (Python-free)"
   echo "platform: " & hostOS & "/" & hostCPU
-  echo "status: ready to vibe"
+  echo "executable: " & getAppFilename()
+  echo "project: " & getCurrentDir()
+  var python = findExe("python3")
+  if python == "": python = findExe("python")
+  when defined(windows):
+    if python == "": python = findExe("py")
+  echo "Python (optional): " & (if python == "": "not found" else: python)
 
-proc main*() =
+proc dispatch() =
   let params = commandLineParams()
   if params.len == 0:
     showHelp()
     quit(0)
 
-  var cmd: string
-  var rest: seq[string]
-  if params[0] in ["run", "build", "emit-python", "convert", "check", "repl", "init", "add", "install", "remove", "packages", "doctor", "help", "--help", "-h",
-                   "--version", "-v"]:
-    cmd = params[0]
-    rest = params[1 .. ^1]
-  elif params[0].endsWith(".gzim"):
-    cmd = "run"
-    rest = params
-  else:
-    showHelp()
-    quit(1)
+  let cmd = params[0]
+  let rest = params[1 .. ^1]
 
   case cmd
   of "convert":
@@ -228,12 +230,13 @@ proc main*() =
       failHard("run needs a file, gzim run <file.gzim>")
     cmdRun(rest[0], rest[1 .. ^1])
   of "build", "emit-python":
-    if rest.len != 1:
-      failHard("emit-python needs a file, gzim emit-python <file.gzim>")
-    cmdEmitPython(rest[0])
+    failHard(cmd & " was removed; use gzim convert <file.gzim> --to py --source-map")
+  of "eval":
+    if rest.len == 0: failHard("usage: gzim eval <code> [args]")
+    quit(runSource(rest[0], "<eval>", rest[1 .. ^1]))
   of "check":
     if rest.len != 1:
-      failHard("check needs a file, gzim check <file.gzim>")
+      failHard("usage: gzim check <file|directory>")
     cmdCheck(rest[0])
   of "repl":
     requireNoArgs("repl", rest)
@@ -255,9 +258,23 @@ proc main*() =
     requireNoArgs("doctor", rest)
     cmdDoctor()
   of "--version", "-v":
-    requireNoArgs(cmd, rest)
+    if rest.len > 0 and rest != @["--offline"]:
+      failHard("usage: gzim --version [--offline]")
     echo "gzim " & Version
-  else:
+    flushFile(stdout)
+    if rest.len == 0: showUpdateNotice()
+  of "help", "--help", "-h":
     requireNoArgs("help", rest)
     showHelp()
-    quit(0)
+  else:
+    if cmd.endsWith(".gzim"):
+      cmdRun(cmd, rest)
+    else:
+      failHard("unknown command: " & cmd & "; run gzim help")
+
+proc main*() =
+  # Give filesystem and parsing failures the same CLI exit behavior.
+  try:
+    dispatch()
+  except CatchableError as error:
+    failHard(error.msg)

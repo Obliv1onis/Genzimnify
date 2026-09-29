@@ -25,7 +25,11 @@ jobs:
       - name: Run conversion suite (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
-        run: python tests/conversion_test.py build/gzim.exe
+        run: |
+          python tests/conversion_test.py build/gzim.exe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tests/cli_test.py build/gzim.exe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Run language suite
         if: runner.os != 'Windows'
         shell: bash

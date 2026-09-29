@@ -147,7 +147,8 @@ contains the complete reference.
 |---|---|
 | `gzim app.gzim [args]` | Run a program in the native runtime |
 | `gzim run app.gzim [args]` | Explicit form of the run command |
-| `gzim check app.gzim` | Parse and semantically check without running |
+| `gzim check app.gzim` / `gzim check .` | Check a file or source directory without running |
+| `gzim eval 'yap(1 + 2)'` | Run an inline program |
 | `gzim repl` | Start an interactive session |
 | `gzim init` | Create `main.gzim` and `gzim.toml` |
 | `gzim add <name> <source>` | Add a Git or local dependency |
@@ -155,11 +156,21 @@ contains the complete reference.
 | `gzim packages` | List project dependencies |
 | `gzim remove <name>` | Remove a dependency |
 | `gzim doctor` | Show runtime and platform information |
-| `gzim emit-python app.gzim` | Export Python for interoperability |
+| `gzim --version` / `gzim --version --offline` | Show version, with optional update guidance |
 | `gzim convert <file> --to <py\|gzim>` | Convert source files; Python import is a limited preview |
 
 See the [CLI reference](https://obliv1onis.github.io/Genzimnify/cli.html) for
 exit behavior and command details.
+
+`gzim --version` prints the local version first, then checks GitHub for a newer
+stable release using curl with a two-second transfer limit. Update instructions
+appear on stderr; no installer runs automatically. Offline failures do not change
+the exit code. Use `--offline` or `GZIM_NO_UPDATE_CHECK=1` to skip the check.
+`gzim doctor` shows the executable path to help diagnose stale copies on PATH.
+
+`gzim check <directory>` recursively checks `.gzim` files in sorted order, skips
+symlink directories and generated/dependency trees, reports all failures, and
+returns nonzero if any file fails or no source files are found.
 
 ## Ecosystem
 
@@ -208,11 +219,15 @@ gzim convert main.gzim --to py       # creates main.py beside the source
 gzim convert main.py --to gzim       # creates main.gzim beside the source
 gzim convert main.py --to gzim -o converted.gzim
 gzim convert main.gzim --to py --force
+gzim convert main.py --to gzim --check  # validate without writing
+gzim convert main.gzim --to py --source-map
 ```
 
 Existing output files require `--force`; the source itself cannot be overwritten.
 Conversion finishes and validates before replacing an output file. The new command
-writes a single source file; `emit-python` still also writes its `.gzmap` sidecar.
+writes a single source file; add `--source-map` when exporting Python to also
+write a `.py.gzmap` sidecar. The older `build` and `emit-python` commands were
+removed in 2.0.4; use `convert --to py --source-map` instead.
 
 Python import requires Python 3.8+ on `PATH` and parses the input without running
 it. The parser is embedded in the native executable; there is no additional

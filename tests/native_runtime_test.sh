@@ -64,8 +64,9 @@ if [ "$(printf '%s' "$repl_actual" | grep -o 'FIRST' | wc -l | tr -d ' ')" != "1
   exit 1
 fi
 
-if [ "$("$runtime" --version)" != "gzim 2.0.3" ]; then
-  echo "runtime version is not 2.0.3" >&2
+expected_version="$(sed -n 's/^const GenzimnifyVersion\* = "\([^"]*\)"/\1/p' src/genzimnify/version.nim)"
+if [ "$("$runtime" --version --offline)" != "gzim $expected_version" ]; then
+  echo "runtime version is not $expected_version" >&2
   exit 1
 fi
 

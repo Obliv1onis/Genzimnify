@@ -200,13 +200,50 @@ print(1 in [1, 2], 3 not in [1, 2], False or 9)
                 self.run_cli("convert", *args, success=False)
         self.assertIn("--to", self.run_cli("convert", "--help").stdout)
 
-    def test_legacy_export_and_forward_conversion(self):
+    def test_source_map_and_forward_conversion(self):
         path = self.source('yap("hello")\n', "main.gzim")
-        self.run_cli("emit-python", path)
+        self.run_cli("convert", path, "--to", "py", "--source-map")
         self.assertTrue(self.root.joinpath("main.py.gzmap").exists())
         self.run_cli("convert", path, "--to", "py", success=False)
         self.run_cli("convert", path, "--to", "py", "--force")
         self.assertEqual(self.python_output(path.with_suffix(".py")), "hello\n")
+
+    def test_check_only_does_not_write_or_require_unused_destination(self):
+        path = self.source("print(1)\n")
+        output = path.with_suffix(".gzim")
+        output.write_text("sentinel")
+        self.run_cli("convert", path, "--to", "gzim", "--check")
+        self.assertEqual(output.read_text(), "sentinel")
+        self.assertEqual(sorted(p.name for p in self.root.iterdir()), ["main.gzim", "main.py"])
+        output.unlink()
+        self.source("import math\n")
+        error = self.run_cli("convert", path, "--to", "gzim", "--check", success=False).stderr
+        self.assertIn("import math", error)
+        self.assertIn("^", error)
+        self.assertIn("hint:", error)
+        self.assertFalse(output.exists())
+        native = self.source('yap("ok")\n', "native.gzim")
+        self.run_cli("convert", native, "--to", "py", "--check")
+        self.assertFalse(native.with_suffix(".py").exists())
+        for option in (["--force"], ["-o", str(output)], ["--source-map"]):
+            self.run_cli("convert", native, "--to", "py", "--check", *option, success=False)
+
+    def test_source_map_preflight_preserves_output(self):
+        path = self.source('yap("ok")\n', "main.gzim")
+        sidecar = self.source("sentinel", "main.py.gzmap")
+        self.run_cli("convert", path, "--to", "py", "--source-map", success=False)
+        self.assertFalse(path.with_suffix(".py").exists())
+        self.assertEqual(sidecar.read_text(), "sentinel")
+        self.run_cli("convert", path, "--to", "py", "--source-map", "--force")
+        self.assertNotEqual(sidecar.read_text(), "sentinel")
+        self.assertEqual(self.python_output(path.with_suffix(".py")), "ok\n")
+
+    def test_removed_commands_explain_replacement(self):
+        path = self.source('yap("ok")\n', "main.gzim")
+        for command in ("build", "emit-python"):
+            error = self.run_cli(command, path, success=False).stderr
+            self.assertIn("gzim convert", error)
+            self.assertFalse(path.with_suffix(".py").exists())
 
     def test_forward_syntax_error_leaves_existing_output(self):
         path = self.source("let x be\n", "main.gzim")

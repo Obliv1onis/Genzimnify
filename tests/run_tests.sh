@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Genzimnify test suite: builds the native runtime, then runs each .gzim case
 # and compares its output against the .expected file.
-set -uo pipefail
+set -euo pipefail
 cd "$(dirname "$0")/.."
 
 mkdir -p build
@@ -16,13 +16,12 @@ pass=0
 fail=0
 for f in tests/cases/*.gzim; do
   exp="${f%.gzim}.expected"
-  actual="$("$test_bin" run "$f" 2>&1)"
-  if [ "$actual" == "$(cat "$exp")" ]; then
+  if actual="$("$test_bin" run "$f" 2>&1)" && [ "$actual" == "$(cat "$exp")" ]; then
     pass=$((pass+1))
   else
     fail=$((fail+1))
     echo "FAIL: $f"
-    diff <(echo "$actual") "$exp" | head -20
+    diff <(echo "$actual") "$exp" | head -20 || true
   fi
 done
 
@@ -37,3 +36,4 @@ GZIMC_BIN="$test_bin" bash tests/regression_test.sh
 GZIM_NATIVE_BIN="$test_bin" bash tests/native_runtime_test.sh
 GZIM_NATIVE_BIN="$test_bin" bash tests/package_manager_test.sh
 python3 tests/conversion_test.py "$test_bin"
+python3 tests/cli_test.py "$test_bin"

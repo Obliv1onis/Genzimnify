@@ -17,7 +17,7 @@ brew install --HEAD genzimnify</code></pre>
   <h2 id="manual">Manual installation</h2>
   <div class="steps"><div class="step"><h3>Download a release</h3><p>Open the GitHub Releases page and select the archive matching the operating system and CPU.</p></div><div class="step"><h3>Extract the archive</h3><p>Move <code>gzim</code> and <code>gzim-lsp</code> (or the Windows <code>.exe</code> files) into an installation directory.</p></div><div class="step"><h3>Add the directory to PATH</h3><p>Shells and editors use <code>PATH</code> to locate the runtime.</p></div></div>
   <h2 id="verify">Verify the installation</h2><pre><code>gzim --version
-gzim doctor</code></pre><p>The output includes version <code>2.0.3</code>, <code>runtime: native Nim (Python-free)</code>, and the detected platform.</p>
+gzim doctor</code></pre><p>The output includes version <code>2.0.4</code>, <code>runtime: native Nim (Python-free)</code>, and the detected platform.</p>
   <div class="callout warning"><div class="callout-title">Release archives vs. source builds</div><p>Release archives require no development toolchain. Homebrew <code>--HEAD</code> and source builds compile Genzimnify with Nim first, but the resulting runtime remains independent.</p></div>
   <h2 id="source">Build from source</h2><pre><code>git clone https://github.com/Obliv1onis/Genzimnify.git
 cd Genzimnify

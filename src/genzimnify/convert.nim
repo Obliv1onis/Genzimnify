@@ -1,6 +1,18 @@
 ## File conversion is opt-in; ordinary execution stays Python-free.
 import std/[os, osproc, streams, strutils, json, tempfiles, syncio]
-import errors, runtime
+import errors, runtime, lexer, parser, semantic, emit
+
+proc compileSource*(src: string, filename: string): tuple[code: string, maps: string] =
+  let toks = lex(src)
+  let parsed = parseProgram(toks)
+  let issues = checkProgram(parsed.program)
+  if issues.len > 0:
+    var msg = ""
+    for iss in issues:
+      msg.add filename & ":" & $iss.line & ":" & $iss.col & ": cap: " & iss.msg & "\n"
+    raise newGzimError(msg.strip(), issues[0].line, issues[0].col)
+  let em = emitProgram(parsed.program, parsed.usedAny)
+  result = (em.render(), em.renderMaps())
 
 const PythonConverter = staticRead("python_to_gzim.py")
 

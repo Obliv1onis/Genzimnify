@@ -35,12 +35,15 @@ METHODS = {
 
 
 class Unsupported(Exception):
-    pass
+    def __init__(self, node, message):
+        super().__init__(message)
+        self.line = getattr(node, "lineno", 1)
+        self.column = getattr(node, "col_offset", 0)
+        self.node = type(node).__name__
 
 
 def fail(node, message):
-    raise Unsupported("{}:{}: {}".format(
-        getattr(node, "lineno", 1), getattr(node, "col_offset", 0) + 1, message))
+    raise Unsupported(node, message)
 
 
 def identifier(name, node):
@@ -253,9 +256,31 @@ class Converter:
         return {"code": "\n".join(self.lines) + "\n", "lines": self.maps}
 
 
+HINTS = {
+    "Import": "Convert code that does not import modules, or port the import manually using pull up py.<module>.",
+    "ImportFrom": "Port this import manually using outta py.<module> pull up <name>.",
+    "JoinedStr": "Replace the f-string with a string plus str(value), or port it manually to a glow string.",
+    "ListComp": "Rewrite the comprehension as a loop with append().",
+    "AnnAssign": "Remove the type annotation and use an ordinary assignment.",
+    "ClassDef": "Classes require manual porting to clique in this conversion preview.",
+    "AsyncFunctionDef": "Async functions require manual porting in this conversion preview.",
+    "FunctionDef": "Use ordinary positional parameters without decorators or annotations.",
+    "Compare": "Use separate comparisons joined by and; store expressions with side effects in a variable first.",
+}
+
+
+def diagnostic(path, source, line, column, message, hint):
+    lines = source.splitlines()
+    excerpt = lines[line - 1] if 0 < line <= len(lines) else ""
+    return "{}:{}:{}: {}\n  {}\n  {}^\nhint: {}".format(
+        path, line, column + 1, message, excerpt.expandtabs(4),
+        " " * len(excerpt[:column].expandtabs(4)), hint)
+
+
 def main():
     request = json.load(sys.stdin)
     path = request["path"]
+    source = ""
     try:
         with tokenize.open(path) as source_file:
             source = source_file.read()
@@ -267,9 +292,15 @@ def main():
         result = Converter().convert(tree)
         result["ok"] = True
     except SyntaxError as error:
-        result = {"ok": False, "error": "{}:{}:{}: {}".format(path, error.lineno or 1, error.offset or 1, error.msg)}
+        result = {"ok": False, "error": diagnostic(path, source, error.lineno or 1,
+                  max(0, (error.offset or 1) - 1), error.msg, "Fix the Python syntax before converting.")}
     except Unsupported as error:
-        result = {"ok": False, "error": path + ":" + str(error)}
+        lines = source.splitlines()
+        excerpt = lines[error.line - 1] if 0 < error.line <= len(lines) else ""
+        # Python AST columns are UTF-8 byte offsets, not display character offsets.
+        column = len(excerpt.encode("utf-8")[:error.column].decode("utf-8", errors="ignore"))
+        result = {"ok": False, "error": diagnostic(path, source, error.line, column,
+                  str(error), HINTS.get(error.node, "Simplify this construct to the documented conversion subset, or port it manually."))}
     except (OSError, UnicodeError, ValueError, RecursionError) as error:
         result = {"ok": False, "error": path + ": " + str(error)}
     print(json.dumps(result, ensure_ascii=True))

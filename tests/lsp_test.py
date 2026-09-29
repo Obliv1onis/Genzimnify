@@ -26,7 +26,8 @@ def recv():
 
 send({"jsonrpc":"2.0","id":1,"method":"initialize","params":{"rootUri":None}})
 init = recv()["result"]
-assert init["serverInfo"]["version"] == "2.0.3"
+expected_version = (Path(__file__).resolve().parents[1] / "src/genzimnify/version.nim").read_text().split('"')[1]
+assert init["serverInfo"]["version"] == expected_version
 print("INIT capabilities:", json.dumps(init["capabilities"])[:120])
 send({"jsonrpc":"2.0","method":"initialized","params":{}})
 

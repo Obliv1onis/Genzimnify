@@ -387,7 +387,7 @@ tests/lsp_test.sh        # end-to-end LSP protocol test
 - `gzim update [name]`, `gzim install --locked`, and dependency batches that preserve existing packages on a fetch failure.
 - `gzim-lsp --help` and `gzim-lsp --version` for checking the installed editor server.
 - Studio background execution, Stop, time limits, prefilled stdin, and bounded console output.
-- LSP survives incomplete strings and clears diagnostics when a file closes; Python exports avoid helper name collisions; file `readline()` retains newlines and returns empty text at EOF.
+- LSP survives incomplete strings and clears diagnostics when a file closes; Python exports avoid helper name collisions; file `readline()` normalizes CRLF/CR line endings and retains newlines and returns empty text at EOF.
 
 ```gzim
 pull up clock

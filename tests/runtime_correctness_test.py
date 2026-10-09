@@ -135,6 +135,16 @@ find_out BadVibe:
     yap(file.readline() == "last")
     yap(file.readline() == "")''', 'True\nTrue\nTrue\n')
 
+    def test_file_readline_normalizes_windows_and_legacy_newlines(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'lines.txt'
+            path.write_bytes(b'first\r\nsecond\rlast')
+            self.parity(f'''roll with unlock({str(path)!r}) as file:
+    yap(file.readline() == "first\\n")
+    yap(file.readline() == "second\\n")
+    yap(file.read() == "last")
+    yap(file.readline() == "")''', 'True\nTrue\nTrue\nTrue\n')
+
     def test_call_stack_preserves_imported_function_location(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

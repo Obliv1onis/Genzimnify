@@ -10,6 +10,8 @@ import ast, lexer, parser, semantic, errors
 import packages
 import game/engine as game
 
+proc pushbackChar(ch: cint, handle: File): cint {.importc: "ungetc", header: "<stdio.h>".}
+
 type
   ValueKind* = enum
     vkNone, vkBool, vkInt, vkFloat, vkString, vkList, vkTuple, vkSet, vkDict,
@@ -1346,6 +1348,12 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
     var line = ""
     while not self.fileHandle.endOfFile:
       let ch = self.fileHandle.readChar()
+      if ch == '\r':
+        if not self.fileHandle.endOfFile:
+          let next = self.fileHandle.readChar()
+          if next != '\n': discard pushbackChar(next.ord.cint, self.fileHandle)
+        line.add '\n'
+        break
       line.add ch
       if ch == '\n': break
     return stringVal(line)

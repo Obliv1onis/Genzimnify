@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ("index.html", "style.css", "app.js", "transpiler.js", "favicon.svg",
-         "rizzgame-preview.js", "rizzgame.py")
+         "rizzgame-preview.js", "rizzgame.py", "runner.js", "runtime-worker.js")
 
 
 def main():

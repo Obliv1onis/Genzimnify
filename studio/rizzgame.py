@@ -284,7 +284,15 @@ class _Stopped(Exception): pass
 
 
 class _FlipTransformer(ast.NodeTransformer):
-    def __init__(self): self.function_depth = 0
+    def __init__(self):
+        self.function_depth = 0
+        self.display_aliases = set()
+    def visit_ImportFrom(self, node):
+        if node.module == "rizzgame":
+            for alias in node.names:
+                if alias.name == "display": self.display_aliases.add(alias.asname or "display")
+                elif alias.name == "*": self.display_aliases.add("display")
+        return node
     def visit_FunctionDef(self, node):
         self.function_depth += 1
         node = self.generic_visit(node)
@@ -298,11 +306,13 @@ class _FlipTransformer(ast.NodeTransformer):
                 func=ast.Name(id="_rizzgame_yield", ctx=ast.Load()), args=[], keywords=[])))
             node.body.insert(0, ast.copy_location(heartbeat, node))
         return node
+    visit_For = visit_While
     def visit_Call(self, node):
         node = self.generic_visit(node)
         func = node.func
         if (isinstance(func, ast.Attribute) and func.attr in ("flip", "show_off") and
-                isinstance(func.value, ast.Attribute) and func.value.attr == "display"):
+                ((isinstance(func.value, ast.Attribute) and func.value.attr == "display") or
+                 (isinstance(func.value, ast.Name) and func.value.id in self.display_aliases))):
             if self.function_depth:
                 raise RuntimeError("Studio preview supports display.flip() in the top-level game loop")
             func.attr = "flip_async" if func.attr == "flip" else "show_off_async"

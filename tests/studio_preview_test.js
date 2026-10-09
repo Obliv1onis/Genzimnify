@@ -10,7 +10,7 @@ const app = fs.readFileSync(path.join(root, 'studio/app.js'), 'utf8');
 vm.runInContext(app.slice(0, app.indexOf('const REFERENCE')) + '\nglobalThis.sample = EXAMPLES["rizzgame-starter.gzim"];', compiler);
 const compiled = JSON.parse(vm.runInContext('compileGzim(sample)', compiler));
 assert.equal(compiled.ok, true, compiled.error);
-assert.match(compiled.code, /Genzimnify 2\.0\.5/);
+assert.match(compiled.code, /Genzimnify 2\.0\.6/);
 assert.match(compiled.code, /rg\.display\.pull_up/);
 assert.match(compiled.code, /rg\.display\.show_off/);
 

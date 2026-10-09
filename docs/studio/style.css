@@ -150,3 +150,9 @@ button, input { font: inherit; } button, a { color: inherit; } button { border: 
   .panel-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(90px, 1fr) minmax(120px, 1fr); }
   .preview-pane { border-left: 0; border-top: 1px solid var(--line); }
 }
+:root .run-timeout { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+.run-timeout select { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 5px; padding: 4px; }
+.stdin-panel { padding: 8px 14px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--muted); }
+.stdin-panel summary { cursor: pointer; }
+.stdin-panel textarea { display: block; width: 100%; min-height: 60px; margin-top: 8px; padding: 8px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 5px; resize: vertical; font: inherit; }
+@media (max-width: 700px) { .run-timeout { font-size: 0 !important; } }

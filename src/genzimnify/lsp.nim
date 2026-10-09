@@ -69,8 +69,8 @@ proc lspRange(startP, endP: Pos): JsonNode =
 
 proc analyze(text: string): Doc =
   result = Doc(text: text)
-  result.toks = lexer.lex(text)
   try:
+    result.toks = lexer.lex(text)
     let (program, _) = parseProgram(result.toks)
     result.program = program
   except GzimError:
@@ -484,7 +484,9 @@ proc main*() =
     elif m == "textDocument/didSave":
       discard
     elif m == "textDocument/didClose":
-      docs.del(msg{"params"}{"textDocument"}{"uri"}.getStr())
+      let uri = msg{"params"}{"textDocument"}{"uri"}.getStr()
+      docs.del(uri)
+      notify("textDocument/publishDiagnostics", %*{"uri": uri, "diagnostics": []})
     elif m == "textDocument/hover":
       let uri = msg{"params"}{"textDocument"}{"uri"}.getStr()
       if uri in docs:

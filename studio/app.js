@@ -1,4 +1,4 @@
-/* Genzimnify Studio v2.0.5 - static, local-first browser IDE. */
+/* Genzimnify Studio v2.0.6 - static, local-first browser IDE. */
 const lines = (...items) => items.join("\n") + "\n";
 const EXAMPLES = {
   "hello-vibes.gzim": lines("# welcome to Genzimnify", "let name be \"chat\"", "let energy be 100", "", "vibecheck energy > 90:", "    yap(glow\"yo {name}, the vibes are immaculate\")", "otherwise:", "    yap(\"we can work with this\")"),
@@ -8,6 +8,7 @@ const EXAMPLES = {
   "collections.gzim": lines("let evens be [x for real x up in vibes(10) sus x % 2 == 0]", "let scores be {\"amy\": 9, \"bob\": 7}", "let tags be {\"code\", \"vibes\", \"code\"}", "", "yap(evens)", "yap(scores[\"amy\"])", "yap(call up ranked(tags) yo)", "yap(call up add up([1, 2, 3]) yo)"),
   "exceptions.gzim": lines("f_around:", "    let answer be 1 / 0", "find_out SplitByZero as err:", "    yap(\"can't divide by zero, bestie\")", "no_matter_what:", "    yap(\"we move\")"),
   "async.gzim": lines("pull up timing", "", "on timing cook main():", "    yap(\"loading the vibes...\")", "    wait up timing.sleep(0.2)", "    yap(\"async vibes delivered\")", "", "call up timing.run(main()) yo"),
+  "utilities.gzim": lines("# v2.0.6 utilities", "pull up clock", "pull up luck", "pull up math", "let started be clock.monotonic()", "clock.sleep(0.01)", "yap(clock.monotonic() - started)", "let cards be [1, 2, 3, 4, 5]", "luck.shuffle(cards)", "yap(luck.sample(cards, 2))", "yap(math.isfinite(3.14))", "yap(3 ** 34)"),
   "fit-check.gzim": lines("for real value up in [1, 2, 99]:", "    fit check value:", "        fit 1:", "            yap(\"one\")", "        fit 2:", "            yap(\"two\")", "        otherwise:", "            yap(\"mystery vibe\")"),
   "rizzgame-starter.gzim": lines("pull up rizzgame as rg", "", "let screen be call up rg.display.pull_up([640, 360]) yo", "call up rg.display.set_caption(\"Rizzgame Studio\") yo", "let clock be call up rg.time.Clock() yo", "let player be call up rg.Rect(300, 160, 36, 36) yo", "let running be nocap", "vibe running:", "    let dt be call up clock.keep_up(60) yo / 1000", "    for real event up in call up rg.event.catch_vibes() yo:", "        vibecheck event.type == rg.KEYDOWN both event.key == rg.K_ESCAPE:", "            running be cap", "    let keys be call up rg.key.check_the_vibe() yo", "    vibecheck keys[rg.K_LEFT] either keys[rg.K_a]: player.x be player.x - 220 * dt", "    vibecheck keys[rg.K_RIGHT] either keys[rg.K_d]: player.x be player.x + 220 * dt", "    vibecheck keys[rg.K_UP] either keys[rg.K_w]: player.y be player.y - 220 * dt", "    vibecheck keys[rg.K_DOWN] either keys[rg.K_s]: player.y be player.y + 220 * dt", "    call up screen.glow_up([14, 19, 32]) yo", "    call up rg.draw.flex_circle(screen, [60, 100, 130], [320, 180], 100) yo", "    call up rg.draw.flex_rect(screen, [103, 245, 201], player, 0) yo", "    call up rg.draw.yap_text(screen, \"WASD / ARROWS TO MOVE · ESC TO STOP\", [18, 18], 18, [235, 242, 255]) yo", "    call up rg.display.show_off() yo", "call up rg.dip_out() yo")
 };
@@ -40,6 +41,12 @@ let pyodide = null;
 let pyodideLoading = null;
 let rizzgameReady = false;
 let gameRunning = false;
+let programRunning = false;
+let stopRequested = false;
+let outputSize = 0;
+let outputLimited = false;
+const OUTPUT_LIMIT = 100000;
+const runner = new StudioRunner((text, kind) => write(text, kind), (text) => { status.textContent = text; });
 const preview = new RizzgamePreview($("gameCanvas"), $("previewStage"), $("previewState"));
 window.rizzgameBridge = preview;
 let findMatches = [];
@@ -141,10 +148,10 @@ function renderEditor() {
   $("tabDirty").classList.toggle("visible", dirty);
   document.title = (dirty ? "● " : "") + fileName + " — Genzimnify Studio";
 }
-function safeCompile() {
+function safeCompile(source = editor.value) {
   try {
     if (typeof compileGzim !== "function") throw new Error("browser transpiler did not load");
-    return JSON.parse(compileGzim(editor.value));
+    return JSON.parse(compileGzim(source));
   } catch (error) {
     return { ok: false, error: error.message, diags: [{ line: 0, col: 0, message: error.message }] };
   }
@@ -210,7 +217,7 @@ function refreshDiagnostics(immediate = false) {
     const result = safeCompile();
     showDiagnostics(result);
     pythonOutput.textContent = result.ok ? result.code : "# cap\n" + (result.error || "Could not transpile.");
-    status.textContent = result.ok ? "Ready" : "Cap detected";
+    if (!programRunning) status.textContent = result.ok ? "Ready" : "Cap detected";
   };
   if (immediate) update(); else diagTimer = setTimeout(update, 220);
 }
@@ -227,12 +234,27 @@ function goToLine(line, col = 1) {
   syncScroll();
   updateCursor();
 }
-function clearOutput() { output.textContent = ""; }
+function clearOutput() { output.textContent = ""; outputSize = 0; outputLimited = false; }
 function write(text, className = "") {
+  if (outputLimited) return;
+  const remaining = OUTPUT_LIMIT - outputSize;
+  const limited = text.length > remaining;
+  text = text.slice(0, remaining);
+  outputSize += text.length;
   const span = document.createElement("span");
   if (className) span.className = className;
   span.textContent = text;
   output.appendChild(span);
+  if (limited) {
+    outputLimited = true;
+    const notice = document.createElement("span");
+    notice.className = "cap";
+    notice.textContent = "\nConsole output limit reached (100,000 characters).\n";
+    output.appendChild(notice);
+    stopRequested = true;
+    if (gameRunning) preview.stop();
+    else runner.stop();
+  }
   output.scrollTop = output.scrollHeight;
 }
 async function ensurePyodide() {
@@ -244,7 +266,7 @@ async function ensurePyodide() {
       pyodide = runtime;
       runtime.setStdout({ batched: (text) => write(text + "\n") });
       runtime.setStderr({ batched: (text) => write(text + "\n", "cap") });
-      runtime.setStdin({ stdin: () => window.prompt("yap back (input):") || "" });
+
       return runtime;
     }).catch((error) => { pyodideLoading = null; throw error; });
   }
@@ -259,20 +281,28 @@ async function ensureRizzgame(runtime) {
   rizzgameReady = true;
 }
 async function run() {
-  if (gameRunning) { preview.stop(); return; }
-  const isGame = /^\s*pull up rizzgame\b/m.test(editor.value);
-  runBtn.disabled = !isGame;
-  if (isGame) {
-    gameRunning = true;
-    preview.reset();
-    runBtn.querySelector(".play + span").textContent = "Stop game";
-    runBtn.title = "Stop the running game";
+  if (programRunning) {
+    stopRequested = true;
+    if (gameRunning) preview.stop();
+    else runner.stop();
+    return;
   }
+  programRunning = true;
+  stopRequested = false;
+  runBtn.disabled = false;
+  runBtn.querySelector(".play + span").textContent = "Stop";
+  runBtn.title = "Stop the running program (Ctrl/⌘ + Enter)";
   switchPanel("console");
   clearOutput();
   const started = performance.now();
+  const source = editor.value;
+  const runningFile = fileName;
+  const input = $("programInput").value;
+  const timeout = Number($("runTimeout").value);
+  let gameTimer = null;
+  let timedOut = false;
   try {
-    const result = safeCompile();
+    const result = safeCompile(source);
     showDiagnostics(result);
     pythonOutput.textContent = result.ok ? result.code : "";
     if (!result.ok) {
@@ -281,27 +311,46 @@ async function run() {
       switchPanel("problems");
       return;
     }
-    write("▶ Running " + fileName + "\n", "run-label");
-    const runtime = await ensurePyodide();
-    status.textContent = "Vibing...";
-    if (isGame) {
+    gameRunning = /^\s*(?:import rizzgame(?:\.|\b)|from rizzgame(?:\.|\b))/m.test(result.code);
+    write("▶ Running " + runningFile + "\n", "run-label");
+    if (gameRunning) {
+      preview.reset();
+      const runtime = await ensurePyodide();
+      if (stopRequested) { status.textContent = "Stopped"; return; }
       await ensureRizzgame(runtime);
+      if (stopRequested) { status.textContent = "Stopped"; return; }
+      const inputs = input === "" ? [] : input.replace(/\r\n?/g, "\n").split("\n");
+      if (inputs.length > 1 && inputs[inputs.length - 1] === "") inputs.pop();
+      let inputIndex = 0;
+      runtime.setStdin({ stdin: () => inputIndex < inputs.length ? inputs[inputIndex++] : null });
+      status.textContent = "Vibing...";
+      if (timeout > 0) gameTimer = setTimeout(() => {
+        timedOut = true;
+        stopRequested = true;
+        preview.stop();
+      }, timeout);
       runtime.globals.set("_studio_source", result.code);
       try { await runtime.runPythonAsync("import rizzgame as _studio_rg; await _studio_rg.run_source(_studio_source)"); }
       finally { runtime.runPython("del _studio_source"); }
     } else {
-      const scope = runtime.runPython("dict(__builtins__=__builtins__)");
-      try { await runtime.runPythonAsync(result.code, { globals: scope }); }
-      finally { scope.destroy(); }
+      const outcome = await runner.run(result.code, { input, filename: runningFile, timeout });
+      if (outcome.stopped) stopRequested = true;
     }
-    const elapsed = Math.round(performance.now() - started);
-    write("\n✓ Process finished in " + elapsed + " ms\n", "welcome");
-    status.textContent = "Done in " + elapsed + " ms";
+    if (stopRequested) {
+      status.textContent = timedOut ? "Time limit reached" : outputLimited ? "Output limit reached" : "Stopped";
+      write(timedOut ? "\nTime limit reached.\n" : "\n■ Program stopped.\n", "welcome");
+    } else {
+      const elapsed = Math.round(performance.now() - started);
+      write("\n✓ Process finished in " + elapsed + " ms\n", "welcome");
+      status.textContent = "Done in " + elapsed + " ms";
+    }
   } catch (error) {
     status.textContent = "Runtime cap";
     write((error.message || error) + "\n", "cap");
   } finally {
+    clearTimeout(gameTimer);
     gameRunning = false;
+    programRunning = false;
     runBtn.disabled = false;
     runBtn.querySelector(".play + span").textContent = "Run vibe";
     runBtn.title = "Run vibe (Ctrl/⌘ + Enter)";

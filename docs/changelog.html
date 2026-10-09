@@ -3,6 +3,26 @@
   <div class="page-kicker">Project</div><h1>Changelog</h1><p class="lead">Notable user-facing changes to Genzimnify are documented here. Entries are organized by release and follow the Added, Changed, Fixed, and Removed categories where applicable.</p>
   <div class="callout"><div class="callout-title">Historical releases</div><p>Versions 1.0 and 1.1 predate the current release series. The original 1.0 source remains available in the <a href="https://github.com/WendellArchive/Genzimnify">archived repository</a>.</p></div>
 
+  <h2 id="v2-0-6">2.0.6 — 2026-10-09</h2>
+  <h3>Added</h3><ul>
+    <li>Runtime call stacks with function names and source locations, including imported functions.</li>
+    <li><code>clock.monotonic()</code>, <code>luck.shuffle()</code>, <code>luck.sample()</code>, and <code>math.isfinite/isnan/isinf</code>.</li>
+    <li><code>gzim update [name]</code> and <code>gzim install --locked</code>.</li>
+    <li><code>gzim-lsp --help</code> and <code>gzim-lsp --version</code> for checking editor installations.</li>
+    <li>Studio background execution for ordinary programs, Stop, configurable time limits, prefilled standard input, and a 100,000-character console limit.</li>
+  </ul>
+  <h3>Fixed</h3><ul>
+    <li>Integer powers preserve precision. Integer arithmetic overflow and unsafe float-to-int conversion raise catchable errors.</li>
+    <li>Native sleep now waits; invalid durations raise errors. Native timing remains synchronous.</li>
+    <li>LSP no longer exits on incomplete strings and clears diagnostics on document close.</li>
+    <li>Python export helpers avoid collisions with user names.</li>
+    <li>Lockfile commits override branch/tag references during restoration. Dependencies are resolved as a batch before installed copies are replaced.</li>
+    <li>Imported functions resolve relative imports from their own source file. Failed module initialization restores import context and removes the incomplete cache entry.</li>
+    <li>File readline retains newlines and returns empty text at EOF. Studio detects from-imports of rizzgame and yields in top-level for loops.</li>
+  </ul>
+
+  <p><a href="https://github.com/Obliv1onis/Genzimnify/releases/tag/v2.0.6">View the 2.0.6 release and downloads →</a></p>
+
   <h2 id="v2-0-5">2.0.5 — 2026-10-08</h2>
   <h3>Added</h3><ul>
     <li>Slang options for output: <code>yap(..., glue=" ", micdrop="\n")</code>.</li>

@@ -5,7 +5,7 @@
 ## in this module.
 
 import std/[algorithm, base64, json, math, os, osproc, random, sequtils, sets, streams,
-            strutils, syncio, tables, times]
+            strutils, syncio, tables, times, monotimes]
 import ast, lexer, parser, semantic, errors
 import packages
 import game/engine as game
@@ -24,6 +24,7 @@ type
 
   NativeFunction = ref object
     name: string
+    filename: string
     params: seq[Param]
     defaults: seq[Value]
     body: seq[Stmt]
@@ -57,7 +58,9 @@ type
 
   RuntimeError* = object of CatchableError
     category*: string
+    filename*: string
     line*, col*: int
+    frames: seq[tuple[filename: string, line, col: int, name: string]]
 
   SignalKind = enum sigNone, sigReturn, sigBreak, sigContinue
   Signal = object
@@ -97,6 +100,40 @@ proc runtimeCap(category, message: string, line = 0, col = 0): ref RuntimeError 
   result.category = category
   result.line = line
   result.col = col
+
+proc checkedAdd(a, b: int64): int64 =
+  if (b > 0 and a > high(int64) - b) or (b < 0 and a < low(int64) - b):
+    raise runtimeCap("BadVibe", "integer addition exceeds int64 range")
+  a + b
+
+proc checkedSub(a, b: int64): int64 =
+  if (b > 0 and a < low(int64) + b) or (b < 0 and a > high(int64) + b):
+    raise runtimeCap("BadVibe", "integer subtraction exceeds int64 range")
+  a - b
+
+proc checkedMul(a, b: int64): int64 =
+  if a > 0:
+    if (b > 0 and a > high(int64) div b) or (b < 0 and b < low(int64) div a):
+      raise runtimeCap("BadVibe", "integer multiplication exceeds int64 range")
+  elif a < 0:
+    if (b > 0 and a < low(int64) div b) or (b < 0 and a < high(int64) div b):
+      raise runtimeCap("BadVibe", "integer multiplication exceeds int64 range")
+  a * b
+
+proc checkedPow(base, exponent: int64): int64 =
+  result = 1
+  var factor = base
+  var remaining = exponent
+  while remaining > 0:
+    if (remaining and 1) != 0: result = checkedMul(result, factor)
+    remaining = remaining shr 1
+    if remaining > 0: factor = checkedMul(factor, factor)
+
+proc checkedFloatInt(value: float64): int64 =
+  if value.classify in {fcNan, fcInf, fcNegInf} or
+      value >= 9223372036854775808.0 or value < -9223372036854775808.0:
+    raise runtimeCap("BadVibe", "number cannot be represented as int64")
+  value.int64
 
 proc rootEnv(env: Env): Env =
   result = env
@@ -182,7 +219,7 @@ proc asInt(value: Value): int64 =
   case value.kind
   of vkInt: value.intVal
   of vkBool: (if value.boolVal: 1 else: 0)
-  of vkFloat: value.floatVal.int64
+  of vkFloat: checkedFloatInt(value.floatVal)
   else: raise runtimeCap("WrongType", "expected an integer, got " & $value.kind)
 
 proc truthy(value: Value): bool =
@@ -464,11 +501,11 @@ proc binary(op: string, a, b: Value): Value =
   let bothInts = a.kind in {vkInt, vkBool} and b.kind in {vkInt, vkBool}
   case op
   of "+":
-    if bothInts: intVal(a.asInt + b.asInt) else: floatVal(a.numeric + b.numeric)
+    if bothInts: intVal(checkedAdd(a.asInt, b.asInt)) else: floatVal(a.numeric + b.numeric)
   of "-":
-    if bothInts: intVal(a.asInt - b.asInt) else: floatVal(a.numeric - b.numeric)
+    if bothInts: intVal(checkedSub(a.asInt, b.asInt)) else: floatVal(a.numeric - b.numeric)
   of "*":
-    if bothInts: intVal(a.asInt * b.asInt) else: floatVal(a.numeric * b.numeric)
+    if bothInts: intVal(checkedMul(a.asInt, b.asInt)) else: floatVal(a.numeric * b.numeric)
   of "/":
     if b.numeric == 0: raise runtimeCap("SplitByZero", "division by zero")
     floatVal(a.numeric / b.numeric)
@@ -494,8 +531,8 @@ proc binary(op: string, a, b: Value): Value =
       intVal(remainder)
     else: floatVal(a.numeric - floor(a.numeric / b.numeric) * b.numeric)
   of "**":
-    let value = pow(a.numeric, b.numeric)
-    if bothInts and b.asInt >= 0: intVal(value.int64) else: floatVal(value)
+    if bothInts and b.asInt >= 0: intVal(checkedPow(a.asInt, b.asInt))
+    else: floatVal(pow(a.numeric, b.numeric))
   else: raise runtimeCap("BadVibe", "unknown operator '" & op & "'")
 
 proc formatValue(value: Value, spec: string): string =
@@ -597,7 +634,7 @@ proc evalExpr(rt: Runtime, env: Env, expr: Expr): Value =
     case expr.uop
     of "not ": boolVal(not value.truthy)
     of "-":
-      if value.kind == vkInt: intVal(-value.intVal) else: floatVal(-value.numeric)
+      if value.kind == vkInt: intVal(checkedSub(0, value.intVal)) else: floatVal(-value.numeric)
     of "+":
       if value.kind == vkInt: value else: floatVal(value.numeric)
     of "*", "**": value
@@ -620,7 +657,18 @@ proc evalExpr(rt: Runtime, env: Env, expr: Expr): Value =
           kwargs.add (pair.key.strVal, pair.val)
       else: args.add rt.evalExpr(env, arg)
     for kw in expr.ckwargs: kwargs.add (kw.nm, rt.evalExpr(env, kw.val))
-    rt.callValue(env, rt.evalExpr(env, expr.callee), args, kwargs)
+    let callee = rt.evalExpr(env, expr.callee)
+    try:
+      rt.callValue(env, callee, args, kwargs)
+    except RuntimeError as error:
+      let filename = if rt.moduleStack.len > 0: rt.moduleStack[^1] else: rt.filename
+      let name = case callee.kind
+        of vkFunction: callee.fn.name
+        of vkBuiltin: callee.builtin
+        of vkClass: callee.klass.name
+        else: "<call>"
+      error.frames.add (filename, expr.line, expr.col, name)
+      raise
   of ekAttr: getAttr(rt.evalExpr(env, expr.aobj), expr.aname)
   of ekSub: getItem(rt.evalExpr(env, expr.sobj), rt.evalExpr(env, expr.sidx))
   of ekSlice:
@@ -634,7 +682,7 @@ proc evalExpr(rt: Runtime, env: Env, expr: Expr): Value =
       defaults.add(if param.default == nil: nil else: rt.evalExpr(env, param.default))
     Value(kind: vkFunction, fn: NativeFunction(name: "<mini vibe>", params: expr.lparams,
       defaults: defaults, body: @[], closure: env, isGenerator: false,
-      lambdaBody: expr.lbody))
+      lambdaBody: expr.lbody, filename: rt.moduleStack[^1]))
   of ekAwait: rt.evalExpr(env, expr.wexpr)
   of ekYield: rt.evalExpr(env, expr.yexpr)
   of ekComp:
@@ -731,14 +779,17 @@ proc nativeModule(rt: Runtime, name: string): Value =
   let env = newEnv()
   case name
   of "math":
-    for fn in ["floor", "ceil", "sqrt", "pow"]: env.declare(fn, builtinValue("math." & fn))
+    for fn in ["floor", "ceil", "sqrt", "pow", "isfinite", "isnan", "isinf"]:
+      env.declare(fn, builtinValue("math." & fn))
     env.declare("pi", floatVal(PI)); env.declare("e", floatVal(E))
   of "timing":
     env.declare("sleep", builtinValue("timing.sleep")); env.declare("run", builtinValue("timing.run"))
   of "clock":
     env.declare("time", builtinValue("clock.time")); env.declare("sleep", builtinValue("clock.sleep"))
+    env.declare("monotonic", builtinValue("clock.monotonic"))
   of "luck":
     env.declare("manifest", builtinValue("luck.manifest"))
+    env.declare("shuffle", builtinValue("luck.shuffle")); env.declare("sample", builtinValue("luck.sample"))
     env.declare("random", builtinValue("luck.random")); env.declare("randint", builtinValue("luck.randint")); env.declare("choice", builtinValue("luck.choice"))
   of "system":
     env.declare("args", listVal(rt.args.mapIt(stringVal(it))))
@@ -793,9 +844,13 @@ proc loadModule(rt: Runtime, name: string): Value =
   let module = Value(kind: vkModule, strVal: name, moduleEnv: moduleEnv)
   rt.moduleCache[name] = module
   rt.moduleStack.add path
+  defer: discard rt.moduleStack.pop()
   var yielded: seq[Value]
-  discard rt.execBlock(moduleEnv, parsed.program, yielded)
-  discard rt.moduleStack.pop()
+  try:
+    discard rt.execBlock(moduleEnv, parsed.program, yielded)
+  except:
+    rt.moduleCache.del(name)
+    raise
   module
 
 proc execStmt(rt: Runtime, env: Env, stmt: Stmt, yields: var seq[Value]): Signal =
@@ -836,7 +891,8 @@ proc execStmt(rt: Runtime, env: Env, stmt: Stmt, yields: var seq[Value]): Signal
     for param in stmt.fparams:
       defaults.add(if param.default == nil: nil else: rt.evalExpr(env, param.default))
     let fn = NativeFunction(name: stmt.fname, params: stmt.fparams, defaults: defaults,
-      body: stmt.fndefBody, closure: env, isGenerator: hasYield(stmt.fndefBody), isAsync: stmt.isAsync)
+      body: stmt.fndefBody, closure: env, isGenerator: hasYield(stmt.fndefBody), isAsync: stmt.isAsync,
+      filename: rt.moduleStack[^1])
     env.declare(stmt.fname, Value(kind: vkFunction, fn: fn))
   of skClassDef:
     var base: NativeClass
@@ -853,7 +909,7 @@ proc execStmt(rt: Runtime, env: Env, stmt: Stmt, yields: var seq[Value]): Signal
           defaults.add(if param.default == nil: nil else: rt.evalExpr(env, param.default))
         klass.methods[child.fname] = NativeFunction(name: child.fname, params: child.fparams,
           defaults: defaults, body: child.fndefBody, closure: classEnv,
-          isGenerator: hasYield(child.fndefBody), isAsync: child.isAsync)
+          isGenerator: hasYield(child.fndefBody), isAsync: child.isAsync, filename: rt.moduleStack[^1])
       elif child.kind == skVarDecl:
         classEnv.declare(child.vname, if child.vvalue == nil: noneVal() else: rt.evalExpr(classEnv, child.vvalue), child.isConst)
     env.declare(stmt.cname, Value(kind: vkClass, klass: klass))
@@ -959,6 +1015,7 @@ proc execBlock(rt: Runtime, env: Env, stmts: seq[Stmt], yields: var seq[Value]):
       if error.line == 0:
         error.line = stmt.line
         error.col = stmt.col
+      if error.filename == "": error.filename = rt.moduleStack[^1]
       raise
   Signal(kind: sigNone)
 
@@ -1194,7 +1251,9 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
       if (name == "least" and compareValues(item, result) < 0) or (name == "most" and compareValues(item, result) > 0): result = item
   of "positive":
     requireArgs(name, args, 1)
-    return if args[0].kind == vkInt: intVal(abs(args[0].intVal)) else: floatVal(abs(args[0].numeric))
+    return if args[0].kind == vkInt:
+      intVal(if args[0].intVal < 0: checkedSub(0, args[0].intVal) else: args[0].intVal)
+    else: floatVal(abs(args[0].numeric))
   of "ranked":
     requireArgs(name, args, 1)
     var values = iterable(args[0])
@@ -1230,7 +1289,7 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
     let digits = if args.len == 2: args[1].asInt.int else: 0
     let factor = pow(10.0, digits.float64)
     let rounded = round(args[0].numeric * factor) / factor
-    return if digits == 0: intVal(rounded.int64) else: floatVal(rounded)
+    return if digits == 0: intVal(checkedFloatInt(rounded)) else: floatVal(rounded)
   of "vibe check": requireArgs(name, args, 1); return stringVal($args[0].kind)
   of "unlock":
     if args.len < 1 or args.len > 2 or args[0].kind != vkString: raise runtimeCap("WrongType", "unlock(path, mode) expects text")
@@ -1284,7 +1343,12 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
     return stringVal(readAll(self.fileHandle))
   of "file.readline":
     if not self.fileOpen: raise runtimeCap("BadVibe", "file is closed")
-    return stringVal(self.fileHandle.readLine())
+    var line = ""
+    while not self.fileHandle.endOfFile:
+      let ch = self.fileHandle.readChar()
+      line.add ch
+      if ch == '\n': break
+    return stringVal(line)
   of "file.write":
     requireArgs(name, args, 1)
     if not self.fileOpen: raise runtimeCap("BadVibe", "file is closed")
@@ -1292,19 +1356,52 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
   of "file.close":
     if self.fileOpen: close(self.fileHandle); self.fileOpen = false
     return noneVal()
-  of "math.floor": requireArgs(name, args, 1); return intVal(floor(args[0].numeric).int64)
-  of "math.ceil": requireArgs(name, args, 1); return intVal(ceil(args[0].numeric).int64)
+  of "math.floor":
+    requireArgs(name, args, 1)
+    return intVal(if args[0].kind == vkInt: args[0].intVal else: checkedFloatInt(floor(args[0].numeric)))
+  of "math.ceil":
+    requireArgs(name, args, 1)
+    return intVal(if args[0].kind == vkInt: args[0].intVal else: checkedFloatInt(ceil(args[0].numeric)))
   of "math.sqrt": requireArgs(name, args, 1); return floatVal(sqrt(args[0].numeric))
   of "math.pow": requireArgs(name, args, 2); return floatVal(pow(args[0].numeric, args[1].numeric))
-  of "timing.sleep", "clock.sleep": return noneVal()
+  of "math.isfinite": requireArgs(name, args, 1); return boolVal(args[0].numeric.classify notin {fcNan, fcInf, fcNegInf})
+  of "math.isnan": requireArgs(name, args, 1); return boolVal(args[0].numeric.isNaN)
+  of "math.isinf": requireArgs(name, args, 1); return boolVal(args[0].numeric.classify in {fcInf, fcNegInf})
+  of "timing.sleep", "clock.sleep":
+    requireArgs(name, args, 1)
+    let seconds = args[0].numeric
+    if seconds.classify in {fcNan, fcInf, fcNegInf} or seconds < 0 or seconds > high(int32).float64 / 1000:
+      raise runtimeCap("BadVibe", "sleep expects finite, nonnegative seconds up to 2147483.647")
+    sleep(ceil(seconds * 1000).int)
+    return noneVal()
   of "timing.run": requireArgs(name, args, 1); return args[0]
-  of "clock.time": return floatVal(epochTime())
+  of "clock.time": requireArgs(name, args, 0); return floatVal(epochTime())
+  of "clock.monotonic": requireArgs(name, args, 0); return floatVal(getMonoTime().ticks.float64 / 1_000_000_000)
   of "luck.manifest":
     requireArgs(name, args, 1)
     if args[0].kind != vkInt: raise runtimeCap("WrongType", "manifest expects an integer seed")
     randomize(args[0].intVal)
     return noneVal()
-  of "luck.random": return floatVal(rand(1.0))
+  of "luck.random": requireArgs(name, args, 0); return floatVal(rand(1.0))
+  of "luck.shuffle":
+    requireArgs(name, args, 1)
+    if args[0].kind != vkList: raise runtimeCap("WrongType", "shuffle expects a stack")
+    shuffle(args[0].items)
+    return noneVal()
+  of "luck.sample":
+    requireArgs(name, args, 2)
+    if args[1].kind != vkInt: raise runtimeCap("WrongType", "sample count expects an integer")
+    var values = iterable(args[0])
+    let count = args[1].intVal
+    if count < 0 or count > values.len: raise runtimeCap("BadVibe", "sample count is outside collection size")
+    # Copy before swapping: sampling must not mutate the source collection.
+    var sampled: seq[Value]
+    for value in values: sampled.add value
+    for i in 0 ..< count.int:
+      let chosen = rand(i .. sampled.high)
+      swap(sampled[i], sampled[chosen])
+    sampled.setLen(count.int)
+    return listVal(sampled)
   of "luck.randint": requireArgs(name, args, 2); return intVal(rand(args[0].asInt.int .. args[1].asInt.int))
   of "luck.choice":
     requireArgs(name, args, 1)
@@ -1345,6 +1442,8 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
 proc callFunction(rt: Runtime, caller: Env, callee: Value, args: seq[Value],
                   kwargs: seq[tuple[nm: string, val: Value]]): Value =
   let fn = callee.fn
+  rt.moduleStack.add fn.filename
+  defer: discard rt.moduleStack.pop()
   let scope = newEnv(fn.closure)
   var positional = args
   if callee.boundSelf != nil: positional.insert(callee.boundSelf, 0)
@@ -1408,6 +1507,16 @@ proc installRuntimeNames(env: Env, rt: Runtime) =
   # ancestor is resolved as a bound native operation inside methods.
   env.declare("ancestor", builtinValue("ancestor"), true)
 
+proc reportRuntimeError(error: ref RuntimeError, fallback: string) =
+  if error.frames.len > 0:
+    stderr.writeLine("Call stack (outermost first):")
+    for i in countdown(error.frames.high, 0):
+      let frame = error.frames[i]
+      stderr.writeLine("  " & frame.filename & ":" & $frame.line & ":" & $frame.col & " in " & frame.name)
+  let filename = if error.filename != "": error.filename else: fallback
+  let where = if error.line > 0: filename & ":" & $error.line & ":" & $error.col & ": " else: ""
+  stderr.writeLine(where & "cap: " & error.category & ": " & error.msg)
+
 proc runProgram*(program: seq[Stmt], filename: string, args: seq[string] = @[]): int =
   randomize()
   let rt = Runtime(filename: absolutePath(filename), args: args,
@@ -1420,8 +1529,7 @@ proc runProgram*(program: seq[Stmt], filename: string, args: seq[string] = @[]):
     discard rt.execBlock(env, program, yielded)
     0
   except RuntimeError as error:
-    let where = if error.line > 0: filename & ":" & $error.line & ":" & $error.col & ": " else: ""
-    stderr.writeLine(where & "cap: " & error.category & ": " & error.msg)
+    reportRuntimeError(error, filename)
     1
   except CatchableError as error:
     stderr.writeLine(filename & ": cap: L: " & error.msg)
@@ -1461,10 +1569,7 @@ proc runReplChunk*(session: ReplSession, source: string): int =
     session.statementCount = program.len
     0
   except RuntimeError as error:
-    let where = if error.line > 0:
-      session.runtime.filename & ":" & $error.line & ":" & $error.col & ": "
-    else: ""
-    stderr.writeLine(where & "cap: " & error.category & ": " & error.msg)
+    reportRuntimeError(error, session.runtime.filename)
     1
   except CatchableError as error:
     stderr.writeLine(session.runtime.filename & ": cap: L: " & error.msg)

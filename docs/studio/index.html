@@ -13,7 +13,7 @@
   <div class="app-shell">
     <header class="titlebar">
       <a class="brand" href="./" aria-label="Genzimnify Studio home">
-        <img class="brand-mark" src="favicon.svg" alt=""><span>GENZIMNIFY</span><span class="version">v2.0.5</span>
+        <img class="brand-mark" src="favicon.svg" alt=""><span>GENZIMNIFY</span><span class="version">v2.0.6</span>
       </a>
       <nav class="menu" aria-label="Main menu">
         <button class="menu-button" data-command="new">File</button>
@@ -22,6 +22,7 @@
         <a href="https://obliv1onis.github.io/Genzimnify/">Docs</a>
       </nav>
       <div class="title-actions">
+        <label class="run-timeout">Time limit <select id="runTimeout" aria-label="Program time limit"><option value="10000">10s</option><option value="30000">30s</option><option value="60000">60s</option><option value="0">None</option></select></label>
         <button class="icon-button" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">☼</button>
         <button class="secondary-button" id="shareBtn" title="Copy a shareable URL">Share</button>
         <button class="run-button" id="runBtn" title="Run vibe (Ctrl/⌘ + Enter)">
@@ -94,7 +95,7 @@
           </div>
           <div class="panel-body">
             <div class="terminal-pane">
-              <div class="panel-content active" id="consolePanel"><pre id="output" aria-live="polite"><span class="welcome">Genzimnify Studio v2.0.5
+              <div class="panel-content active" id="consolePanel"><details class="stdin-panel"><summary>Program input · one line per yap back call</summary><textarea id="programInput" aria-label="Program standard input" placeholder="Enter input lines before running"></textarea></details><pre id="output" aria-live="polite"><span class="welcome">Genzimnify Studio v2.0.6
 Ready to vibe. Run with ⌘↵ or Ctrl+Enter.</span></pre></div>
               <div class="panel-content" id="problemsPanel"><div id="diags"></div></div>
               <div class="panel-content" id="pythonPanel"><pre id="pythonOutput"></pre></div>
@@ -123,6 +124,7 @@ Ready to vibe. Run with ⌘↵ or Ctrl+Enter.</span></pre></div>
   <script src="transpiler.js"></script>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
   <script src="rizzgame-preview.js"></script>
+  <script src="runner.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

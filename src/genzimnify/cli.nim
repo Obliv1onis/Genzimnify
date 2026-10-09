@@ -135,8 +135,8 @@ proc cmdInit() =
   initManifest(getCurrentDir())
   echo "project manifest: gzim.toml"
 
-proc cmdInstall() =
-  let count = installDependencies(getCurrentDir())
+proc cmdInstall(locked = false, update = false, name = "") =
+  let count = installDependencies(getCurrentDir(), locked, update, name)
   echo $count & " packages ready fr"
 
 proc cmdAdd(rest: seq[string]) =
@@ -189,7 +189,8 @@ usage:
   gzim repl                     start the native vibe loop
   gzim init                     drop a starter main.gzim
   gzim add <name> <source>      add a Git or local-path dependency
-  gzim install                  install dependencies from gzim.toml
+  gzim install [--locked]       restore dependencies; optionally require the lock
+  gzim update [name]            refresh one or all dependency revisions
   gzim remove <name>            remove a dependency
   gzim packages                 list project dependencies
   gzim doctor                   show runtime and platform information
@@ -248,8 +249,12 @@ proc dispatch() =
   of "add":
     cmdAdd(rest)
   of "install":
-    requireNoArgs("install", rest)
-    cmdInstall()
+    if rest.len > 0 and rest != @["--locked"]: failHard("usage: gzim install [--locked]")
+    cmdInstall(locked = rest.len > 0)
+  of "update":
+    if rest.len > 1 or (rest.len == 1 and rest[0].startsWith("-")):
+      failHard("usage: gzim update [name]")
+    cmdInstall(update = true, name = if rest.len == 1: rest[0] else: "")
   of "remove":
     cmdRemove(rest)
   of "packages":

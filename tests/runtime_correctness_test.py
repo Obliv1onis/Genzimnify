@@ -3,6 +3,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import time
 from pathlib import Path
 
 GZIM = str(Path(sys.argv.pop(1)).resolve())
@@ -52,6 +53,101 @@ find_out BadVibe:
     yap("overflow caught")''')
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stdout, '0\noverflow caught\n')
+
+    def test_exact_integer_powers(self):
+        self.parity('''yap(3 ** 34)
+yap((-2) ** 63)
+yap(0 ** 0, 0 ** 100, 1 ** 9223372036854775807)
+yap((-1) ** 9223372036854775807)
+yap(2 ** -2)''', '16677181699666569\n-9223372036854775808\n1 0 1\n-1\n0.25\n')
+
+    def test_overflows_are_catchable(self):
+        expressions = ['9223372036854775807 + 1', '-9223372036854775807 - 2',
+                       '9223372036854775807 * 2', '(-9223372036854775807 - 1) * -1',
+                       '2 ** 63', '-(-9223372036854775807 - 1)',
+                       'positive(-9223372036854775807 - 1)', 'num(drip("inf"))',
+                       'num(drip("nan"))']
+        for expression in expressions:
+            with self.subTest(expression=expression):
+                result = self.run_code('f_around:\n    yap(' + expression + ')\nfind_out BadVibe:\n    yap("caught")')
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(result.stdout, 'caught\n')
+
+    def test_generated_helper_names_cannot_be_shadowed(self):
+        self.parity('''let _gzim_yap be 1
+let _gzim__ranked be 2
+let _gzim___builtins be 3
+let _GzimLuck be 4
+cook show(_gzim_Luck):
+    yap(ranked([3, 1, 2]))
+show(5)
+pull up luck
+luck.manifest(42)
+let first be luck.random()
+luck.manifest(42)
+yap(first == luck.random())''', '[1, 2, 3]\nTrue\n')
+
+    def test_sleep_and_monotonic(self):
+        started = time.monotonic()
+        result = self.run_code('''pull up clock
+let before be clock.monotonic()
+clock.sleep(0.03)
+yap(clock.monotonic() - before >= 0.025)
+f_around:
+    clock.sleep(-1)
+find_out BadVibe:
+    yap("negative caught")''')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, 'True\nnegative caught\n')
+        self.assertGreaterEqual(time.monotonic() - started, 0.025)
+        self.parity('''pull up timing
+pull up clock
+on timing cook main():
+    let before be clock.monotonic()
+    wait up timing.sleep(0.01)
+    yap(clock.monotonic() - before >= 0.005)
+timing.run(main())''', 'True\n')
+
+    def test_new_standard_library_utilities(self):
+        self.parity('''pull up math
+pull up luck
+yap(math.isfinite(9223372036854775807), math.isfinite(drip("inf")))
+yap(math.isnan(drip("nan")), math.isinf(drip("-inf")))
+let values be [1, 2, 3, 4, 5]
+luck.manifest(42)
+luck.shuffle(values)
+yap(ranked(values))
+let before be stack(values)
+let selected be luck.sample(values, 3)
+yap(how many(selected), how many(squad(selected)), values == before)
+yap(luck.sample(values, 0))
+f_around:
+    luck.sample(values, 6)
+find_out BadVibe:
+    yap("count caught")''', 'True False\nTrue True\n[1, 2, 3, 4, 5]\n3 3 True\n[]\ncount caught\n')
+
+    def test_file_readline_preserves_newline_and_handles_eof(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'lines.txt'
+            path.write_text('first\nlast', encoding='utf-8')
+            self.parity(f'''roll with unlock({str(path)!r}) as file:
+    yap(file.readline() == "first\\n")
+    yap(file.readline() == "last")
+    yap(file.readline() == "")''', 'True\nTrue\nTrue\n')
+
+    def test_call_stack_preserves_imported_function_location(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / 'helper.gzim').write_text('cook fail():\n    send it 1 / 0\n')
+            main = root / 'main.gzim'
+            main.write_text('pull up helper\ncook outer():\n    helper.fail()\nouter()\n')
+            result = subprocess.run([GZIM, str(main)], capture_output=True, text=True, timeout=5)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn('Call stack (outermost first):', result.stderr)
+            self.assertIn('helper.gzim:2:', result.stderr)
+            self.assertIn('in outer', result.stderr)
+            self.assertIn('in fail', result.stderr)
+            self.assertLess(result.stderr.index('in outer'), result.stderr.index('in fail'))
 
     def test_set_equality_and_distinct_large_values(self):
         self.parity('''yap({1, 2} == {2, 1})

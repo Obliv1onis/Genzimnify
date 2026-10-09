@@ -72,6 +72,7 @@ jobs:
     needs: build
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           path: release
@@ -83,4 +84,9 @@ jobs:
         run: |
           cd release
           sha256sum genzimnify-* > SHA256SUMS
-          gh release create "${{ github.ref_name }}" ./* --generate-notes --title "Genzimnify ${{ github.ref_name }}"
+          notes="$GITHUB_WORKSPACE/release-notes/${GITHUB_REF_NAME}.md"
+          if [ -f "$notes" ]; then
+            gh release create "$GITHUB_REF_NAME" ./* --notes-file "$notes" --title "Genzimnify $GITHUB_REF_NAME"
+          else
+            gh release create "$GITHUB_REF_NAME" ./* --generate-notes --title "Genzimnify $GITHUB_REF_NAME"
+          fi

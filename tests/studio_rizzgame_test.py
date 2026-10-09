@@ -85,6 +85,15 @@ rg.dip_out()
         with self.assertRaisesRegex(RuntimeError, "top-level game loop"):
             asyncio.run(self.game.run_source("import rizzgame as rg\ndef frame():\n    rg.display.show_off()\nframe()\n"))
 
+    def test_from_import_display_alias_and_for_loop(self):
+        asyncio.run(self.game.run_source('''from rizzgame import display as screen_api
+screen = screen_api.pull_up([320, 180])
+for frame in range(2):
+    screen.glow_up([10, 20, 30])
+    screen_api.show_off()
+'''))
+        self.assertEqual(sum(item['op'] == 'fill' for item in self.bridge.commands), 2)
+
     def test_native_neon_arena_demo_runs_in_browser_adapter(self):
         script = '''const fs=require("fs"),vm=require("vm");const c=vm.createContext({console});
 vm.runInContext(fs.readFileSync("studio/transpiler.js","utf8"),c);

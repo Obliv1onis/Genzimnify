@@ -94,7 +94,13 @@ proc saveLock(root: string, entries: Table[string, tuple[source, revision: strin
   names.sort()
   for name in names:
     packages[name] = %*{"source": entries[name].source, "revision": entries[name].revision}
-  writeFile(root / "gzim.lock", pretty(%*{"version": 1, "packages": packages}) & "\n")
+  let path = root / "gzim.lock"
+  let temporary = path & ".tmp-" & $getCurrentProcessId()
+  try:
+    writeFile(temporary, pretty(%*{"version": 1, "packages": packages}) & "\n")
+    moveFile(temporary, path)
+  finally:
+    if fileExists(temporary): removeFile(temporary)
 
 proc fetchPackage(root, destination, source: string, lockedRevision = ""): string =
   var localSource = source
@@ -102,7 +108,7 @@ proc fetchPackage(root, destination, source: string, lockedRevision = ""): strin
   if localSource == "": raise newException(PackageError, "package source cannot be empty")
   let resolvedLocal = if localSource.isAbsolute: localSource else: root / localSource
   if dirExists(resolvedLocal):
-    copyDir(normalizedPath(absolutePath(resolvedLocal)), destination)
+    copyDir(expandFilename(resolvedLocal), destination)
     return "path"
 
   var url = source
@@ -111,7 +117,7 @@ proc fetchPackage(root, destination, source: string, lockedRevision = ""): strin
   if hashAt > source.find("://") + 2:
     url = source[0 ..< hashAt]
     reference = source[hashAt + 1 .. ^1]
-  if reference == "": reference = lockedRevision
+  if lockedRevision != "": reference = lockedRevision
   if reference == "":
     discard runGit(@["clone", "--depth", "1", url, destination], root)
   else:
@@ -122,52 +128,77 @@ proc fetchPackage(root, destination, source: string, lockedRevision = ""): strin
     discard runGit(@["-C", destination, "checkout", "--detach", "FETCH_HEAD"], root)
   runGit(@["-C", destination, "rev-parse", "HEAD"], root)
 
-proc installOne(root, name, source: string, lockedRevision = ""): string =
+proc validateSource(root, name, source: string) =
   if not validPackageName(name):
     raise newException(PackageError, "invalid package name '" & name & "'")
   let packages = packageRoot(root)
   createDir(packages)
-  let destination = packages / name
-  let staging = packages / ("." & name & ".tmp-" & $getCurrentProcessId())
-  let backup = packages / ("." & name & ".old-" & $getCurrentProcessId())
   var localSource = source
   if localSource.startsWith("path:"): localSource = localSource[5 .. ^1]
   if localSource == "": raise newException(PackageError, "package source cannot be empty")
   let resolvedLocal = if localSource.isAbsolute: localSource else: root / localSource
   if dirExists(resolvedLocal):
-    let canonicalSource = normalizedPath(absolutePath(resolvedLocal))
-    let canonicalRoot = normalizedPath(absolutePath(root))
-    let canonicalPackages = normalizedPath(absolutePath(packages))
-    if canonicalSource == canonicalRoot or canonicalSource.startsWith(canonicalPackages & $DirSep):
+    let canonicalSource = expandFilename(resolvedLocal)
+    let canonicalRoot = expandFilename(root)
+    let canonicalPackages = expandFilename(packages)
+    if canonicalSource == canonicalRoot or canonicalRoot.startsWith(canonicalSource & $DirSep) or
+        canonicalSource == canonicalPackages or canonicalSource.startsWith(canonicalPackages & $DirSep) or
+        canonicalPackages.startsWith(canonicalSource & $DirSep):
       raise newException(PackageError, "package path must be outside the project package cache")
 
-  if dirExists(staging): removeDir(staging)
-  if dirExists(backup): removeDir(backup)
-  try:
-    result = fetchPackage(root, staging, source, lockedRevision)
-    if dirExists(destination): moveDir(destination, backup)
-    try:
-      moveDir(staging, destination)
-    except CatchableError:
-      if dirExists(backup): moveDir(backup, destination)
-      raise
-    if dirExists(backup): removeDir(backup)
-  except CatchableError:
-    if dirExists(staging): removeDir(staging)
-    if dirExists(backup) and not dirExists(destination): moveDir(backup, destination)
-    raise
-
-proc installDependencies*(root: string): int =
+proc installDependencies*(root: string, locked = false, update = false, updateName = ""): int =
   let manifest = loadManifest(root)
   let oldLock = loadLock(root)
+  if updateName != "" and not manifest.dependencies.hasKey(updateName):
+    raise newException(PackageError, "package '" & updateName & "' is not in gzim.toml")
+  if locked:
+    if not fileExists(root / "gzim.lock"):
+      raise newException(PackageError, "--locked requires gzim.lock; run 'gzim install' first")
+    if oldLock.len != manifest.dependencies.len:
+      raise newException(PackageError, "gzim.lock is out of date; run 'gzim install'")
+    for name, source in manifest.dependencies:
+      if not oldLock.hasKey(name) or oldLock[name].source != source or oldLock[name].revision == "":
+        raise newException(PackageError, "gzim.lock is out of date for '" & name & "'")
+  for name, source in manifest.dependencies: validateSource(root, name, source)
+  let packages = packageRoot(root)
+  let transaction = root / ".gzim" / (".install-" & $getCurrentProcessId())
+  if dirExists(transaction):
+    raise newException(PackageError, "unfinished package transaction: " & transaction)
+  createDir(transaction)
+  createDir(transaction / "incoming")
+  createDir(transaction / "previous")
+  var cleanup = true
+  defer:
+    if cleanup and dirExists(transaction): removeDir(transaction)
   var newLock = initTable[string, tuple[source, revision: string]]()
+  # Resolve every dependency before replacing any installed package.
   for name, source in manifest.dependencies:
     stdout.writeLine("pulling up " & name & "...")
-    let pin = if oldLock.hasKey(name) and oldLock[name].source == source: oldLock[name].revision else: ""
-    let revision = installOne(root, name, source, if pin == "path": "" else: pin)
+    let refresh = update and (updateName == "" or updateName == name)
+    let pin = if not refresh and oldLock.hasKey(name) and oldLock[name].source == source:
+      oldLock[name].revision else: ""
+    let revision = fetchPackage(root, transaction / "incoming" / name, source, if pin == "path": "" else: pin)
     newLock[name] = (source, revision)
-    inc result
-  saveLock(root, newLock)
+  var replaced, backedUp: seq[string]
+  try:
+    for name in manifest.dependencies.keys:
+      let destination = packages / name
+      if dirExists(destination):
+        moveDir(destination, transaction / "previous" / name)
+        backedUp.add name
+      moveDir(transaction / "incoming" / name, destination)
+      replaced.add name
+    if not locked: saveLock(root, newLock)
+  except CatchableError:
+    try:
+      for name in replaced:
+        if dirExists(packages / name): removeDir(packages / name)
+      for name in backedUp: moveDir(transaction / "previous" / name, packages / name)
+    except CatchableError as rollbackError:
+      cleanup = false
+      raise newException(PackageError, "package rollback failed; preserved backups in " & transaction & ": " & rollbackError.msg)
+    raise
+  result = manifest.dependencies.len
 
 proc addDependency*(root, name, source: string) =
   if not validPackageName(name):

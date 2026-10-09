@@ -2,7 +2,7 @@
 <body><div id="siteHeader"></div><div class="layout"><aside class="sidebar" id="siteSidebar"></aside><main class="content"><article>
   <div class="page-kicker">Tools</div><h1>Command-line interface</h1><p class="lead"><code>gzim</code> is the native runtime, checker, REPL, project bootstrapper, and compatibility exporter.</p>
   <h2 id="run">Run a program</h2><pre><code>gzim app.gzim [arguments...]
-gzim run app.gzim [arguments...]</code></pre><p>Both forms parse, semantically check, and execute the program in the current native process. Arguments are exposed through the global <code>args</code> stack.</p>
+gzim run app.gzim [arguments...]</code></pre><p>Both forms parse, semantically check, and execute the program in the current native process. Arguments are exposed through the global <code>args</code> stack. Unhandled runtime errors show a call stack with function names and source file locations, followed by the error category and message.</p>
   <h2 id="check">Check a program</h2><pre><code>gzim check app.gzim
 gzim check .</code></pre><p>Runs the lexer, parser, and semantic analyzer without executing the program. A successful check exits with status 0. Caps exit nonzero and include file, line, and column information.</p>
   <p>Directory checks recursively visit .gzim files in sorted order, report all failures, and skip directory symlinks, .git, .gzim, build, dist, target, node_modules, .venv, and venv. An empty directory exits with status 1.</p>
@@ -13,6 +13,9 @@ gzim eval 'yap(args[0])' hello</code></pre><p>Runs a native program directly fro
 gzim init</code></pre><p>Creates a starter <code>main.gzim</code> and <code>gzim.toml</code> without replacing existing files.</p>
   <h2 id="packages">Manage packages</h2><pre><code>gzim add cool https://github.com/example/cool.git#v1.0.0
 gzim install
+gzim install --locked
+gzim update cool
+gzim update
 gzim packages
 gzim remove cool</code></pre><p>Dependencies are project-local and may come from Git or a local directory. See <a href="packages.html">Packages and projects</a>.</p>
   <h2 id="doctor">Inspect the runtime</h2><pre><code>gzim doctor</code></pre><p>Prints the installed version, confirms that the runtime is native and Python-free, and shows the compiled target OS and CPU, executable path, current directory, and optional Python executable location.</p>

@@ -152,7 +152,8 @@ contains the complete reference.
 | `gzim repl` | Start an interactive session |
 | `gzim init` | Create `main.gzim` and `gzim.toml` |
 | `gzim add <name> <source>` | Add a Git or local dependency |
-| `gzim install` | Restore dependencies from `gzim.toml` |
+| `gzim install [--locked]` | Restore dependencies; optionally require a matching lockfile |
+| `gzim update [name]` | Update one or all dependencies to their source revisions |
 | `gzim packages` | List project dependencies |
 | `gzim remove <name>` | Remove a dependency |
 | `gzim doctor` | Show runtime and platform information |
@@ -186,7 +187,10 @@ gzim install
 ```
 
 Packages are installed under `.gzim/packages/`. Git revisions are recorded in
-`gzim.lock`, so applications can reproduce the same dependency state. Commit
+`gzim.lock`, and take precedence over branch or tag names during installation.
+Use `gzim install --locked` in CI to require a matching lockfile without changing it,
+and `gzim update [name]` to explicitly refresh revisions. Local path dependencies
+are copied from their current contents and are not pinned by content. Commit
 `gzim.toml` and `gzim.lock`; keep `.gzim/` out of version control.
 
 Read the [package guide](https://obliv1onis.github.io/Genzimnify/packages.html)
@@ -300,7 +304,13 @@ use **Zed: Install Dev Extension** and select that directory.
 [`studio/`](studio) contains a static, local-first browser IDE with diagnostics,
 syntax highlighting, completion, examples, import/export, share links,
 formatting, autosave, and a resizable console. Its dedicated rizzgame workspace
-shows the terminal on the left and a live Canvas preview on the right. Open the
+shows the terminal on the left and a live Canvas preview on the right. Ordinary
+programs run in a background worker with a Stop button, a configurable time limit
+(default 10 seconds, starting after runtime loading), and a 100,000-character
+console limit. Expand **Program input** and enter one line per `yap back` call
+before running; exhausted input raises EOF. Stopping a worker discards its Python
+state and temporary files. Games use the cooperative Canvas adapter; choose
+**None** for the time limit when playing longer games. Open the
 [web Studio](https://obliv1onis.github.io/Genzimnify/studio/) or follow the
 [Studio game tutorial](https://obliv1onis.github.io/Genzimnify/rizzgame-studio.html).
 The browser preview uses a JavaScript transpiler and Pyodide; the installable
@@ -367,6 +377,34 @@ tests/lsp_test.sh        # end-to-end LSP protocol test
   require Python; native execution and exporting Python do not.
 
 </details>
+
+### New in 2.0.6
+
+- Exact integer powers and catchable int64 overflow errors.
+- Runtime call stacks include function names and source files, including imported modules.
+- Real native sleep, `clock.monotonic()`, and `math.isfinite/isnan/isinf`.
+- `luck.shuffle(stack)` shuffles in place; `luck.sample(values, count)` samples without replacement and leaves its input unchanged.
+- `gzim update [name]`, `gzim install --locked`, and dependency batches that preserve existing packages on a fetch failure.
+- `gzim-lsp --help` and `gzim-lsp --version` for checking the installed editor server.
+- Studio background execution, Stop, time limits, prefilled stdin, and bounded console output.
+- LSP survives incomplete strings and clears diagnostics when a file closes; Python exports avoid helper name collisions; file `readline()` retains newlines and returns empty text at EOF.
+
+```gzim
+pull up clock
+pull up luck
+pull up math
+let started be clock.monotonic()
+clock.sleep(0.01)
+yap(clock.monotonic() - started)
+let cards be [1, 2, 3, 4, 5]
+luck.shuffle(cards)
+yap(luck.sample(cards, 2))
+yap(math.isfinite(3.14))
+```
+
+Native timing remains synchronous: `timing.sleep()` blocks, and async syntax
+executes eagerly without a concurrent event loop. Python exports use asyncio.
+Native integers remain signed int64; Python/Studio may represent larger integers.
 
 ### New in 2.0.5
 

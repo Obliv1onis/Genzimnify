@@ -44,6 +44,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python tests/cli_test.py build/gzim.exe
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tests/package_manager_test.py build/gzim.exe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python tests/rizzgame_test.py build/gzim.exe
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Run language suite
@@ -57,8 +59,11 @@ jobs:
           python3 scripts/sync-studio-pages.py --check
           python3 tests/studio_rizzgame_test.py
           node tests/studio_preview_test.js
+          node tests/studio_runner_test.js
+          node tests/studio_worker_test.js
           node --check studio/app.js
           node --check studio/rizzgame-preview.js
+          node --check studio/runtime-worker.js
           node --check docs/app.js
       - name: Run graphics suite (Linux)
         if: runner.os == 'Linux'

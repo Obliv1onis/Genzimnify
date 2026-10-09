@@ -35,6 +35,7 @@ echo "all vibes check out fr"
 GZIMC_BIN="$test_bin" bash tests/regression_test.sh
 GZIM_NATIVE_BIN="$test_bin" bash tests/native_runtime_test.sh
 GZIM_NATIVE_BIN="$test_bin" bash tests/package_manager_test.sh
+python3 tests/package_manager_test.py "$test_bin"
 python3 tests/runtime_correctness_test.py "$test_bin"
 python3 tests/conversion_test.py "$test_bin"
 python3 tests/cli_test.py "$test_bin"

@@ -360,13 +360,29 @@ tests/lsp_test.sh        # end-to-end LSP protocol test
 <br>
 
 - Same-quote nesting inside `glow` strings is unsupported; use mixed quotes.
-- Comparison chains are left-associative; use explicit `both` expressions when
-  combining comparisons.
+- Unparenthesized comparison chains are rejected; use explicit `both` expressions
+  when combining comparisons.
 - `timing` is currently cooperative and does not provide a full event loop.
 - Running exported Python, Python-to-Genzimnify conversion, and `py.*` imports
   require Python; native execution and exporting Python do not.
 
 </details>
+
+### New in 2.0.5
+
+```gzim
+yap("no", "cap", glue="-", micdrop="!")
+yap()
+yap(call up ranked([3, 1, 2], uno_reverse=nocap) yo)
+pull up luck
+call up luck.manifest(42) yo
+```
+
+`glue` joins output values and `micdrop` controls the ending (defaults: a space
+and a newline). `uno_reverse` takes `nocap` for descending order or `cap` for
+ascending order. `luck.manifest(integer)` resets the random sequence for
+repeatable runs within the same runtime; native and Python sequences can differ.
+Unsupported or duplicate keyword arguments now raise errors.
 
 ## License
 

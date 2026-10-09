@@ -3,6 +3,22 @@
   <div class="page-kicker">Project</div><h1>Changelog</h1><p class="lead">Notable user-facing changes to Genzimnify are documented here. Entries are organized by release and follow the Added, Changed, Fixed, and Removed categories where applicable.</p>
   <div class="callout"><div class="callout-title">Historical releases</div><p>Versions 1.0 and 1.1 predate the current release series. The original 1.0 source remains available in the <a href="https://github.com/WendellArchive/Genzimnify">archived repository</a>.</p></div>
 
+  <h2 id="v2-0-5">2.0.5 — 2026-10-08</h2>
+  <h3>Added</h3><ul>
+    <li>Slang options for output: <code>yap(..., glue=" ", micdrop="\n")</code>.</li>
+    <li>Descending sorting with <code>ranked(values, uno_reverse=nocap)</code>, and repeatable random sequences with <code>luck.manifest(integer)</code>.</li>
+    <li>Matching Python export and Studio support, plus native/Python parity regression tests.</li>
+  </ul>
+  <h3>Fixed</h3><ul>
+    <li>Integer comparisons, including mixed integer/float comparisons, no longer round distinct int64 values together. Integer floor division and modulo preserve precision and signed remainder semantics; overflowing minimum-int64 division raises a catchable error.</li>
+    <li>Set equality is independent of insertion order.</li>
+    <li><code>no_matter_what</code> runs when exceptions escape a body or handler. Nested handlers restore the active exception, and cleanup control flow can override a pending return or exception.</li>
+    <li>Unsupported and duplicate keyword arguments raise errors instead of being silently ignored. Ancestor calls forward keyword arguments.</li>
+  </ul>
+  <h3>Changed</h3><ul><li>Unparenthesized comparison chains now report a diagnostic suggesting explicit <code>both</code> expressions. Parenthesized comparisons remain supported.</li></ul>
+
+  <p><a href="https://github.com/Obliv1onis/Genzimnify/releases/tag/v2.0.5">View the 2.0.5 release and downloads →</a></p>
+
   <h2 id="v2-0-4">2.0.4 — 2026-09-29</h2>
   <h3>Added</h3><ul>
     <li>Conversion preflight with <code>--check</code>, optional Python source maps with <code>--source-map</code>, and Python conversion errors with source excerpts and rewrite hints.</li>

@@ -38,6 +38,8 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
+          python tests/runtime_correctness_test.py build/gzim.exe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python tests/conversion_test.py build/gzim.exe
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python tests/cli_test.py build/gzim.exe

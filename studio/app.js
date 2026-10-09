@@ -1,4 +1,4 @@
-/* Genzimnify Studio v2.0.4 - static, local-first browser IDE. */
+/* Genzimnify Studio v2.0.5 - static, local-first browser IDE. */
 const lines = (...items) => items.join("\n") + "\n";
 const EXAMPLES = {
   "hello-vibes.gzim": lines("# welcome to Genzimnify", "let name be \"chat\"", "let energy be 100", "", "vibecheck energy > 90:", "    yap(glow\"yo {name}, the vibes are immaculate\")", "otherwise:", "    yap(\"we can work with this\")"),
@@ -56,14 +56,14 @@ const KEYWORDS = new Set(["let", "lock", "be", "vibecheck", "or", "otherwise", "
 const BUILTINS = new Set(["yap", "yap back", "how many", "add up", "round up", "index up", "vibes", "ranked", "unlock", "link"]);
 const BOOLEANS = new Set(["nocap", "cap", "ghost"]);
 const COMPLETION_ITEMS = [
-  { label: "yap", insert: "yap()", cursor: 4, kind: "builtin", detail: "Print a value" },
+  { label: "yap", insert: "yap()", cursor: 4, kind: "builtin", detail: "Print values; glue and micdrop set separator/ending" },
   { label: "yap back", insert: "yap back()", cursor: 9, kind: "builtin", detail: "Read user input" },
   { label: "how many", insert: "how many()", cursor: 9, kind: "builtin", detail: "Get a value's length" },
   { label: "add up", insert: "add up()", cursor: 7, kind: "builtin", detail: "Sum an iterable" },
   { label: "round up", insert: "round up()", cursor: 9, kind: "builtin", detail: "Round a number" },
   { label: "index up", insert: "index up()", cursor: 9, kind: "builtin", detail: "Enumerate values" },
   { label: "vibes", insert: "vibes()", cursor: 6, kind: "builtin", detail: "Create a range" },
-  { label: "ranked", insert: "ranked()", cursor: 7, kind: "builtin", detail: "Sort an iterable" },
+  { label: "ranked", insert: "ranked()", cursor: 7, kind: "builtin", detail: "Sort an iterable; uno_reverse=nocap for descending" },
   { label: "unlock", insert: "unlock()", cursor: 7, kind: "builtin", detail: "Open a file" },
   { label: "link", insert: "link()", cursor: 5, kind: "builtin", detail: "Zip iterables" },
   { label: "let", insert: "let ", kind: "keyword", detail: "Declare a variable" },

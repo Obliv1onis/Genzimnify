@@ -898,6 +898,9 @@ proc parseExpr*(p: var Parser, prec: int = 0): Expr =
     else:
       discard p.advance()
       let rhsPrec = if t.kind == tStarStar: bp - 1 else: bp
+      if bp == 30 and result.kind == ekBinary and not result.grouped and
+          result.bop in ["==", "!=", "<", ">", "<=", ">=", "in", "not in", "is", "is not"]:
+        raise p.fail("comparison chains are sus; split comparisons with 'both'")
       let rhs = p.parseExpr(rhsPrec)
       result = Expr(kind: ekBinary, bop: binOpText(t.kind), blhs: result,
                     brhs: rhs, line: t.line, col: t.col)

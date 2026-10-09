@@ -100,5 +100,6 @@ on timing cook main():
     yap("done")
 
 call up timing.run(main()) yo</code></pre><div class="callout warning"><div class="callout-title">Current native runtime behavior</div><p>In version 2.0.2, the native scheduler executes timing tasks cooperatively and <code>timing.sleep</code> is non-blocking. A full event loop is not implemented.</p></div>
-  <div class="page-nav"><a href="getting-started.html"><small>Previous</small>← First program</a><a href="stdlib.html"><small>Next</small>Standard library →</a></div>
+  <h2 id="comparison-chains">Combining comparisons</h2><p>Starting in 2.0.5, unparenthesized comparison chains such as <code>1 &lt; x &lt; 10</code> are rejected. Write <code>1 &lt; x both x &lt; 10</code>. Explicit parentheses such as <code>(a &lt; b) == nocap</code> remain supported.</p>
+<div class="page-nav"><a href="getting-started.html"><small>Previous</small>← First program</a><a href="stdlib.html"><small>Next</small>Standard library →</a></div>
 </article></main><aside class="toc" id="pageToc"></aside></div><script src="app.js"></script></body></html>

@@ -9,7 +9,7 @@ var NTI570425452 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI570425433 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1459618053 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI33554448 = {size: 0,kind: 2,base: null,node: null,finalizer: null};
-var NTI570425612 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
+var NTI570425618 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI570425368 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI570425410 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI704643093 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
@@ -25,8 +25,8 @@ var NTI1442840579 = {size: 0, kind: 18, base: null, node: null, finalizer: null}
 var NTI1442840588 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI989856125 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1442840590 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI1409288034 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
-var NTI1409288033 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI1409288069 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
+var NTI1409288068 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1409287720 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1409287706 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1409287675 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
@@ -110,7 +110,7 @@ var NTI134217746 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI134217747 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI1426063369 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
 var NTI134217750 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
-var NTI1409288032 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
+var NTI1409288067 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1392508931 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
 var NTI1392508932 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1375731717 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
@@ -305,7 +305,7 @@ var NNI1392508932 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{
 {kind: 1, offset: "col", len: 0, typ: NTI33554435, name: "col", sons: null}]};
 NTI1392508932.node = NNI1392508932;
 NTI1375731717.base = NTI1392508932;
-NTI1409288032.base = NTI1392508932;
+NTI1409288067.base = NTI1392508932;
 var NNI134217750 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI134217750.node = NNI134217750;
 NTI134217750.base = NTI33555186;
@@ -561,10 +561,10 @@ NTI1409287664.base = NTI1409287665;
 NTI1409287675.base = NTI1426063370;
 NTI1409287706.base = NTI1426063368;
 NTI1409287720.base = NTI33554449;
-NTI1409288034.base = NTI1426063370;
-var NNI1409288033 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI1409288034, name: "Field0", sons: null},
+NTI1409288069.base = NTI1426063370;
+var NNI1409288068 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI1409288069, name: "Field0", sons: null},
 {kind: 1, offset: "Field1", len: 0, typ: NTI33554466, name: "Field1", sons: null}]};
-NTI1409288033.node = NNI1409288033;
+NTI1409288068.node = NNI1409288068;
 var NNI1442840590 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554466, name: "Field0", sons: null},
 {kind: 1, offset: "Field1", len: 0, typ: NTI33554466, name: "Field1", sons: null}]};
 NTI1442840590.node = NNI1442840590;
@@ -610,9 +610,9 @@ NTI570425410.node = NNI570425410;
 var NNI570425368 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554449, name: "Field0", sons: null},
 {kind: 1, offset: "Field1", len: 0, typ: NTI704643076, name: "Field1", sons: null}]};
 NTI570425368.node = NNI570425368;
-var NNI570425612 = {kind: 1, offset: "outer0", len: 0, typ: NTI33554448, name: "outer0", sons: null};
-NTI570425612.node = NNI570425612;
-NTI570425612.base = NTI33555181;
+var NNI570425618 = {kind: 1, offset: "outer0", len: 0, typ: NTI33554448, name: "outer0", sons: null};
+NTI570425618.node = NNI570425618;
+NTI570425618.base = NTI33555181;
 NTI1459618053.base = NTI1426063368;
 var NNI570425433 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554449, name: "Field0", sons: null},
 {kind: 1, offset: "Field1", len: 0, typ: NTI704643076, name: "Field1", sons: null}]};
@@ -1112,71 +1112,71 @@ function reprDiscriminant(e_p0, typ_p1) {
 var ConstSet15 = setConstr(2);
 var ConstSet16 = setConstr(32, 9, 11, 13, 10, 12);
 var ConstSet17 = setConstr(10, 79);
-var ConstSet18 = setConstr(2);
+var ConstSet18 = setConstr(12);
 var ConstSet19 = setConstr(2);
-var ConstSet20 = setConstr(13);
+var ConstSet20 = setConstr(2);
 var ConstSet21 = setConstr(13);
 var ConstSet22 = setConstr(13);
 var ConstSet23 = setConstr(13);
 var ConstSet24 = setConstr(13);
 var ConstSet25 = setConstr(13);
-var ConstSet26 = setConstr(8);
-var ConstSet27 = setConstr(12);
-var ConstSet28 = setConstr(22);
-var ConstSet29 = setConstr(20, 21);
-var ConstSet30 = setConstr(87, 88, 89, 90, 91, 92, 93, 80, 81, 82, 83, 84, 85, 86);
-var ConstSet31 = setConstr(2);
+var ConstSet26 = setConstr(13);
+var ConstSet27 = setConstr(8);
+var ConstSet28 = setConstr(12);
+var ConstSet29 = setConstr(22);
+var ConstSet30 = setConstr(20, 21);
+var ConstSet31 = setConstr(87, 88, 89, 90, 91, 92, 93, 80, 81, 82, 83, 84, 85, 86);
 var ConstSet32 = setConstr(2);
 var ConstSet33 = setConstr(2);
 var ConstSet34 = setConstr(2);
 var ConstSet35 = setConstr(2);
 var ConstSet36 = setConstr(2);
 var ConstSet37 = setConstr(2);
-var ConstSet38 = setConstr(18);
-var ConstSet39 = setConstr(19);
+var ConstSet38 = setConstr(2);
+var ConstSet39 = setConstr(18);
 var ConstSet40 = setConstr(19);
-var ConstSet41 = setConstr(2);
-var ConstSet42 = setConstr(7, 8, 9);
-var ConstSet43 = setConstr(10);
+var ConstSet41 = setConstr(19);
+var ConstSet42 = setConstr(2);
+var ConstSet43 = setConstr(7, 8, 9);
 var ConstSet44 = setConstr(10);
-var ConstSet45 = setConstr(11);
-var ConstSet46 = setConstr(12);
+var ConstSet45 = setConstr(10);
+var ConstSet46 = setConstr(11);
 var ConstSet47 = setConstr(12);
-var ConstSet48 = setConstr(13);
+var ConstSet48 = setConstr(12);
 var ConstSet49 = setConstr(13);
 var ConstSet50 = setConstr(13);
-var ConstSet51 = setConstr(14);
-var ConstSet52 = setConstr(15);
+var ConstSet51 = setConstr(13);
+var ConstSet52 = setConstr(14);
 var ConstSet53 = setConstr(15);
-var ConstSet54 = setConstr(16);
+var ConstSet54 = setConstr(15);
 var ConstSet55 = setConstr(16);
 var ConstSet56 = setConstr(16);
 var ConstSet57 = setConstr(16);
 var ConstSet58 = setConstr(16);
 var ConstSet59 = setConstr(16);
 var ConstSet60 = setConstr(16);
-var ConstSet61 = setConstr(17);
+var ConstSet61 = setConstr(16);
 var ConstSet62 = setConstr(17);
-var ConstSet63 = setConstr(20);
+var ConstSet63 = setConstr(17);
 var ConstSet64 = setConstr(20);
 var ConstSet65 = setConstr(20);
-var ConstSet66 = setConstr(2);
-var ConstSet67 = setConstr(0, 1, 5, 3, 4, 6);
+var ConstSet66 = setConstr(20);
+var ConstSet67 = setConstr(2);
 var ConstSet68 = setConstr(0, 1, 5, 3, 4, 6);
 var ConstSet69 = setConstr(0, 1, 5, 3, 4, 6);
-var ConstSet70 = setConstr(7, 8, 9);
-var ConstSet71 = setConstr(1);
+var ConstSet70 = setConstr(0, 1, 5, 3, 4, 6);
+var ConstSet71 = setConstr(7, 8, 9);
 var ConstSet72 = setConstr(1);
 var ConstSet73 = setConstr(1);
-var ConstSet74 = setConstr(0);
-var ConstSet75 = setConstr(3);
+var ConstSet74 = setConstr(1);
+var ConstSet75 = setConstr(0);
 var ConstSet76 = setConstr(3);
-var ConstSet77 = setConstr(4);
+var ConstSet77 = setConstr(3);
 var ConstSet78 = setConstr(4);
-var ConstSet79 = setConstr(5);
+var ConstSet79 = setConstr(4);
 var ConstSet80 = setConstr(5);
 var ConstSet81 = setConstr(5);
-var ConstSet82 = setConstr(6);
+var ConstSet82 = setConstr(5);
 var ConstSet83 = setConstr(6);
 var ConstSet84 = setConstr(6);
 var ConstSet85 = setConstr(6);
@@ -1188,139 +1188,139 @@ var ConstSet90 = setConstr(6);
 var ConstSet91 = setConstr(6);
 var ConstSet92 = setConstr(6);
 var ConstSet93 = setConstr(6);
-var ConstSet94 = setConstr(7);
+var ConstSet94 = setConstr(6);
 var ConstSet95 = setConstr(7);
 var ConstSet96 = setConstr(7);
 var ConstSet97 = setConstr(7);
 var ConstSet98 = setConstr(7);
-var ConstSet99 = setConstr(8);
+var ConstSet99 = setConstr(7);
 var ConstSet100 = setConstr(8);
-var ConstSet101 = setConstr(12);
+var ConstSet101 = setConstr(8);
 var ConstSet102 = setConstr(12);
-var ConstSet103 = setConstr(13);
+var ConstSet103 = setConstr(12);
 var ConstSet104 = setConstr(13);
 var ConstSet105 = setConstr(13);
 var ConstSet106 = setConstr(13);
-var ConstSet107 = setConstr(14);
+var ConstSet107 = setConstr(13);
 var ConstSet108 = setConstr(14);
-var ConstSet109 = setConstr(15);
+var ConstSet109 = setConstr(14);
 var ConstSet110 = setConstr(15);
 var ConstSet111 = setConstr(15);
-var ConstSet112 = setConstr(16);
-var ConstSet113 = setConstr(17);
+var ConstSet112 = setConstr(15);
+var ConstSet113 = setConstr(16);
 var ConstSet114 = setConstr(17);
-var ConstSet115 = setConstr(0, 1, 5, 3, 4, 6);
-var ConstSet116 = setConstr(7, 8, 9);
-var ConstSet117 = setConstr(17);
-var ConstSet118 = setConstr(18);
-var ConstSet119 = setConstr(19);
+var ConstSet115 = setConstr(17);
+var ConstSet116 = setConstr(0, 1, 5, 3, 4, 6);
+var ConstSet117 = setConstr(7, 8, 9);
+var ConstSet118 = setConstr(17);
+var ConstSet119 = setConstr(18);
 var ConstSet120 = setConstr(19);
 var ConstSet121 = setConstr(19);
-var ConstSet122 = setConstr(20, 21);
-var ConstSet123 = setConstr(22);
+var ConstSet122 = setConstr(19);
+var ConstSet123 = setConstr(20, 21);
 var ConstSet124 = setConstr(22);
-var ConstSet125 = setConstr(5);
-var ConstSet126 = setConstr(6);
-var ConstSet127 = setConstr(0, 1, 5, 3, 4, 6);
-var ConstSet128 = setConstr(0, 1, 5, 3, 4, 6);
+var ConstSet125 = setConstr(22);
+var ConstSet126 = setConstr(5);
+var ConstSet127 = setConstr(6);
+var ConstSet128 = setConstr(13, 10);
 var ConstSet129 = setConstr(0, 1, 5, 3, 4, 6);
 var ConstSet130 = setConstr(0, 1, 5, 3, 4, 6);
 var ConstSet131 = setConstr(0, 1, 5, 3, 4, 6);
 var ConstSet132 = setConstr(0, 1, 5, 3, 4, 6);
-var ConstSet133 = setConstr(2);
-var ConstSet134 = setConstr(2);
-var ConstSet135 = setConstr(7, 8, 9);
-var ConstSet136 = setConstr(7, 8, 9);
+var ConstSet133 = setConstr(0, 1, 5, 3, 4, 6);
+var ConstSet134 = setConstr(0, 1, 5, 3, 4, 6);
+var ConstSet135 = setConstr(2);
+var ConstSet136 = setConstr(2);
 var ConstSet137 = setConstr(7, 8, 9);
-var ConstSet138 = setConstr(10);
-var ConstSet139 = setConstr(10);
+var ConstSet138 = setConstr(7, 8, 9);
+var ConstSet139 = setConstr(7, 8, 9);
 var ConstSet140 = setConstr(10);
-var ConstSet141 = setConstr(11);
-var ConstSet142 = setConstr(11);
+var ConstSet141 = setConstr(10);
+var ConstSet142 = setConstr(10);
 var ConstSet143 = setConstr(11);
 var ConstSet144 = setConstr(11);
-var ConstSet145 = setConstr(12);
-var ConstSet146 = setConstr(12);
+var ConstSet145 = setConstr(11);
+var ConstSet146 = setConstr(11);
 var ConstSet147 = setConstr(12);
-var ConstSet148 = setConstr(13);
-var ConstSet149 = setConstr(14);
+var ConstSet148 = setConstr(12);
+var ConstSet149 = setConstr(12);
 var ConstSet150 = setConstr(13);
 var ConstSet151 = setConstr(14);
 var ConstSet152 = setConstr(13);
-var ConstSet153 = setConstr(0, 1, 5, 3, 4, 6);
-var ConstSet154 = setConstr(14);
-var ConstSet155 = setConstr(13);
+var ConstSet153 = setConstr(14);
+var ConstSet154 = setConstr(13);
+var ConstSet155 = setConstr(0, 1, 5, 3, 4, 6);
 var ConstSet156 = setConstr(14);
 var ConstSet157 = setConstr(13);
-var ConstSet158 = setConstr(13);
+var ConstSet158 = setConstr(14);
 var ConstSet159 = setConstr(13);
 var ConstSet160 = setConstr(13);
 var ConstSet161 = setConstr(13);
-var ConstSet162 = setConstr(11);
-var ConstSet163 = setConstr(11);
+var ConstSet162 = setConstr(13);
+var ConstSet163 = setConstr(13);
 var ConstSet164 = setConstr(11);
 var ConstSet165 = setConstr(11);
-var ConstSet166 = setConstr(13);
-var ConstSet167 = setConstr(14);
-var ConstSet168 = setConstr(14);
-var ConstSet169 = setConstr(15);
-var ConstSet170 = setConstr(15);
-var ConstSet171 = setConstr(16);
-var ConstSet172 = setConstr(16);
+var ConstSet166 = setConstr(11);
+var ConstSet167 = setConstr(11);
+var ConstSet168 = setConstr(13);
+var ConstSet169 = setConstr(14);
+var ConstSet170 = setConstr(14);
+var ConstSet171 = setConstr(15);
+var ConstSet172 = setConstr(15);
 var ConstSet173 = setConstr(16);
 var ConstSet174 = setConstr(16);
 var ConstSet175 = setConstr(16);
 var ConstSet176 = setConstr(16);
 var ConstSet177 = setConstr(16);
-var ConstSet178 = setConstr(17);
-var ConstSet179 = setConstr(17);
-var ConstSet180 = setConstr(18);
-var ConstSet181 = setConstr(19);
-var ConstSet182 = setConstr(19);
-var ConstSet183 = setConstr(20);
-var ConstSet184 = setConstr(20);
-var ConstSet185 = setConstr(0);
-var ConstSet186 = setConstr(1);
-var ConstSet187 = setConstr(1);
+var ConstSet178 = setConstr(16);
+var ConstSet179 = setConstr(16);
+var ConstSet180 = setConstr(17);
+var ConstSet181 = setConstr(17);
+var ConstSet182 = setConstr(18);
+var ConstSet183 = setConstr(19);
+var ConstSet184 = setConstr(19);
+var ConstSet185 = setConstr(20);
+var ConstSet186 = setConstr(20);
+var ConstSet187 = setConstr(0);
 var ConstSet188 = setConstr(1);
 var ConstSet189 = setConstr(1);
-var ConstSet190 = setConstr(2);
-var ConstSet191 = setConstr(2);
+var ConstSet190 = setConstr(1);
+var ConstSet191 = setConstr(1);
 var ConstSet192 = setConstr(2);
 var ConstSet193 = setConstr(2);
 var ConstSet194 = setConstr(2);
-var ConstSet195 = setConstr(3);
-var ConstSet196 = setConstr(3);
+var ConstSet195 = setConstr(2);
+var ConstSet196 = setConstr(2);
 var ConstSet197 = setConstr(3);
-var ConstSet198 = setConstr(4);
-var ConstSet199 = setConstr(4);
-var ConstSet200 = setConstr(5);
-var ConstSet201 = setConstr(5);
+var ConstSet198 = setConstr(3);
+var ConstSet199 = setConstr(3);
+var ConstSet200 = setConstr(4);
+var ConstSet201 = setConstr(4);
 var ConstSet202 = setConstr(5);
-var ConstSet203 = setConstr(6);
-var ConstSet204 = setConstr(6);
+var ConstSet203 = setConstr(5);
+var ConstSet204 = setConstr(5);
 var ConstSet205 = setConstr(6);
 var ConstSet206 = setConstr(6);
 var ConstSet207 = setConstr(6);
 var ConstSet208 = setConstr(6);
-var ConstSet209 = setConstr(7);
-var ConstSet210 = setConstr(7);
+var ConstSet209 = setConstr(6);
+var ConstSet210 = setConstr(6);
 var ConstSet211 = setConstr(7);
 var ConstSet212 = setConstr(7);
-var ConstSet213 = setConstr(8);
-var ConstSet214 = setConstr(8);
-var ConstSet215 = setConstr(12);
-var ConstSet216 = setConstr(12);
-var ConstSet217 = setConstr(13);
-var ConstSet218 = setConstr(13);
+var ConstSet213 = setConstr(7);
+var ConstSet214 = setConstr(7);
+var ConstSet215 = setConstr(8);
+var ConstSet216 = setConstr(8);
+var ConstSet217 = setConstr(12);
+var ConstSet218 = setConstr(12);
 var ConstSet219 = setConstr(13);
 var ConstSet220 = setConstr(13);
 var ConstSet221 = setConstr(13);
 var ConstSet222 = setConstr(13);
-var ConstSet223 = setConstr(14);
-var ConstSet224 = setConstr(14);
-var ConstSet225 = setConstr(15);
-var ConstSet226 = setConstr(15);
+var ConstSet223 = setConstr(13);
+var ConstSet224 = setConstr(13);
+var ConstSet225 = setConstr(14);
+var ConstSet226 = setConstr(14);
 var ConstSet227 = setConstr(15);
 var ConstSet228 = setConstr(15);
 var ConstSet229 = setConstr(15);
@@ -1328,23 +1328,30 @@ var ConstSet230 = setConstr(15);
 var ConstSet231 = setConstr(15);
 var ConstSet232 = setConstr(15);
 var ConstSet233 = setConstr(15);
-var ConstSet234 = setConstr(16);
-var ConstSet235 = setConstr(16);
-var ConstSet236 = setConstr(16);
-var ConstSet237 = setConstr(16);
-var ConstSet238 = setConstr(16);
-var ConstSet239 = setConstr(17);
-var ConstSet240 = setConstr(17);
-var ConstSet241 = setConstr(17);
-var ConstSet242 = setConstr(17);
-var ConstSet243 = setConstr(18);
-var ConstSet244 = setConstr(19);
-var ConstSet245 = setConstr(19);
-var ConstSet246 = setConstr(19);
-var ConstSet247 = setConstr(20, 21);
-var ConstSet248 = setConstr(20, 21);
-var ConstSet249 = setConstr(22);
-var ConstSet250 = setConstr(22);
+var ConstSet234 = setConstr(15);
+var ConstSet235 = setConstr(15);
+var ConstSet236 = setConstr(15);
+var ConstSet237 = setConstr(15);
+var ConstSet238 = setConstr(15);
+var ConstSet239 = setConstr(16);
+var ConstSet240 = setConstr(16);
+var ConstSet241 = setConstr(16);
+var ConstSet242 = setConstr(16);
+var ConstSet243 = setConstr(16);
+var ConstSet244 = setConstr(16);
+var ConstSet245 = setConstr(16);
+var ConstSet246 = setConstr(17);
+var ConstSet247 = setConstr(17);
+var ConstSet248 = setConstr(17);
+var ConstSet249 = setConstr(17);
+var ConstSet250 = setConstr(18);
+var ConstSet251 = setConstr(19);
+var ConstSet252 = setConstr(19);
+var ConstSet253 = setConstr(19);
+var ConstSet254 = setConstr(20, 21);
+var ConstSet255 = setConstr(20, 21);
+var ConstSet256 = setConstr(22);
+var ConstSet257 = setConstr(22);
 
 function reraiseException() {
     if ((lastJSError == null)) {
@@ -1364,15 +1371,15 @@ function reraiseException() {
 
 
 }
-var ConstSet251 = setConstr(6);
-var ConstSet252 = setConstr(5);
-var ConstSet253 = setConstr(6);
-var ConstSet254 = setConstr(5);
-var ConstSet255 = setConstr(4);
-var ConstSet256 = setConstr(4);
-var ConstSet257 = setConstr(2);
-var ConstSet258 = setConstr(3);
-var ConstSet259 = setConstr(1);
+var ConstSet258 = setConstr(6);
+var ConstSet259 = setConstr(5);
+var ConstSet260 = setConstr(6);
+var ConstSet261 = setConstr(5);
+var ConstSet262 = setConstr(4);
+var ConstSet263 = setConstr(4);
+var ConstSet264 = setConstr(2);
+var ConstSet265 = setConstr(3);
+var ConstSet266 = setConstr(1);
 var objectID_721420466 = [0];
 
 function isFatPointer__system_u2925(ti_p0) {
@@ -1561,13 +1568,13 @@ function addChars__stdZprivateZdigitsutils_u202(result_p0, result_p0_Idx, x_p1, 
          else {result_p0[result_p0_Idx].length = Temporary1; };
     Label2: {
       var iHEX60gensym4_335544542 = 0;
-      var i_1459618905 = 0;
+      var i_1459618990 = 0;
       Label3: {
           Label4: while (true) {
-          if (!(i_1459618905 < n_p3)) break Label4;
-            iHEX60gensym4_335544542 = i_1459618905;
+          if (!(i_1459618990 < n_p3)) break Label4;
+            iHEX60gensym4_335544542 = i_1459618990;
             result_p0[result_p0_Idx][(old_335544528 + iHEX60gensym4_335544542)] = x_p1.charCodeAt((start_p2 + iHEX60gensym4_335544542));
-            i_1459618905 += 1;
+            i_1459618990 += 1;
           }
       };
     };
@@ -1829,9 +1836,9 @@ function hashFarm__pureZhashes_u685(s_p0) {
           z_721420989 = BigInt.asUintN(64, (rotR__pureZhashes_u515(BigInt.asUintN(64, (z_721420989 + w_721421000["Field0"])), 33) * 13011662864482103923n));
           v_721420995 = nimCopy(v_721420995, weakLen32withSeeds__pureZhashes_u662(s_p0, addInt(o_721420986, 0), BigInt.asUintN(64, (v_721420995["Field1"] * 13011662864482103923n)), BigInt.asUintN(64, (x_721420987 + w_721421000["Field0"]))), NTI721420640);
           w_721421000 = nimCopy(w_721421000, weakLen32withSeeds__pureZhashes_u662(s_p0, addInt(o_721420986, 32), BigInt.asUintN(64, (z_721420989 + w_721421000["Field1"])), BigInt.asUintN(64, (y_721420988 + load8__pureZhashes_u426(s_p0, addInt(o_721420986, 16))))), NTI721420640);
-          var HEX3Atmp_1459618907 = z_721420989;
+          var HEX3Atmp_1459618992 = z_721420989;
           z_721420989 = x_721420987;
-          x_721420987 = HEX3Atmp_1459618907;
+          x_721420987 = HEX3Atmp_1459618992;
           o_721420986 = addInt(o_721420986, 64);
           if ((o_721420986 == eos_721421004)) {
           break Label1;
@@ -1851,9 +1858,9 @@ function hashFarm__pureZhashes_u685(s_p0) {
     z_721420989 = BigInt.asUintN(64, (rotR__pureZhashes_u515(BigInt.asUintN(64, (z_721420989 + w_721421000["Field0"])), 33) * mul_721421026));
     v_721420995 = nimCopy(v_721420995, weakLen32withSeeds__pureZhashes_u662(s_p0, addInt(o_721420986, 0), BigInt.asUintN(64, (v_721420995["Field1"] * mul_721421026)), BigInt.asUintN(64, (x_721420987 + w_721421000["Field0"]))), NTI721420640);
     w_721421000 = nimCopy(w_721421000, weakLen32withSeeds__pureZhashes_u662(s_p0, addInt(o_721420986, 32), BigInt.asUintN(64, (z_721420989 + w_721421000["Field1"])), BigInt.asUintN(64, (y_721420988 + load8__pureZhashes_u426(s_p0, addInt(o_721420986, 16))))), NTI721420640);
-    var HEX3Atmp_1459618908 = z_721420989;
+    var HEX3Atmp_1459618993 = z_721420989;
     z_721420989 = x_721420987;
-    x_721420987 = HEX3Atmp_1459618908;
+    x_721420987 = HEX3Atmp_1459618993;
     result_721420975 = len16__pureZhashes_u527(BigInt.asUintN(64, (BigInt.asUintN(64, (len16__pureZhashes_u527(v_721420995["Field0"], w_721421000["Field0"], mul_721421026) + BigInt.asUintN(64, (shiftMix__pureZhashes_u508(y_721420988) * 14097894508562428199n)))) + z_721420989)), BigInt.asUintN(64, (len16__pureZhashes_u527(v_721420995["Field1"], w_721421000["Field1"], mul_721421026) + x_721420987)), mul_721421026);
   };
 
@@ -1962,18 +1969,18 @@ function rawInsert__jsZjsffi_u1233(t_p0, data_p1, data_p1_Idx, key_p2, val_p3, h
 
 function enlarge__jsZjsffi_u959(t_p0) {
     var n_1342178245 = [];
-    n_1342178245 = new Array(chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647)); for (var i = 0 ; i < chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647) ; ++i) { n_1342178245[i] = {Field0: 0, Field1: [], Field2: []}; }    var HEX3Atmp_1459618915 = nimCopy(null, t_p0.data, NTI1342177291);
+    n_1342178245 = new Array(chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647)); for (var i = 0 ; i < chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647) ; ++i) { n_1342178245[i] = {Field0: 0, Field1: [], Field2: []}; }    var HEX3Atmp_1459619000 = nimCopy(null, t_p0.data, NTI1342177291);
     t_p0.data = n_1342178245;
-    n_1342178245 = HEX3Atmp_1459618915;
+    n_1342178245 = HEX3Atmp_1459619000;
     Label1: {
       var i_1342178305 = 0;
-      var colontmp__1459618911 = 0;
-      colontmp__1459618911 = (n_1342178245).length - 1;
-      var res_1459618913 = 0;
+      var colontmp__1459618996 = 0;
+      colontmp__1459618996 = (n_1342178245).length - 1;
+      var res_1459618998 = 0;
       Label2: {
           Label3: while (true) {
-          if (!(res_1459618913 <= colontmp__1459618911)) break Label3;
-            i_1342178305 = res_1459618913;
+          if (!(res_1459618998 <= colontmp__1459618996)) break Label3;
+            i_1342178305 = res_1459618998;
             var eh_1342178355 = n_1342178245[chckIndx(i_1342178305, 0, (n_1342178245).length - 1)].Field0;
             if (isFilled__pureZcollectionsZtables_u31(eh_1342178355)) {
             var j_1342178359 = (eh_1342178355 & (t_p0.data).length - 1);
@@ -1986,7 +1993,7 @@ function enlarge__jsZjsffi_u959(t_p0) {
             rawInsert__jsZjsffi_u1233(t_p0, t_p0, "data", n_1342178245[chckIndx(i_1342178305, 0, (n_1342178245).length - 1)].Field1, n_1342178245[chckIndx(i_1342178305, 0, (n_1342178245).length - 1)].Field2, eh_1342178355, j_1342178359);
             }
 
-            res_1459618913 = addInt(res_1459618913, 1);
+            res_1459618998 = addInt(res_1459618998, 1);
           }
       };
     };
@@ -2076,7 +2083,7 @@ function toTable__parser_u80(pairs_p0) {
   return result_1409286228[0];
 
 }
-var NAME_MAP_1459617806 = toTable__parser_u80([nimCopy(null, {Field0: [104,111,119,32,109,97,110,121], Field1: [108,101,110]}, NTI1459617801), nimCopy(null, {Field0: [118,105,98,101,115], Field1: [114,97,110,103,101]}, NTI1459617801), nimCopy(null, {Field0: [110,117,109], Field1: [105,110,116]}, NTI1459617801), nimCopy(null, {Field0: [100,114,105,112], Field1: [102,108,111,97,116]}, NTI1459617801), nimCopy(null, {Field0: [116,101,120,116], Field1: [115,116,114]}, NTI1459617801), nimCopy(null, {Field0: [116,114,117,116,104], Field1: [98,111,111,108]}, NTI1459617801), nimCopy(null, {Field0: [115,116,97,99,107], Field1: [108,105,115,116]}, NTI1459617801), nimCopy(null, {Field0: [109,97,112], Field1: [100,105,99,116]}, NTI1459617801), nimCopy(null, {Field0: [115,113,117,97,100], Field1: [115,101,116]}, NTI1459617801), nimCopy(null, {Field0: [99,114,101,119], Field1: [116,117,112,108,101]}, NTI1459617801), nimCopy(null, {Field0: [97,100,100,32,117,112], Field1: [115,117,109]}, NTI1459617801), nimCopy(null, {Field0: [108,101,97,115,116], Field1: [109,105,110]}, NTI1459617801), nimCopy(null, {Field0: [109,111,115,116], Field1: [109,97,120]}, NTI1459617801), nimCopy(null, {Field0: [112,111,115,105,116,105,118,101], Field1: [97,98,115]}, NTI1459617801), nimCopy(null, {Field0: [114,97,110,107,101,100], Field1: [115,111,114,116,101,100]}, NTI1459617801), nimCopy(null, {Field0: [105,110,100,101,120,32,117,112], Field1: [101,110,117,109,101,114,97,116,101]}, NTI1459617801), nimCopy(null, {Field0: [108,105,110,107], Field1: [122,105,112]}, NTI1459617801), nimCopy(null, {Field0: [117,110,108,111,99,107], Field1: [111,112,101,110]}, NTI1459617801), nimCopy(null, {Field0: [114,111,117,110,100,32,117,112], Field1: [114,111,117,110,100]}, NTI1459617801), nimCopy(null, {Field0: [118,105,98,101,32,99,104,101,99,107], Field1: [116,121,112,101]}, NTI1459617801), nimCopy(null, {Field0: [121,97,112], Field1: [112,114,105,110,116]}, NTI1459617801), nimCopy(null, {Field0: [121,97,112,32,98,97,99,107], Field1: [105,110,112,117,116]}, NTI1459617801), nimCopy(null, {Field0: [97,110,99,101,115,116,111,114], Field1: [115,117,112,101,114]}, NTI1459617801), nimCopy(null, {Field0: [110,101,119], Field1: [95,95,105,110,105,116,95,95]}, NTI1459617801), nimCopy(null, {Field0: [76], Field1: [69,120,99,101,112,116,105,111,110]}, NTI1459617801), nimCopy(null, {Field0: [66,97,100,86,105,98,101], Field1: [86,97,108,117,101,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [87,114,111,110,103,84,121,112,101], Field1: [84,121,112,101,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [79,117,116,79,102,80,111,99,107,101,116], Field1: [73,110,100,101,120,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [71,104,111,115,116,101,100], Field1: [75,101,121,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [83,112,108,105,116,66,121,90,101,114,111], Field1: [90,101,114,111,68,105,118,105,115,105,111,110,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [78,111,80,117,108,108,85,112], Field1: [73,109,112,111,114,116,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [67,97,112,68,101,116,101,99,116,101,100], Field1: [65,115,115,101,114,116,105,111,110,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [83,116,111,112,84,104,101,67,97,112], Field1: [83,116,111,112,73,116,101,114,97,116,105,111,110]}, NTI1459617801)]);
+var NAME_MAP_1459617806 = toTable__parser_u80([nimCopy(null, {Field0: [104,111,119,32,109,97,110,121], Field1: [108,101,110]}, NTI1459617801), nimCopy(null, {Field0: [118,105,98,101,115], Field1: [114,97,110,103,101]}, NTI1459617801), nimCopy(null, {Field0: [110,117,109], Field1: [105,110,116]}, NTI1459617801), nimCopy(null, {Field0: [100,114,105,112], Field1: [102,108,111,97,116]}, NTI1459617801), nimCopy(null, {Field0: [116,101,120,116], Field1: [115,116,114]}, NTI1459617801), nimCopy(null, {Field0: [116,114,117,116,104], Field1: [98,111,111,108]}, NTI1459617801), nimCopy(null, {Field0: [115,116,97,99,107], Field1: [108,105,115,116]}, NTI1459617801), nimCopy(null, {Field0: [109,97,112], Field1: [100,105,99,116]}, NTI1459617801), nimCopy(null, {Field0: [115,113,117,97,100], Field1: [115,101,116]}, NTI1459617801), nimCopy(null, {Field0: [99,114,101,119], Field1: [116,117,112,108,101]}, NTI1459617801), nimCopy(null, {Field0: [97,100,100,32,117,112], Field1: [115,117,109]}, NTI1459617801), nimCopy(null, {Field0: [108,101,97,115,116], Field1: [109,105,110]}, NTI1459617801), nimCopy(null, {Field0: [109,111,115,116], Field1: [109,97,120]}, NTI1459617801), nimCopy(null, {Field0: [112,111,115,105,116,105,118,101], Field1: [97,98,115]}, NTI1459617801), nimCopy(null, {Field0: [114,97,110,107,101,100], Field1: [95,103,122,105,109,95,114,97,110,107,101,100]}, NTI1459617801), nimCopy(null, {Field0: [105,110,100,101,120,32,117,112], Field1: [101,110,117,109,101,114,97,116,101]}, NTI1459617801), nimCopy(null, {Field0: [108,105,110,107], Field1: [122,105,112]}, NTI1459617801), nimCopy(null, {Field0: [117,110,108,111,99,107], Field1: [111,112,101,110]}, NTI1459617801), nimCopy(null, {Field0: [114,111,117,110,100,32,117,112], Field1: [114,111,117,110,100]}, NTI1459617801), nimCopy(null, {Field0: [118,105,98,101,32,99,104,101,99,107], Field1: [116,121,112,101]}, NTI1459617801), nimCopy(null, {Field0: [121,97,112], Field1: [95,103,122,105,109,95,121,97,112]}, NTI1459617801), nimCopy(null, {Field0: [121,97,112,32,98,97,99,107], Field1: [105,110,112,117,116]}, NTI1459617801), nimCopy(null, {Field0: [97,110,99,101,115,116,111,114], Field1: [115,117,112,101,114]}, NTI1459617801), nimCopy(null, {Field0: [110,101,119], Field1: [95,95,105,110,105,116,95,95]}, NTI1459617801), nimCopy(null, {Field0: [76], Field1: [69,120,99,101,112,116,105,111,110]}, NTI1459617801), nimCopy(null, {Field0: [66,97,100,86,105,98,101], Field1: [86,97,108,117,101,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [87,114,111,110,103,84,121,112,101], Field1: [84,121,112,101,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [79,117,116,79,102,80,111,99,107,101,116], Field1: [73,110,100,101,120,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [71,104,111,115,116,101,100], Field1: [75,101,121,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [83,112,108,105,116,66,121,90,101,114,111], Field1: [90,101,114,111,68,105,118,105,115,105,111,110,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [78,111,80,117,108,108,85,112], Field1: [73,109,112,111,114,116,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [67,97,112,68,101,116,101,99,116,101,100], Field1: [65,115,115,101,114,116,105,111,110,69,114,114,111,114]}, NTI1459617801), nimCopy(null, {Field0: [83,116,111,112,84,104,101,67,97,112], Field1: [83,116,111,112,73,116,101,114,97,116,105,111,110]}, NTI1459617801)]);
 var MODULE_MAP_1459617811 = toTable__parser_u80([nimCopy(null, {Field0: [108,117,99,107], Field1: [114,97,110,100,111,109]}, NTI1459617842), nimCopy(null, {Field0: [99,108,111,99,107], Field1: [116,105,109,101]}, NTI1459617842), nimCopy(null, {Field0: [106,115,111,110], Field1: [106,115,111,110]}, NTI1459617842), nimCopy(null, {Field0: [114,101,103,101,120], Field1: [114,101]}, NTI1459617842), nimCopy(null, {Field0: [115,116,97,115,104], Field1: [99,111,108,108,101,99,116,105,111,110,115]}, NTI1459617842), nimCopy(null, {Field0: [108,111,111,112,115], Field1: [105,116,101,114,116,111,111,108,115]}, NTI1459617842), nimCopy(null, {Field0: [116,111,111,108,115], Field1: [102,117,110,99,116,111,111,108,115]}, NTI1459617842), nimCopy(null, {Field0: [116,105,109,105,110,103], Field1: [97,115,121,110,99,105,111]}, NTI1459617842), nimCopy(null, {Field0: [112,97,116,104,115], Field1: [112,97,116,104,108,105,98]}, NTI1459617842), nimCopy(null, {Field0: [115,112,97,119,110], Field1: [115,117,98,112,114,111,99,101,115,115]}, NTI1459617842), nimCopy(null, {Field0: [110,101,116], Field1: [115,111,99,107,101,116]}, NTI1459617842), nimCopy(null, {Field0: [119,101,98], Field1: [104,116,116,112]}, NTI1459617842), nimCopy(null, {Field0: [100,98], Field1: [115,113,108,105,116,101,51]}, NTI1459617842), nimCopy(null, {Field0: [118,105,98,101,99,104,101,99,107], Field1: [117,110,105,116,116,101,115,116]}, NTI1459617842)]);
 
 function nsuStartsWith(s_p0, prefix_p1) {
@@ -4776,6 +4783,46 @@ function parseSubscript__parser_u2757(p_p0, obj_p1) {
 
 }
 
+function find__stdZenumutils_u55(a_p0, item_p1) {
+  var result_1023410236 = 0;
+
+  BeforeRet: {
+    result_1023410236 = 0;
+    Label1: {
+      var i_1023410240 = [];
+      var i_570425732 = 0;
+      Label2: {
+          Label3: while (true) {
+          if (!(i_570425732 < (a_p0).length)) break Label3;
+            i_1023410240 = a_p0[chckIndx(i_570425732, 0, (a_p0).length - 1)];
+            if (eqStrings(i_1023410240, item_p1)) {
+            break BeforeRet;
+            }
+
+            result_1023410236 = addInt(result_1023410236, 1);
+            i_570425732 += 1;
+          }
+      };
+    };
+    result_1023410236 = (-1);
+  };
+
+  return result_1023410236;
+
+}
+
+function contains__stdZenumutils_u50(a_p0, item_p1) {
+  var result_1023410230 = false;
+
+  BeforeRet: {
+    result_1023410230 = (0 <= find__stdZenumutils_u55(a_p0, item_p1));
+    break BeforeRet;
+  };
+
+  return result_1023410230;
+
+}
+
 function binOpText__parser_u2754(k_p0) {
     var Temporary1;
 
@@ -4853,6 +4900,8 @@ function binOpText__parser_u2754(k_p0) {
 
 function parseExpr__parser_u164(p_p0, prec_p1) {
             var Temporary5;
+              var Temporary6;
+                var Temporary7;
 
   var result_1409289204 = null;
 
@@ -4941,8 +4990,14 @@ function parseExpr__parser_u164(p_p0, prec_p1) {
             }
 
             var rhsPrec_1409289364 = Temporary5;
-            var rhs_1409289365 = parseExpr__parser_u164(p_p0, rhsPrec_1409289364);
-            result_1409289204 = {kind: 12, bop: binOpText__parser_u2754(t_1409289205.kind), blhs: result_1409289204, brhs: rhs_1409289365, line: t_1409289205.line, col: t_1409289205.col, grouped: false, s: [], parts: [], items: [], dkeys: [], dvals: [], uop: [], uoperand: null, callee: null, cargs: [], ckwargs: [], aobj: null, aname: [], sobj: null, sidx: null, ssliceObj: null, slo: null, shi: null, sstep: null, lparams: [], lbody: null, wexpr: null, yexpr: null, celt: null, cclauses: []};
+              if (!(((bp_1409289206 == 30) && (result_1409289204.kind == 12)) && !(result_1409289204.grouped))) Temporary6 = false; else {                var Temporary7 = result_1409289204;
+                if (ConstSet18[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'bop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063367)); }
+                Temporary6 = contains__stdZenumutils_u50([[61,61], [33,61], [60], [62], [60,61], [62,61], [105,110], [110,111,116,32,105,110], [105,115], [105,115,32,110,111,116]], Temporary7.bop);              }            if (Temporary6) {
+            raiseException(fail__parser_u61(p_p0, [99,111,109,112,97,114,105,115,111,110,32,99,104,97,105,110,115,32,97,114,101,32,115,117,115,59,32,115,112,108,105,116,32,99,111,109,112,97,114,105,115,111,110,115,32,119,105,116,104,32,39,98,111,116,104,39]), "GzimError:ObjectType");
+            }
+
+            var rhs_1409289412 = parseExpr__parser_u164(p_p0, rhsPrec_1409289364);
+            result_1409289204 = {kind: 12, bop: binOpText__parser_u2754(t_1409289205.kind), blhs: result_1409289204, brhs: rhs_1409289412, line: t_1409289205.line, col: t_1409289205.col, grouped: false, s: [], parts: [], items: [], dkeys: [], dvals: [], uop: [], uoperand: null, callee: null, cargs: [], ckwargs: [], aobj: null, aname: [], sobj: null, sidx: null, ssliceObj: null, slo: null, shi: null, sstep: null, lparams: [], lbody: null, wexpr: null, yexpr: null, celt: null, cclauses: []};
             break;
           }
         }
@@ -4991,10 +5046,10 @@ function parseVarDecl__parser_u736(p_p0) {
     if (ConstSet15[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063369)); }
     Temporary2.vvalue = parseExpr__parser_u164(p_p0, 0);
       if (!match__parser_u57(p_p0, 42)) Temporary3 = false; else {        var Temporary4 = result_1409286882;
-        if (ConstSet18[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'annot\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063369)); }
+        if (ConstSet19[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'annot\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063369)); }
         Temporary3 = ((Temporary4.annot).length == 0);      }    if (Temporary3) {
     var Temporary5 = result_1409286882;
-    if (ConstSet19[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'annot\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063369)); }
+    if (ConstSet20[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'annot\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063369)); }
     Temporary5.annot = nimCopy(null, parseType__parser_u162(p_p0), NTI33554449);
     }
 
@@ -5256,7 +5311,7 @@ function parseTry__parser_u2559(p_p0, anchor_p1) {
     expectColon__parser_u733(p_p0, [102,95,97,114,111,117,110,100]);
     result_1409288706 = {kind: 13, line: t_1409288707.line, col: t_1409288707.col, tbody: [], handlers: [], orelse: [], finallyB: [], e: null, target: null, value: null, op: [], vname: [], vvalue: null, annot: [], isConst: false, clauses: [], elseBody: [], hasElse: false, wcond: null, wbody: [], ftargets: [], fiter: null, fbody: [], fname: [], fparams: [], fret: [], fndefBody: [], isAsync: false, cname: [], cbases: [], cbody: [], re: null, rae: null, witems: [], withBody: [], imod: [], ialias: [], fmod: [], fnames: [], msubject: null, mcases: [], mdefault: [], hasDefault: false, dtargets: [], acond: null, amsg: null, gnames: [], ye: null};
     var Temporary1 = result_1409288706;
-    if (ConstSet20[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'tbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
+    if (ConstSet21[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'tbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
     Temporary1.tbody = nimCopy(null, parseBlock__parser_u710(p_p0), NTI1409286599);
     Label2: {
         Label3: while (true) {
@@ -5274,7 +5329,7 @@ function parseTry__parser_u2559(p_p0, anchor_p1) {
           expectColon__parser_u733(p_p0, [116,104,101,32,102,105,110,100,95,111,117,116,32,99,108,97,117,115,101]);
           h_1409288708.body = nimCopy(null, parseBlock__parser_u710(p_p0), NTI1409286599);
           var Temporary4 = result_1409288706;
-          if (ConstSet21[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'handlers\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063369)); }
+          if (ConstSet22[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'handlers\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063369)); }
           var Temporary5 = nimCopy(null, h_1409288708, NTI1426063366);
           Temporary4.handlers.push(Temporary5);;
         }
@@ -5283,7 +5338,7 @@ function parseTry__parser_u2559(p_p0, anchor_p1) {
     (advance__parser_u37(p_p0));
     expectColon__parser_u733(p_p0, [111,116,104,101,114,119,105,115,101]);
     var Temporary6 = result_1409288706;
-    if (ConstSet22[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'orelse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063369)); }
+    if (ConstSet23[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'orelse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063369)); }
     Temporary6.orelse = nimCopy(null, parseBlock__parser_u710(p_p0), NTI1409286599);
     }
 
@@ -5291,14 +5346,14 @@ function parseTry__parser_u2559(p_p0, anchor_p1) {
     (advance__parser_u37(p_p0));
     expectColon__parser_u733(p_p0, [110,111,95,109,97,116,116,101,114,95,119,104,97,116]);
     var Temporary7 = result_1409288706;
-    if (ConstSet23[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063369)); }
+    if (ConstSet24[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063369)); }
     Temporary7.finallyB = nimCopy(null, parseBlock__parser_u710(p_p0), NTI1409286599);
     }
 
       var Temporary9 = result_1409288706;
-      if (ConstSet24[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'handlers\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063369)); }
+      if (ConstSet25[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'handlers\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063369)); }
       if (!((Temporary9.handlers).length == 0)) Temporary8 = false; else {        var Temporary10 = result_1409288706;
-        if (ConstSet25[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063369)); }
+        if (ConstSet26[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063369)); }
         Temporary8 = ((Temporary10.finallyB).length == 0);      }    if (Temporary8) {
     raiseException(fail__parser_u61(p_p0, [102,95,97,114,111,117,110,100,32,110,101,101,100,115,32,97,116,32,108,101,97,115,116,32,111,110,101,32,102,105,110,100,95,111,117,116,32,111,114,32,110,111,95,109,97,116,116,101,114,95,119,104,97,116,32,99,108,97,117,115,101]), "GzimError:ObjectType");
     }
@@ -5443,7 +5498,7 @@ function parseExprOrAssign__parser_u2708(p_p0) {
     result_1409288854 = {kind: 1, target: first_1409288856, value: value_1409288857, op: [], line: t_1409288855.line, col: t_1409288855.col, e: null, vname: [], vvalue: null, annot: [], isConst: false, clauses: [], elseBody: [], hasElse: false, wcond: null, wbody: [], ftargets: [], fiter: null, fbody: [], fname: [], fparams: [], fret: [], fndefBody: [], isAsync: false, cname: [], cbases: [], cbody: [], re: null, rae: null, tbody: [], handlers: [], orelse: [], finallyB: [], witems: [], withBody: [], imod: [], ialias: [], fmod: [], fnames: [], msubject: null, mcases: [], mdefault: [], hasDefault: false, dtargets: [], acond: null, amsg: null, gnames: [], ye: null};
     }
     else {
-    if ((ConstSet30[peek__parser_u11(p_p0).kind] != undefined)) {
+    if ((ConstSet31[peek__parser_u11(p_p0).kind] != undefined)) {
     var opTok_1409288863 = advance__parser_u37(p_p0);
     var value_1409288864 = parseExpr__parser_u164(p_p0, 0);
     result_1409288854 = {kind: 1, target: first_1409288856, value: value_1409288864, op: assignOpText__parser_u2704(opTok_1409288863.kind, opTok_1409288863.text), line: t_1409288855.line, col: t_1409288855.col, e: null, vname: [], vvalue: null, annot: [], isConst: false, clauses: [], elseBody: [], hasElse: false, wcond: null, wbody: [], ftargets: [], fiter: null, fbody: [], fname: [], fparams: [], fret: [], fndefBody: [], isAsync: false, cname: [], cbases: [], cbody: [], re: null, rae: null, tbody: [], handlers: [], orelse: [], finallyB: [], witems: [], withBody: [], imod: [], ialias: [], fmod: [], fnames: [], msubject: null, mcases: [], mdefault: [], hasDefault: false, dtargets: [], acond: null, amsg: null, gnames: [], ye: null};
@@ -5511,7 +5566,7 @@ function parseStmt__parser_u685(p_p0) {
       result_1409288867 = {kind: 8, line: t_1409288868.line, col: t_1409288868.col, re: null, e: null, target: null, value: null, op: [], vname: [], vvalue: null, annot: [], isConst: false, clauses: [], elseBody: [], hasElse: false, wcond: null, wbody: [], ftargets: [], fiter: null, fbody: [], fname: [], fparams: [], fret: [], fndefBody: [], isAsync: false, cname: [], cbases: [], cbody: [], rae: null, tbody: [], handlers: [], orelse: [], finallyB: [], witems: [], withBody: [], imod: [], ialias: [], fmod: [], fnames: [], msubject: null, mcases: [], mdefault: [], hasDefault: false, dtargets: [], acond: null, amsg: null, gnames: [], ye: null};
       if (!(atTerminator__parser_u75(p_p0))) {
       var Temporary1 = result_1409288867;
-      if (ConstSet26[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
+      if (ConstSet27[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
       Temporary1.re = parseExpr__parser_u164(p_p0, 0);
       }
 
@@ -5522,7 +5577,7 @@ function parseStmt__parser_u685(p_p0) {
       result_1409288867 = {kind: 12, line: t_1409288868.line, col: t_1409288868.col, rae: null, e: null, target: null, value: null, op: [], vname: [], vvalue: null, annot: [], isConst: false, clauses: [], elseBody: [], hasElse: false, wcond: null, wbody: [], ftargets: [], fiter: null, fbody: [], fname: [], fparams: [], fret: [], fndefBody: [], isAsync: false, cname: [], cbases: [], cbody: [], re: null, tbody: [], handlers: [], orelse: [], finallyB: [], witems: [], withBody: [], imod: [], ialias: [], fmod: [], fnames: [], msubject: null, mcases: [], mdefault: [], hasDefault: false, dtargets: [], acond: null, amsg: null, gnames: [], ye: null};
       if (!(atTerminator__parser_u75(p_p0))) {
       var Temporary2 = result_1409288867;
-      if (ConstSet27[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063369)); }
+      if (ConstSet28[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063369)); }
       Temporary2.rae = parseExpr__parser_u164(p_p0, 0);
       }
 
@@ -5533,7 +5588,7 @@ function parseStmt__parser_u685(p_p0) {
       result_1409288867 = {kind: 22, line: t_1409288868.line, col: t_1409288868.col, ye: null, e: null, target: null, value: null, op: [], vname: [], vvalue: null, annot: [], isConst: false, clauses: [], elseBody: [], hasElse: false, wcond: null, wbody: [], ftargets: [], fiter: null, fbody: [], fname: [], fparams: [], fret: [], fndefBody: [], isAsync: false, cname: [], cbases: [], cbody: [], re: null, rae: null, tbody: [], handlers: [], orelse: [], finallyB: [], witems: [], withBody: [], imod: [], ialias: [], fmod: [], fnames: [], msubject: null, mcases: [], mdefault: [], hasDefault: false, dtargets: [], acond: null, amsg: null, gnames: []};
       if (!(atTerminator__parser_u75(p_p0))) {
       var Temporary3 = result_1409288867;
-      if (ConstSet28[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063369)); }
+      if (ConstSet29[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063369)); }
       Temporary3.ye = parseExpr__parser_u164(p_p0, 0);
       }
 
@@ -5616,7 +5671,7 @@ function parseStmt__parser_u685(p_p0) {
       var k_1409288894 = Temporary10;
       result_1409288867 = {kind: k_1409288894, line: t_1409288868.line, col: t_1409288868.col, e: null, target: null, value: null, op: [], vname: [], vvalue: null, annot: [], isConst: false, clauses: [], elseBody: [], hasElse: false, wcond: null, wbody: [], ftargets: [], fiter: null, fbody: [], fname: [], fparams: [], fret: [], fndefBody: [], isAsync: false, cname: [], cbases: [], cbody: [], re: null, rae: null, tbody: [], handlers: [], orelse: [], finallyB: [], witems: [], withBody: [], imod: [], ialias: [], fmod: [], fnames: [], msubject: null, mcases: [], mdefault: [], hasDefault: false, dtargets: [], acond: null, amsg: null, gnames: [], ye: null};
       var Temporary11 = result_1409288867;
-      if (ConstSet29[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'gnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063369)); }
+      if (ConstSet30[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'gnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063369)); }
       Temporary11.gnames = nimCopy(null, names_1409288885, NTI1409287720);
       finishStmt__parser_u78(p_p0);
       break;
@@ -5663,18 +5718,18 @@ function parseStmts__parser_u687(p_p0) {
 
 }
 
-function parseProgram__parser_u3271(toks_p0) {
-  var result_1409289419 = {Field0: [], Field1: false};
+function parseProgram__parser_u3334(toks_p0) {
+  var result_1409289482 = {Field0: [], Field1: false};
 
-    var p_1409289420 = [{toks: nimCopy(null, toks_p0, NTI1409288032), i: 0, usedAny: false}];
-    var prog_1409289421 = parseStmts__parser_u687(p_1409289420[0]);
-    if (!(check__parser_u49(p_1409289420[0], 0))) {
-    raiseException(fail__parser_u61(p_1409289420[0], ([117,110,101,120,112,101,99,116,101,100,32]).concat(tokDesc__token_u114(peek__parser_u11(p_1409289420[0]).kind, peek__parser_u11(p_1409289420[0]).text))), "GzimError:ObjectType");
+    var p_1409289483 = [{toks: nimCopy(null, toks_p0, NTI1409288067), i: 0, usedAny: false}];
+    var prog_1409289484 = parseStmts__parser_u687(p_1409289483[0]);
+    if (!(check__parser_u49(p_1409289483[0], 0))) {
+    raiseException(fail__parser_u61(p_1409289483[0], ([117,110,101,120,112,101,99,116,101,100,32]).concat(tokDesc__token_u114(peek__parser_u11(p_1409289483[0]).kind, peek__parser_u11(p_1409289483[0]).text))), "GzimError:ObjectType");
     }
 
-    result_1409289419 = nimCopy(result_1409289419, {Field0: nimCopy(null, prog_1409289421, NTI1409286583), Field1: p_1409289420[0].usedAny}, NTI1409288033);
+    result_1409289482 = nimCopy(result_1409289482, {Field0: nimCopy(null, prog_1409289484, NTI1409286583), Field1: p_1409289483[0].usedAny}, NTI1409288068);
 
-  return result_1409289419;
+  return result_1409289482;
 
 }
 
@@ -5704,21 +5759,21 @@ function lookup__semantic_u18(c_p0, name_p1) {
   BeforeRet: {
     Label1: {
       var i_1442840608 = 0;
-      var colontmp__570425804 = 0;
-      colontmp__570425804 = (c_p0.scopes).length - 1;
-      var res_570425806 = colontmp__570425804;
+      var colontmp__570425808 = 0;
+      colontmp__570425808 = (c_p0.scopes).length - 1;
+      var res_570425810 = colontmp__570425808;
       Label2: {
           Label3: while (true) {
-          if (!(0 <= res_570425806)) break Label3;
-            i_1442840608 = res_570425806;
+          if (!(0 <= res_570425810)) break Label3;
+            i_1442840608 = res_570425810;
             if (hasKey__parser_u1149(c_p0.scopes[chckIndx(i_1442840608, 0, (c_p0.scopes).length - 1)], name_p1)) {
-            var colontmp__570425802 = true;
-            var colontmp__570425803 = (Temporary4 = HEX5BHEX5D__semantic_u123(c_p0.scopes[chckIndx(i_1442840608, 0, (c_p0.scopes).length - 1)], name_p1), Temporary4)[0][Temporary4[1]];
-            result_1442840599 = nimCopy(result_1442840599, {Field0: colontmp__570425802, Field1: colontmp__570425803}, NTI1442840590);
+            var colontmp__570425806 = true;
+            var colontmp__570425807 = (Temporary4 = HEX5BHEX5D__semantic_u123(c_p0.scopes[chckIndx(i_1442840608, 0, (c_p0.scopes).length - 1)], name_p1), Temporary4)[0][Temporary4[1]];
+            result_1442840599 = nimCopy(result_1442840599, {Field0: colontmp__570425806, Field1: colontmp__570425807}, NTI1442840590);
             break BeforeRet;
             }
 
-            res_570425806 = subInt(res_570425806, 1);
+            res_570425810 = subInt(res_570425810, 1);
           }
       };
     };
@@ -5810,7 +5865,7 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       }
 
       var Temporary1 = e_p1;
-      if (ConstSet38[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063367)); }
+      if (ConstSet39[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary1.wexpr);
       break;
     case 19:
@@ -5819,10 +5874,10 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       }
 
         var Temporary2 = e_p1;
-        if (ConstSet39[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'yexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
+        if (ConstSet40[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'yexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
       if (!((Temporary2.yexpr == null))) {
       var Temporary3 = e_p1;
-      if (ConstSet40[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'yexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063367)); }
+      if (ConstSet41[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'yexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary3.yexpr);
       }
 
@@ -5837,22 +5892,22 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
     case 2:
       Label4: {
         var part_1442841093 = ({isExpr: false, text: [], ex: null, spec: []});
-        var colontmp__570425809 = [];
+        var colontmp__570425813 = [];
         var Temporary5 = e_p1;
-        if (ConstSet41[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'parts\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063367)); }
-        colontmp__570425809 = Temporary5.parts;
-        var i_570425811 = 0;
-        var L_570425812 = (colontmp__570425809).length;
+        if (ConstSet42[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'parts\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063367)); }
+        colontmp__570425813 = Temporary5.parts;
+        var i_570425815 = 0;
+        var L_570425816 = (colontmp__570425813).length;
         Label6: {
             Label7: while (true) {
-            if (!(i_570425811 < L_570425812)) break Label7;
-              part_1442841093 = nimCopy(part_1442841093, colontmp__570425809[chckIndx(i_570425811, 0, (colontmp__570425809).length - 1)], NTI1426063363);
+            if (!(i_570425815 < L_570425816)) break Label7;
+              part_1442841093 = nimCopy(part_1442841093, colontmp__570425813[chckIndx(i_570425815, 0, (colontmp__570425813).length - 1)], NTI1426063363);
               if (part_1442841093.isExpr) {
               checkExpr__semantic_u351(c_p0, part_1442841093.ex);
               }
 
-              i_570425811 += 1;
-              if (!(((colontmp__570425809).length == L_570425812))) {
+              i_570425815 += 1;
+              if (!(((colontmp__570425813).length == L_570425816))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -5865,19 +5920,19 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
     case 9:
       Label8: {
         var item_1442841097 = null;
-        var colontmp__570425815 = [];
+        var colontmp__570425819 = [];
         var Temporary9 = e_p1;
-        if (ConstSet42[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063367)); }
-        colontmp__570425815 = Temporary9.items;
-        var i_570425816 = 0;
-        var L_570425817 = (colontmp__570425815).length;
+        if (ConstSet43[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063367)); }
+        colontmp__570425819 = Temporary9.items;
+        var i_570425820 = 0;
+        var L_570425821 = (colontmp__570425819).length;
         Label10: {
             Label11: while (true) {
-            if (!(i_570425816 < L_570425817)) break Label11;
-              item_1442841097 = colontmp__570425815[chckIndx(i_570425816, 0, (colontmp__570425815).length - 1)];
+            if (!(i_570425820 < L_570425821)) break Label11;
+              item_1442841097 = colontmp__570425819[chckIndx(i_570425820, 0, (colontmp__570425819).length - 1)];
               checkExpr__semantic_u351(c_p0, item_1442841097);
-              i_570425816 += 1;
-              if (!(((colontmp__570425815).length == L_570425817))) {
+              i_570425820 += 1;
+              if (!(((colontmp__570425819).length == L_570425821))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -5888,19 +5943,19 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
     case 10:
       Label12: {
         var k_1442841101 = null;
-        var colontmp__570425820 = [];
+        var colontmp__570425824 = [];
         var Temporary13 = e_p1;
-        if (ConstSet43[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dkeys\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063367)); }
-        colontmp__570425820 = Temporary13.dkeys;
-        var i_570425821 = 0;
-        var L_570425822 = (colontmp__570425820).length;
+        if (ConstSet44[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dkeys\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063367)); }
+        colontmp__570425824 = Temporary13.dkeys;
+        var i_570425825 = 0;
+        var L_570425826 = (colontmp__570425824).length;
         Label14: {
             Label15: while (true) {
-            if (!(i_570425821 < L_570425822)) break Label15;
-              k_1442841101 = colontmp__570425820[chckIndx(i_570425821, 0, (colontmp__570425820).length - 1)];
+            if (!(i_570425825 < L_570425826)) break Label15;
+              k_1442841101 = colontmp__570425824[chckIndx(i_570425825, 0, (colontmp__570425824).length - 1)];
               checkExpr__semantic_u351(c_p0, k_1442841101);
-              i_570425821 += 1;
-              if (!(((colontmp__570425820).length == L_570425822))) {
+              i_570425825 += 1;
+              if (!(((colontmp__570425824).length == L_570425826))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -5909,19 +5964,19 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       };
       Label16: {
         var v_1442841105 = null;
-        var colontmp__570425825 = [];
+        var colontmp__570425829 = [];
         var Temporary17 = e_p1;
-        if (ConstSet44[Temporary17.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dvals\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary17.kind, NTI1426063367)); }
-        colontmp__570425825 = Temporary17.dvals;
-        var i_570425826 = 0;
-        var L_570425827 = (colontmp__570425825).length;
+        if (ConstSet45[Temporary17.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dvals\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary17.kind, NTI1426063367)); }
+        colontmp__570425829 = Temporary17.dvals;
+        var i_570425830 = 0;
+        var L_570425831 = (colontmp__570425829).length;
         Label18: {
             Label19: while (true) {
-            if (!(i_570425826 < L_570425827)) break Label19;
-              v_1442841105 = colontmp__570425825[chckIndx(i_570425826, 0, (colontmp__570425825).length - 1)];
+            if (!(i_570425830 < L_570425831)) break Label19;
+              v_1442841105 = colontmp__570425829[chckIndx(i_570425830, 0, (colontmp__570425829).length - 1)];
               checkExpr__semantic_u351(c_p0, v_1442841105);
-              i_570425826 += 1;
-              if (!(((colontmp__570425825).length == L_570425827))) {
+              i_570425830 += 1;
+              if (!(((colontmp__570425829).length == L_570425831))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -5931,36 +5986,36 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       break;
     case 11:
       var Temporary20 = e_p1;
-      if (ConstSet45[Temporary20.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uoperand\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary20.kind, NTI1426063367)); }
+      if (ConstSet46[Temporary20.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uoperand\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary20.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary20.uoperand);
       break;
     case 12:
       var Temporary21 = e_p1;
-      if (ConstSet46[Temporary21.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'blhs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary21.kind, NTI1426063367)); }
+      if (ConstSet47[Temporary21.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'blhs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary21.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary21.blhs);
       var Temporary22 = e_p1;
-      if (ConstSet47[Temporary22.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'brhs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary22.kind, NTI1426063367)); }
+      if (ConstSet48[Temporary22.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'brhs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary22.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary22.brhs);
       break;
     case 13:
       var Temporary23 = e_p1;
-      if (ConstSet48[Temporary23.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary23.kind, NTI1426063367)); }
+      if (ConstSet49[Temporary23.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary23.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary23.callee);
       Label24: {
         var a_1442841109 = null;
-        var colontmp__570425830 = [];
+        var colontmp__570425834 = [];
         var Temporary25 = e_p1;
-        if (ConstSet49[Temporary25.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary25.kind, NTI1426063367)); }
-        colontmp__570425830 = Temporary25.cargs;
-        var i_570425831 = 0;
-        var L_570425832 = (colontmp__570425830).length;
+        if (ConstSet50[Temporary25.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary25.kind, NTI1426063367)); }
+        colontmp__570425834 = Temporary25.cargs;
+        var i_570425835 = 0;
+        var L_570425836 = (colontmp__570425834).length;
         Label26: {
             Label27: while (true) {
-            if (!(i_570425831 < L_570425832)) break Label27;
-              a_1442841109 = colontmp__570425830[chckIndx(i_570425831, 0, (colontmp__570425830).length - 1)];
+            if (!(i_570425835 < L_570425836)) break Label27;
+              a_1442841109 = colontmp__570425834[chckIndx(i_570425835, 0, (colontmp__570425834).length - 1)];
               checkExpr__semantic_u351(c_p0, a_1442841109);
-              i_570425831 += 1;
-              if (!(((colontmp__570425830).length == L_570425832))) {
+              i_570425835 += 1;
+              if (!(((colontmp__570425834).length == L_570425836))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -5969,19 +6024,19 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       };
       Label28: {
         var kw_1442841132 = {Field0: [], Field1: null};
-        var colontmp__570425835 = [];
+        var colontmp__570425839 = [];
         var Temporary29 = e_p1;
-        if (ConstSet50[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ckwargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063367)); }
-        colontmp__570425835 = Temporary29.ckwargs;
-        var i_570425837 = 0;
-        var L_570425838 = (colontmp__570425835).length;
+        if (ConstSet51[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ckwargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063367)); }
+        colontmp__570425839 = Temporary29.ckwargs;
+        var i_570425841 = 0;
+        var L_570425842 = (colontmp__570425839).length;
         Label30: {
             Label31: while (true) {
-            if (!(i_570425837 < L_570425838)) break Label31;
-              kw_1442841132 = nimCopy(kw_1442841132, colontmp__570425835[chckIndx(i_570425837, 0, (colontmp__570425835).length - 1)], NTI1426063381);
+            if (!(i_570425841 < L_570425842)) break Label31;
+              kw_1442841132 = nimCopy(kw_1442841132, colontmp__570425839[chckIndx(i_570425841, 0, (colontmp__570425839).length - 1)], NTI1426063381);
               checkExpr__semantic_u351(c_p0, kw_1442841132.Field1);
-              i_570425837 += 1;
-              if (!(((colontmp__570425835).length == L_570425838))) {
+              i_570425841 += 1;
+              if (!(((colontmp__570425839).length == L_570425842))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -5991,42 +6046,42 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       break;
     case 14:
       var Temporary32 = e_p1;
-      if (ConstSet51[Temporary32.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary32.kind, NTI1426063367)); }
+      if (ConstSet52[Temporary32.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary32.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary32.aobj);
       break;
     case 15:
       var Temporary33 = e_p1;
-      if (ConstSet52[Temporary33.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary33.kind, NTI1426063367)); }
+      if (ConstSet53[Temporary33.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary33.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary33.sobj);
       var Temporary34 = e_p1;
-      if (ConstSet53[Temporary34.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sidx\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary34.kind, NTI1426063367)); }
+      if (ConstSet54[Temporary34.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sidx\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary34.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary34.sidx);
       break;
     case 16:
       var Temporary35 = e_p1;
-      if (ConstSet54[Temporary35.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ssliceObj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary35.kind, NTI1426063367)); }
+      if (ConstSet55[Temporary35.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ssliceObj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary35.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary35.ssliceObj);
         var Temporary36 = e_p1;
-        if (ConstSet55[Temporary36.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'slo\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary36.kind, NTI1426063367)); }
+        if (ConstSet56[Temporary36.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'slo\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary36.kind, NTI1426063367)); }
       if (!((Temporary36.slo == null))) {
       var Temporary37 = e_p1;
-      if (ConstSet56[Temporary37.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'slo\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary37.kind, NTI1426063367)); }
+      if (ConstSet57[Temporary37.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'slo\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary37.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary37.slo);
       }
 
         var Temporary38 = e_p1;
-        if (ConstSet57[Temporary38.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'shi\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary38.kind, NTI1426063367)); }
+        if (ConstSet58[Temporary38.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'shi\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary38.kind, NTI1426063367)); }
       if (!((Temporary38.shi == null))) {
       var Temporary39 = e_p1;
-      if (ConstSet58[Temporary39.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'shi\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary39.kind, NTI1426063367)); }
+      if (ConstSet59[Temporary39.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'shi\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary39.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary39.shi);
       }
 
         var Temporary40 = e_p1;
-        if (ConstSet59[Temporary40.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sstep\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary40.kind, NTI1426063367)); }
+        if (ConstSet60[Temporary40.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sstep\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary40.kind, NTI1426063367)); }
       if (!((Temporary40.sstep == null))) {
       var Temporary41 = e_p1;
-      if (ConstSet60[Temporary41.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sstep\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary41.kind, NTI1426063367)); }
+      if (ConstSet61[Temporary41.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sstep\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary41.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary41.sstep);
       }
 
@@ -6035,23 +6090,23 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       c_p0.scopes.push(initTable__parser_u1057(32));;
       Label42: {
         var prm_1442841168 = ({name: [], annot: [], default: null, isStar: false, isStarStar: false});
-        var colontmp__570425841 = [];
+        var colontmp__570425845 = [];
         var Temporary43 = e_p1;
-        if (ConstSet61[Temporary43.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'lparams\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary43.kind, NTI1426063367)); }
-        colontmp__570425841 = Temporary43.lparams;
-        var i_570425843 = 0;
-        var L_570425844 = (colontmp__570425841).length;
+        if (ConstSet62[Temporary43.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'lparams\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary43.kind, NTI1426063367)); }
+        colontmp__570425845 = Temporary43.lparams;
+        var i_570425847 = 0;
+        var L_570425848 = (colontmp__570425845).length;
         Label44: {
             Label45: while (true) {
-            if (!(i_570425843 < L_570425844)) break Label45;
-              prm_1442841168 = nimCopy(prm_1442841168, colontmp__570425841[chckIndx(i_570425843, 0, (colontmp__570425841).length - 1)], NTI1426063365);
+            if (!(i_570425847 < L_570425848)) break Label45;
+              prm_1442841168 = nimCopy(prm_1442841168, colontmp__570425845[chckIndx(i_570425847, 0, (colontmp__570425845).length - 1)], NTI1426063365);
               declare__semantic_u253(c_p0, prm_1442841168.name, false);
               if (!((prm_1442841168.default == null))) {
               checkExpr__semantic_u351(c_p0, prm_1442841168.default);
               }
 
-              i_570425843 += 1;
-              if (!(((colontmp__570425841).length == L_570425844))) {
+              i_570425847 += 1;
+              if (!(((colontmp__570425845).length == L_570425848))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6060,7 +6115,7 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       };
       c_p0.funcDepth = addInt(c_p0.funcDepth, 1);
       var Temporary46 = e_p1;
-      if (ConstSet62[Temporary46.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'lbody\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary46.kind, NTI1426063367)); }
+      if (ConstSet63[Temporary46.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'lbody\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary46.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary46.lbody);
       c_p0.funcDepth = subInt(c_p0.funcDepth, 1);
       (pop__semantic_u460(c_p0, "scopes"));
@@ -6069,35 +6124,35 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       c_p0.scopes.push(initTable__parser_u1057(32));;
       Label47: {
         var cl_1442841228 = ({targets: [], iter: null, cond: null});
-        var colontmp__570425851 = [];
+        var colontmp__570425855 = [];
         var Temporary48 = e_p1;
-        if (ConstSet63[Temporary48.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cclauses\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary48.kind, NTI1426063367)); }
-        colontmp__570425851 = Temporary48.cclauses;
-        var i_570425853 = 0;
-        var L_570425854 = (colontmp__570425851).length;
+        if (ConstSet64[Temporary48.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cclauses\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary48.kind, NTI1426063367)); }
+        colontmp__570425855 = Temporary48.cclauses;
+        var i_570425857 = 0;
+        var L_570425858 = (colontmp__570425855).length;
         Label49: {
             Label50: while (true) {
-            if (!(i_570425853 < L_570425854)) break Label50;
-              cl_1442841228 = nimCopy(cl_1442841228, colontmp__570425851[chckIndx(i_570425853, 0, (colontmp__570425851).length - 1)], NTI1426063364);
+            if (!(i_570425857 < L_570425858)) break Label50;
+              cl_1442841228 = nimCopy(cl_1442841228, colontmp__570425855[chckIndx(i_570425857, 0, (colontmp__570425855).length - 1)], NTI1426063364);
               Label51: {
                 var t_1442841250 = [];
-                var i_570425848 = 0;
-                var L_570425849 = (cl_1442841228.targets).length;
+                var i_570425852 = 0;
+                var L_570425853 = (cl_1442841228.targets).length;
                 Label52: {
                     Label53: while (true) {
-                    if (!(i_570425848 < L_570425849)) break Label53;
-                      t_1442841250 = cl_1442841228.targets[chckIndx(i_570425848, 0, (cl_1442841228.targets).length - 1)];
+                    if (!(i_570425852 < L_570425853)) break Label53;
+                      t_1442841250 = cl_1442841228.targets[chckIndx(i_570425852, 0, (cl_1442841228.targets).length - 1)];
                       declare__semantic_u253(c_p0, t_1442841250, false);
-                      i_570425848 += 1;
-                      if (!(((cl_1442841228.targets).length == L_570425849))) {
+                      i_570425852 += 1;
+                      if (!(((cl_1442841228.targets).length == L_570425853))) {
                       failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                       }
 
                     }
                 };
               };
-              i_570425853 += 1;
-              if (!(((colontmp__570425851).length == L_570425854))) {
+              i_570425857 += 1;
+              if (!(((colontmp__570425855).length == L_570425858))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6106,23 +6161,23 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
       };
       Label54: {
         var cl_1442841254 = ({targets: [], iter: null, cond: null});
-        var colontmp__570425857 = [];
+        var colontmp__570425861 = [];
         var Temporary55 = e_p1;
-        if (ConstSet64[Temporary55.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cclauses\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary55.kind, NTI1426063367)); }
-        colontmp__570425857 = Temporary55.cclauses;
-        var i_570425858 = 0;
-        var L_570425859 = (colontmp__570425857).length;
+        if (ConstSet65[Temporary55.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cclauses\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary55.kind, NTI1426063367)); }
+        colontmp__570425861 = Temporary55.cclauses;
+        var i_570425862 = 0;
+        var L_570425863 = (colontmp__570425861).length;
         Label56: {
             Label57: while (true) {
-            if (!(i_570425858 < L_570425859)) break Label57;
-              cl_1442841254 = nimCopy(cl_1442841254, colontmp__570425857[chckIndx(i_570425858, 0, (colontmp__570425857).length - 1)], NTI1426063364);
+            if (!(i_570425862 < L_570425863)) break Label57;
+              cl_1442841254 = nimCopy(cl_1442841254, colontmp__570425861[chckIndx(i_570425862, 0, (colontmp__570425861).length - 1)], NTI1426063364);
               checkExpr__semantic_u351(c_p0, cl_1442841254.iter);
               if (!((cl_1442841254.cond == null))) {
               checkExpr__semantic_u351(c_p0, cl_1442841254.cond);
               }
 
-              i_570425858 += 1;
-              if (!(((colontmp__570425857).length == L_570425859))) {
+              i_570425862 += 1;
+              if (!(((colontmp__570425861).length == L_570425863))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6130,7 +6185,7 @@ function checkExpr__semantic_u351(c_p0, e_p1) {
         };
       };
       var Temporary58 = e_p1;
-      if (ConstSet65[Temporary58.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'celt\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary58.kind, NTI1426063367)); }
+      if (ConstSet66[Temporary58.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'celt\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary58.kind, NTI1426063367)); }
       checkExpr__semantic_u351(c_p0, Temporary58.celt);
       (pop__semantic_u460(c_p0, "scopes"));
       break;
@@ -6154,19 +6209,19 @@ function checkAssignTarget__semantic_u357(c_p0, e_p1, line_p2, col_p3) {
     switch (e_p1.kind) {
     case 5:
       var Temporary1 = e_p1;
-      if (ConstSet67[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063367)); }
+      if (ConstSet68[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063367)); }
       var tmpTuple_1442840942 = lookup__semantic_u18(c_p0, Temporary1.s);
       var found_1442840943 = tmpTuple_1442840942["Field0"];
       var isC_1442840944 = tmpTuple_1442840942["Field1"];
       if (!(found_1442840943)) {
       var Temporary2 = e_p1;
-      if (ConstSet68[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
+      if (ConstSet69[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
       issue__semantic_u324(c_p0, line_p2, col_p3, ([96]).concat(Temporary2.s,[96,32,110,101,118,101,114,32,103,111,116,32,100,101,99,108,97,114,101,100,44,32,104,105,116,32,105,116,32,119,105,116,104,32,97,32,96,108,101,116,96,32,102,105,114,115,116]));
       }
       else {
       if (isC_1442840944) {
       var Temporary3 = e_p1;
-      if (ConstSet69[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063367)); }
+      if (ConstSet70[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063367)); }
       issue__semantic_u324(c_p0, line_p2, col_p3, ([96]).concat(Temporary3.s,[96,32,105,115,32,108,111,99,107,101,100,44,32,96,108,111,99,107,96,32,118,97,114,115,32,100,111,110,39,116,32,109,111,118,101]));
       }
       }
@@ -6179,19 +6234,19 @@ function checkAssignTarget__semantic_u357(c_p0, e_p1, line_p2, col_p3) {
     case 7:
       Label4: {
         var item_1442840967 = null;
-        var colontmp__570425862 = [];
+        var colontmp__570425866 = [];
         var Temporary5 = e_p1;
-        if (ConstSet70[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063367)); }
-        colontmp__570425862 = Temporary5.items;
-        var i_570425863 = 0;
-        var L_570425864 = (colontmp__570425862).length;
+        if (ConstSet71[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063367)); }
+        colontmp__570425866 = Temporary5.items;
+        var i_570425867 = 0;
+        var L_570425868 = (colontmp__570425866).length;
         Label6: {
             Label7: while (true) {
-            if (!(i_570425863 < L_570425864)) break Label7;
-              item_1442840967 = colontmp__570425862[chckIndx(i_570425863, 0, (colontmp__570425862).length - 1)];
+            if (!(i_570425867 < L_570425868)) break Label7;
+              item_1442840967 = colontmp__570425866[chckIndx(i_570425867, 0, (colontmp__570425866).length - 1)];
               checkAssignTarget__semantic_u357(c_p0, item_1442840967, line_p2, col_p3);
-              i_570425863 += 1;
-              if (!(((colontmp__570425862).length == L_570425864))) {
+              i_570425867 += 1;
+              if (!(((colontmp__570425866).length == L_570425868))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6232,55 +6287,55 @@ function checkFunc__semantic_u392(c_p0, s_p1, isMethod_p2) {
     var Temporary27;
 
     var Temporary1 = s_p1;
-    if (ConstSet82[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
+    if (ConstSet83[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
     var tmpTuple_1442840972 = lookup__semantic_u18(c_p0, Temporary1.fname);
     var found_1442840973 = tmpTuple_1442840972["Field0"];
     var isC_1442840974 = tmpTuple_1442840972["Field1"];
     if (isC_1442840974) {
     var Temporary2 = s_p1;
-    if (ConstSet83[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063369)); }
+    if (ConstSet84[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063369)); }
     issue__semantic_u324(c_p0, s_p1.line, s_p1.col, ([96]).concat(Temporary2.fname,[96,32,105,115,32,108,111,99,107,101,100,44,32,99,97,110,39,116,32,99,111,111,107,32,111,118,101,114,32,97,32,108,111,99,107]));
     }
 
     var Temporary3 = s_p1;
-    if (ConstSet84[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063369)); }
+    if (ConstSet85[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063369)); }
     declare__semantic_u253(c_p0, Temporary3.fname, false);
       if (!isMethod_p2) Temporary4 = false; else {        var Temporary6 = s_p1;
-        if (ConstSet85[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063369)); }
+        if (ConstSet86[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063369)); }
         if (((Temporary6.fparams).length == 0)) Temporary5 = true; else {          var Temporary7 = s_p1;
-          if (ConstSet86[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063369)); }
+          if (ConstSet87[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063369)); }
           Temporary5 = !(eqStrings((Temporary8 = Temporary7.fparams, Temporary8)[chckIndx(0, 0, (Temporary8).length - 1)].name, [102,97,109]));        }        Temporary4 = Temporary5;      }    if (Temporary4) {
     issue__semantic_u324(c_p0, s_p1.line, s_p1.col, [99,108,105,113,117,101,32,109,101,116,104,111,100,115,32,110,101,101,100,32,96,102,97,109,96,32,97,115,32,116,104,101,105,114,32,102,105,114,115,116,32,112,97,114,97,109,32,40,116,104,97,116,39,115,32,116,104,101,32,115,101,108,102,41]);
     }
 
       var Temporary11 = s_p1;
-      if (ConstSet87[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063369)); }
+      if (ConstSet88[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063369)); }
       if (!eqStrings(Temporary11.fname, [110,101,119])) Temporary10 = false; else {        Temporary10 = isMethod_p2;      }      if (!Temporary10) Temporary9 = false; else {        var Temporary13 = s_p1;
-        if (ConstSet88[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063369)); }
+        if (ConstSet89[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063369)); }
         if (((Temporary13.fparams).length == 0)) Temporary12 = true; else {          var Temporary14 = s_p1;
-          if (ConstSet89[Temporary14.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary14.kind, NTI1426063369)); }
+          if (ConstSet90[Temporary14.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary14.kind, NTI1426063369)); }
           Temporary12 = !(eqStrings((Temporary15 = Temporary14.fparams, Temporary15)[chckIndx(0, 0, (Temporary15).length - 1)].name, [102,97,109]));        }        Temporary9 = Temporary12;      }    if (Temporary9) {
     issue__semantic_u324(c_p0, s_p1.line, s_p1.col, [116,104,101,32,96,110,101,119,96,32,103,108,111,119,45,117,112,32,110,101,101,100,115,32,96,102,97,109,96,32,97,115,32,105,116,115,32,102,105,114,115,116,32,112,97,114,97,109]);
     }
 
     Label16: {
       var prm_1442841003 = ({name: [], annot: [], default: null, isStar: false, isStarStar: false});
-      var colontmp__570425867 = [];
+      var colontmp__570425871 = [];
       var Temporary17 = s_p1;
-      if (ConstSet90[Temporary17.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary17.kind, NTI1426063369)); }
-      colontmp__570425867 = Temporary17.fparams;
-      var i_570425868 = 0;
-      var L_570425869 = (colontmp__570425867).length;
+      if (ConstSet91[Temporary17.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary17.kind, NTI1426063369)); }
+      colontmp__570425871 = Temporary17.fparams;
+      var i_570425872 = 0;
+      var L_570425873 = (colontmp__570425871).length;
       Label18: {
           Label19: while (true) {
-          if (!(i_570425868 < L_570425869)) break Label19;
-            prm_1442841003 = nimCopy(prm_1442841003, colontmp__570425867[chckIndx(i_570425868, 0, (colontmp__570425867).length - 1)], NTI1426063365);
+          if (!(i_570425872 < L_570425873)) break Label19;
+            prm_1442841003 = nimCopy(prm_1442841003, colontmp__570425871[chckIndx(i_570425872, 0, (colontmp__570425871).length - 1)], NTI1426063365);
             if (!((prm_1442841003.default == null))) {
             checkExpr__semantic_u351(c_p0, prm_1442841003.default);
             }
 
-            i_570425868 += 1;
-            if (!(((colontmp__570425867).length == L_570425869))) {
+            i_570425872 += 1;
+            if (!(((colontmp__570425871).length == L_570425873))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -6294,7 +6349,7 @@ function checkFunc__semantic_u392(c_p0, s_p1, isMethod_p2) {
     c_p0.funcDepth = 1;
     c_p0.loopDepth = 0;
       var Temporary21 = s_p1;
-      if (ConstSet91[Temporary21.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'isAsync\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary21.kind, NTI1426063369)); }
+      if (ConstSet92[Temporary21.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'isAsync\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary21.kind, NTI1426063369)); }
     if (Temporary21.isAsync) {
     Temporary20 = 1;
     }
@@ -6314,22 +6369,22 @@ function checkFunc__semantic_u392(c_p0, s_p1, isMethod_p2) {
     c_p0.scopes.push(initTable__parser_u1057(32));;
     Label23: {
       var prm_1442841035 = ({name: [], annot: [], default: null, isStar: false, isStarStar: false});
-      var colontmp__570425872 = [];
+      var colontmp__570425876 = [];
       var Temporary24 = s_p1;
-      if (ConstSet92[Temporary24.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary24.kind, NTI1426063369)); }
-      colontmp__570425872 = Temporary24.fparams;
-      var i_570425873 = 0;
-      var L_570425874 = (colontmp__570425872).length;
+      if (ConstSet93[Temporary24.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary24.kind, NTI1426063369)); }
+      colontmp__570425876 = Temporary24.fparams;
+      var i_570425877 = 0;
+      var L_570425878 = (colontmp__570425876).length;
       Label25: {
           Label26: while (true) {
-          if (!(i_570425873 < L_570425874)) break Label26;
-            prm_1442841035 = nimCopy(prm_1442841035, colontmp__570425872[chckIndx(i_570425873, 0, (colontmp__570425872).length - 1)], NTI1426063365);
+          if (!(i_570425877 < L_570425878)) break Label26;
+            prm_1442841035 = nimCopy(prm_1442841035, colontmp__570425876[chckIndx(i_570425877, 0, (colontmp__570425876).length - 1)], NTI1426063365);
             if (!(eqStrings(prm_1442841035.name, []))) {
             declare__semantic_u253(c_p0, prm_1442841035.name, false);
             }
 
-            i_570425873 += 1;
-            if (!(((colontmp__570425872).length == L_570425874))) {
+            i_570425877 += 1;
+            if (!(((colontmp__570425876).length == L_570425878))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -6337,7 +6392,7 @@ function checkFunc__semantic_u392(c_p0, s_p1, isMethod_p2) {
       };
     };
     var Temporary27 = s_p1;
-    if (ConstSet93[Temporary27.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fndefBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary27.kind, NTI1426063369)); }
+    if (ConstSet94[Temporary27.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fndefBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary27.kind, NTI1426063369)); }
     checkStmts__semantic_u354(c_p0, Temporary27.fndefBody);
     (pop__semantic_u460(c_p0, "scopes"));
     c_p0.funcDepth = savedFunc_1442841008;
@@ -6355,17 +6410,17 @@ function find__semantic_u867(a_p0, item_p1) {
     result_1442841448 = 0;
     Label1: {
       var i_1442841452 = 0;
-      var i_570425878 = 0;
+      var i_570425882 = 0;
       Label2: {
           Label3: while (true) {
-          if (!(i_570425878 < (a_p0).length)) break Label3;
-            i_1442841452 = a_p0[chckIndx(i_570425878, 0, (a_p0).length - 1)];
+          if (!(i_570425882 < (a_p0).length)) break Label3;
+            i_1442841452 = a_p0[chckIndx(i_570425882, 0, (a_p0).length - 1)];
             if ((i_1442841452 == item_p1)) {
             break BeforeRet;
             }
 
             result_1442841448 = addInt(result_1442841448, 1);
-            i_570425878 += 1;
+            i_570425882 += 1;
           }
       };
     };
@@ -6394,31 +6449,31 @@ function nsuSplitChar(s_p0, sep_p1, maxsplit_p2) {
     result_989856293 = nimCopy(null, [], NTI989856125);
     Label1: {
       var xHEX60gensym67_989856299 = [];
-      var lastHEX60gensym34_570425883 = 0;
-      var splitsHEX60gensym34_570425884 = maxsplit_p2;
+      var lastHEX60gensym34_570425887 = 0;
+      var splitsHEX60gensym34_570425888 = maxsplit_p2;
       Label2: {
           Label3: while (true) {
-          if (!(lastHEX60gensym34_570425883 <= (s_p0).length)) break Label3;
-            var firstHEX60gensym34_570425886 = lastHEX60gensym34_570425883;
+          if (!(lastHEX60gensym34_570425887 <= (s_p0).length)) break Label3;
+            var firstHEX60gensym34_570425890 = lastHEX60gensym34_570425887;
             Label4: {
                 Label5: while (true) {
-                if (!((lastHEX60gensym34_570425883 < (s_p0).length) && !((s_p0[chckIndx(lastHEX60gensym34_570425883, 0, (s_p0).length - 1)] == sep_p1)))) break Label5;
-                  lastHEX60gensym34_570425883 = addInt(lastHEX60gensym34_570425883, 1);
+                if (!((lastHEX60gensym34_570425887 < (s_p0).length) && !((s_p0[chckIndx(lastHEX60gensym34_570425887, 0, (s_p0).length - 1)] == sep_p1)))) break Label5;
+                  lastHEX60gensym34_570425887 = addInt(lastHEX60gensym34_570425887, 1);
                 }
             };
-            if ((splitsHEX60gensym34_570425884 == 0)) {
-            lastHEX60gensym34_570425883 = (s_p0).length;
+            if ((splitsHEX60gensym34_570425888 == 0)) {
+            lastHEX60gensym34_570425887 = (s_p0).length;
             }
 
-            xHEX60gensym67_989856299 = substr__system_u3793(s_p0, firstHEX60gensym34_570425886, subInt(lastHEX60gensym34_570425883, 1));
+            xHEX60gensym67_989856299 = substr__system_u3793(s_p0, firstHEX60gensym34_570425890, subInt(lastHEX60gensym34_570425887, 1));
             var Temporary6 = nimCopy(null, xHEX60gensym67_989856299, NTI33554449);
             result_989856293.push(Temporary6);;
-            if ((splitsHEX60gensym34_570425884 == 0)) {
+            if ((splitsHEX60gensym34_570425888 == 0)) {
             break Label2;
             }
 
-            splitsHEX60gensym34_570425884 = subInt(splitsHEX60gensym34_570425884, 1);
-            lastHEX60gensym34_570425883 = addInt(lastHEX60gensym34_570425883, 1);
+            splitsHEX60gensym34_570425888 = subInt(splitsHEX60gensym34_570425888, 1);
+            lastHEX60gensym34_570425887 = addInt(lastHEX60gensym34_570425887, 1);
           }
       };
     };
@@ -6439,26 +6494,26 @@ function declarePattern__semantic_u473(c_p0, e_p1) {
     switch (e_p1.kind) {
     case 5:
       var Temporary1 = e_p1;
-      if (ConstSet115[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063367)); }
+      if (ConstSet116[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063367)); }
       declare__semantic_u253(c_p0, Temporary1.s, false);
       break;
     case 9:
     case 7:
       Label2: {
         var item_1442841059 = null;
-        var colontmp__570425889 = [];
+        var colontmp__570425893 = [];
         var Temporary3 = e_p1;
-        if (ConstSet116[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063367)); }
-        colontmp__570425889 = Temporary3.items;
-        var i_570425890 = 0;
-        var L_570425891 = (colontmp__570425889).length;
+        if (ConstSet117[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063367)); }
+        colontmp__570425893 = Temporary3.items;
+        var i_570425894 = 0;
+        var L_570425895 = (colontmp__570425893).length;
         Label4: {
             Label5: while (true) {
-            if (!(i_570425890 < L_570425891)) break Label5;
-              item_1442841059 = colontmp__570425889[chckIndx(i_570425890, 0, (colontmp__570425889).length - 1)];
+            if (!(i_570425894 < L_570425895)) break Label5;
+              item_1442841059 = colontmp__570425893[chckIndx(i_570425894, 0, (colontmp__570425893).length - 1)];
               declarePattern__semantic_u473(c_p0, item_1442841059);
-              i_570425890 += 1;
-              if (!(((colontmp__570425889).length == L_570425891))) {
+              i_570425894 += 1;
+              if (!(((colontmp__570425893).length == L_570425895))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6530,71 +6585,71 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
     switch (s_p1.kind) {
     case 2:
       var Temporary1 = s_p1;
-      if (ConstSet31[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
+      if (ConstSet32[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
       var tmpTuple_1442841265 = lookup__semantic_u18(c_p0, Temporary1.vname);
       var found_1442841266 = tmpTuple_1442841265["Field0"];
       var isC_1442841267 = tmpTuple_1442841265["Field1"];
       if (isC_1442841267) {
       var Temporary2 = s_p1;
-      if (ConstSet32[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063369)); }
+      if (ConstSet33[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063369)); }
       issue__semantic_u324(c_p0, s_p1.line, s_p1.col, ([96]).concat(Temporary2.vname,[96,32,105,115,32,108,111,99,107,101,100,32,105,110,32,102,114,44,32,121,111,117,32,99,97,110,39,116,32,114,101,98,105,110,100,32,97,32,96,108,111,99,107,96]));
       }
       else {
         if (!found_1442841266) Temporary3 = false; else {          var Temporary4 = s_p1;
-          if (ConstSet33[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'isConst\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063369)); }
+          if (ConstSet34[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'isConst\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063369)); }
           Temporary3 = Temporary4.isConst;        }      if (Temporary3) {
       var Temporary5 = s_p1;
-      if (ConstSet34[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063369)); }
+      if (ConstSet35[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063369)); }
       issue__semantic_u324(c_p0, s_p1.line, s_p1.col, ([96]).concat(Temporary5.vname,[96,32,97,108,114,101,97,100,121,32,101,120,105,115,116,115,44,32,121,111,117,32,99,97,110,39,116,32,117,112,103,114,97,100,101,32,105,116,32,116,111,32,96,108,111,99,107,96,32,109,105,100,45,118,105,98,101]));
       }
       }
       var Temporary6 = s_p1;
-      if (ConstSet35[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063369)); }
+      if (ConstSet36[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063369)); }
       var Temporary7 = s_p1;
-      if (ConstSet36[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'isConst\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063369)); }
+      if (ConstSet37[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'isConst\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063369)); }
       declare__semantic_u253(c_p0, Temporary6.vname, Temporary7.isConst);
         var Temporary8 = s_p1;
-        if (ConstSet37[Temporary8.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary8.kind, NTI1426063369)); }
+        if (ConstSet38[Temporary8.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary8.kind, NTI1426063369)); }
       if (!((Temporary8.vvalue == null))) {
       var Temporary9 = s_p1;
-      if (ConstSet66[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063369)); }
+      if (ConstSet67[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary9.vvalue);
       }
 
       break;
     case 1:
       var Temporary10 = s_p1;
-      if (ConstSet71[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'target\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063369)); }
+      if (ConstSet72[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'target\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063369)); }
       checkAssignTarget__semantic_u357(c_p0, Temporary10.target, s_p1.line, s_p1.col);
       var Temporary11 = s_p1;
-      if (ConstSet72[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'target\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063369)); }
+      if (ConstSet73[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'target\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary11.target);
       var Temporary12 = s_p1;
-      if (ConstSet73[Temporary12.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'value\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary12.kind, NTI1426063369)); }
+      if (ConstSet74[Temporary12.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'value\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary12.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary12.value);
       break;
     case 0:
       var Temporary13 = s_p1;
-      if (ConstSet74[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'e\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063369)); }
+      if (ConstSet75[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'e\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary13.e);
       break;
     case 3:
       Label14: {
         var cl_1442841294 = {Field0: null, Field1: []};
-        var colontmp__570425745 = [];
+        var colontmp__570425749 = [];
         var Temporary15 = s_p1;
-        if (ConstSet75[Temporary15.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'clauses\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary15.kind, NTI1426063369)); }
-        colontmp__570425745 = Temporary15.clauses;
-        var i_570425747 = 0;
-        var L_570425748 = (colontmp__570425745).length;
+        if (ConstSet76[Temporary15.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'clauses\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary15.kind, NTI1426063369)); }
+        colontmp__570425749 = Temporary15.clauses;
+        var i_570425751 = 0;
+        var L_570425752 = (colontmp__570425749).length;
         Label16: {
             Label17: while (true) {
-            if (!(i_570425747 < L_570425748)) break Label17;
-              cl_1442841294 = nimCopy(cl_1442841294, colontmp__570425745[chckIndx(i_570425747, 0, (colontmp__570425745).length - 1)], NTI1426063387);
+            if (!(i_570425751 < L_570425752)) break Label17;
+              cl_1442841294 = nimCopy(cl_1442841294, colontmp__570425749[chckIndx(i_570425751, 0, (colontmp__570425749).length - 1)], NTI1426063387);
               checkExpr__semantic_u351(c_p0, cl_1442841294.Field0);
               checkStmts__semantic_u354(c_p0, cl_1442841294.Field1);
-              i_570425747 += 1;
-              if (!(((colontmp__570425745).length == L_570425748))) {
+              i_570425751 += 1;
+              if (!(((colontmp__570425749).length == L_570425752))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6602,38 +6657,38 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
         };
       };
       var Temporary18 = s_p1;
-      if (ConstSet76[Temporary18.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elseBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary18.kind, NTI1426063369)); }
+      if (ConstSet77[Temporary18.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elseBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary18.kind, NTI1426063369)); }
       checkStmts__semantic_u354(c_p0, Temporary18.elseBody);
       break;
     case 4:
       var Temporary19 = s_p1;
-      if (ConstSet77[Temporary19.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wcond\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary19.kind, NTI1426063369)); }
+      if (ConstSet78[Temporary19.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wcond\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary19.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary19.wcond);
       c_p0.loopDepth = addInt(c_p0.loopDepth, 1);
       var Temporary20 = s_p1;
-      if (ConstSet78[Temporary20.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary20.kind, NTI1426063369)); }
+      if (ConstSet79[Temporary20.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary20.kind, NTI1426063369)); }
       checkStmts__semantic_u354(c_p0, Temporary20.wbody);
       c_p0.loopDepth = subInt(c_p0.loopDepth, 1);
       break;
     case 5:
       var Temporary21 = s_p1;
-      if (ConstSet79[Temporary21.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fiter\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary21.kind, NTI1426063369)); }
+      if (ConstSet80[Temporary21.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fiter\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary21.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary21.fiter);
       Label22: {
         var t_1442841308 = [];
-        var colontmp__570425751 = [];
+        var colontmp__570425755 = [];
         var Temporary23 = s_p1;
-        if (ConstSet80[Temporary23.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ftargets\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary23.kind, NTI1426063369)); }
-        colontmp__570425751 = Temporary23.ftargets;
-        var i_570425753 = 0;
-        var L_570425754 = (colontmp__570425751).length;
+        if (ConstSet81[Temporary23.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ftargets\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary23.kind, NTI1426063369)); }
+        colontmp__570425755 = Temporary23.ftargets;
+        var i_570425757 = 0;
+        var L_570425758 = (colontmp__570425755).length;
         Label24: {
             Label25: while (true) {
-            if (!(i_570425753 < L_570425754)) break Label25;
-              t_1442841308 = colontmp__570425751[chckIndx(i_570425753, 0, (colontmp__570425751).length - 1)];
+            if (!(i_570425757 < L_570425758)) break Label25;
+              t_1442841308 = colontmp__570425755[chckIndx(i_570425757, 0, (colontmp__570425755).length - 1)];
               declare__semantic_u253(c_p0, t_1442841308, false);
-              i_570425753 += 1;
-              if (!(((colontmp__570425751).length == L_570425754))) {
+              i_570425757 += 1;
+              if (!(((colontmp__570425755).length == L_570425758))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6642,7 +6697,7 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
       };
       c_p0.loopDepth = addInt(c_p0.loopDepth, 1);
       var Temporary26 = s_p1;
-      if (ConstSet81[Temporary26.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary26.kind, NTI1426063369)); }
+      if (ConstSet82[Temporary26.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary26.kind, NTI1426063369)); }
       checkStmts__semantic_u354(c_p0, Temporary26.fbody);
       c_p0.loopDepth = subInt(c_p0.loopDepth, 1);
       break;
@@ -6651,34 +6706,34 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
       break;
     case 7:
       var Temporary27 = s_p1;
-      if (ConstSet94[Temporary27.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary27.kind, NTI1426063369)); }
+      if (ConstSet95[Temporary27.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary27.kind, NTI1426063369)); }
       var tmpTuple_1442841319 = lookup__semantic_u18(c_p0, Temporary27.cname);
       var found_1442841320 = tmpTuple_1442841319["Field0"];
       var isC_1442841321 = tmpTuple_1442841319["Field1"];
       if (isC_1442841321) {
       var Temporary28 = s_p1;
-      if (ConstSet95[Temporary28.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary28.kind, NTI1426063369)); }
+      if (ConstSet96[Temporary28.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary28.kind, NTI1426063369)); }
       issue__semantic_u324(c_p0, s_p1.line, s_p1.col, ([96]).concat(Temporary28.cname,[96,32,105,115,32,108,111,99,107,101,100,44,32,99,97,110,39,116,32,114,101,115,116,97,99,107,32,97,32,108,111,99,107]));
       }
 
       var Temporary29 = s_p1;
-      if (ConstSet96[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063369)); }
+      if (ConstSet97[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063369)); }
       declare__semantic_u253(c_p0, Temporary29.cname, false);
       Label30: {
         var b_1442841325 = null;
-        var colontmp__570425757 = [];
+        var colontmp__570425761 = [];
         var Temporary31 = s_p1;
-        if (ConstSet97[Temporary31.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary31.kind, NTI1426063369)); }
-        colontmp__570425757 = Temporary31.cbases;
-        var i_570425759 = 0;
-        var L_570425760 = (colontmp__570425757).length;
+        if (ConstSet98[Temporary31.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary31.kind, NTI1426063369)); }
+        colontmp__570425761 = Temporary31.cbases;
+        var i_570425763 = 0;
+        var L_570425764 = (colontmp__570425761).length;
         Label32: {
             Label33: while (true) {
-            if (!(i_570425759 < L_570425760)) break Label33;
-              b_1442841325 = colontmp__570425757[chckIndx(i_570425759, 0, (colontmp__570425757).length - 1)];
+            if (!(i_570425763 < L_570425764)) break Label33;
+              b_1442841325 = colontmp__570425761[chckIndx(i_570425763, 0, (colontmp__570425761).length - 1)];
               checkExpr__semantic_u351(c_p0, b_1442841325);
-              i_570425759 += 1;
-              if (!(((colontmp__570425757).length == L_570425760))) {
+              i_570425763 += 1;
+              if (!(((colontmp__570425761).length == L_570425764))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6696,16 +6751,16 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
       c_p0.scopes.push(initTable__parser_u1057(32));;
       Label34: {
         var stmt_1442841371 = null;
-        var colontmp__570425763 = [];
+        var colontmp__570425767 = [];
         var Temporary35 = s_p1;
-        if (ConstSet98[Temporary35.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary35.kind, NTI1426063369)); }
-        colontmp__570425763 = Temporary35.cbody;
-        var i_570425764 = 0;
-        var L_570425765 = (colontmp__570425763).length;
+        if (ConstSet99[Temporary35.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary35.kind, NTI1426063369)); }
+        colontmp__570425767 = Temporary35.cbody;
+        var i_570425768 = 0;
+        var L_570425769 = (colontmp__570425767).length;
         Label36: {
             Label37: while (true) {
-            if (!(i_570425764 < L_570425765)) break Label37;
-              stmt_1442841371 = colontmp__570425763[chckIndx(i_570425764, 0, (colontmp__570425763).length - 1)];
+            if (!(i_570425768 < L_570425769)) break Label37;
+              stmt_1442841371 = colontmp__570425767[chckIndx(i_570425768, 0, (colontmp__570425767).length - 1)];
               if ((stmt_1442841371.kind == 6)) {
               checkFunc__semantic_u392(c_p0, stmt_1442841371, true);
               }
@@ -6713,8 +6768,8 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
               checkStmt__semantic_u686(c_p0, stmt_1442841371);
               }
 
-              i_570425764 += 1;
-              if (!(((colontmp__570425763).length == L_570425765))) {
+              i_570425768 += 1;
+              if (!(((colontmp__570425767).length == L_570425769))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6733,10 +6788,10 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
       }
 
         var Temporary38 = s_p1;
-        if (ConstSet99[Temporary38.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary38.kind, NTI1426063369)); }
+        if (ConstSet100[Temporary38.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary38.kind, NTI1426063369)); }
       if (!((Temporary38.re == null))) {
       var Temporary39 = s_p1;
-      if (ConstSet100[Temporary39.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary39.kind, NTI1426063369)); }
+      if (ConstSet101[Temporary39.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary39.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary39.re);
       }
 
@@ -6757,30 +6812,30 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
       break;
     case 12:
         var Temporary40 = s_p1;
-        if (ConstSet101[Temporary40.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary40.kind, NTI1426063369)); }
+        if (ConstSet102[Temporary40.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary40.kind, NTI1426063369)); }
       if (!((Temporary40.rae == null))) {
       var Temporary41 = s_p1;
-      if (ConstSet102[Temporary41.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary41.kind, NTI1426063369)); }
+      if (ConstSet103[Temporary41.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary41.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary41.rae);
       }
 
       break;
     case 13:
       var Temporary42 = s_p1;
-      if (ConstSet103[Temporary42.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'tbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary42.kind, NTI1426063369)); }
+      if (ConstSet104[Temporary42.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'tbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary42.kind, NTI1426063369)); }
       checkStmts__semantic_u354(c_p0, Temporary42.tbody);
       Label43: {
         var h_1442841409 = ({etype: null, alias: [], body: []});
-        var colontmp__570425768 = [];
+        var colontmp__570425772 = [];
         var Temporary44 = s_p1;
-        if (ConstSet104[Temporary44.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'handlers\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary44.kind, NTI1426063369)); }
-        colontmp__570425768 = Temporary44.handlers;
-        var i_570425770 = 0;
-        var L_570425771 = (colontmp__570425768).length;
+        if (ConstSet105[Temporary44.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'handlers\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary44.kind, NTI1426063369)); }
+        colontmp__570425772 = Temporary44.handlers;
+        var i_570425774 = 0;
+        var L_570425775 = (colontmp__570425772).length;
         Label45: {
             Label46: while (true) {
-            if (!(i_570425770 < L_570425771)) break Label46;
-              h_1442841409 = nimCopy(h_1442841409, colontmp__570425768[chckIndx(i_570425770, 0, (colontmp__570425768).length - 1)], NTI1426063366);
+            if (!(i_570425774 < L_570425775)) break Label46;
+              h_1442841409 = nimCopy(h_1442841409, colontmp__570425772[chckIndx(i_570425774, 0, (colontmp__570425772).length - 1)], NTI1426063366);
               if (!((h_1442841409.etype == null))) {
               checkExpr__semantic_u351(c_p0, h_1442841409.etype);
               }
@@ -6794,8 +6849,8 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
               }
 
               checkStmts__semantic_u354(c_p0, h_1442841409.body);
-              i_570425770 += 1;
-              if (!(((colontmp__570425768).length == L_570425771))) {
+              i_570425774 += 1;
+              if (!(((colontmp__570425772).length == L_570425775))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6803,32 +6858,32 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
         };
       };
       var Temporary47 = s_p1;
-      if (ConstSet105[Temporary47.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'orelse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary47.kind, NTI1426063369)); }
+      if (ConstSet106[Temporary47.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'orelse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary47.kind, NTI1426063369)); }
       checkStmts__semantic_u354(c_p0, Temporary47.orelse);
       var Temporary48 = s_p1;
-      if (ConstSet106[Temporary48.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary48.kind, NTI1426063369)); }
+      if (ConstSet107[Temporary48.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary48.kind, NTI1426063369)); }
       checkStmts__semantic_u354(c_p0, Temporary48.finallyB);
       break;
     case 14:
       Label49: {
         var item_1442841436 = {Field0: null, Field1: []};
-        var colontmp__570425774 = [];
+        var colontmp__570425778 = [];
         var Temporary50 = s_p1;
-        if (ConstSet107[Temporary50.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'witems\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary50.kind, NTI1426063369)); }
-        colontmp__570425774 = Temporary50.witems;
-        var i_570425776 = 0;
-        var L_570425777 = (colontmp__570425774).length;
+        if (ConstSet108[Temporary50.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'witems\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary50.kind, NTI1426063369)); }
+        colontmp__570425778 = Temporary50.witems;
+        var i_570425780 = 0;
+        var L_570425781 = (colontmp__570425778).length;
         Label51: {
             Label52: while (true) {
-            if (!(i_570425776 < L_570425777)) break Label52;
-              item_1442841436 = nimCopy(item_1442841436, colontmp__570425774[chckIndx(i_570425776, 0, (colontmp__570425774).length - 1)], NTI1426063402);
+            if (!(i_570425780 < L_570425781)) break Label52;
+              item_1442841436 = nimCopy(item_1442841436, colontmp__570425778[chckIndx(i_570425780, 0, (colontmp__570425778).length - 1)], NTI1426063402);
               checkExpr__semantic_u351(c_p0, item_1442841436.Field0);
               if (!(eqStrings(item_1442841436.Field1, []))) {
               declare__semantic_u253(c_p0, item_1442841436.Field1, false);
               }
 
-              i_570425776 += 1;
-              if (!(((colontmp__570425774).length == L_570425777))) {
+              i_570425780 += 1;
+              if (!(((colontmp__570425778).length == L_570425781))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6836,22 +6891,22 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
         };
       };
       var Temporary53 = s_p1;
-      if (ConstSet108[Temporary53.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'withBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary53.kind, NTI1426063369)); }
+      if (ConstSet109[Temporary53.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'withBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary53.kind, NTI1426063369)); }
       checkStmts__semantic_u354(c_p0, Temporary53.withBody);
       break;
     case 15:
       var Temporary54 = s_p1;
-      if (ConstSet109[Temporary54.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary54.kind, NTI1426063369)); }
+      if (ConstSet110[Temporary54.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary54.kind, NTI1426063369)); }
       var local_1442841437 = Temporary54.imod;
       if (contains__semantic_u862(local_1442841437, 46)) {
       local_1442841437 = (Temporary55 = nsuSplitChar(local_1442841437, 46, (-1)), Temporary55)[chckIndx(0, 0, (Temporary55).length - 1)];
       }
 
         var Temporary56 = s_p1;
-        if (ConstSet110[Temporary56.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary56.kind, NTI1426063369)); }
+        if (ConstSet111[Temporary56.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary56.kind, NTI1426063369)); }
       if (!(eqStrings(Temporary56.ialias, []))) {
       var Temporary57 = s_p1;
-      if (ConstSet111[Temporary57.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary57.kind, NTI1426063369)); }
+      if (ConstSet112[Temporary57.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary57.kind, NTI1426063369)); }
       local_1442841437 = Temporary57.ialias;
       }
 
@@ -6860,16 +6915,16 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
     case 16:
       Label58: {
         var n_1442841480 = {Field0: [], Field1: []};
-        var colontmp__570425780 = [];
+        var colontmp__570425784 = [];
         var Temporary59 = s_p1;
-        if (ConstSet112[Temporary59.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary59.kind, NTI1426063369)); }
-        colontmp__570425780 = Temporary59.fnames;
-        var i_570425782 = 0;
-        var L_570425783 = (colontmp__570425780).length;
+        if (ConstSet113[Temporary59.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary59.kind, NTI1426063369)); }
+        colontmp__570425784 = Temporary59.fnames;
+        var i_570425786 = 0;
+        var L_570425787 = (colontmp__570425784).length;
         Label60: {
             Label61: while (true) {
-            if (!(i_570425782 < L_570425783)) break Label61;
-              n_1442841480 = nimCopy(n_1442841480, colontmp__570425780[chckIndx(i_570425782, 0, (colontmp__570425780).length - 1)], NTI1426063405);
+            if (!(i_570425786 < L_570425787)) break Label61;
+              n_1442841480 = nimCopy(n_1442841480, colontmp__570425784[chckIndx(i_570425786, 0, (colontmp__570425784).length - 1)], NTI1426063405);
               if (!(eqStrings(n_1442841480.Field0, [42]))) {
               if (!(eqStrings(n_1442841480.Field1, []))) {
               Temporary62 = n_1442841480.Field1;
@@ -6882,8 +6937,8 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
               declare__semantic_u253(c_p0, local_1442841481, false);
               }
 
-              i_570425782 += 1;
-              if (!(((colontmp__570425780).length == L_570425783))) {
+              i_570425786 += 1;
+              if (!(((colontmp__570425784).length == L_570425787))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6893,24 +6948,24 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
       break;
     case 17:
       var Temporary63 = s_p1;
-      if (ConstSet113[Temporary63.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'msubject\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary63.kind, NTI1426063369)); }
+      if (ConstSet114[Temporary63.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'msubject\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary63.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary63.msubject);
       Label64: {
         var mc_1442841503 = {Field0: null, Field1: []};
-        var colontmp__570425786 = [];
+        var colontmp__570425790 = [];
         var Temporary65 = s_p1;
-        if (ConstSet114[Temporary65.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'mcases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary65.kind, NTI1426063369)); }
-        colontmp__570425786 = Temporary65.mcases;
-        var i_570425788 = 0;
-        var L_570425789 = (colontmp__570425786).length;
+        if (ConstSet115[Temporary65.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'mcases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary65.kind, NTI1426063369)); }
+        colontmp__570425790 = Temporary65.mcases;
+        var i_570425792 = 0;
+        var L_570425793 = (colontmp__570425790).length;
         Label66: {
             Label67: while (true) {
-            if (!(i_570425788 < L_570425789)) break Label67;
-              mc_1442841503 = nimCopy(mc_1442841503, colontmp__570425786[chckIndx(i_570425788, 0, (colontmp__570425786).length - 1)], NTI1426063407);
+            if (!(i_570425792 < L_570425793)) break Label67;
+              mc_1442841503 = nimCopy(mc_1442841503, colontmp__570425790[chckIndx(i_570425792, 0, (colontmp__570425790).length - 1)], NTI1426063407);
               declarePattern__semantic_u473(c_p0, mc_1442841503.Field0);
               checkStmts__semantic_u354(c_p0, mc_1442841503.Field1);
-              i_570425788 += 1;
-              if (!(((colontmp__570425786).length == L_570425789))) {
+              i_570425792 += 1;
+              if (!(((colontmp__570425790).length == L_570425793))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6918,25 +6973,25 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
         };
       };
       var Temporary68 = s_p1;
-      if (ConstSet117[Temporary68.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'mdefault\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary68.kind, NTI1426063369)); }
+      if (ConstSet118[Temporary68.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'mdefault\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary68.kind, NTI1426063369)); }
       checkStmts__semantic_u354(c_p0, Temporary68.mdefault);
       break;
     case 18:
       Label69: {
         var t_1442841507 = null;
-        var colontmp__570425792 = [];
+        var colontmp__570425796 = [];
         var Temporary70 = s_p1;
-        if (ConstSet118[Temporary70.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dtargets\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary70.kind, NTI1426063369)); }
-        colontmp__570425792 = Temporary70.dtargets;
-        var i_570425793 = 0;
-        var L_570425794 = (colontmp__570425792).length;
+        if (ConstSet119[Temporary70.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dtargets\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary70.kind, NTI1426063369)); }
+        colontmp__570425796 = Temporary70.dtargets;
+        var i_570425797 = 0;
+        var L_570425798 = (colontmp__570425796).length;
         Label71: {
             Label72: while (true) {
-            if (!(i_570425793 < L_570425794)) break Label72;
-              t_1442841507 = colontmp__570425792[chckIndx(i_570425793, 0, (colontmp__570425792).length - 1)];
+            if (!(i_570425797 < L_570425798)) break Label72;
+              t_1442841507 = colontmp__570425796[chckIndx(i_570425797, 0, (colontmp__570425796).length - 1)];
               checkExpr__semantic_u351(c_p0, t_1442841507);
-              i_570425793 += 1;
-              if (!(((colontmp__570425792).length == L_570425794))) {
+              i_570425797 += 1;
+              if (!(((colontmp__570425796).length == L_570425798))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6946,13 +7001,13 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
       break;
     case 19:
       var Temporary73 = s_p1;
-      if (ConstSet119[Temporary73.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'acond\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary73.kind, NTI1426063369)); }
+      if (ConstSet120[Temporary73.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'acond\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary73.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary73.acond);
         var Temporary74 = s_p1;
-        if (ConstSet120[Temporary74.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'amsg\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary74.kind, NTI1426063369)); }
+        if (ConstSet121[Temporary74.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'amsg\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary74.kind, NTI1426063369)); }
       if (!((Temporary74.amsg == null))) {
       var Temporary75 = s_p1;
-      if (ConstSet121[Temporary75.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'amsg\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary75.kind, NTI1426063369)); }
+      if (ConstSet122[Temporary75.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'amsg\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary75.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary75.amsg);
       }
 
@@ -6965,19 +7020,19 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
 
       Label76: {
         var n_1442841519 = [];
-        var colontmp__570425797 = [];
+        var colontmp__570425801 = [];
         var Temporary77 = s_p1;
-        if (ConstSet122[Temporary77.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'gnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary77.kind, NTI1426063369)); }
-        colontmp__570425797 = Temporary77.gnames;
-        var i_570425798 = 0;
-        var L_570425799 = (colontmp__570425797).length;
+        if (ConstSet123[Temporary77.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'gnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary77.kind, NTI1426063369)); }
+        colontmp__570425801 = Temporary77.gnames;
+        var i_570425802 = 0;
+        var L_570425803 = (colontmp__570425801).length;
         Label78: {
             Label79: while (true) {
-            if (!(i_570425798 < L_570425799)) break Label79;
-              n_1442841519 = colontmp__570425797[chckIndx(i_570425798, 0, (colontmp__570425797).length - 1)];
+            if (!(i_570425802 < L_570425803)) break Label79;
+              n_1442841519 = colontmp__570425801[chckIndx(i_570425802, 0, (colontmp__570425801).length - 1)];
               declare__semantic_u253(c_p0, n_1442841519, false);
-              i_570425798 += 1;
-              if (!(((colontmp__570425797).length == L_570425799))) {
+              i_570425802 += 1;
+              if (!(((colontmp__570425801).length == L_570425803))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -6991,10 +7046,10 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
       }
 
         var Temporary80 = s_p1;
-        if (ConstSet123[Temporary80.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary80.kind, NTI1426063369)); }
+        if (ConstSet124[Temporary80.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary80.kind, NTI1426063369)); }
       if (!((Temporary80.ye == null))) {
       var Temporary81 = s_p1;
-      if (ConstSet124[Temporary81.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary81.kind, NTI1426063369)); }
+      if (ConstSet125[Temporary81.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary81.kind, NTI1426063369)); }
       checkExpr__semantic_u351(c_p0, Temporary81.ye);
       }
 
@@ -7007,15 +7062,15 @@ function checkStmt__semantic_u686(c_p0, s_p1) {
 function checkStmts__semantic_u354(c_p0, stmts_p1) {
     Label1: {
       var s_1442841530 = null;
-      var i_570425741 = 0;
-      var L_570425742 = (stmts_p1).length;
+      var i_570425745 = 0;
+      var L_570425746 = (stmts_p1).length;
       Label2: {
           Label3: while (true) {
-          if (!(i_570425741 < L_570425742)) break Label3;
-            s_1442841530 = stmts_p1[chckIndx(i_570425741, 0, (stmts_p1).length - 1)];
+          if (!(i_570425745 < L_570425746)) break Label3;
+            s_1442841530 = stmts_p1[chckIndx(i_570425745, 0, (stmts_p1).length - 1)];
             checkStmt__semantic_u686(c_p0, s_1442841530);
-            i_570425741 += 1;
-            if (!(((stmts_p1).length == L_570425742))) {
+            i_570425745 += 1;
+            if (!(((stmts_p1).length == L_570425746))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -7141,9 +7196,9 @@ function enlarge__pureZjson_u956(t_p0) {
     n_704644034 = new Array(chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647)); for (var i = 0 ; i < chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647) ; ++i) { n_704644034[i] = {Field0: 0, Field1: 0, Field2: [], Field3: null}; }    var h_704644082 = t_p0.first;
     t_p0.first = (-1);
     t_p0.last = (-1);
-    var HEX3Atmp_570425902 = nimCopy(null, t_p0.data, NTI704643089);
+    var HEX3Atmp_570425906 = nimCopy(null, t_p0.data, NTI704643089);
     t_p0.data = n_704644034;
-    n_704644034 = HEX3Atmp_570425902;
+    n_704644034 = HEX3Atmp_570425906;
     Label1: {
         Label2: while (true) {
         if (!(0 <= h_704644082)) break Label2;
@@ -7249,17 +7304,17 @@ function HEX25__pureZjson_u1863(keyVals_p0) {
     Label1: {
       var key_704644973 = [];
       var val_704644974 = null;
-      var i_570425895 = 0;
+      var i_570425899 = 0;
       Label2: {
           Label3: while (true) {
-          if (!(i_570425895 < (keyVals_p0).length)) break Label3;
-            var colontmp__570425898 = keyVals_p0[chckIndx(i_570425895, 0, (keyVals_p0).length - 1)];
-            key_704644973 = colontmp__570425898["Field0"];
-            val_704644974 = colontmp__570425898["Field1"];
+          if (!(i_570425899 < (keyVals_p0).length)) break Label3;
+            var colontmp__570425902 = keyVals_p0[chckIndx(i_570425899, 0, (keyVals_p0).length - 1)];
+            key_704644973 = colontmp__570425902["Field0"];
+            val_704644974 = colontmp__570425902["Field1"];
             var Temporary4 = result_704644939;
-            if (ConstSet125[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI704643075)); }
+            if (ConstSet126[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI704643075)); }
             HEX5BHEX5DHEX3D__pureZjson_u414(Temporary4.fields, key_704644973, val_704644974);
-            i_570425895 += 1;
+            i_570425899 += 1;
           }
       };
     };
@@ -7304,7 +7359,7 @@ function add__pureZjson_u349(father_p0, child_p1) {
     }
 
     var Temporary1 = father_p0;
-    if (ConstSet126[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elems\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI704643075)); }
+    if (ConstSet127[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elems\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI704643075)); }
     Temporary1.elems.push(child_p1);;
 
 
@@ -7316,13 +7371,13 @@ function HEX25__web_u104(elements_p0) {
     result_570425451 = newJArray__pureZjson_u203();
     Label1: {
       var elem_570425455 = null;
-      var i_570425906 = 0;
+      var i_570425910 = 0;
       Label2: {
           Label3: while (true) {
-          if (!(i_570425906 < (elements_p0).length)) break Label3;
-            elem_570425455 = elements_p0[chckIndx(i_570425906, 0, (elements_p0).length - 1)];
+          if (!(i_570425910 < (elements_p0).length)) break Label3;
+            elem_570425455 = elements_p0[chckIndx(i_570425910, 0, (elements_p0).length - 1)];
             add__pureZjson_u349(result_570425451, elem_570425455);
-            i_570425906 += 1;
+            i_570425910 += 1;
           }
       };
     };
@@ -7336,15 +7391,15 @@ function diagList__web_u7(issues_p0) {
 
     Label1: {
       var iss_570425376 = ({line: 0, col: 0, msg: []});
-      var i_570425910 = 0;
-      var L_570425911 = (issues_p0).length;
+      var i_570425914 = 0;
+      var L_570425915 = (issues_p0).length;
       Label2: {
           Label3: while (true) {
-          if (!(i_570425910 < L_570425911)) break Label3;
-            iss_570425376 = issues_p0[chckIndx(i_570425910, 0, (issues_p0).length - 1)];
+          if (!(i_570425914 < L_570425915)) break Label3;
+            iss_570425376 = issues_p0[chckIndx(i_570425914, 0, (issues_p0).length - 1)];
             result_570425353.push(HEX25__pureZjson_u1863([nimCopy(null, {Field0: [108,105,110,101], Field1: HEX25__pureZjson_u1844(iss_570425376.line)}, NTI570425368), nimCopy(null, {Field0: [99,111,108], Field1: HEX25__pureZjson_u1844(iss_570425376.col)}, NTI570425368), nimCopy(null, {Field0: [109,101,115,115,97,103,101], Field1: HEX25__pureZjson_u1834(iss_570425376.msg)}, NTI570425368), nimCopy(null, {Field0: [115,101,118,101,114,105,116,121], Field1: HEX25__pureZjson_u1844(1)}, NTI570425368)]));;
-            i_570425910 += 1;
-            if (!(((issues_p0).length == L_570425911))) {
+            i_570425914 += 1;
+            if (!(((issues_p0).length == L_570425915))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -7362,13 +7417,13 @@ function nsuRepeatStr(s_p0, n_p1) {
     result_989856877 = nimCopy(null, mnewString(0), NTI33554449);
     Label1: {
       var i_989856882 = 0;
-      var res_570425953 = 1;
+      var res_570425926 = 1;
       Label2: {
           Label3: while (true) {
-          if (!(res_570425953 <= n_p1)) break Label3;
-            i_989856882 = res_570425953;
+          if (!(res_570425926 <= n_p1)) break Label3;
+            i_989856882 = res_570425926;
             nimAddStrStr(result_989856877, s_p0);;
-            res_570425953 = addInt(res_570425953, 1);
+            res_570425926 = addInt(res_570425926, 1);
           }
       };
     };
@@ -7488,22 +7543,22 @@ function emitFStr__emit_u122(em_p0, e_p1) {
 
   var result_1459617964 = [];
 
-    var HEX3Aenv_570425971 = null;
-    HEX3Aenv_570425971 = {m_type: NTI570425612, outer0: 0};
+    var HEX3Aenv_570425992 = null;
+    HEX3Aenv_570425992 = {m_type: NTI570425618, outer0: 0};
     var needsDQ_1459617965 = false;
     var needsSQ_1459617966 = false;
     Label1: {
       var part_1459617970 = ({isExpr: false, text: [], ex: null, spec: []});
-      var colontmp__570426020 = [];
+      var colontmp__570426041 = [];
       var Temporary2 = e_p1;
-      if (ConstSet133[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'parts\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
-      colontmp__570426020 = Temporary2.parts;
-      var i_570426021 = 0;
-      var L_570426022 = (colontmp__570426020).length;
+      if (ConstSet135[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'parts\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
+      colontmp__570426041 = Temporary2.parts;
+      var i_570426042 = 0;
+      var L_570426043 = (colontmp__570426041).length;
       Label3: {
           Label4: while (true) {
-          if (!(i_570426021 < L_570426022)) break Label4;
-            part_1459617970 = nimCopy(part_1459617970, colontmp__570426020[chckIndx(i_570426021, 0, (colontmp__570426020).length - 1)], NTI1426063363);
+          if (!(i_570426042 < L_570426043)) break Label4;
+            part_1459617970 = nimCopy(part_1459617970, colontmp__570426041[chckIndx(i_570426042, 0, (colontmp__570426041).length - 1)], NTI1426063363);
             if (part_1459617970.isExpr) {
             var t_1459617971 = emitExpr__emit_u125(em_p0, part_1459617970.ex);
             if (contains__semantic_u862(t_1459617971, 34)) {
@@ -7526,8 +7581,8 @@ function emitFStr__emit_u122(em_p0, e_p1) {
 
             }
 
-            i_570426021 += 1;
-            if (!(((colontmp__570426020).length == L_570426022))) {
+            i_570426042 += 1;
+            if (!(((colontmp__570426041).length == L_570426043))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -7541,37 +7596,37 @@ function emitFStr__emit_u122(em_p0, e_p1) {
     Temporary5 = 34;
     }
 
-    HEX3Aenv_570425971.outer0 = Temporary5;
+    HEX3Aenv_570425992.outer0 = Temporary5;
     var body_1459618020 = [];
     Label6: {
       var part_1459618024 = ({isExpr: false, text: [], ex: null, spec: []});
-      var colontmp__570426025 = [];
+      var colontmp__570426046 = [];
       var Temporary7 = e_p1;
-      if (ConstSet134[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'parts\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063367)); }
-      colontmp__570426025 = Temporary7.parts;
-      var i_570426026 = 0;
-      var L_570426027 = (colontmp__570426025).length;
+      if (ConstSet136[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'parts\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063367)); }
+      colontmp__570426046 = Temporary7.parts;
+      var i_570426047 = 0;
+      var L_570426048 = (colontmp__570426046).length;
       Label8: {
           Label9: while (true) {
-          if (!(i_570426026 < L_570426027)) break Label9;
-            part_1459618024 = nimCopy(part_1459618024, colontmp__570426025[chckIndx(i_570426026, 0, (colontmp__570426025).length - 1)], NTI1426063363);
+          if (!(i_570426047 < L_570426048)) break Label9;
+            part_1459618024 = nimCopy(part_1459618024, colontmp__570426046[chckIndx(i_570426047, 0, (colontmp__570426046).length - 1)], NTI1426063363);
             if (part_1459618024.isExpr) {
             nimAddStrStr(body_1459618020, ([123]).concat(emitExpr__emit_u125(em_p0, part_1459618024.ex),part_1459618024.spec,[125]));;
             }
             else {
-              Temporary10 = escLit__emit_u197.bind(HEX3Aenv_570425971); Temporary10.ClP_0 = escLit__emit_u197; Temporary10.ClE_0 = HEX3Aenv_570425971;
+              Temporary10 = escLit__emit_u197.bind(HEX3Aenv_570425992); Temporary10.ClP_0 = escLit__emit_u197; Temporary10.ClE_0 = HEX3Aenv_570425992;
             nimAddStrStr(body_1459618020, Temporary10(part_1459618024.text));;
             }
 
-            i_570426026 += 1;
-            if (!(((colontmp__570426025).length == L_570426027))) {
+            i_570426047 += 1;
+            if (!(((colontmp__570426046).length == L_570426048))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
           }
       };
     };
-    result_1459617964 = nimCopy(null, ([102]).concat([HEX3Aenv_570425971.outer0],body_1459618020,[HEX3Aenv_570425971.outer0]), NTI33554449);
+    result_1459617964 = nimCopy(null, ([102]).concat([HEX3Aenv_570425992.outer0],body_1459618020,[HEX3Aenv_570425992.outer0]), NTI33554449);
 
   return result_1459617964;
 
@@ -7584,19 +7639,19 @@ function itemList__emit_u233(em_p0, e_p1) {
 
     Label1: {
       var item_1459618032 = null;
-      var colontmp__570426030 = [];
+      var colontmp__570426051 = [];
       var Temporary2 = e_p1;
-      if (ConstSet135[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
-      colontmp__570426030 = Temporary2.items;
-      var i_570426031 = 0;
-      var L_570426032 = (colontmp__570426030).length;
+      if (ConstSet137[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
+      colontmp__570426051 = Temporary2.items;
+      var i_570426052 = 0;
+      var L_570426053 = (colontmp__570426051).length;
       Label3: {
           Label4: while (true) {
-          if (!(i_570426031 < L_570426032)) break Label4;
-            item_1459618032 = colontmp__570426030[chckIndx(i_570426031, 0, (colontmp__570426030).length - 1)];
+          if (!(i_570426052 < L_570426053)) break Label4;
+            item_1459618032 = colontmp__570426051[chckIndx(i_570426052, 0, (colontmp__570426051).length - 1)];
             result_1459618028.push(emitExpr__emit_u125(em_p0, item_1459618032));;
-            i_570426031 += 1;
-            if (!(((colontmp__570426030).length == L_570426032))) {
+            i_570426052 += 1;
+            if (!(((colontmp__570426051).length == L_570426053))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -7633,25 +7688,25 @@ function child__emit_u138(em_p0, e_p1) {
 
 }
 
-function HEX5BHEX5D__emit_u280(s_p0, x_p1) {
-  var result_1459618078 = [];
+function HEX5BHEX5D__emit_u279(s_p0, x_p1) {
+  var result_1459618077 = [];
 
-    var a_1459618080 = x_p1.a;
-    var L_1459618086 = addInt(subInt(subInt((s_p0).length, x_p1.b), a_1459618080), 1);
-    result_1459618078 = new Array(chckRange(L_1459618086, 0, 2147483647)); for (var i = 0 ; i < chckRange(L_1459618086, 0, 2147483647) ; ++i) { result_1459618078[i] = null; }    Label1: {
-      var i_1459618095 = 0;
-      var i_570426054 = 0;
+    var a_1459618079 = x_p1.a;
+    var L_1459618085 = addInt(subInt(subInt((s_p0).length, x_p1.b), a_1459618079), 1);
+    result_1459618077 = new Array(chckRange(L_1459618085, 0, 2147483647)); for (var i = 0 ; i < chckRange(L_1459618085, 0, 2147483647) ; ++i) { result_1459618077[i] = null; }    Label1: {
+      var i_1459618094 = 0;
+      var i_570426075 = 0;
       Label2: {
           Label3: while (true) {
-          if (!(i_570426054 < L_1459618086)) break Label3;
-            i_1459618095 = i_570426054;
-            result_1459618078[chckIndx(i_1459618095, 0, (result_1459618078).length - 1)] = s_p0[chckIndx(addInt(i_1459618095, a_1459618080), 0, (s_p0).length - 1)];
-            i_570426054 = addInt(i_570426054, 1);
+          if (!(i_570426075 < L_1459618085)) break Label3;
+            i_1459618094 = i_570426075;
+            result_1459618077[chckIndx(i_1459618094, 0, (result_1459618077).length - 1)] = s_p0[chckIndx(addInt(i_1459618094, a_1459618079), 0, (s_p0).length - 1)];
+            i_570426075 = addInt(i_570426075, 1);
           }
       };
     };
 
-  return result_1459618078;
+  return result_1459618077;
 
 }
 
@@ -7685,50 +7740,50 @@ function emitCall__emit_u245(em_p0, e_p1) {
 
   BeforeRet: {
       var Temporary4 = e_p1;
-      if (ConstSet148[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063367)); }
+      if (ConstSet150[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063367)); }
       if (!(Temporary4.callee.kind == 14)) Temporary3 = false; else {        var Temporary5 = e_p1;
-        if (ConstSet150[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063367)); }
+        if (ConstSet152[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063367)); }
         var Temporary6 = Temporary5.callee;
-        if (ConstSet149[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063367)); }
+        if (ConstSet151[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063367)); }
         Temporary3 = !((Temporary6.aobj == null));      }      if (!Temporary3) Temporary2 = false; else {        var Temporary7 = e_p1;
-        if (ConstSet152[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063367)); }
+        if (ConstSet154[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063367)); }
         var Temporary8 = Temporary7.callee;
-        if (ConstSet151[Temporary8.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary8.kind, NTI1426063367)); }
+        if (ConstSet153[Temporary8.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary8.kind, NTI1426063367)); }
         Temporary2 = (Temporary8.aobj.kind == 5);      }      if (!Temporary2) Temporary1 = false; else {        var Temporary9 = e_p1;
-        if (ConstSet155[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063367)); }
+        if (ConstSet157[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063367)); }
         var Temporary10 = Temporary9.callee;
-        if (ConstSet154[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063367)); }
+        if (ConstSet156[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063367)); }
         var Temporary11 = Temporary10.aobj;
-        if (ConstSet153[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063367)); }
+        if (ConstSet155[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063367)); }
         Temporary1 = eqStrings(Temporary11.s, [97,110,99,101,115,116,111,114]);      }    if (Temporary1) {
     var Temporary12 = e_p1;
-    if (ConstSet157[Temporary12.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary12.kind, NTI1426063367)); }
+    if (ConstSet159[Temporary12.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary12.kind, NTI1426063367)); }
     var Temporary13 = Temporary12.callee;
-    if (ConstSet156[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aname\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063367)); }
-    var m_1459618054 = nimCopy(null, Temporary13.aname, NTI33554449);
-    if (eqStrings(m_1459618054, [110,101,119])) {
-    m_1459618054 = nimCopy(null, [95,95,105,110,105,116,95,95], NTI33554449);
+    if (ConstSet158[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aname\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063367)); }
+    var m_1459618053 = nimCopy(null, Temporary13.aname, NTI33554449);
+    if (eqStrings(m_1459618053, [110,101,119])) {
+    m_1459618053 = nimCopy(null, [95,95,105,110,105,116,95,95], NTI33554449);
     }
 
     var Temporary14 = e_p1;
-    if (ConstSet158[Temporary14.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary14.kind, NTI1426063367)); }
-    var args_1459618055 = nimCopy(null, Temporary14.cargs, NTI1426063379);
-    if (((0 < (args_1459618055).length) && (args_1459618055[chckIndx(0, 0, (args_1459618055).length - 1)].kind == 6))) {
-    args_1459618055 = nimCopy(null, HEX5BHEX5D__emit_u280(args_1459618055, HEX2EHEX2E__stdZenumutils_u105(1, 1)), NTI1459618053);
+    if (ConstSet160[Temporary14.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary14.kind, NTI1426063367)); }
+    var args_1459618054 = nimCopy(null, Temporary14.cargs, NTI1426063379);
+    if (((0 < (args_1459618054).length) && (args_1459618054[chckIndx(0, 0, (args_1459618054).length - 1)].kind == 6))) {
+    args_1459618054 = nimCopy(null, HEX5BHEX5D__emit_u279(args_1459618054, HEX2EHEX2E__stdZenumutils_u105(1, 1)), NTI1459618053);
     }
 
-    var parts_1459618100 = [];
+    var parts_1459618099 = [];
     Label15: {
-      var a_1459618104 = null;
-      var i_570426035 = 0;
-      var L_570426036 = (args_1459618055).length;
+      var a_1459618103 = null;
+      var i_570426056 = 0;
+      var L_570426057 = (args_1459618054).length;
       Label16: {
           Label17: while (true) {
-          if (!(i_570426035 < L_570426036)) break Label17;
-            a_1459618104 = args_1459618055[chckIndx(i_570426035, 0, (args_1459618055).length - 1)];
-            parts_1459618100.push(emitExpr__emit_u125(em_p0, a_1459618104));;
-            i_570426035 += 1;
-            if (!(((args_1459618055).length == L_570426036))) {
+          if (!(i_570426056 < L_570426057)) break Label17;
+            a_1459618103 = args_1459618054[chckIndx(i_570426056, 0, (args_1459618054).length - 1)];
+            parts_1459618099.push(emitExpr__emit_u125(em_p0, a_1459618103));;
+            i_570426056 += 1;
+            if (!(((args_1459618054).length == L_570426057))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -7736,63 +7791,63 @@ function emitCall__emit_u245(em_p0, e_p1) {
       };
     };
     Label18: {
-      var kw_1459618112 = {Field0: [], Field1: null};
-      var colontmp__570426039 = [];
+      var kw_1459618111 = {Field0: [], Field1: null};
+      var colontmp__570426060 = [];
       var Temporary19 = e_p1;
-      if (ConstSet159[Temporary19.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ckwargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary19.kind, NTI1426063367)); }
-      colontmp__570426039 = Temporary19.ckwargs;
-      var i_570426040 = 0;
-      var L_570426041 = (colontmp__570426039).length;
+      if (ConstSet161[Temporary19.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ckwargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary19.kind, NTI1426063367)); }
+      colontmp__570426060 = Temporary19.ckwargs;
+      var i_570426061 = 0;
+      var L_570426062 = (colontmp__570426060).length;
       Label20: {
           Label21: while (true) {
-          if (!(i_570426040 < L_570426041)) break Label21;
-            kw_1459618112 = nimCopy(kw_1459618112, colontmp__570426039[chckIndx(i_570426040, 0, (colontmp__570426039).length - 1)], NTI1426063381);
-            parts_1459618100.push((kw_1459618112.Field0).concat([61],emitExpr__emit_u125(em_p0, kw_1459618112.Field1)));;
-            i_570426040 += 1;
-            if (!(((colontmp__570426039).length == L_570426041))) {
+          if (!(i_570426061 < L_570426062)) break Label21;
+            kw_1459618111 = nimCopy(kw_1459618111, colontmp__570426060[chckIndx(i_570426061, 0, (colontmp__570426060).length - 1)], NTI1426063381);
+            parts_1459618099.push((kw_1459618111.Field0).concat([61],emitExpr__emit_u125(em_p0, kw_1459618111.Field1)));;
+            i_570426061 += 1;
+            if (!(((colontmp__570426060).length == L_570426062))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
           }
       };
     };
-    result_1459618040 = nimCopy(null, ([115,117,112,101,114,40,41,46]).concat(m_1459618054,[40],nsuJoinSep(parts_1459618100, [44,32]),[41]), NTI33554449);
+    result_1459618040 = nimCopy(null, ([115,117,112,101,114,40,41,46]).concat(m_1459618053,[40],nsuJoinSep(parts_1459618099, [44,32]),[41]), NTI33554449);
     break BeforeRet;
     }
 
     var Temporary22 = e_p1;
-    if (ConstSet160[Temporary22.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary22.kind, NTI1426063367)); }
-    var calleeStr_1459618117 = emitExpr__emit_u125(em_p0, Temporary22.callee);
-    var parts_1459618122 = [];
+    if (ConstSet162[Temporary22.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'callee\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary22.kind, NTI1426063367)); }
+    var calleeStr_1459618116 = emitExpr__emit_u125(em_p0, Temporary22.callee);
+    var parts_1459618121 = [];
     Label23: {
-      var a_1459618126 = null;
-      var colontmp__570426044 = [];
+      var a_1459618125 = null;
+      var colontmp__570426065 = [];
       var Temporary24 = e_p1;
-      if (ConstSet161[Temporary24.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary24.kind, NTI1426063367)); }
-      colontmp__570426044 = Temporary24.cargs;
-      var i_570426045 = 0;
-      var L_570426046 = (colontmp__570426044).length;
+      if (ConstSet163[Temporary24.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary24.kind, NTI1426063367)); }
+      colontmp__570426065 = Temporary24.cargs;
+      var i_570426066 = 0;
+      var L_570426067 = (colontmp__570426065).length;
       Label25: {
           Label26: while (true) {
-          if (!(i_570426045 < L_570426046)) break Label26;
-            a_1459618126 = colontmp__570426044[chckIndx(i_570426045, 0, (colontmp__570426044).length - 1)];
-              if (!(a_1459618126.kind == 11)) Temporary27 = false; else {                var Temporary29 = a_1459618126;
-                if (ConstSet162[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063367)); }
-                if (eqStrings(Temporary29.uop, [42])) Temporary28 = true; else {                  var Temporary30 = a_1459618126;
-                  if (ConstSet163[Temporary30.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary30.kind, NTI1426063367)); }
+          if (!(i_570426066 < L_570426067)) break Label26;
+            a_1459618125 = colontmp__570426065[chckIndx(i_570426066, 0, (colontmp__570426065).length - 1)];
+              if (!(a_1459618125.kind == 11)) Temporary27 = false; else {                var Temporary29 = a_1459618125;
+                if (ConstSet164[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063367)); }
+                if (eqStrings(Temporary29.uop, [42])) Temporary28 = true; else {                  var Temporary30 = a_1459618125;
+                  if (ConstSet165[Temporary30.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary30.kind, NTI1426063367)); }
                   Temporary28 = eqStrings(Temporary30.uop, [42,42]);                }                Temporary27 = Temporary28;              }            if (Temporary27) {
-            var Temporary31 = a_1459618126;
-            if (ConstSet164[Temporary31.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary31.kind, NTI1426063367)); }
-            var Temporary32 = a_1459618126;
-            if (ConstSet165[Temporary32.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uoperand\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary32.kind, NTI1426063367)); }
-            parts_1459618122.push((Temporary31.uop).concat(emitExpr__emit_u125(em_p0, Temporary32.uoperand)));;
+            var Temporary31 = a_1459618125;
+            if (ConstSet166[Temporary31.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary31.kind, NTI1426063367)); }
+            var Temporary32 = a_1459618125;
+            if (ConstSet167[Temporary32.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uoperand\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary32.kind, NTI1426063367)); }
+            parts_1459618121.push((Temporary31.uop).concat(emitExpr__emit_u125(em_p0, Temporary32.uoperand)));;
             }
             else {
-            parts_1459618122.push(emitExpr__emit_u125(em_p0, a_1459618126));;
+            parts_1459618121.push(emitExpr__emit_u125(em_p0, a_1459618125));;
             }
 
-            i_570426045 += 1;
-            if (!(((colontmp__570426044).length == L_570426046))) {
+            i_570426066 += 1;
+            if (!(((colontmp__570426065).length == L_570426067))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -7800,27 +7855,27 @@ function emitCall__emit_u245(em_p0, e_p1) {
       };
     };
     Label33: {
-      var kw_1459618142 = {Field0: [], Field1: null};
-      var colontmp__570426049 = [];
+      var kw_1459618141 = {Field0: [], Field1: null};
+      var colontmp__570426070 = [];
       var Temporary34 = e_p1;
-      if (ConstSet166[Temporary34.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ckwargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary34.kind, NTI1426063367)); }
-      colontmp__570426049 = Temporary34.ckwargs;
-      var i_570426050 = 0;
-      var L_570426051 = (colontmp__570426049).length;
+      if (ConstSet168[Temporary34.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ckwargs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary34.kind, NTI1426063367)); }
+      colontmp__570426070 = Temporary34.ckwargs;
+      var i_570426071 = 0;
+      var L_570426072 = (colontmp__570426070).length;
       Label35: {
           Label36: while (true) {
-          if (!(i_570426050 < L_570426051)) break Label36;
-            kw_1459618142 = nimCopy(kw_1459618142, colontmp__570426049[chckIndx(i_570426050, 0, (colontmp__570426049).length - 1)], NTI1426063381);
-            parts_1459618122.push((kw_1459618142.Field0).concat([61],emitExpr__emit_u125(em_p0, kw_1459618142.Field1)));;
-            i_570426050 += 1;
-            if (!(((colontmp__570426049).length == L_570426051))) {
+          if (!(i_570426071 < L_570426072)) break Label36;
+            kw_1459618141 = nimCopy(kw_1459618141, colontmp__570426070[chckIndx(i_570426071, 0, (colontmp__570426070).length - 1)], NTI1426063381);
+            parts_1459618121.push((kw_1459618141.Field0).concat([61],emitExpr__emit_u125(em_p0, kw_1459618141.Field1)));;
+            i_570426071 += 1;
+            if (!(((colontmp__570426070).length == L_570426072))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
           }
       };
     };
-    result_1459618040 = nimCopy(null, (calleeStr_1459618117).concat([40],nsuJoinSep(parts_1459618122, [44,32]),[41]), NTI33554449);
+    result_1459618040 = nimCopy(null, (calleeStr_1459618116).concat([40],nsuJoinSep(parts_1459618121, [44,32]),[41]), NTI33554449);
   };
 
   return result_1459618040;
@@ -7833,12 +7888,12 @@ function emitParams__emit_u146(em_p0, params_p1, withAnnots_p2) {
     var parts_1459617947 = [];
     Label1: {
       var prm_1459617951 = ({name: [], annot: [], default: null, isStar: false, isStarStar: false});
-      var i_570426057 = 0;
-      var L_570426058 = (params_p1).length;
+      var i_570426078 = 0;
+      var L_570426079 = (params_p1).length;
       Label2: {
           Label3: while (true) {
-          if (!(i_570426057 < L_570426058)) break Label3;
-            prm_1459617951 = nimCopy(prm_1459617951, params_p1[chckIndx(i_570426057, 0, (params_p1).length - 1)], NTI1426063365);
+          if (!(i_570426078 < L_570426079)) break Label3;
+            prm_1459617951 = nimCopy(prm_1459617951, params_p1[chckIndx(i_570426078, 0, (params_p1).length - 1)], NTI1426063365);
             var s_1459617952 = [];
             if (prm_1459617951.isStarStar) {
             s_1459617952 = nimCopy(null, [42,42], NTI33554449);
@@ -7865,8 +7920,8 @@ function emitParams__emit_u146(em_p0, params_p1, withAnnots_p2) {
 
             var Temporary4 = nimCopy(null, s_1459617952, NTI33554449);
             parts_1459617947.push(Temporary4);;
-            i_570426057 += 1;
-            if (!(((params_p1).length == L_570426058))) {
+            i_570426078 += 1;
+            if (!(((params_p1).length == L_570426079))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -7929,42 +7984,42 @@ function emitExpr__emit_u125(em_p0, e_p1) {
         var Temporary51;
       var Temporary55;
 
-  var result_1459618165 = [];
+  var result_1459618164 = [];
 
   BeforeRet: {
     if ((e_p1 == null)) {
-    result_1459618165 = nimCopy(null, [], NTI33554449);
+    result_1459618164 = nimCopy(null, [], NTI33554449);
     break BeforeRet;
     }
 
     switch (e_p1.kind) {
     case 0:
       var Temporary2 = e_p1;
-      if (ConstSet127[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
+      if (ConstSet129[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI1426063367)); }
       Temporary1 = Temporary2.s;
       break;
     case 1:
       var Temporary3 = e_p1;
-      if (ConstSet128[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063367)); }
+      if (ConstSet130[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063367)); }
       Temporary1 = pyStr__emit_u81(Temporary3.s);
       break;
     case 3:
     case 4:
       var Temporary4 = e_p1;
-      if (ConstSet129[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063367)); }
+      if (ConstSet131[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063367)); }
       Temporary1 = Temporary4.s;
       break;
     case 5:
         var Temporary6 = e_p1;
-        if (ConstSet130[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063367)); }
+        if (ConstSet132[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063367)); }
       if (hasKey__jsZjsffi_u380(NAME_MAP_1459617806, Temporary6.s)) {
       var Temporary7 = e_p1;
-      if (ConstSet131[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063367)); }
+      if (ConstSet133[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063367)); }
       Temporary5 = HEX5BHEX5D__parser_u262(NAME_MAP_1459617806, Temporary7.s);
       }
       else {
         var Temporary8 = e_p1;
-        if (ConstSet132[Temporary8.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary8.kind, NTI1426063367)); }
+        if (ConstSet134[Temporary8.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'s\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary8.kind, NTI1426063367)); }
       Temporary5 = Temporary8.s;
       }
 
@@ -7984,10 +8039,10 @@ function emitExpr__emit_u125(em_p0, e_p1) {
       break;
     case 9:
         var Temporary10 = e_p1;
-        if (ConstSet136[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063367)); }
+        if (ConstSet138[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063367)); }
       if (((Temporary10.items).length == 1)) {
       var Temporary11 = e_p1;
-      if (ConstSet137[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063367)); }
+      if (ConstSet139[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'items\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063367)); }
       Temporary9 = ([40]).concat(emitExpr__emit_u125(em_p0, (Temporary12 = Temporary11.items, Temporary12)[chckIndx(0, 0, (Temporary12).length - 1)]),[44,41]);
       }
       else {
@@ -7997,42 +8052,42 @@ function emitExpr__emit_u125(em_p0, e_p1) {
       Temporary1 = Temporary9;
       break;
     case 10:
-      var parts_1459618272 = [];
+      var parts_1459618271 = [];
       Label13: {
-        var i_1459618280 = 0;
-        var colontmp__570425956 = 0;
+        var i_1459618279 = 0;
+        var colontmp__570425977 = 0;
         var Temporary14 = e_p1;
-        if (ConstSet138[Temporary14.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dkeys\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary14.kind, NTI1426063367)); }
-        colontmp__570425956 = (Temporary14.dkeys).length;
-        var i_570425957 = 0;
+        if (ConstSet140[Temporary14.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dkeys\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary14.kind, NTI1426063367)); }
+        colontmp__570425977 = (Temporary14.dkeys).length;
+        var i_570425978 = 0;
         Label15: {
             Label16: while (true) {
-            if (!(i_570425957 < colontmp__570425956)) break Label16;
-              i_1459618280 = i_570425957;
+            if (!(i_570425978 < colontmp__570425977)) break Label16;
+              i_1459618279 = i_570425978;
               var Temporary17 = e_p1;
-              if (ConstSet139[Temporary17.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dkeys\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary17.kind, NTI1426063367)); }
+              if (ConstSet141[Temporary17.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dkeys\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary17.kind, NTI1426063367)); }
               var Temporary19 = e_p1;
-              if (ConstSet140[Temporary19.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dvals\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary19.kind, NTI1426063367)); }
-              parts_1459618272.push((emitExpr__emit_u125(em_p0, (Temporary18 = Temporary17.dkeys, Temporary18)[chckIndx(i_1459618280, 0, (Temporary18).length - 1)])).concat([58,32],emitExpr__emit_u125(em_p0, (Temporary20 = Temporary19.dvals, Temporary20)[chckIndx(i_1459618280, 0, (Temporary20).length - 1)])));;
-              i_570425957 = addInt(i_570425957, 1);
+              if (ConstSet142[Temporary19.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dvals\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary19.kind, NTI1426063367)); }
+              parts_1459618271.push((emitExpr__emit_u125(em_p0, (Temporary18 = Temporary17.dkeys, Temporary18)[chckIndx(i_1459618279, 0, (Temporary18).length - 1)])).concat([58,32],emitExpr__emit_u125(em_p0, (Temporary20 = Temporary19.dvals, Temporary20)[chckIndx(i_1459618279, 0, (Temporary20).length - 1)])));;
+              i_570425978 = addInt(i_570425978, 1);
             }
         };
       };
-      Temporary1 = ([123]).concat(nsuJoinSep(parts_1459618272, [44,32]),[125]);
+      Temporary1 = ([123]).concat(nsuJoinSep(parts_1459618271, [44,32]),[125]);
       break;
     case 11:
         var Temporary22 = e_p1;
-        if (ConstSet141[Temporary22.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary22.kind, NTI1426063367)); }
+        if (ConstSet143[Temporary22.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary22.kind, NTI1426063367)); }
       if (eqStrings(Temporary22.uop, [110,111,116,32])) {
       var Temporary23 = e_p1;
-      if (ConstSet142[Temporary23.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uoperand\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary23.kind, NTI1426063367)); }
+      if (ConstSet144[Temporary23.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uoperand\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary23.kind, NTI1426063367)); }
       Temporary21 = ([110,111,116,32]).concat(child__emit_u138(em_p0, Temporary23.uoperand));
       }
       else {
         var Temporary24 = e_p1;
-        if (ConstSet143[Temporary24.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary24.kind, NTI1426063367)); }
+        if (ConstSet145[Temporary24.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary24.kind, NTI1426063367)); }
         var Temporary25 = e_p1;
-        if (ConstSet144[Temporary25.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uoperand\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary25.kind, NTI1426063367)); }
+        if (ConstSet146[Temporary25.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'uoperand\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary25.kind, NTI1426063367)); }
       Temporary21 = (Temporary24.uop).concat(child__emit_u138(em_p0, Temporary25.uoperand));
       }
 
@@ -8040,11 +8095,11 @@ function emitExpr__emit_u125(em_p0, e_p1) {
       break;
     case 12:
       var Temporary26 = e_p1;
-      if (ConstSet145[Temporary26.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'blhs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary26.kind, NTI1426063367)); }
+      if (ConstSet147[Temporary26.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'blhs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary26.kind, NTI1426063367)); }
       var Temporary27 = e_p1;
-      if (ConstSet146[Temporary27.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'bop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary27.kind, NTI1426063367)); }
+      if (ConstSet148[Temporary27.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'bop\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary27.kind, NTI1426063367)); }
       var Temporary28 = e_p1;
-      if (ConstSet147[Temporary28.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'brhs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary28.kind, NTI1426063367)); }
+      if (ConstSet149[Temporary28.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'brhs\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary28.kind, NTI1426063367)); }
       Temporary1 = (child__emit_u138(em_p0, Temporary26.blhs)).concat([32],Temporary27.bop,[32],child__emit_u138(em_p0, Temporary28.brhs));
       break;
     case 13:
@@ -8052,31 +8107,31 @@ function emitExpr__emit_u125(em_p0, e_p1) {
       break;
     case 14:
       var Temporary29 = e_p1;
-      if (ConstSet167[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aname\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063367)); }
-      var nm_1459618285 = nimCopy(null, Temporary29.aname, NTI33554449);
-      if (eqStrings(nm_1459618285, [110,101,119])) {
-      nm_1459618285 = nimCopy(null, [95,95,105,110,105,116,95,95], NTI33554449);
+      if (ConstSet169[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aname\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063367)); }
+      var nm_1459618284 = nimCopy(null, Temporary29.aname, NTI33554449);
+      if (eqStrings(nm_1459618284, [110,101,119])) {
+      nm_1459618284 = nimCopy(null, [95,95,105,110,105,116,95,95], NTI33554449);
       }
 
       var Temporary30 = e_p1;
-      if (ConstSet168[Temporary30.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary30.kind, NTI1426063367)); }
-      Temporary1 = (child__emit_u138(em_p0, Temporary30.aobj)).concat([46],nm_1459618285);
+      if (ConstSet170[Temporary30.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'aobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary30.kind, NTI1426063367)); }
+      Temporary1 = (child__emit_u138(em_p0, Temporary30.aobj)).concat([46],nm_1459618284);
       break;
     case 15:
       var Temporary31 = e_p1;
-      if (ConstSet169[Temporary31.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary31.kind, NTI1426063367)); }
+      if (ConstSet171[Temporary31.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sobj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary31.kind, NTI1426063367)); }
       var Temporary32 = e_p1;
-      if (ConstSet170[Temporary32.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sidx\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary32.kind, NTI1426063367)); }
+      if (ConstSet172[Temporary32.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sidx\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary32.kind, NTI1426063367)); }
       Temporary1 = (child__emit_u138(em_p0, Temporary31.sobj)).concat([91],emitExpr__emit_u125(em_p0, Temporary32.sidx),[93]);
       break;
     case 16:
       var Temporary33 = e_p1;
-      if (ConstSet171[Temporary33.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ssliceObj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary33.kind, NTI1426063367)); }
+      if (ConstSet173[Temporary33.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ssliceObj\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary33.kind, NTI1426063367)); }
         var Temporary35 = e_p1;
-        if (ConstSet172[Temporary35.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'slo\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary35.kind, NTI1426063367)); }
+        if (ConstSet174[Temporary35.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'slo\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary35.kind, NTI1426063367)); }
       if (!((Temporary35.slo == null))) {
       var Temporary36 = e_p1;
-      if (ConstSet173[Temporary36.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'slo\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary36.kind, NTI1426063367)); }
+      if (ConstSet175[Temporary36.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'slo\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary36.kind, NTI1426063367)); }
       Temporary34 = emitExpr__emit_u125(em_p0, Temporary36.slo);
       }
       else {
@@ -8084,10 +8139,10 @@ function emitExpr__emit_u125(em_p0, e_p1) {
       }
 
         var Temporary38 = e_p1;
-        if (ConstSet174[Temporary38.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'shi\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary38.kind, NTI1426063367)); }
+        if (ConstSet176[Temporary38.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'shi\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary38.kind, NTI1426063367)); }
       if (!((Temporary38.shi == null))) {
       var Temporary39 = e_p1;
-      if (ConstSet175[Temporary39.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'shi\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary39.kind, NTI1426063367)); }
+      if (ConstSet177[Temporary39.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'shi\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary39.kind, NTI1426063367)); }
       Temporary37 = emitExpr__emit_u125(em_p0, Temporary39.shi);
       }
       else {
@@ -8095,10 +8150,10 @@ function emitExpr__emit_u125(em_p0, e_p1) {
       }
 
         var Temporary41 = e_p1;
-        if (ConstSet176[Temporary41.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sstep\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary41.kind, NTI1426063367)); }
+        if (ConstSet178[Temporary41.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sstep\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary41.kind, NTI1426063367)); }
       if (!((Temporary41.sstep == null))) {
       var Temporary42 = e_p1;
-      if (ConstSet177[Temporary42.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sstep\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary42.kind, NTI1426063367)); }
+      if (ConstSet179[Temporary42.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'sstep\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary42.kind, NTI1426063367)); }
       Temporary40 = ([58]).concat(emitExpr__emit_u125(em_p0, Temporary42.sstep));
       }
       else {
@@ -8109,30 +8164,30 @@ function emitExpr__emit_u125(em_p0, e_p1) {
       break;
     case 17:
       var Temporary43 = e_p1;
-      if (ConstSet178[Temporary43.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'lparams\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary43.kind, NTI1426063367)); }
-      var ps_1459618298 = emitParams__emit_u146(em_p0, Temporary43.lparams, false);
-      if ((0 < (ps_1459618298).length)) {
-      Temporary44 = ([32]).concat(ps_1459618298);
+      if (ConstSet180[Temporary43.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'lparams\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary43.kind, NTI1426063367)); }
+      var ps_1459618297 = emitParams__emit_u146(em_p0, Temporary43.lparams, false);
+      if ((0 < (ps_1459618297).length)) {
+      Temporary44 = ([32]).concat(ps_1459618297);
       }
       else {
       Temporary44 = [];
       }
 
       var Temporary45 = e_p1;
-      if (ConstSet179[Temporary45.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'lbody\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary45.kind, NTI1426063367)); }
+      if (ConstSet181[Temporary45.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'lbody\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary45.kind, NTI1426063367)); }
       Temporary1 = ([108,97,109,98,100,97]).concat(Temporary44,[58,32],emitExpr__emit_u125(em_p0, Temporary45.lbody));
       break;
     case 18:
       var Temporary46 = e_p1;
-      if (ConstSet180[Temporary46.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary46.kind, NTI1426063367)); }
+      if (ConstSet182[Temporary46.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary46.kind, NTI1426063367)); }
       Temporary1 = ([97,119,97,105,116,32]).concat(child__emit_u138(em_p0, Temporary46.wexpr));
       break;
     case 19:
         var Temporary48 = e_p1;
-        if (ConstSet181[Temporary48.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'yexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary48.kind, NTI1426063367)); }
+        if (ConstSet183[Temporary48.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'yexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary48.kind, NTI1426063367)); }
       if (!((Temporary48.yexpr == null))) {
       var Temporary49 = e_p1;
-      if (ConstSet182[Temporary49.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'yexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary49.kind, NTI1426063367)); }
+      if (ConstSet184[Temporary49.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'yexpr\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary49.kind, NTI1426063367)); }
       Temporary47 = ([121,105,101,108,100,32]).concat(emitExpr__emit_u125(em_p0, Temporary49.yexpr));
       }
       else {
@@ -8142,28 +8197,28 @@ function emitExpr__emit_u125(em_p0, e_p1) {
       Temporary1 = Temporary47;
       break;
     case 20:
-      var clauseStrs_1459618307 = [];
+      var clauseStrs_1459618306 = [];
       Label50: {
-        var cl_1459618311 = ({targets: [], iter: null, cond: null});
-        var colontmp__570425960 = [];
+        var cl_1459618310 = ({targets: [], iter: null, cond: null});
+        var colontmp__570425981 = [];
         var Temporary51 = e_p1;
-        if (ConstSet183[Temporary51.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cclauses\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary51.kind, NTI1426063367)); }
-        colontmp__570425960 = Temporary51.cclauses;
-        var i_570425961 = 0;
-        var L_570425962 = (colontmp__570425960).length;
+        if (ConstSet185[Temporary51.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cclauses\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary51.kind, NTI1426063367)); }
+        colontmp__570425981 = Temporary51.cclauses;
+        var i_570425982 = 0;
+        var L_570425983 = (colontmp__570425981).length;
         Label52: {
             Label53: while (true) {
-            if (!(i_570425961 < L_570425962)) break Label53;
-              cl_1459618311 = nimCopy(cl_1459618311, colontmp__570425960[chckIndx(i_570425961, 0, (colontmp__570425960).length - 1)], NTI1426063364);
-              var s_1459618312 = ([102,111,114,32]).concat(nsuJoinSep(cl_1459618311.targets, [44,32]),[32,105,110,32],emitExpr__emit_u125(em_p0, cl_1459618311.iter));
-              if (!((cl_1459618311.cond == null))) {
-              nimAddStrStr(s_1459618312, ([32,105,102,32]).concat(emitExpr__emit_u125(em_p0, cl_1459618311.cond)));;
+            if (!(i_570425982 < L_570425983)) break Label53;
+              cl_1459618310 = nimCopy(cl_1459618310, colontmp__570425981[chckIndx(i_570425982, 0, (colontmp__570425981).length - 1)], NTI1426063364);
+              var s_1459618311 = ([102,111,114,32]).concat(nsuJoinSep(cl_1459618310.targets, [44,32]),[32,105,110,32],emitExpr__emit_u125(em_p0, cl_1459618310.iter));
+              if (!((cl_1459618310.cond == null))) {
+              nimAddStrStr(s_1459618311, ([32,105,102,32]).concat(emitExpr__emit_u125(em_p0, cl_1459618310.cond)));;
               }
 
-              var Temporary54 = nimCopy(null, s_1459618312, NTI33554449);
-              clauseStrs_1459618307.push(Temporary54);;
-              i_570425961 += 1;
-              if (!(((colontmp__570425960).length == L_570425962))) {
+              var Temporary54 = nimCopy(null, s_1459618311, NTI33554449);
+              clauseStrs_1459618306.push(Temporary54);;
+              i_570425982 += 1;
+              if (!(((colontmp__570425981).length == L_570425983))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -8171,33 +8226,33 @@ function emitExpr__emit_u125(em_p0, e_p1) {
         };
       };
       var Temporary55 = e_p1;
-      if (ConstSet184[Temporary55.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'celt\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary55.kind, NTI1426063367)); }
-      Temporary1 = ([91]).concat(emitExpr__emit_u125(em_p0, Temporary55.celt),[32],nsuJoinSep(clauseStrs_1459618307, [32]),[93]);
+      if (ConstSet186[Temporary55.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'celt\' is not accessible for type \'Expr\' using \'kind = "), reprDiscriminant(Temporary55.kind, NTI1426063367)); }
+      Temporary1 = ([91]).concat(emitExpr__emit_u125(em_p0, Temporary55.celt),[32],nsuJoinSep(clauseStrs_1459618306, [32]),[93]);
       break;
     }
-    result_1459618165 = nimCopy(null, Temporary1, NTI33554449);
+    result_1459618164 = nimCopy(null, Temporary1, NTI33554449);
   };
 
-  return result_1459618165;
+  return result_1459618164;
 
 }
 
-function emitBody__emit_u529(em_p0, body_p1, gz_p2) {
+function emitBody__emit_u528(em_p0, body_p1, gz_p2) {
     if (((body_p1).length == 0)) {
     addLine__emit_u20(em_p0, [112,97,115,115], gz_p2);
     }
     else {
       Label1: {
-        var s_1459618331 = null;
-        var i_570426061 = 0;
-        var L_570426062 = (body_p1).length;
+        var s_1459618330 = null;
+        var i_570426082 = 0;
+        var L_570426083 = (body_p1).length;
         Label2: {
             Label3: while (true) {
-            if (!(i_570426061 < L_570426062)) break Label3;
-              s_1459618331 = body_p1[chckIndx(i_570426061, 0, (body_p1).length - 1)];
-              emitStmt__emit_u128(em_p0, s_1459618331);
-              i_570426061 += 1;
-              if (!(((body_p1).length == L_570426062))) {
+            if (!(i_570426082 < L_570426083)) break Label3;
+              s_1459618330 = body_p1[chckIndx(i_570426082, 0, (body_p1).length - 1)];
+              emitStmt__emit_u128(em_p0, s_1459618330);
+              i_570426082 += 1;
+              if (!(((body_p1).length == L_570426083))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -8258,112 +8313,120 @@ function emitStmt__emit_u128(em_p0, s_p1) {
         var Temporary55;
       var Temporary59;
         var Temporary60;
-        var Temporary61;
-      var Temporary62;
-        var Temporary63;
-          var Temporary64;
+      var Temporary61;
+        var Temporary62;
+      var Temporary63;
+        var Temporary64;
         var Temporary65;
-          var Temporary66;
+      var Temporary66;
         var Temporary67;
           var Temporary68;
         var Temporary69;
           var Temporary70;
-        var Temporary72;
+        var Temporary71;
+          var Temporary72;
+        var Temporary73;
+          var Temporary74;
         var Temporary76;
-        var Temporary77;
-          var Temporary78;
-        var Temporary79;
-          var Temporary80;
-      var Temporary81;
-        var Temporary83;
-        var Temporary86;
-      var Temporary87;
-        var Temporary89;
-      var Temporary92;
+        var Temporary80;
+        var Temporary82;
+                      var Temporary88;
+                var Temporary89;
+        var Temporary90;
+        var Temporary91;
+          var Temporary92;
         var Temporary93;
-      var Temporary94;
+          var Temporary94;
       var Temporary95;
-      var Temporary96;
-      var Temporary97;
-        var Temporary98;
-      var Temporary99;
+        var Temporary97;
+        var Temporary100;
+      var Temporary101;
+        var Temporary103;
+      var Temporary106;
+        var Temporary107;
+      var Temporary108;
+      var Temporary109;
+      var Temporary110;
+      var Temporary111;
+        var Temporary112;
+      var Temporary113;
 
     switch (s_p1.kind) {
     case 0:
       var Temporary1 = s_p1;
-      if (ConstSet185[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'e\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
+      if (ConstSet187[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'e\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1426063369)); }
       addLine__emit_u20(em_p0, emitExpr__emit_u125(em_p0, Temporary1.e), s_p1.line);
       break;
     case 1:
         var Temporary3 = s_p1;
-        if (ConstSet186[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'op\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063369)); }
+        if (ConstSet188[Temporary3.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'op\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary3.kind, NTI1426063369)); }
       if (eqStrings(Temporary3.op, [])) {
       Temporary2 = [61];
       }
       else {
         var Temporary4 = s_p1;
-        if (ConstSet187[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'op\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063369)); }
+        if (ConstSet189[Temporary4.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'op\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary4.kind, NTI1426063369)); }
       Temporary2 = (Temporary4.op).concat([61]);
       }
 
-      var op_1459618335 = Temporary2;
+      var op_1459618334 = Temporary2;
       var Temporary5 = s_p1;
-      if (ConstSet188[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'target\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063369)); }
+      if (ConstSet190[Temporary5.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'target\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary5.kind, NTI1426063369)); }
       var Temporary6 = s_p1;
-      if (ConstSet189[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'value\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063369)); }
-      addLine__emit_u20(em_p0, (child__emit_u138(em_p0, Temporary5.target)).concat([32],op_1459618335,[32],emitExpr__emit_u125(em_p0, Temporary6.value)), s_p1.line);
+      if (ConstSet191[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'value\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI1426063369)); }
+      addLine__emit_u20(em_p0, (child__emit_u138(em_p0, Temporary5.target)).concat([32],op_1459618334,[32],emitExpr__emit_u125(em_p0, Temporary6.value)), s_p1.line);
       break;
     case 2:
       var Temporary7 = s_p1;
-      if (ConstSet190[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063369)); }
-      var l_1459618336 = nimCopy(null, Temporary7.vname, NTI33554449);
+      if (ConstSet192[Temporary7.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary7.kind, NTI1426063369)); }
+      var l_1459618335 = nimCopy(null, Temporary7.vname, NTI33554449);
         var Temporary8 = s_p1;
-        if (ConstSet191[Temporary8.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'annot\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary8.kind, NTI1426063369)); }
+        if (ConstSet193[Temporary8.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'annot\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary8.kind, NTI1426063369)); }
       if (!(eqStrings(Temporary8.annot, []))) {
       var Temporary9 = s_p1;
-      if (ConstSet192[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'annot\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063369)); }
-      nimAddStrStr(l_1459618336, ([58,32]).concat(Temporary9.annot));;
+      if (ConstSet194[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'annot\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI1426063369)); }
+      nimAddStrStr(l_1459618335, ([58,32]).concat(Temporary9.annot));;
       }
 
         var Temporary10 = s_p1;
-        if (ConstSet193[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063369)); }
+        if (ConstSet195[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI1426063369)); }
       if (!((Temporary10.vvalue == null))) {
       var Temporary11 = s_p1;
-      if (ConstSet194[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063369)); }
-      nimAddStrStr(l_1459618336, ([32,61,32]).concat(emitExpr__emit_u125(em_p0, Temporary11.vvalue)));;
+      if (ConstSet196[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'vvalue\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI1426063369)); }
+      nimAddStrStr(l_1459618335, ([32,61,32]).concat(emitExpr__emit_u125(em_p0, Temporary11.vvalue)));;
       }
 
-      addLine__emit_u20(em_p0, l_1459618336, s_p1.line);
+      addLine__emit_u20(em_p0, l_1459618335, s_p1.line);
       break;
     case 3:
-      var first_1459618341 = true;
+      var first_1459618340 = true;
       Label12: {
-        var cl_1459618345 = {Field0: null, Field1: []};
-        var colontmp__570425918 = [];
+        var cl_1459618344 = {Field0: null, Field1: []};
+        var colontmp__570425933 = [];
         var Temporary13 = s_p1;
-        if (ConstSet195[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'clauses\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063369)); }
-        colontmp__570425918 = Temporary13.clauses;
-        var i_570425919 = 0;
-        var L_570425920 = (colontmp__570425918).length;
+        if (ConstSet197[Temporary13.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'clauses\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary13.kind, NTI1426063369)); }
+        colontmp__570425933 = Temporary13.clauses;
+        var i_570425934 = 0;
+        var L_570425935 = (colontmp__570425933).length;
         Label14: {
             Label15: while (true) {
-            if (!(i_570425919 < L_570425920)) break Label15;
-              cl_1459618345 = nimCopy(cl_1459618345, colontmp__570425918[chckIndx(i_570425919, 0, (colontmp__570425918).length - 1)], NTI1426063387);
-              if (first_1459618341) {
+            if (!(i_570425934 < L_570425935)) break Label15;
+              cl_1459618344 = nimCopy(cl_1459618344, colontmp__570425933[chckIndx(i_570425934, 0, (colontmp__570425933).length - 1)], NTI1426063387);
+              if (first_1459618340) {
               Temporary16 = [105,102,32];
               }
               else {
               Temporary16 = [101,108,105,102,32];
               }
 
-              var kw_1459618346 = nimCopy(null, Temporary16, NTI33554449);
-              first_1459618341 = false;
-              addLine__emit_u20(em_p0, (kw_1459618346).concat(emitExpr__emit_u125(em_p0, cl_1459618345.Field0),[58]), s_p1.line);
+              var kw_1459618345 = nimCopy(null, Temporary16, NTI33554449);
+              first_1459618340 = false;
+              addLine__emit_u20(em_p0, (kw_1459618345).concat(emitExpr__emit_u125(em_p0, cl_1459618344.Field0),[58]), s_p1.line);
               em_p0.indent = addInt(em_p0.indent, 1);
-              emitBody__emit_u529(em_p0, cl_1459618345.Field1, s_p1.line);
+              emitBody__emit_u528(em_p0, cl_1459618344.Field1, s_p1.line);
               em_p0.indent = subInt(em_p0.indent, 1);
-              i_570425919 += 1;
-              if (!(((colontmp__570425918).length == L_570425920))) {
+              i_570425934 += 1;
+              if (!(((colontmp__570425933).length == L_570425935))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -8371,49 +8434,49 @@ function emitStmt__emit_u128(em_p0, s_p1) {
         };
       };
         var Temporary17 = s_p1;
-        if (ConstSet196[Temporary17.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'hasElse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary17.kind, NTI1426063369)); }
+        if (ConstSet198[Temporary17.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'hasElse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary17.kind, NTI1426063369)); }
       if (Temporary17.hasElse) {
       addLine__emit_u20(em_p0, [101,108,115,101,58], s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary18 = s_p1;
-      if (ConstSet197[Temporary18.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elseBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary18.kind, NTI1426063369)); }
-      emitBody__emit_u529(em_p0, Temporary18.elseBody, s_p1.line);
+      if (ConstSet199[Temporary18.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elseBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary18.kind, NTI1426063369)); }
+      emitBody__emit_u528(em_p0, Temporary18.elseBody, s_p1.line);
       em_p0.indent = subInt(em_p0.indent, 1);
       }
 
       break;
     case 4:
       var Temporary19 = s_p1;
-      if (ConstSet198[Temporary19.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wcond\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary19.kind, NTI1426063369)); }
+      if (ConstSet200[Temporary19.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wcond\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary19.kind, NTI1426063369)); }
       addLine__emit_u20(em_p0, ([119,104,105,108,101,32]).concat(emitExpr__emit_u125(em_p0, Temporary19.wcond),[58]), s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary20 = s_p1;
-      if (ConstSet199[Temporary20.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary20.kind, NTI1426063369)); }
-      emitBody__emit_u529(em_p0, Temporary20.wbody, s_p1.line);
+      if (ConstSet201[Temporary20.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'wbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary20.kind, NTI1426063369)); }
+      emitBody__emit_u528(em_p0, Temporary20.wbody, s_p1.line);
       em_p0.indent = subInt(em_p0.indent, 1);
       break;
     case 5:
       var Temporary21 = s_p1;
-      if (ConstSet200[Temporary21.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ftargets\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary21.kind, NTI1426063369)); }
+      if (ConstSet202[Temporary21.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ftargets\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary21.kind, NTI1426063369)); }
       var Temporary22 = s_p1;
-      if (ConstSet201[Temporary22.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fiter\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary22.kind, NTI1426063369)); }
+      if (ConstSet203[Temporary22.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fiter\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary22.kind, NTI1426063369)); }
       addLine__emit_u20(em_p0, ([102,111,114,32]).concat(nsuJoinSep(Temporary21.ftargets, [44,32]),[32,105,110,32],emitExpr__emit_u125(em_p0, Temporary22.fiter),[58]), s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary23 = s_p1;
-      if (ConstSet202[Temporary23.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary23.kind, NTI1426063369)); }
-      emitBody__emit_u529(em_p0, Temporary23.fbody, s_p1.line);
+      if (ConstSet204[Temporary23.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary23.kind, NTI1426063369)); }
+      emitBody__emit_u528(em_p0, Temporary23.fbody, s_p1.line);
       em_p0.indent = subInt(em_p0.indent, 1);
       break;
     case 6:
       var Temporary24 = s_p1;
-      if (ConstSet203[Temporary24.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary24.kind, NTI1426063369)); }
-      var nm_1459618387 = Temporary24.fname;
-      if (eqStrings(nm_1459618387, [110,101,119])) {
-      nm_1459618387 = [95,95,105,110,105,116,95,95];
+      if (ConstSet205[Temporary24.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary24.kind, NTI1426063369)); }
+      var nm_1459618386 = Temporary24.fname;
+      if (eqStrings(nm_1459618386, [110,101,119])) {
+      nm_1459618386 = [95,95,105,110,105,116,95,95];
       }
 
         var Temporary26 = s_p1;
-        if (ConstSet204[Temporary26.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'isAsync\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary26.kind, NTI1426063369)); }
+        if (ConstSet206[Temporary26.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'isAsync\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary26.kind, NTI1426063369)); }
       if (Temporary26.isAsync) {
       Temporary25 = [97,115,121,110,99,32,100,101,102,32];
       }
@@ -8422,72 +8485,72 @@ function emitStmt__emit_u128(em_p0, s_p1) {
       }
 
       var Temporary27 = s_p1;
-      if (ConstSet205[Temporary27.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary27.kind, NTI1426063369)); }
+      if (ConstSet207[Temporary27.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fparams\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary27.kind, NTI1426063369)); }
         var Temporary29 = s_p1;
-        if (ConstSet206[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fret\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063369)); }
+        if (ConstSet208[Temporary29.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fret\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary29.kind, NTI1426063369)); }
       if (!(eqStrings(Temporary29.fret, []))) {
       var Temporary30 = s_p1;
-      if (ConstSet207[Temporary30.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fret\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary30.kind, NTI1426063369)); }
+      if (ConstSet209[Temporary30.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fret\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary30.kind, NTI1426063369)); }
       Temporary28 = ([32,45,62,32]).concat(Temporary30.fret);
       }
       else {
       Temporary28 = [];
       }
 
-      var header_1459618388 = (Temporary25).concat(nm_1459618387,[40],emitParams__emit_u146(em_p0, Temporary27.fparams, true),[41],Temporary28,[58]);
-      addLine__emit_u20(em_p0, header_1459618388, s_p1.line);
+      var header_1459618387 = (Temporary25).concat(nm_1459618386,[40],emitParams__emit_u146(em_p0, Temporary27.fparams, true),[41],Temporary28,[58]);
+      addLine__emit_u20(em_p0, header_1459618387, s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary31 = s_p1;
-      if (ConstSet208[Temporary31.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fndefBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary31.kind, NTI1426063369)); }
-      emitBody__emit_u529(em_p0, Temporary31.fndefBody, s_p1.line);
+      if (ConstSet210[Temporary31.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fndefBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary31.kind, NTI1426063369)); }
+      emitBody__emit_u528(em_p0, Temporary31.fndefBody, s_p1.line);
       em_p0.indent = subInt(em_p0.indent, 1);
       break;
     case 7:
       var Temporary32 = s_p1;
-      if (ConstSet209[Temporary32.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary32.kind, NTI1426063369)); }
-      var header_1459618399 = ([99,108,97,115,115,32]).concat(Temporary32.cname);
+      if (ConstSet211[Temporary32.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cname\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary32.kind, NTI1426063369)); }
+      var header_1459618398 = ([99,108,97,115,115,32]).concat(Temporary32.cname);
         var Temporary33 = s_p1;
-        if (ConstSet210[Temporary33.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary33.kind, NTI1426063369)); }
+        if (ConstSet212[Temporary33.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary33.kind, NTI1426063369)); }
       if ((0 < (Temporary33.cbases).length)) {
-      var bs_1459618407 = [];
+      var bs_1459618406 = [];
       Label34: {
-        var b_1459618411 = null;
-        var colontmp__570425923 = [];
+        var b_1459618410 = null;
+        var colontmp__570425938 = [];
         var Temporary35 = s_p1;
-        if (ConstSet211[Temporary35.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary35.kind, NTI1426063369)); }
-        colontmp__570425923 = Temporary35.cbases;
-        var i_570425924 = 0;
-        var L_570425925 = (colontmp__570425923).length;
+        if (ConstSet213[Temporary35.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary35.kind, NTI1426063369)); }
+        colontmp__570425938 = Temporary35.cbases;
+        var i_570425939 = 0;
+        var L_570425940 = (colontmp__570425938).length;
         Label36: {
             Label37: while (true) {
-            if (!(i_570425924 < L_570425925)) break Label37;
-              b_1459618411 = colontmp__570425923[chckIndx(i_570425924, 0, (colontmp__570425923).length - 1)];
-              bs_1459618407.push(emitExpr__emit_u125(em_p0, b_1459618411));;
-              i_570425924 += 1;
-              if (!(((colontmp__570425923).length == L_570425925))) {
+            if (!(i_570425939 < L_570425940)) break Label37;
+              b_1459618410 = colontmp__570425938[chckIndx(i_570425939, 0, (colontmp__570425938).length - 1)];
+              bs_1459618406.push(emitExpr__emit_u125(em_p0, b_1459618410));;
+              i_570425939 += 1;
+              if (!(((colontmp__570425938).length == L_570425940))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
             }
         };
       };
-      nimAddStrStr(header_1459618399, ([40]).concat(nsuJoinSep(bs_1459618407, [44,32]),[41]));;
+      nimAddStrStr(header_1459618398, ([40]).concat(nsuJoinSep(bs_1459618406, [44,32]),[41]));;
       }
 
-      nimAddStrStr(header_1459618399, [58]);;
-      addLine__emit_u20(em_p0, header_1459618399, s_p1.line);
+      nimAddStrStr(header_1459618398, [58]);;
+      addLine__emit_u20(em_p0, header_1459618398, s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary38 = s_p1;
-      if (ConstSet212[Temporary38.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary38.kind, NTI1426063369)); }
-      emitBody__emit_u529(em_p0, Temporary38.cbody, s_p1.line);
+      if (ConstSet214[Temporary38.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'cbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary38.kind, NTI1426063369)); }
+      emitBody__emit_u528(em_p0, Temporary38.cbody, s_p1.line);
       em_p0.indent = subInt(em_p0.indent, 1);
       break;
     case 8:
         var Temporary40 = s_p1;
-        if (ConstSet213[Temporary40.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary40.kind, NTI1426063369)); }
+        if (ConstSet215[Temporary40.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary40.kind, NTI1426063369)); }
       if (!((Temporary40.re == null))) {
       var Temporary41 = s_p1;
-      if (ConstSet214[Temporary41.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary41.kind, NTI1426063369)); }
+      if (ConstSet216[Temporary41.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'re\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary41.kind, NTI1426063369)); }
       Temporary39 = ([114,101,116,117,114,110,32]).concat(emitExpr__emit_u125(em_p0, Temporary41.re));
       }
       else {
@@ -8507,10 +8570,10 @@ function emitStmt__emit_u128(em_p0, s_p1) {
       break;
     case 12:
         var Temporary43 = s_p1;
-        if (ConstSet215[Temporary43.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary43.kind, NTI1426063369)); }
+        if (ConstSet217[Temporary43.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary43.kind, NTI1426063369)); }
       if (!((Temporary43.rae == null))) {
       var Temporary44 = s_p1;
-      if (ConstSet216[Temporary44.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary44.kind, NTI1426063369)); }
+      if (ConstSet218[Temporary44.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'rae\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary44.kind, NTI1426063369)); }
       Temporary42 = ([114,97,105,115,101,32]).concat(emitExpr__emit_u125(em_p0, Temporary44.rae));
       }
       else {
@@ -8523,37 +8586,37 @@ function emitStmt__emit_u128(em_p0, s_p1) {
       addLine__emit_u20(em_p0, [116,114,121,58], s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary45 = s_p1;
-      if (ConstSet217[Temporary45.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'tbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary45.kind, NTI1426063369)); }
-      emitBody__emit_u529(em_p0, Temporary45.tbody, s_p1.line);
+      if (ConstSet219[Temporary45.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'tbody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary45.kind, NTI1426063369)); }
+      emitBody__emit_u528(em_p0, Temporary45.tbody, s_p1.line);
       em_p0.indent = subInt(em_p0.indent, 1);
       Label46: {
-        var h_1459618447 = ({etype: null, alias: [], body: []});
-        var colontmp__570425928 = [];
+        var h_1459618446 = ({etype: null, alias: [], body: []});
+        var colontmp__570425943 = [];
         var Temporary47 = s_p1;
-        if (ConstSet218[Temporary47.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'handlers\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary47.kind, NTI1426063369)); }
-        colontmp__570425928 = Temporary47.handlers;
-        var i_570425929 = 0;
-        var L_570425930 = (colontmp__570425928).length;
+        if (ConstSet220[Temporary47.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'handlers\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary47.kind, NTI1426063369)); }
+        colontmp__570425943 = Temporary47.handlers;
+        var i_570425944 = 0;
+        var L_570425945 = (colontmp__570425943).length;
         Label48: {
             Label49: while (true) {
-            if (!(i_570425929 < L_570425930)) break Label49;
-              h_1459618447 = nimCopy(h_1459618447, colontmp__570425928[chckIndx(i_570425929, 0, (colontmp__570425928).length - 1)], NTI1426063366);
-              var l_1459618448 = [101,120,99,101,112,116];
-              if (!((h_1459618447.etype == null))) {
-              nimAddStrStr(l_1459618448, ([32]).concat(emitExpr__emit_u125(em_p0, h_1459618447.etype)));;
+            if (!(i_570425944 < L_570425945)) break Label49;
+              h_1459618446 = nimCopy(h_1459618446, colontmp__570425943[chckIndx(i_570425944, 0, (colontmp__570425943).length - 1)], NTI1426063366);
+              var l_1459618447 = [101,120,99,101,112,116];
+              if (!((h_1459618446.etype == null))) {
+              nimAddStrStr(l_1459618447, ([32]).concat(emitExpr__emit_u125(em_p0, h_1459618446.etype)));;
               }
 
-              if (!(eqStrings(h_1459618447.alias, []))) {
-              nimAddStrStr(l_1459618448, ([32,97,115,32]).concat(h_1459618447.alias));;
+              if (!(eqStrings(h_1459618446.alias, []))) {
+              nimAddStrStr(l_1459618447, ([32,97,115,32]).concat(h_1459618446.alias));;
               }
 
-              nimAddStrStr(l_1459618448, [58]);;
-              addLine__emit_u20(em_p0, l_1459618448, s_p1.line);
+              nimAddStrStr(l_1459618447, [58]);;
+              addLine__emit_u20(em_p0, l_1459618447, s_p1.line);
               em_p0.indent = addInt(em_p0.indent, 1);
-              emitBody__emit_u529(em_p0, h_1459618447.body, s_p1.line);
+              emitBody__emit_u528(em_p0, h_1459618446.body, s_p1.line);
               em_p0.indent = subInt(em_p0.indent, 1);
-              i_570425929 += 1;
-              if (!(((colontmp__570425928).length == L_570425930))) {
+              i_570425944 += 1;
+              if (!(((colontmp__570425943).length == L_570425945))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -8561,74 +8624,92 @@ function emitStmt__emit_u128(em_p0, s_p1) {
         };
       };
         var Temporary50 = s_p1;
-        if (ConstSet219[Temporary50.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'orelse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary50.kind, NTI1426063369)); }
+        if (ConstSet221[Temporary50.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'orelse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary50.kind, NTI1426063369)); }
       if ((0 < (Temporary50.orelse).length)) {
       addLine__emit_u20(em_p0, [101,108,115,101,58], s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary51 = s_p1;
-      if (ConstSet220[Temporary51.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'orelse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary51.kind, NTI1426063369)); }
+      if (ConstSet222[Temporary51.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'orelse\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary51.kind, NTI1426063369)); }
       emitStmts__emit_u131(em_p0, Temporary51.orelse);
       em_p0.indent = subInt(em_p0.indent, 1);
       }
 
         var Temporary52 = s_p1;
-        if (ConstSet221[Temporary52.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary52.kind, NTI1426063369)); }
+        if (ConstSet223[Temporary52.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary52.kind, NTI1426063369)); }
       if ((0 < (Temporary52.finallyB).length)) {
       addLine__emit_u20(em_p0, [102,105,110,97,108,108,121,58], s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary53 = s_p1;
-      if (ConstSet222[Temporary53.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary53.kind, NTI1426063369)); }
+      if (ConstSet224[Temporary53.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'finallyB\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary53.kind, NTI1426063369)); }
       emitStmts__emit_u131(em_p0, Temporary53.finallyB);
       em_p0.indent = subInt(em_p0.indent, 1);
       }
 
       break;
     case 14:
-      var its_1459618493 = [];
+      var its_1459618492 = [];
       Label54: {
-        var item_1459618497 = {Field0: null, Field1: []};
-        var colontmp__570425933 = [];
+        var item_1459618496 = {Field0: null, Field1: []};
+        var colontmp__570425948 = [];
         var Temporary55 = s_p1;
-        if (ConstSet223[Temporary55.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'witems\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary55.kind, NTI1426063369)); }
-        colontmp__570425933 = Temporary55.witems;
-        var i_570425934 = 0;
-        var L_570425935 = (colontmp__570425933).length;
+        if (ConstSet225[Temporary55.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'witems\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary55.kind, NTI1426063369)); }
+        colontmp__570425948 = Temporary55.witems;
+        var i_570425949 = 0;
+        var L_570425950 = (colontmp__570425948).length;
         Label56: {
             Label57: while (true) {
-            if (!(i_570425934 < L_570425935)) break Label57;
-              item_1459618497 = nimCopy(item_1459618497, colontmp__570425933[chckIndx(i_570425934, 0, (colontmp__570425933).length - 1)], NTI1426063402);
-              var t_1459618498 = emitExpr__emit_u125(em_p0, item_1459618497.Field0);
-              if (!(eqStrings(item_1459618497.Field1, []))) {
-              nimAddStrStr(t_1459618498, ([32,97,115,32]).concat(item_1459618497.Field1));;
+            if (!(i_570425949 < L_570425950)) break Label57;
+              item_1459618496 = nimCopy(item_1459618496, colontmp__570425948[chckIndx(i_570425949, 0, (colontmp__570425948).length - 1)], NTI1426063402);
+              var t_1459618497 = emitExpr__emit_u125(em_p0, item_1459618496.Field0);
+              if (!(eqStrings(item_1459618496.Field1, []))) {
+              nimAddStrStr(t_1459618497, ([32,97,115,32]).concat(item_1459618496.Field1));;
               }
 
-              var Temporary58 = nimCopy(null, t_1459618498, NTI33554449);
-              its_1459618493.push(Temporary58);;
-              i_570425934 += 1;
-              if (!(((colontmp__570425933).length == L_570425935))) {
+              var Temporary58 = nimCopy(null, t_1459618497, NTI33554449);
+              its_1459618492.push(Temporary58);;
+              i_570425949 += 1;
+              if (!(((colontmp__570425948).length == L_570425950))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
             }
         };
       };
-      addLine__emit_u20(em_p0, ([119,105,116,104,32]).concat(nsuJoinSep(its_1459618493, [44,32]),[58]), s_p1.line);
+      addLine__emit_u20(em_p0, ([119,105,116,104,32]).concat(nsuJoinSep(its_1459618492, [44,32]),[58]), s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       var Temporary59 = s_p1;
-      if (ConstSet224[Temporary59.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'withBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary59.kind, NTI1426063369)); }
-      emitBody__emit_u529(em_p0, Temporary59.withBody, s_p1.line);
+      if (ConstSet226[Temporary59.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'withBody\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary59.kind, NTI1426063369)); }
+      emitBody__emit_u528(em_p0, Temporary59.withBody, s_p1.line);
       em_p0.indent = subInt(em_p0.indent, 1);
       break;
     case 15:
         var Temporary60 = s_p1;
-        if (ConstSet225[Temporary60.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary60.kind, NTI1426063369)); }
-      if (eqStrings(Temporary60.imod, [115,121,115,116,101,109])) {
-        var Temporary61 = s_p1;
-        if (ConstSet226[Temporary61.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary61.kind, NTI1426063369)); }
-      if (!(eqStrings(Temporary61.ialias, []))) {
-      var Temporary62 = s_p1;
-      if (ConstSet227[Temporary62.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary62.kind, NTI1426063369)); }
-      addLine__emit_u20(em_p0, ([105,109,112,111,114,116,32,111,115,32,97,115,32]).concat(Temporary62.ialias), s_p1.line);
+        if (ConstSet227[Temporary60.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary60.kind, NTI1426063369)); }
+      if (eqStrings(Temporary60.imod, [108,117,99,107])) {
+        var Temporary62 = s_p1;
+        if (ConstSet228[Temporary62.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary62.kind, NTI1426063369)); }
+      if (!(eqStrings(Temporary62.ialias, []))) {
+      var Temporary63 = s_p1;
+      if (ConstSet229[Temporary63.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary63.kind, NTI1426063369)); }
+      Temporary61 = Temporary63.ialias;
+      }
+      else {
+      Temporary61 = [108,117,99,107];
+      }
+
+      var local_1459618512 = Temporary61;
+      addLine__emit_u20(em_p0, (local_1459618512).concat([32,61,32,95,71,122,105,109,76,117,99,107,40,41]), s_p1.line);
+      }
+      else {
+        var Temporary64 = s_p1;
+        if (ConstSet230[Temporary64.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary64.kind, NTI1426063369)); }
+      if (eqStrings(Temporary64.imod, [115,121,115,116,101,109])) {
+        var Temporary65 = s_p1;
+        if (ConstSet231[Temporary65.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary65.kind, NTI1426063369)); }
+      if (!(eqStrings(Temporary65.ialias, []))) {
+      var Temporary66 = s_p1;
+      if (ConstSet232[Temporary66.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary66.kind, NTI1426063369)); }
+      addLine__emit_u20(em_p0, ([105,109,112,111,114,116,32,111,115,32,97,115,32]).concat(Temporary66.ialias), s_p1.line);
       }
       else {
         addLine__emit_u20(em_p0, [105,109,112,111,114,116,32,111,115], s_p1.line);
@@ -8637,34 +8718,34 @@ function emitStmt__emit_u128(em_p0, s_p1) {
 
       }
       else {
-          var Temporary64 = s_p1;
-          if (ConstSet228[Temporary64.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary64.kind, NTI1426063369)); }
-        if (hasKey__jsZjsffi_u380(MODULE_MAP_1459617811, Temporary64.imod)) {
-        var Temporary65 = s_p1;
-        if (ConstSet229[Temporary65.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary65.kind, NTI1426063369)); }
-        Temporary63 = HEX5BHEX5D__parser_u262(MODULE_MAP_1459617811, Temporary65.imod);
-        }
-        else {
-          var Temporary66 = s_p1;
-          if (ConstSet230[Temporary66.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary66.kind, NTI1426063369)); }
-        Temporary63 = Temporary66.imod;
-        }
-
-        var mapped_1459618608 = nimCopy(null, Temporary63, NTI33554449);
           var Temporary68 = s_p1;
-          if (ConstSet231[Temporary68.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary68.kind, NTI1426063369)); }
-        if (!(eqStrings(Temporary68.ialias, []))) {
+          if (ConstSet233[Temporary68.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary68.kind, NTI1426063369)); }
+        if (hasKey__jsZjsffi_u380(MODULE_MAP_1459617811, Temporary68.imod)) {
         var Temporary69 = s_p1;
-        if (ConstSet232[Temporary69.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary69.kind, NTI1426063369)); }
-        Temporary67 = Temporary69.ialias;
+        if (ConstSet234[Temporary69.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary69.kind, NTI1426063369)); }
+        Temporary67 = HEX5BHEX5D__parser_u262(MODULE_MAP_1459617811, Temporary69.imod);
         }
         else {
           var Temporary70 = s_p1;
-          if (ConstSet233[Temporary70.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary70.kind, NTI1426063369)); }
+          if (ConstSet235[Temporary70.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary70.kind, NTI1426063369)); }
         Temporary67 = Temporary70.imod;
         }
 
-        var local_1459618609 = Temporary67;
+        var mapped_1459618608 = nimCopy(null, Temporary67, NTI33554449);
+          var Temporary72 = s_p1;
+          if (ConstSet236[Temporary72.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary72.kind, NTI1426063369)); }
+        if (!(eqStrings(Temporary72.ialias, []))) {
+        var Temporary73 = s_p1;
+        if (ConstSet237[Temporary73.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ialias\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary73.kind, NTI1426063369)); }
+        Temporary71 = Temporary73.ialias;
+        }
+        else {
+          var Temporary74 = s_p1;
+          if (ConstSet238[Temporary74.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'imod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary74.kind, NTI1426063369)); }
+        Temporary71 = Temporary74.imod;
+        }
+
+        var local_1459618609 = Temporary71;
         if (!(eqStrings(mapped_1459618608, local_1459618609))) {
         addLine__emit_u20(em_p0, ([105,109,112,111,114,116,32]).concat(mapped_1459618608,[32,97,115,32],local_1459618609), s_p1.line);
         }
@@ -8673,22 +8754,22 @@ function emitStmt__emit_u128(em_p0, s_p1) {
         }
 
       }
-
+      }
       break;
     case 16:
       var ns_1459618614 = [];
-      Label71: {
+      Label75: {
         var n_1459618618 = {Field0: [], Field1: []};
-        var colontmp__570425938 = [];
-        var Temporary72 = s_p1;
-        if (ConstSet234[Temporary72.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary72.kind, NTI1426063369)); }
-        colontmp__570425938 = Temporary72.fnames;
-        var i_570425939 = 0;
-        var L_570425940 = (colontmp__570425938).length;
-        Label73: {
-            Label74: while (true) {
-            if (!(i_570425939 < L_570425940)) break Label74;
-              n_1459618618 = nimCopy(n_1459618618, colontmp__570425938[chckIndx(i_570425939, 0, (colontmp__570425938).length - 1)], NTI1426063405);
+        var colontmp__570425953 = [];
+        var Temporary76 = s_p1;
+        if (ConstSet239[Temporary76.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary76.kind, NTI1426063369)); }
+        colontmp__570425953 = Temporary76.fnames;
+        var i_570425954 = 0;
+        var L_570425955 = (colontmp__570425953).length;
+        Label77: {
+            Label78: while (true) {
+            if (!(i_570425954 < L_570425955)) break Label78;
+              n_1459618618 = nimCopy(n_1459618618, colontmp__570425953[chckIndx(i_570425954, 0, (colontmp__570425953).length - 1)], NTI1426063405);
               if (eqStrings(n_1459618618.Field0, [42])) {
               ns_1459618614.push([42]);;
               }
@@ -8697,12 +8778,12 @@ function emitStmt__emit_u128(em_p0, s_p1) {
               ns_1459618614.push((n_1459618618.Field0).concat([32,97,115,32],n_1459618618.Field1));;
               }
               else {
-                var Temporary75 = nimCopy(null, n_1459618618.Field0, NTI33554449);
-              ns_1459618614.push(Temporary75);;
+                var Temporary79 = nimCopy(null, n_1459618618.Field0, NTI33554449);
+              ns_1459618614.push(Temporary79);;
               }
               }
-              i_570425939 += 1;
-              if (!(((colontmp__570425938).length == L_570425940))) {
+              i_570425954 += 1;
+              if (!(((colontmp__570425953).length == L_570425955))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -8710,9 +8791,64 @@ function emitStmt__emit_u128(em_p0, s_p1) {
         };
       };
       var namesStr_1459618631 = nsuJoinSep(ns_1459618614, [44,32]);
-        var Temporary76 = s_p1;
-        if (ConstSet235[Temporary76.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary76.kind, NTI1426063369)); }
-      if (eqStrings(Temporary76.fmod, [115,121,115,116,101,109])) {
+        var Temporary80 = s_p1;
+        if (ConstSet240[Temporary80.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary80.kind, NTI1426063369)); }
+      if (eqStrings(Temporary80.fmod, [108,117,99,107])) {
+      Label81: {
+        var n_1459618635 = {Field0: [], Field1: []};
+        var colontmp__570425962 = [];
+        var Temporary82 = s_p1;
+        if (ConstSet241[Temporary82.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary82.kind, NTI1426063369)); }
+        colontmp__570425962 = Temporary82.fnames;
+        var i_570425963 = 0;
+        var L_570425964 = (colontmp__570425962).length;
+        Label83: {
+            Label84: while (true) {
+            if (!(i_570425963 < L_570425964)) break Label84;
+              n_1459618635 = nimCopy(n_1459618635, colontmp__570425962[chckIndx(i_570425963, 0, (colontmp__570425962).length - 1)], NTI1426063405);
+              if (eqStrings(n_1459618635.Field0, [42])) {
+              Label85: {
+                var name_1459618714 = [];
+                var i_570425960 = 0;
+                Label86: {
+                    Label87: while (true) {
+                    if (!true) break Label87;
+                      name_1459618714 = (Temporary88 = [[114,97,110,100,111,109], [114,97,110,100,105,110,116], [99,104,111,105,99,101], [109,97,110,105,102,101,115,116]], Temporary88)[chckIndx(i_570425960, 0, (Temporary88).length - 1)];
+                      addLine__emit_u20(em_p0, (name_1459618714).concat([32,61,32,95,71,122,105,109,76,117,99,107,40,41,46],name_1459618714), s_p1.line);
+                      if ((3 <= i_570425960)) {
+                      break Label86;
+                      }
+
+                      i_570425960 += 1;
+                    }
+                };
+              };
+              }
+              else {
+                if (!(eqStrings(n_1459618635.Field1, []))) {
+                Temporary89 = n_1459618635.Field1;
+                }
+                else {
+                Temporary89 = n_1459618635.Field0;
+                }
+
+                var local_1459618715 = nimCopy(null, Temporary89, NTI33554449);
+                addLine__emit_u20(em_p0, (local_1459618715).concat([32,61,32,95,71,122,105,109,76,117,99,107,40,41,46],n_1459618635.Field0), s_p1.line);
+              }
+
+              i_570425963 += 1;
+              if (!(((colontmp__570425962).length == L_570425964))) {
+              failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+              }
+
+            }
+        };
+      };
+      }
+      else {
+        var Temporary90 = s_p1;
+        if (ConstSet242[Temporary90.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary90.kind, NTI1426063369)); }
+      if (eqStrings(Temporary90.fmod, [115,121,115,116,101,109])) {
       addLine__emit_u20(em_p0, [116,114,121,58], s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
       addLine__emit_u20(em_p0, ([102,114,111,109,32,111,115,32,105,109,112,111,114,116,32]).concat(namesStr_1459618631), s_p1.line);
@@ -8723,128 +8859,128 @@ function emitStmt__emit_u128(em_p0, s_p1) {
       em_p0.indent = subInt(em_p0.indent, 1);
       }
       else {
-          var Temporary78 = s_p1;
-          if (ConstSet236[Temporary78.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary78.kind, NTI1426063369)); }
-        if (hasKey__jsZjsffi_u380(MODULE_MAP_1459617811, Temporary78.fmod)) {
-        var Temporary79 = s_p1;
-        if (ConstSet237[Temporary79.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary79.kind, NTI1426063369)); }
-        Temporary77 = HEX5BHEX5D__parser_u262(MODULE_MAP_1459617811, Temporary79.fmod);
+          var Temporary92 = s_p1;
+          if (ConstSet243[Temporary92.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary92.kind, NTI1426063369)); }
+        if (hasKey__jsZjsffi_u380(MODULE_MAP_1459617811, Temporary92.fmod)) {
+        var Temporary93 = s_p1;
+        if (ConstSet244[Temporary93.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary93.kind, NTI1426063369)); }
+        Temporary91 = HEX5BHEX5D__parser_u262(MODULE_MAP_1459617811, Temporary93.fmod);
         }
         else {
-          var Temporary80 = s_p1;
-          if (ConstSet238[Temporary80.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary80.kind, NTI1426063369)); }
-        Temporary77 = Temporary80.fmod;
+          var Temporary94 = s_p1;
+          if (ConstSet245[Temporary94.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fmod\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary94.kind, NTI1426063369)); }
+        Temporary91 = Temporary94.fmod;
         }
 
-        var mapped_1459618747 = nimCopy(null, Temporary77, NTI33554449);
-        addLine__emit_u20(em_p0, ([102,114,111,109,32]).concat(mapped_1459618747,[32,105,109,112,111,114,116,32],namesStr_1459618631), s_p1.line);
+        var mapped_1459618831 = nimCopy(null, Temporary91, NTI33554449);
+        addLine__emit_u20(em_p0, ([102,114,111,109,32]).concat(mapped_1459618831,[32,105,109,112,111,114,116,32],namesStr_1459618631), s_p1.line);
       }
-
+      }
       break;
     case 17:
-      var Temporary81 = s_p1;
-      if (ConstSet239[Temporary81.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'msubject\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary81.kind, NTI1426063369)); }
-      addLine__emit_u20(em_p0, ([109,97,116,99,104,32]).concat(emitExpr__emit_u125(em_p0, Temporary81.msubject),[58]), s_p1.line);
+      var Temporary95 = s_p1;
+      if (ConstSet246[Temporary95.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'msubject\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary95.kind, NTI1426063369)); }
+      addLine__emit_u20(em_p0, ([109,97,116,99,104,32]).concat(emitExpr__emit_u125(em_p0, Temporary95.msubject),[58]), s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
-      Label82: {
-        var mc_1459618756 = {Field0: null, Field1: []};
-        var colontmp__570425943 = [];
-        var Temporary83 = s_p1;
-        if (ConstSet240[Temporary83.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'mcases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary83.kind, NTI1426063369)); }
-        colontmp__570425943 = Temporary83.mcases;
-        var i_570425944 = 0;
-        var L_570425945 = (colontmp__570425943).length;
-        Label84: {
-            Label85: while (true) {
-            if (!(i_570425944 < L_570425945)) break Label85;
-              mc_1459618756 = nimCopy(mc_1459618756, colontmp__570425943[chckIndx(i_570425944, 0, (colontmp__570425943).length - 1)], NTI1426063407);
-              addLine__emit_u20(em_p0, ([99,97,115,101,32]).concat(emitExpr__emit_u125(em_p0, mc_1459618756.Field0),[58]), s_p1.line);
+      Label96: {
+        var mc_1459618840 = {Field0: null, Field1: []};
+        var colontmp__570425967 = [];
+        var Temporary97 = s_p1;
+        if (ConstSet247[Temporary97.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'mcases\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary97.kind, NTI1426063369)); }
+        colontmp__570425967 = Temporary97.mcases;
+        var i_570425968 = 0;
+        var L_570425969 = (colontmp__570425967).length;
+        Label98: {
+            Label99: while (true) {
+            if (!(i_570425968 < L_570425969)) break Label99;
+              mc_1459618840 = nimCopy(mc_1459618840, colontmp__570425967[chckIndx(i_570425968, 0, (colontmp__570425967).length - 1)], NTI1426063407);
+              addLine__emit_u20(em_p0, ([99,97,115,101,32]).concat(emitExpr__emit_u125(em_p0, mc_1459618840.Field0),[58]), s_p1.line);
               em_p0.indent = addInt(em_p0.indent, 1);
-              emitBody__emit_u529(em_p0, mc_1459618756.Field1, s_p1.line);
+              emitBody__emit_u528(em_p0, mc_1459618840.Field1, s_p1.line);
               em_p0.indent = subInt(em_p0.indent, 1);
-              i_570425944 += 1;
-              if (!(((colontmp__570425943).length == L_570425945))) {
+              i_570425968 += 1;
+              if (!(((colontmp__570425967).length == L_570425969))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
             }
         };
       };
-        var Temporary86 = s_p1;
-        if (ConstSet241[Temporary86.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'hasDefault\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary86.kind, NTI1426063369)); }
-      if (Temporary86.hasDefault) {
+        var Temporary100 = s_p1;
+        if (ConstSet248[Temporary100.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'hasDefault\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary100.kind, NTI1426063369)); }
+      if (Temporary100.hasDefault) {
       addLine__emit_u20(em_p0, [99,97,115,101,32,95,58], s_p1.line);
       em_p0.indent = addInt(em_p0.indent, 1);
-      var Temporary87 = s_p1;
-      if (ConstSet242[Temporary87.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'mdefault\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary87.kind, NTI1426063369)); }
-      emitBody__emit_u529(em_p0, Temporary87.mdefault, s_p1.line);
+      var Temporary101 = s_p1;
+      if (ConstSet249[Temporary101.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'mdefault\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary101.kind, NTI1426063369)); }
+      emitBody__emit_u528(em_p0, Temporary101.mdefault, s_p1.line);
       em_p0.indent = subInt(em_p0.indent, 1);
       }
 
       em_p0.indent = subInt(em_p0.indent, 1);
       break;
     case 18:
-      var ts_1459618786 = [];
-      Label88: {
-        var t_1459618790 = null;
-        var colontmp__570425948 = [];
-        var Temporary89 = s_p1;
-        if (ConstSet243[Temporary89.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dtargets\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary89.kind, NTI1426063369)); }
-        colontmp__570425948 = Temporary89.dtargets;
-        var i_570425949 = 0;
-        var L_570425950 = (colontmp__570425948).length;
-        Label90: {
-            Label91: while (true) {
-            if (!(i_570425949 < L_570425950)) break Label91;
-              t_1459618790 = colontmp__570425948[chckIndx(i_570425949, 0, (colontmp__570425948).length - 1)];
-              ts_1459618786.push(emitExpr__emit_u125(em_p0, t_1459618790));;
-              i_570425949 += 1;
-              if (!(((colontmp__570425948).length == L_570425950))) {
+      var ts_1459618870 = [];
+      Label102: {
+        var t_1459618874 = null;
+        var colontmp__570425972 = [];
+        var Temporary103 = s_p1;
+        if (ConstSet250[Temporary103.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'dtargets\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary103.kind, NTI1426063369)); }
+        colontmp__570425972 = Temporary103.dtargets;
+        var i_570425973 = 0;
+        var L_570425974 = (colontmp__570425972).length;
+        Label104: {
+            Label105: while (true) {
+            if (!(i_570425973 < L_570425974)) break Label105;
+              t_1459618874 = colontmp__570425972[chckIndx(i_570425973, 0, (colontmp__570425972).length - 1)];
+              ts_1459618870.push(emitExpr__emit_u125(em_p0, t_1459618874));;
+              i_570425973 += 1;
+              if (!(((colontmp__570425972).length == L_570425974))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
             }
         };
       };
-      addLine__emit_u20(em_p0, ([100,101,108,32]).concat(nsuJoinSep(ts_1459618786, [44,32])), s_p1.line);
+      addLine__emit_u20(em_p0, ([100,101,108,32]).concat(nsuJoinSep(ts_1459618870, [44,32])), s_p1.line);
       break;
     case 19:
-      var Temporary92 = s_p1;
-      if (ConstSet244[Temporary92.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'acond\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary92.kind, NTI1426063369)); }
-      var l_1459618795 = ([97,115,115,101,114,116,32]).concat(emitExpr__emit_u125(em_p0, Temporary92.acond));
-        var Temporary93 = s_p1;
-        if (ConstSet245[Temporary93.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'amsg\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary93.kind, NTI1426063369)); }
-      if (!((Temporary93.amsg == null))) {
-      var Temporary94 = s_p1;
-      if (ConstSet246[Temporary94.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'amsg\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary94.kind, NTI1426063369)); }
-      nimAddStrStr(l_1459618795, ([44,32]).concat(emitExpr__emit_u125(em_p0, Temporary94.amsg)));;
+      var Temporary106 = s_p1;
+      if (ConstSet251[Temporary106.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'acond\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary106.kind, NTI1426063369)); }
+      var l_1459618879 = ([97,115,115,101,114,116,32]).concat(emitExpr__emit_u125(em_p0, Temporary106.acond));
+        var Temporary107 = s_p1;
+        if (ConstSet252[Temporary107.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'amsg\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary107.kind, NTI1426063369)); }
+      if (!((Temporary107.amsg == null))) {
+      var Temporary108 = s_p1;
+      if (ConstSet253[Temporary108.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'amsg\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary108.kind, NTI1426063369)); }
+      nimAddStrStr(l_1459618879, ([44,32]).concat(emitExpr__emit_u125(em_p0, Temporary108.amsg)));;
       }
 
-      addLine__emit_u20(em_p0, l_1459618795, s_p1.line);
+      addLine__emit_u20(em_p0, l_1459618879, s_p1.line);
       break;
     case 20:
-      var Temporary95 = s_p1;
-      if (ConstSet247[Temporary95.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'gnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary95.kind, NTI1426063369)); }
-      addLine__emit_u20(em_p0, ([103,108,111,98,97,108,32]).concat(nsuJoinSep(Temporary95.gnames, [44,32])), s_p1.line);
+      var Temporary109 = s_p1;
+      if (ConstSet254[Temporary109.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'gnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary109.kind, NTI1426063369)); }
+      addLine__emit_u20(em_p0, ([103,108,111,98,97,108,32]).concat(nsuJoinSep(Temporary109.gnames, [44,32])), s_p1.line);
       break;
     case 21:
-      var Temporary96 = s_p1;
-      if (ConstSet248[Temporary96.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'gnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary96.kind, NTI1426063369)); }
-      addLine__emit_u20(em_p0, ([110,111,110,108,111,99,97,108,32]).concat(nsuJoinSep(Temporary96.gnames, [44,32])), s_p1.line);
+      var Temporary110 = s_p1;
+      if (ConstSet255[Temporary110.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'gnames\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary110.kind, NTI1426063369)); }
+      addLine__emit_u20(em_p0, ([110,111,110,108,111,99,97,108,32]).concat(nsuJoinSep(Temporary110.gnames, [44,32])), s_p1.line);
       break;
     case 22:
-        var Temporary98 = s_p1;
-        if (ConstSet249[Temporary98.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary98.kind, NTI1426063369)); }
-      if (!((Temporary98.ye == null))) {
-      var Temporary99 = s_p1;
-      if (ConstSet250[Temporary99.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary99.kind, NTI1426063369)); }
-      Temporary97 = ([121,105,101,108,100,32]).concat(emitExpr__emit_u125(em_p0, Temporary99.ye));
+        var Temporary112 = s_p1;
+        if (ConstSet256[Temporary112.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary112.kind, NTI1426063369)); }
+      if (!((Temporary112.ye == null))) {
+      var Temporary113 = s_p1;
+      if (ConstSet257[Temporary113.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'ye\' is not accessible for type \'Stmt\' using \'kind = "), reprDiscriminant(Temporary113.kind, NTI1426063369)); }
+      Temporary111 = ([121,105,101,108,100,32]).concat(emitExpr__emit_u125(em_p0, Temporary113.ye));
       }
       else {
-      Temporary97 = [121,105,101,108,100];
+      Temporary111 = [121,105,101,108,100];
       }
 
-      addLine__emit_u20(em_p0, Temporary97, s_p1.line);
+      addLine__emit_u20(em_p0, Temporary111, s_p1.line);
       break;
     }
 
@@ -8854,15 +8990,15 @@ function emitStmt__emit_u128(em_p0, s_p1) {
 function emitStmts__emit_u131(em_p0, stmts_p1) {
     Label1: {
       var s_1459617929 = null;
-      var i_570425914 = 0;
-      var L_570425915 = (stmts_p1).length;
+      var i_570425929 = 0;
+      var L_570425930 = (stmts_p1).length;
       Label2: {
           Label3: while (true) {
-          if (!(i_570425914 < L_570425915)) break Label3;
-            s_1459617929 = stmts_p1[chckIndx(i_570425914, 0, (stmts_p1).length - 1)];
+          if (!(i_570425929 < L_570425930)) break Label3;
+            s_1459617929 = stmts_p1[chckIndx(i_570425929, 0, (stmts_p1).length - 1)];
             emitStmt__emit_u128(em_p0, s_1459617929);
-            i_570425914 += 1;
-            if (!(((stmts_p1).length == L_570425915))) {
+            i_570425929 += 1;
+            if (!(((stmts_p1).length == L_570425930))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
 
@@ -8873,19 +9009,68 @@ function emitStmts__emit_u131(em_p0, stmts_p1) {
 
 }
 
-function emitProgram__emit_u1012(program_p0, usedAny_p1) {
-  var result_1459618807 = null;
+function emitProgram__emit_u1096(program_p0, usedAny_p1) {
+            var Temporary6;
 
-    var em_1459618808 = {lines: [], indent: 0, maps: []};
-    em_1459618808.lines.push([35,32,71,101,110,101,114,97,116,101,100,32,98,121,32,71,101,110,122,105,109,110,105,102,121,32,50,46,48,46,52,32,40,118,105,98,101,32,114,101,115,112,111,110,115,105,98,108,121,41]);;
+  var result_1459618891 = null;
+
+    var em_1459618892 = {lines: [], indent: 0, maps: []};
+    em_1459618892.lines.push([35,32,71,101,110,101,114,97,116,101,100,32,98,121,32,71,101,110,122,105,109,110,105,102,121,32,50,46,48,46,53,32,40,118,105,98,101,32,114,101,115,112,111,110,115,105,98,108,121,41]);;
     if (usedAny_p1) {
-    em_1459618808.lines.push([102,114,111,109,32,116,121,112,105,110,103,32,105,109,112,111,114,116,32,65,110,121]);;
+    em_1459618892.lines.push([102,114,111,109,32,116,121,112,105,110,103,32,105,109,112,111,114,116,32,65,110,121]);;
     }
 
-    emitStmts__emit_u131(em_1459618808, program_p0);
-    result_1459618807 = em_1459618808;
+    Label1: {
+      var line_1459618901 = [];
+      var first_570425920 = 0;
+      var last_570425921 = 0;
+      var eolpos_570425922 = 0;
+      Label2: {
+          Label3: while (true) {
+          if (!true) break Label3;
+            Label4: {
+                Label5: while (true) {
+                if (!((last_570425921 < 939) && !((ConstSet128[makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A")[chckIndx(last_570425921, 0, (makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A")).length - 1)]] != undefined)))) break Label5;
+                  last_570425921 = addInt(last_570425921, 1);
+                }
+            };
+            eolpos_570425922 = last_570425921;
+            if ((last_570425921 < 939)) {
+            if ((makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A")[chckIndx(last_570425921, 0, (makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A")).length - 1)] == 10)) {
+            last_570425921 = addInt(last_570425921, 1);
+            }
+            else {
+            if ((makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A")[chckIndx(last_570425921, 0, (makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A")).length - 1)] == 13)) {
+            last_570425921 = addInt(last_570425921, 1);
+            if (((last_570425921 < 939) && (makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A")[chckIndx(last_570425921, 0, (makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A")).length - 1)] == 10))) {
+            last_570425921 = addInt(last_570425921, 1);
+            }
 
-  return result_1459618807;
+            }
+            }
+            }
+
+            if (false) {
+            Temporary6 = subInt(last_570425921, 1);
+            }
+            else {
+            Temporary6 = subInt(eolpos_570425922, 1);
+            }
+
+            line_1459618901 = substr__system_u3793(makeNimstrLit("import builtins as _gzim_builtins\x0Aimport random as _gzim_random\x0A\x0Adef _gzim_yap(*values, glue=\" \", micdrop=\"\\n\"):\x0A    if not _gzim_builtins.isinstance(glue, _gzim_builtins.str) or not _gzim_builtins.isinstance(micdrop, _gzim_builtins.str):\x0A        raise _gzim_builtins.TypeError(\"glue and micdrop expect text\")\x0A    _gzim_builtins.print(*values, sep=glue, end=micdrop)\x0A\x0Adef _gzim_ranked(values, *, uno_reverse=False):\x0A    if not _gzim_builtins.isinstance(uno_reverse, _gzim_builtins.bool):\x0A        raise _gzim_builtins.TypeError(\"uno_reverse expects nocap or cap\")\x0A    return _gzim_builtins.sorted(values, reverse=uno_reverse)\x0A\x0Aclass _GzimLuck:\x0A    def manifest(self, seed):\x0A        if _gzim_builtins.type(seed) is not _gzim_builtins.int:\x0A            raise _gzim_builtins.TypeError(\"manifest expects an integer seed\")\x0A        _gzim_random.seed(seed)\x0A    def __getattr__(self, name):\x0A        return _gzim_builtins.getattr(_gzim_random, name)\x0A"), first_570425920, Temporary6);
+            addLine__emit_u20(em_1459618892, line_1459618901, 0);
+            if ((eolpos_570425922 == last_570425921)) {
+            break Label2;
+            }
+
+            first_570425920 = last_570425921;
+          }
+      };
+    };
+    emitStmts__emit_u131(em_1459618892, program_p0);
+    result_1459618891 = em_1459618892;
+
+  return result_1459618891;
 
 }
 
@@ -8916,12 +9101,12 @@ function len__pureZjson_u3054(n_p0) {
     switch (n_p0.kind) {
     case 6:
       var Temporary1 = n_p0;
-      if (ConstSet251[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elems\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI704643075)); }
+      if (ConstSet258[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elems\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI704643075)); }
       result_704646128 = (Temporary1.elems).length;
       break;
     case 5:
       var Temporary2 = n_p0;
-      if (ConstSet252[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI704643075)); }
+      if (ConstSet259[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI704643075)); }
       result_704646128 = len__pureZjson_u2190(Temporary2.fields);
       break;
     default:
@@ -8940,20 +9125,20 @@ function toHexImpl__pureZstrutils_u777(x_p0, len_p1, handleNegative_p2) {
     result_989856525 = nimCopy(null, mnewString(len_p1), NTI33554449);
     Label1: {
       var j_989856533 = 0;
-      var colontmp__570426083 = 0;
-      colontmp__570426083 = subInt(len_p1, 1);
-      var res_570426084 = colontmp__570426083;
+      var colontmp__570426104 = 0;
+      colontmp__570426104 = subInt(len_p1, 1);
+      var res_570426105 = colontmp__570426104;
       Label2: {
           Label3: while (true) {
-          if (!(0 <= res_570426084)) break Label3;
-            j_989856533 = res_570426084;
+          if (!(0 <= res_570426105)) break Label3;
+            j_989856533 = res_570426105;
             result_989856525[chckIndx(j_989856533, 0, (result_989856525).length - 1)] = [48,49,50,51,52,53,54,55,56,57,65,66,67,68,69,70][chckIndx(chckRange(Number((n_989856527 & 15n)), (-2147483648), 2147483647), 0, ([48,49,50,51,52,53,54,55,56,57,65,66,67,68,69,70]).length - 1)];
             n_989856527 = (n_989856527 >> (BigInt(4) & 63n));
             if (((n_989856527 == 0n) && handleNegative_p2)) {
             n_989856527 = 18446744073709551615n;
             }
 
-            res_570426084 = subInt(res_570426084, 1);
+            res_570426105 = subInt(res_570426105, 1);
           }
       };
     };
@@ -8974,12 +9159,12 @@ function toHex__pureZstrutils_u2115(x_p0, len_p1) {
 function escapeJsonUnquoted__pureZjson_u4345(s_p0, result_p1, result_p1_Idx) {
     Label1: {
       var c_704647420 = 0;
-      var i_570426079 = 0;
-      var L_570426080 = (s_p0).length;
+      var i_570426100 = 0;
+      var L_570426101 = (s_p0).length;
       Label2: {
           Label3: while (true) {
-          if (!(i_570426079 < L_570426080)) break Label3;
-            c_704647420 = s_p0[chckIndx(i_570426079, 0, (s_p0).length - 1)];
+          if (!(i_570426100 < L_570426101)) break Label3;
+            c_704647420 = s_p0[chckIndx(i_570426100, 0, (s_p0).length - 1)];
             switch (c_704647420) {
             case 10:
               nimAddStrStr(result_p1[result_p1_Idx], [92,110]);;
@@ -9039,8 +9224,8 @@ function escapeJsonUnquoted__pureZjson_u4345(s_p0, result_p1, result_p1_Idx) {
               addChar(result_p1[result_p1_Idx], c_704647420);;
               break;
             }
-            i_570426079 += 1;
-            if (!(((s_p0).length == L_570426080))) {
+            i_570426100 += 1;
+            if (!(((s_p0).length == L_570426101))) {
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(272, 11) `len(a) == L` the length of the string changed while iterating over it"));
             }
 
@@ -9105,16 +9290,16 @@ function toUgly__pureZjson_u4376(result_p0, result_p0_Idx, node_p1) {
       nimAddStrStr(result_p0[result_p0_Idx], [91]);;
       Label1: {
         var child_704647455 = null;
-        var colontmp__570426065 = [];
+        var colontmp__570426086 = [];
         var Temporary2 = node_p1;
-        if (ConstSet253[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elems\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI704643075)); }
-        colontmp__570426065 = Temporary2.elems;
-        var i_570426067 = 0;
-        var L_570426068 = (colontmp__570426065).length;
+        if (ConstSet260[Temporary2.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'elems\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary2.kind, NTI704643075)); }
+        colontmp__570426086 = Temporary2.elems;
+        var i_570426088 = 0;
+        var L_570426089 = (colontmp__570426086).length;
         Label3: {
             Label4: while (true) {
-            if (!(i_570426067 < L_570426068)) break Label4;
-              child_704647455 = colontmp__570426065[chckIndx(i_570426067, 0, (colontmp__570426065).length - 1)];
+            if (!(i_570426088 < L_570426089)) break Label4;
+              child_704647455 = colontmp__570426086[chckIndx(i_570426088, 0, (colontmp__570426086).length - 1)];
               if (comma_704647451) {
               nimAddStrStr(result_p0[result_p0_Idx], [44]);;
               }
@@ -9123,8 +9308,8 @@ function toUgly__pureZjson_u4376(result_p0, result_p0_Idx, node_p1) {
               }
 
               toUgly__pureZjson_u4376(result_p0, result_p0_Idx, child_704647455);
-              i_570426067 += 1;
-              if (!(((colontmp__570426065).length == L_570426068))) {
+              i_570426088 += 1;
+              if (!(((colontmp__570426086).length == L_570426089))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
 
@@ -9138,20 +9323,20 @@ function toUgly__pureZjson_u4376(result_p0, result_p0_Idx, node_p1) {
       Label5: {
         var key_704647460 = [];
         var value_704647461 = null;
-        var colontmp__570426071 = ({data: [], counter: 0, first: 0, last: 0});
+        var colontmp__570426092 = ({data: [], counter: 0, first: 0, last: 0});
         var Temporary6 = node_p1;
-        if (ConstSet254[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI704643075)); }
-        colontmp__570426071 = nimCopy(colontmp__570426071, Temporary6.fields, NTI704643086);
-        var L_570426073 = len__pureZjson_u2190(colontmp__570426071);
-        if ((0 < colontmp__570426071.counter)) {
-        var h_570426074 = colontmp__570426071.first;
+        if (ConstSet261[Temporary6.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary6.kind, NTI704643075)); }
+        colontmp__570426092 = nimCopy(colontmp__570426092, Temporary6.fields, NTI704643086);
+        var L_570426094 = len__pureZjson_u2190(colontmp__570426092);
+        if ((0 < colontmp__570426092.counter)) {
+        var h_570426095 = colontmp__570426092.first;
         Label7: {
             Label8: while (true) {
-            if (!(0 <= h_570426074)) break Label8;
-              var nxt_570426076 = colontmp__570426071.data[chckIndx(h_570426074, 0, (colontmp__570426071.data).length - 1)].Field1;
-              if (isFilled__pureZcollectionsZtables_u31(colontmp__570426071.data[chckIndx(h_570426074, 0, (colontmp__570426071.data).length - 1)].Field0)) {
-              key_704647460 = colontmp__570426071.data[chckIndx(h_570426074, 0, (colontmp__570426071.data).length - 1)].Field2;
-              value_704647461 = colontmp__570426071.data[chckIndx(h_570426074, 0, (colontmp__570426071.data).length - 1)].Field3;
+            if (!(0 <= h_570426095)) break Label8;
+              var nxt_570426097 = colontmp__570426092.data[chckIndx(h_570426095, 0, (colontmp__570426092.data).length - 1)].Field1;
+              if (isFilled__pureZcollectionsZtables_u31(colontmp__570426092.data[chckIndx(h_570426095, 0, (colontmp__570426092.data).length - 1)].Field0)) {
+              key_704647460 = colontmp__570426092.data[chckIndx(h_570426095, 0, (colontmp__570426092.data).length - 1)].Field2;
+              value_704647461 = colontmp__570426092.data[chckIndx(h_570426095, 0, (colontmp__570426092.data).length - 1)].Field3;
               if (comma_704647451) {
               nimAddStrStr(result_p0[result_p0_Idx], [44]);;
               }
@@ -9162,13 +9347,13 @@ function toUgly__pureZjson_u4376(result_p0, result_p0_Idx, node_p1) {
               escapeJson__pureZjson_u4366(key_704647460, result_p0, result_p0_Idx);
               nimAddStrStr(result_p0[result_p0_Idx], [58]);;
               toUgly__pureZjson_u4376(result_p0, result_p0_Idx, value_704647461);
-              if (!((len__pureZjson_u2190(colontmp__570426071) == L_570426073))) {
+              if (!((len__pureZjson_u2190(colontmp__570426092) == L_570426094))) {
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("tables.nim(1822, 11) `len(t) == L` the length of the table changed while iterating over it"));
               }
 
               }
 
-              h_570426074 = nxt_570426076;
+              h_570426095 = nxt_570426097;
             }
         };
         }
@@ -9179,29 +9364,29 @@ function toUgly__pureZjson_u4376(result_p0, result_p0_Idx, node_p1) {
     case 4:
       if (node_p1.isUnquoted) {
       var Temporary9 = node_p1;
-      if (ConstSet255[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'str\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI704643075)); }
+      if (ConstSet262[Temporary9.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'str\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary9.kind, NTI704643075)); }
       nimAddStrStr(result_p0[result_p0_Idx], Temporary9.str);;
       }
       else {
         var Temporary10 = node_p1;
-        if (ConstSet256[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'str\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI704643075)); }
+        if (ConstSet263[Temporary10.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'str\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary10.kind, NTI704643075)); }
       escapeJson__pureZjson_u4366(Temporary10.str, result_p0, result_p0_Idx);
       }
 
       break;
     case 2:
       var Temporary11 = node_p1;
-      if (ConstSet257[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'num\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI704643075)); }
+      if (ConstSet264[Temporary11.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'num\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary11.kind, NTI704643075)); }
       addInt__stdZprivateZdigitsutils_u223(result_p0, result_p0_Idx, Temporary11.num);
       break;
     case 3:
       var Temporary12 = node_p1;
-      if (ConstSet258[Temporary12.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fnum\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary12.kind, NTI704643075)); }
+      if (ConstSet265[Temporary12.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fnum\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary12.kind, NTI704643075)); }
       addFloat__system_u3228(result_p0, result_p0_Idx, Temporary12.fnum);
       break;
     case 1:
         var Temporary14 = node_p1;
-        if (ConstSet259[Temporary14.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'bval\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary14.kind, NTI704643075)); }
+        if (ConstSet266[Temporary14.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'bval\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary14.kind, NTI704643075)); }
       if (Temporary14.bval) {
       Temporary13 = [116,114,117,101];
       }
@@ -9239,7 +9424,7 @@ function compileGzim(source_p0) {
 ++excHandler;
     try {
     var toks_570425440 = lex__lexer_u320(cstrToNimstr(source_p0));
-    var tmpTuple_570425441 = parseProgram__parser_u3271(toks_570425440);
+    var tmpTuple_570425441 = parseProgram__parser_u3334(toks_570425440);
     var program_570425442 = tmpTuple_570425441["Field0"];
     var usedAny_570425443 = tmpTuple_570425441["Field1"];
     var issues_570425444 = checkProgram__semantic_u955(program_570425442);
@@ -9247,7 +9432,7 @@ function compileGzim(source_p0) {
     resp_570425439 = HEX25__pureZjson_u1863([nimCopy(null, {Field0: [111,107], Field1: HEX25__pureZjson_u1860(false)}, NTI570425410), nimCopy(null, {Field0: [101,114,114,111,114], Field1: HEX25__pureZjson_u1834([99,97,112,32,100,101,116,101,99,116,101,100,44,32,116,104,101,32,118,105,98,101,115,32,98,101,108,111,119,32,97,105,110,39,116,32,105,116])}, NTI570425410), nimCopy(null, {Field0: [108,105,110,101], Field1: HEX25__pureZjson_u1844(issues_570425444[chckIndx(0, 0, (issues_570425444).length - 1)].line)}, NTI570425410), nimCopy(null, {Field0: [99,111,108], Field1: HEX25__pureZjson_u1844(issues_570425444[chckIndx(0, 0, (issues_570425444).length - 1)].col)}, NTI570425410), nimCopy(null, {Field0: [100,105,97,103,115], Field1: HEX25__web_u104(diagList__web_u7(issues_570425444))}, NTI570425410)]);
     }
     else {
-      var em_570425472 = emitProgram__emit_u1012(program_570425442, usedAny_570425443);
+      var em_570425472 = emitProgram__emit_u1096(program_570425442, usedAny_570425443);
       resp_570425439 = HEX25__pureZjson_u1863([nimCopy(null, {Field0: [111,107], Field1: HEX25__pureZjson_u1860(true)}, NTI570425433), nimCopy(null, {Field0: [99,111,100,101], Field1: HEX25__pureZjson_u1834(render__emit_u35(em_570425472))}, NTI570425433), nimCopy(null, {Field0: [100,105,97,103,115], Field1: HEX25__web_u104(diagList__web_u7(issues_570425444))}, NTI570425433)]);
     }
 

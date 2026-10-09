@@ -10,9 +10,28 @@ const app = fs.readFileSync(path.join(root, 'studio/app.js'), 'utf8');
 vm.runInContext(app.slice(0, app.indexOf('const REFERENCE')) + '\nglobalThis.sample = EXAMPLES["rizzgame-starter.gzim"];', compiler);
 const compiled = JSON.parse(vm.runInContext('compileGzim(sample)', compiler));
 assert.equal(compiled.ok, true, compiled.error);
-assert.match(compiled.code, /Genzimnify 2\.0\.4/);
+assert.match(compiled.code, /Genzimnify 2\.0\.5/);
 assert.match(compiled.code, /rg\.display\.pull_up/);
 assert.match(compiled.code, /rg\.display\.show_off/);
+
+// Exercise the shipped browser compiler, then execute its Python output.
+compiler.slangSample = `yap("a", "b", glue="/", micdrop="!")
+yap()
+yap(ranked([1, 3, 2], uno_reverse=nocap))
+pull up luck
+luck.manifest(42)
+let first be luck.random()
+luck.manifest(42)
+yap(first == luck.random())`;
+const slang = JSON.parse(vm.runInContext('compileGzim(slangSample)', compiler));
+assert.equal(slang.ok, true, slang.error);
+const execution = require('node:child_process').spawnSync('python3', ['-c', slang.code], { encoding: 'utf8' });
+assert.equal(execution.status, 0, execution.stderr);
+assert.equal(execution.stdout, 'a/b!\n[3, 2, 1]\nTrue\n');
+compiler.chainSample = 'yap(3 < 2 < 1)';
+const chain = JSON.parse(vm.runInContext('compileGzim(chainSample)', compiler));
+assert.equal(chain.ok, false);
+assert.match(chain.error, /split comparisons with 'both'/);
 
 const operations = [];
 function makeCanvas() {

@@ -197,10 +197,32 @@ proc truthy(value: Value): bool =
   of vkDict: value.pairs.len > 0
   else: true
 
+proc compareNumbers(a, b: Value): int =
+  # Compare integers before converting: float64 cannot represent all int64 values.
+  if a.kind == vkFloat and a.floatVal.isNaN:
+    return if b.kind == vkFloat and b.floatVal.isNaN: 0 else: -1
+  if b.kind == vkFloat and b.floatVal.isNaN: return 1
+  let ai = a.kind in {vkInt, vkBool}
+  let bi = b.kind in {vkInt, vkBool}
+  if ai and bi: return cmp(a.asInt, b.asInt)
+  if not ai and not bi: return cmp(a.floatVal, b.floatVal)
+  if not ai: return -compareNumbers(b, a)
+  let i = a.asInt
+  let f = b.floatVal
+  if f >= 9223372036854775808.0: return -1
+  if f < -9223372036854775808.0: return 1
+  let truncated = f.int64
+  result = cmp(i, truncated)
+  if result == 0:
+    if f > truncated.float64: result = -1
+    elif f < truncated.float64: result = 1
+
 proc equal(a, b: Value): bool =
   if a == nil or b == nil: return a == b
   if a.kind in {vkInt, vkFloat, vkBool} and b.kind in {vkInt, vkFloat, vkBool}:
-    return a.numeric == b.numeric
+    if (a.kind == vkFloat and a.floatVal.isNaN) or
+        (b.kind == vkFloat and b.floatVal.isNaN): return false
+    return compareNumbers(a, b) == 0
   if a.kind != b.kind: return false
   case a.kind
   of vkNone: true
@@ -208,7 +230,12 @@ proc equal(a, b: Value): bool =
   of vkInt: a.intVal == b.intVal
   of vkFloat: a.floatVal == b.floatVal
   of vkString, vkException: a.strVal == b.strVal
-  of vkList, vkTuple, vkSet:
+  of vkSet:
+    if a.items.len != b.items.len: return false
+    for item in a.items:
+      if not b.items.anyIt(equal(item, it)): return false
+    true
+  of vkList, vkTuple:
     if a.items.len != b.items.len: return false
     for i in 0 ..< a.items.len:
       if not equal(a.items[i], b.items[i]): return false
@@ -397,11 +424,15 @@ proc callValue(rt: Runtime, env: Env, callee: Value, args: seq[Value], kwargs: s
 
 proc compareValues(a, b: Value): int =
   if a.kind in {vkInt, vkFloat, vkBool} and b.kind in {vkInt, vkFloat, vkBool}:
-    return cmp(a.numeric, b.numeric)
+    return compareNumbers(a, b)
   if a.kind == vkString and b.kind == vkString: return cmp(a.strVal, b.strVal)
   raise runtimeCap("WrongType", "values cannot be ordered")
 
 proc binary(op: string, a, b: Value): Value =
+  if op in ["<", ">", "<=", ">="] and
+      a.kind in {vkInt, vkFloat, vkBool} and b.kind in {vkInt, vkFloat, vkBool} and
+      ((a.kind == vkFloat and a.floatVal.isNaN) or (b.kind == vkFloat and b.floatVal.isNaN)):
+    return boolVal(false)
   case op
   of "and": return if a.truthy: b else: a
   of "or": return if a.truthy: a else: b
@@ -443,12 +474,25 @@ proc binary(op: string, a, b: Value): Value =
     floatVal(a.numeric / b.numeric)
   of "//":
     if b.numeric == 0: raise runtimeCap("SplitByZero", "integer division by zero")
-    let value = floor(a.numeric / b.numeric)
-    if bothInts: intVal(value.int64) else: floatVal(value)
+    if bothInts:
+      let x = a.asInt
+      let y = b.asInt
+      if x == low(int64) and y == -1:
+        raise runtimeCap("BadVibe", "integer division exceeds int64 range")
+      var quotient = x div y
+      if x mod y != 0 and (x < 0) != (y < 0): dec quotient
+      intVal(quotient)
+    else: floatVal(floor(a.numeric / b.numeric))
   of "%":
     if b.numeric == 0: raise runtimeCap("SplitByZero", "modulo by zero")
-    let value = a.numeric - floor(a.numeric / b.numeric) * b.numeric
-    if bothInts: intVal(value.int64) else: floatVal(value)
+    if bothInts:
+      let x = a.asInt
+      let y = b.asInt
+      if y == -1: return intVal(0)
+      var remainder = x mod y
+      if remainder != 0 and (remainder < 0) != (y < 0): remainder += y
+      intVal(remainder)
+    else: floatVal(a.numeric - floor(a.numeric / b.numeric) * b.numeric)
   of "**":
     let value = pow(a.numeric, b.numeric)
     if bothInts and b.asInt >= 0: intVal(value.int64) else: floatVal(value)
@@ -694,6 +738,7 @@ proc nativeModule(rt: Runtime, name: string): Value =
   of "clock":
     env.declare("time", builtinValue("clock.time")); env.declare("sleep", builtinValue("clock.sleep"))
   of "luck":
+    env.declare("manifest", builtinValue("luck.manifest"))
     env.declare("random", builtinValue("luck.random")); env.declare("randint", builtinValue("luck.randint")); env.declare("choice", builtinValue("luck.choice"))
   of "system":
     env.declare("args", listVal(rt.args.mapIt(stringVal(it))))
@@ -826,27 +871,35 @@ proc execStmt(rt: Runtime, env: Env, stmt: Stmt, yields: var seq[Value]): Signal
     raise runtimeCap(error.builtin, error.strVal, stmt.line, stmt.col)
   of skTry:
     var bodySignal = Signal(kind: sigNone)
-    var succeeded = false
+    let previousException = rt.activeException
     try:
-      bodySignal = rt.execBlock(env, stmt.tbody, yields)
-      succeeded = true
-    except RuntimeError as error:
-      var handled = false
-      for handler in stmt.handlers:
-        if rt.exceptionMatches(env, handler, error):
-          handled = true
-          let exception = Value(kind: vkException, builtin: error.category, strVal: error.msg)
-          rt.activeException = exception
-          if handler.alias != "": env.values[handler.alias] = exception
-          bodySignal = rt.execBlock(env, handler.body, yields)
-          rt.activeException = nil
-          break
-      if not handled: raise
-    if succeeded and stmt.orelse.len > 0 and bodySignal.kind == sigNone:
-      bodySignal = rt.execBlock(env, stmt.orelse, yields)
-    if stmt.finallyB.len > 0:
-      let finalSignal = rt.execBlock(env, stmt.finallyB, yields)
-      if finalSignal.kind != sigNone: bodySignal = finalSignal
+      try:
+        var succeeded = false
+        try:
+          bodySignal = rt.execBlock(env, stmt.tbody, yields)
+          succeeded = true
+        except RuntimeError as error:
+          rt.activeException = Value(kind: vkException, builtin: error.category, strVal: error.msg)
+          var handled = false
+          for handler in stmt.handlers:
+            if rt.exceptionMatches(env, handler, error):
+              handled = true
+              if handler.alias != "": env.values[handler.alias] = rt.activeException
+              bodySignal = rt.execBlock(env, handler.body, yields)
+              break
+          if not handled: raise
+          rt.activeException = previousException
+        if succeeded and stmt.orelse.len > 0 and bodySignal.kind == sigNone:
+          bodySignal = rt.execBlock(env, stmt.orelse, yields)
+      except RuntimeError as error:
+        rt.activeException = Value(kind: vkException, builtin: error.category, strVal: error.msg)
+        raise
+      finally:
+        if stmt.finallyB.len > 0:
+          let finalSignal = rt.execBlock(env, stmt.finallyB, yields)
+          if finalSignal.kind != sigNone: return finalSignal
+    finally:
+      rt.activeException = previousException
     if bodySignal.kind != sigNone: return bodySignal
   of skWith:
     var resources: seq[Value]
@@ -1068,12 +1121,22 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
     let fn = instance.klass.base.findMethod(methodName)
     if fn == nil: raise runtimeCap("Ghosted", "ancestor has no method '" & methodName & "'")
     let forwarded = if args.len > 0 and args[0] == instance: args[1 .. ^1] else: args
-    return rt.callValue(env, Value(kind: vkFunction, fn: fn, boundSelf: instance), forwarded, @[])
+    return rt.callValue(env, Value(kind: vkFunction, fn: fn, boundSelf: instance), forwarded, kwargs)
+  for kw in kwargs:
+    if not ((name == "yap" and kw.nm in ["glue", "micdrop"]) or
+            (name == "ranked" and kw.nm == "uno_reverse")):
+      raise runtimeCap("WrongType", name & " got unexpected argument '" & kw.nm & "'")
   case name
   of "yap":
     var parts: seq[string]
     for arg in args: parts.add display(arg)
-    stdout.writeLine(parts.join(" "))
+    var glue = " "
+    var micdrop = "\n"
+    for kw in kwargs:
+      if kw.val.kind != vkString: raise runtimeCap("WrongType", kw.nm & " expects text")
+      if kw.nm == "glue": glue = kw.val.strVal
+      else: micdrop = kw.val.strVal
+    stdout.write(parts.join(glue) & micdrop)
     return noneVal()
   of "yap back":
     if args.len > 0: stdout.write(display(args[0])); flushFile(stdout)
@@ -1135,7 +1198,12 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
   of "ranked":
     requireArgs(name, args, 1)
     var values = iterable(args[0])
-    values.sort(proc(a, b: Value): int = compareValues(a, b))
+    var descending = false
+    for kw in kwargs:
+      if kw.val.kind != vkBool: raise runtimeCap("WrongType", "uno_reverse expects nocap or cap")
+      descending = kw.val.boolVal
+    values.sort(proc(a, b: Value): int =
+      if descending: compareValues(b, a) else: compareValues(a, b))
     return listVal(values)
   of "index up":
     if args.len < 1 or args.len > 2: raise runtimeCap("WrongType", "index up expects 1..2 arguments")
@@ -1231,6 +1299,11 @@ proc invokeBuiltin(rt: Runtime, env: Env, callee: Value, args: seq[Value],
   of "timing.sleep", "clock.sleep": return noneVal()
   of "timing.run": requireArgs(name, args, 1); return args[0]
   of "clock.time": return floatVal(epochTime())
+  of "luck.manifest":
+    requireArgs(name, args, 1)
+    if args[0].kind != vkInt: raise runtimeCap("WrongType", "manifest expects an integer seed")
+    randomize(args[0].intVal)
+    return noneVal()
   of "luck.random": return floatVal(rand(1.0))
   of "luck.randint": requireArgs(name, args, 2); return intVal(rand(args[0].asInt.int .. args[1].asInt.int))
   of "luck.choice":
@@ -1313,6 +1386,11 @@ proc callFunction(rt: Runtime, caller: Env, callee: Value, args: seq[Value],
 
 proc callValue(rt: Runtime, env: Env, callee: Value, args: seq[Value], kwargs: seq[tuple[nm: string, val: Value]]): Value =
   if callee == nil: raise runtimeCap("WrongType", "ghost is not callable")
+  var keywordNames = initHashSet[string]()
+  for kw in kwargs:
+    if kw.nm in keywordNames:
+      raise runtimeCap("WrongType", "multiple values for argument '" & kw.nm & "'")
+    keywordNames.incl kw.nm
   case callee.kind
   of vkBuiltin: rt.invokeBuiltin(env, callee, args, kwargs)
   of vkFunction: rt.callFunction(env, callee, args, kwargs)
@@ -1320,7 +1398,7 @@ proc callValue(rt: Runtime, env: Env, callee: Value, args: seq[Value], kwargs: s
     let instance = Value(kind: vkInstance, klass: callee.klass, fields: initTable[string, Value]())
     let init = callee.klass.findMethod("new")
     if init != nil: discard rt.callFunction(env, Value(kind: vkFunction, fn: init, boundSelf: instance), args, kwargs)
-    elif args.len > 0: raise runtimeCap("WrongType", callee.klass.name & " takes no arguments")
+    elif args.len > 0 or kwargs.len > 0: raise runtimeCap("WrongType", callee.klass.name & " takes no arguments")
     instance
   else: raise runtimeCap("WrongType", repr(callee) & " is not callable")
 

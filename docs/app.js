@@ -77,7 +77,9 @@ function addCopyButtons() {
 function setupToc() {
   const toc = document.getElementById("pageToc");
   if (!toc) return;
-  const headings = [...document.querySelectorAll("article h2, article h3")];
+  const headings = [...document.querySelectorAll(
+    document.querySelector("article.changelog") ? "article h2" : "article h2, article h3"
+  )];
   const usedIds = new Set();
   toc.innerHTML = '<div class="toc-title">On this page</div>' + headings.map((heading) => {
     const base = heading.id || heading.textContent.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
